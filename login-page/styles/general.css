@@ -1,4 +1,9 @@
-body {
-  font-family: Roboto;
-  background-color: rgb(173, 216, 230);
+:root {
+  --light-pink: rgb(238, 144, 167);
+  --goldenrod-yellow: rgb(238, 216, 144);
+  --light-green: rgb(144, 238, 144);
+  --light-blue: rgb(173, 216, 230);
+  /* --goldenrod-yellow: #b31a1a00;
+  --light-blue: #80c427;
+ */
 }
