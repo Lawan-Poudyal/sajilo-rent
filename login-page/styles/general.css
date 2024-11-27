@@ -7,3 +7,29 @@
   --light-blue: #80c427;
  */
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--goldenrod-yellow);
+
+  font-family: Roboto;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
