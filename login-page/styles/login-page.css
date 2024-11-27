@@ -1,133 +1,170 @@
-body {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+/* body {
+  font-family: Roboto;
   margin: 0;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
 
-.login-page-container {
-  background-color: var(--light-blue);
-  display: flex;
-  height: 100vh;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
-
-  /*padding: 100px;
+.container {
   display: grid;
-  grid-template-columns: 1fr 500px; */
-}
-@media screen {
-}
-.image-section {
-  flex: 1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  background-image: url(../../resources/ku-osm.png);
-  background-repeat: no-repeat; /* Prevents tiling of the image */
-  background-position: center; /* centers the image  */
-  background-size: cover; /*  image covers the entire section */
-
-  backdrop-filter: blur(8px);
-
-  overflow: hidden;
-}
-.image-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: inherit;
-  filter: blur(2px);
-  z-index: 1;
+  grid-template-columns: 1fr 500px;
+  height: 100vh;
 }
 
-.logo-name-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  z-index: 2;
+.left-section {
+  background-color: pink;
+  background-image: url(../resources/ku-osm.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.name {
-  font-size: 50px;
-  font-weight: 700;
-}
-/*
-.login-section {
-  width: 500px;
-} */
-/* .map-image {
-  width: auto;
-  height: 100%;
-  filter: blur(1px);
-
-  position: absolute;
-} */
-.logo {
-  /* z-index: 100; */
-}
-.login-section {
-  width: 500px;
+.right-section {
   padding: 50px;
+  background-color: lightblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.login-section span {
+.form-heading {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 700;
   margin-bottom: 20px;
-  font-size: 24px;
+  margin-top: 20px;
 }
-
 .input-group {
-  margin-bottom: 20px;
+  width: 100%;
 }
 
-.input-group input {
+.details-input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(172, 171, 171);
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+} */
+
+:root {
+  font-size: 100%;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.options a {
-  color: #6a11cb;
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: Roboto;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+a {
   text-decoration: none;
-  font-size: 14px;
 }
-
-.options a:hover {
+a:hover {
   text-decoration: underline;
 }
 
-button {
+.split-screen {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+.left-section,
+.right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left-section {
+  flex-direction: column;
+  height: 300px;
+
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)),
+    url(../../resources/ku-osm.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.logo {
+  /* min-width: 100px; */
+  max-width: 150px;
+}
+
+/* .left-section::before {
+  content: "";
+  background: inherit;
+  background: inherit;
+  filter: blur(2px);
+} */
+.right-section {
+  /* background-color: var(--light-blue); */
+  color: black;
+}
+
+.right-section .copy {
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+  text-align: center;
+}
+
+.right-section .copy p {
+  margin: 1.5em 0;
+  font-size: 0.875rem;
+}
+.right-section form {
+  width: 380px;
+}
+/* #fname {
+  display: inline;
+}
+#lname {
+  display: inline-block;
+} */
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  display: block;
   width: 100%;
-  padding: 10px;
-  border: none;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  color: white;
-  font-size: 16px;
+
+  padding: 1em;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+
+  border: 1px solid rgb(204, 204, 204);
   border-radius: 5px;
-  cursor: pointer;
 }
-
-button:hover {
-  background: linear-gradient(to right, #2575fc, #6a11cb);
+/* .input-container.password {
+  position: relative;
 }
-
-input:focus {
-  outline: 2px solid rgb(3, 3, 3);
-}
+.input-container.password i {
+  position: absolute;
+  top: 42px;
+  right: 16px;
+} */
