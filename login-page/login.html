@@ -15,27 +15,49 @@
     <link rel="stylesheet" href="./styles/login-page.css" />
   </head>
   <body>
-    <div class="login-page-container">
-      <div class="image-section">
-        <div class="logo-name-container">
-          <img src="../resources/logo.svg" class="logo" />
-          <span class="name">Sajilo Rent</span>
-        </div>
+    <div class="split-screeen">
+      <div class="left-section">
+        <img class="logo" src="../resources/logo.svg" />
+        <h1>Sajilo Rent</h1>
       </div>
-      <div class="login-section">
-        <span>User Login</span>
+      <div class="right-section">
         <form>
-          <div class="input-group">
-            <input type="text" placeholder="Username" />
+          <section class="copy">
+            <h2>Sign up</h2>
+            <div class="login-container">
+              <p>
+                Already have an account? <a href="#"><strong>Log In</strong></a>
+              </p>
+            </div>
+          </section>
+
+          <div class="input-container name">
+            <input
+              id="fname"
+              name="fname"
+              type="text"
+              placeholder="First Name"
+            />
+            <input
+              id="lname"
+              name="fname"
+              type="text"
+              placeholder="Last Name"
+            />
           </div>
-          <div class="input-group">
-            <input type="password" placeholder="Password" />
+          <div class="input-container email">
+            <input id="email" name="email" type="email" placeholder="Email" />
           </div>
-          <div class="options">
-            <label><input type="checkbox" /> Remember</label>
-            <a href="#">Forgot password?</a>
+          <div class="input-container password">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
+            <!-- <i class="far fa-eye-slash">hello</i> -->
           </div>
-          <button type="submit">Login</button>
+          <button class="sign-up-button">Sign Up</button>
         </form>
       </div>
     </div>
