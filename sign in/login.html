@@ -11,8 +11,8 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../login-page/styles/general.css" />
-    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="./styles/general.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
   </head>
   <body>
     <div class="split-screen">
@@ -24,16 +24,37 @@
         <form>
           <section class="title">
             <h2>Sign up</h2>
-            <div class="login-container">
-             
-            </div>
+            <div class="login-container"></div>
           </section>
+
+          <div class="input-container name">
+            <input
+              id="fname"
+              name="fname"
+              type="text"
+              placeholder="First Name"
+              required
+            />
+            <input
+              id="lname"
+              name="fname"
+              type="text"
+              placeholder="Last Name"
+              required
+            />
+          </div>
           <div class="input-container email">
-            <input id="email" name="email" type="email" placeholder="Email" required/>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+            />
           </div>
           <div class="input-container password">
             <input
-              id="passwo rd"
+              id="password"
               name="password"
               type="password"
               placeholder="Password"
@@ -41,11 +62,12 @@
             />
           </div>
           <div class="sign-up-button-container">
-            <button class="sign-up-button">Sign Up</button>
+            <button class="sign-up-button">Sign in</button>
           </div>
           <div class="p-container">
             <p class="">
-              Not Registered? <a href="../login-page/login.html"><strong>Sign up</strong></a>
+              Already have an account?
+              <a href="../sign in/sign-up.html"><strong>Log In</strong></a>
             </p>
           </div>
         </form>

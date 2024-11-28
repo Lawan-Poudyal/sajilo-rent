@@ -11,8 +11,8 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./styles/general.css" />
-    <link rel="stylesheet" href="./styles/login-page.css" />
+    <link rel="stylesheet" href="../sign in/styles/general.css" />
+    <link rel="stylesheet" href="../sign in/styles/signup.css" />
   </head>
   <body>
     <div class="split-screen">
@@ -23,33 +23,21 @@
       <div class="right-section">
         <form>
           <section class="title">
-            <h2>Sign up</h2>
-            <div class="login-container">
-            </div>
+            <h2>Log in</h2>
+            <div class="login-container"></div>
           </section>
-
-          <div class="input-container name">
-            <input
-              id="fname"
-              name="fname"
-              type="text"
-              placeholder="First Name"
-              required
-            />
-            <input
-              id="lname"
-              name="fname"
-              type="text"
-              placeholder="Last Name"
-              required
-            />
-          </div>
           <div class="input-container email">
-            <input id="email" name="email" type="email" placeholder="Email" />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+            />
           </div>
           <div class="input-container password">
             <input
-              id="password"
+              id="passwo rd"
               name="password"
               type="password"
               placeholder="Password"
@@ -57,11 +45,12 @@
             />
           </div>
           <div class="sign-up-button-container">
-            <button class="sign-up-button">Log In</button>
+            <button class="sign-up-button">log in</button>
           </div>
           <div class="p-container">
             <p class="">
-              Already have an account? <a href="../signup-page/singup.html"><strong>Log In</strong></a>
+              Not Registered?
+              <a href="./login.html"><strong>Sign up</strong></a>
             </p>
           </div>
         </form>
