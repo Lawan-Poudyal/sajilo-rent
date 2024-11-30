@@ -1,0 +1,322 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+:root{
+    /*font property */
+    --body-font-size:1.5rem;
+    --body-font-color:black;
+    --body-medium-font-size:1.25rem;
+    --body-small-font-size:1rem;
+    --light-font-color:white;
+    --heavy-font-color:black;
+    /*bgcolor property*/
+    --body-bgcolor:lightgray;
+    --contrast-bgcolor:whitesmoke;
+    --heavy-bgcolor:black;
+    --light-bgcolor:white;
+    /*spacing property*/
+    --standard-gap:1rem;
+    --min-gap:0.5rem;
+    --standard-padding:1rem;
+    --small-padding:0.5rem;
+    --ultra-small-padding:0.25rem;
+    --min-gap:0.5rem;
+    --standard-margin:0.5rem;
+    --heavy-margin:1.5rem;
+    /*proprtions*/
+    --nav-element-height:50px;
+    --nav-element-width:50px;
+    --small-element-width:20px;
+    --small-element-height:20px;
+    --map-height:80vw;
+    /*animations*/
+    --button-hover:all ease-in 0.5s 0s;
+    /**/
+
+}
+body{
+    background-color:var(--body-bgcolor);
+    font-size:var(--body-small-font-size);
+    font-family:monospace;
+    min-height:100vh;
+    display:flex;
+    flex-flow:column nowrap;
+}
+img{
+    display:block;
+}
+.header{
+    position:sticky;
+    z-index:10;
+    top:0;
+}
+/*nav design */
+.header-nav{
+    background-color: var(--contrast-bgcolor);
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:var(--standard-padding);
+    gap:var(--min-gap);
+    box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
+}
+.header-nav-element figure{
+    width:var(--nav-element-width);
+    height:auto;
+}
+.header-nav-element{
+    flex-shrink:1;
+}
+.header-nav-element:nth-child(2)
+{
+    
+    width:clamp(300px , 60% , 600px);
+}
+.header-nav-element form {
+    display:grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
+    gap:var(--min-gap);
+}
+.header-nav-element-form input , .header-nav-element-form button{
+    height:calc(var(--nav-element-height));
+    border:none;
+    border-radius:100px;
+    box-shadow: 0px 5px 5px 0px var(--body-bgcolor);
+    transition:var(--button-hover);
+    cursor:pointer;
+}
+.header-nav-element-form button:hover{
+    background-color:var(--heavy-bgcolor);
+    color:var(--light-font-color);
+    box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
+
+}
+.menu{
+    height:var(--nav-element-height);
+    width:var(--nav-element-width);
+    background-color: var(--body-bgcolor);
+}
+/*main */
+#map{
+    z-index:0;
+}
+.main{
+    flex-grow:1;
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content:flex-start;
+    align-items: center;
+}
+.main-section{
+    width:100%;
+    height:var(--map-height);
+    background-color:var(--contrast-bgcolor) ;
+    margin-top:10px;
+}
+.main-aside
+{
+    width:min(100% , 648px);
+    
+}
+.main-aside-credentials{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:space-between;
+    align-items: center;
+    gap:var(--standard-gap);
+    padding:var(--standard-padding);
+}
+.main-aside-credentials figure{
+    margin-right:auto;
+}
+.credentials{
+   padding:var(--standard-padding);
+   background-color: var(--contrast-bgcolor);
+
+   transition:var(--button-hover);
+}
+.credentials:hover{
+background-color: var(--heavy-bgcolor);
+color:var(--light-font-color);
+cursor:pointer;
+}
+/*main -aside 1*/
+.main-aside-h2
+{
+margin:auto;
+white-space: nowrap;
+width:0%;
+overflow:hidden;
+font-size: var(--body-font-size);
+max-width: fit-content;
+border-right:1px solid black;
+animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infinite;
+}
+
+@keyframes moveforward{
+0%{
+
+    width:0%;
+    
+}
+100%{
+ 
+    width:100%;
+    
+}
+}
+@keyframes typewriter {
+    0%{
+       border-right-color: transparent;
+    }
+    100%{
+        border-right-color: black;
+    }
+}
+.slider{
+    font-size:var(--body-font-size);
+    background-color: var(--contrast-bgcolor);
+    margin:10px;
+    border-radius:10px;
+    padding:var(--standard-padding);
+}
+.caption{
+    padding:var(--standard-padding);
+    background-color:var(--heavy-bgcolor);
+    color:var(--light-font-color);
+    width:fit-content;
+    border-radius:100px;
+}
+.slidebar
+{
+    height:25px;
+    margin:var(--heavy-margin) 0  var(--heavy-margin) 0;
+    width:0%;
+    border-radius:100px;
+    background-color: blue;
+    position:relative;
+
+}
+.slideIn1
+{
+    animation:slide1 3s 1s ease-in-out forwards;
+}
+.slideIn2
+{
+    animation:slide2 3s 1s ease-in-out forwards;
+}
+.slideIn3
+{
+    animation: slide3 3s 1s ease-in-out forwards;
+}
+@keyframes slide1
+{
+    0%{
+        width:0%;
+    }
+    100%{
+        width:50%;
+    }
+}
+@keyframes slide2
+{
+    0%{
+        width:0%;
+    }
+    100%{
+        width:75%;
+    }
+}
+@keyframes slide3
+{
+    0%{
+        width:0%;
+    }
+    100%{
+        width:34%;
+    }
+}
+.ball{
+    position:absolute;
+    height:var(--nav-element-height);
+    width:var(--nav-element-width);
+    border-radius:50%;
+    background-color: blue;
+    top:-50%;
+    right:0%;
+}
+.hidden
+{
+    display:none;
+}
+/*second aside*/
+.main-aside-h3{
+    text-align: center;
+    margin:var(--standard-margin);
+}
+.main-aside-p
+{
+   padding:var(--standard-padding);
+   background-color: var(--contrast-bgcolor);
+   font-size:var(--body-medium-font-size);
+   margin:var(--standard-margin);
+   border-radius:10px;
+}
+.footer
+{
+    text-align: center;
+    padding:var(--standard-padding);
+    margin:var(--standard-margin);
+    background-color: var(--contrast-bgcolor);
+    position:sticky;
+    bottom:0;
+    z-index:3;
+}
+.marker-button{
+    padding:var(--standard-padding);
+    background-color:red;
+    border:none;
+    border-radius:10px;
+}
+
+/*media queries*/
+@media screen and (min-width:768px)
+{
+    :root{
+        --map-height:615px;
+
+    }
+    .aside1{
+        width:min(calc(100%-5px) , 800px);
+    }
+    .main-aside-credentials{
+        display:none;
+    }
+}
+@media screen and (min-width:996px)
+{
+    :root{
+        --map-height:100vh;
+    }
+    .aside1{
+        position:fixed;
+        bottom:50px;
+        justify-self: flex-start;
+        align-self: flex-start;
+        height:500px;
+        width:500px;
+    }
+    .footer{
+        display:none;
+    }
+    .main-aside-h2 {
+        font-size:2rem;
+    }
+    .slider{
+        background-color: transparent;
+    }
+    
+}

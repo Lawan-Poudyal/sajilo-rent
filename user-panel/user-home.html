@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="icon" type="image/x-icon" href="../resources/logo.png">
+    <link rel="stylesheet" href="styles/user-home-style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="header-nav">
+            <div class="header-nav-element">
+                <figure>
+                <img src="../resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+            </figure>
+            </div>
+            <div class="header-nav-element">
+                <form action="" class="header-nav-element-form search1">
+                    <input type="text" placeholder="Search">
+                    <button class="navbtn"> Search</button>
+                   </form>
+            </div>
+            <div class="header-nav-element menu">
+
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <section class="main-section" id="map">
+           <form action="" class="main-section-form search hidden">
+            <input type="text" placeholder="Search">
+            <button>Search</button>
+           </form>
+        </section>
+        <aside class="main-aside aside1">
+            <div class="main-aside-credentials">
+            <figure>
+                <img src="../resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+            </figure>
+            
+            <div class="main-aside-div credentials ">Login</div>
+            <div class="main-aside-div credentials">Sign-up</div>
+        </div>
+          <h2 class="main-aside-h2">Find your perfect room</h2>
+            <div class="main-aside-div slider">
+            <div class="caption">Price</div>
+            <div class="slidebar slide1">
+                <div class="ball"></div>  
+            </div>
+          
+            </div>
+            <div class="main-aside-div slider">
+            <div class="caption">Distance</div>
+            <div class="slidebar slide2">
+                <div class="ball"></div>  
+            </div>
+             
+        </div>
+            <div class="main-aside-div slider">
+            <div class="caption">Rating</div>
+            <div class="slidebar slide3">
+                <div class="ball"></div>  
+            </div>
+         
+            </div>
+        </aside>
+        <aside class="main-aside aside2">
+            <h2 class="main-aside-h2">Sajilo Rent</h2>
+          <h3 class="main-aside-h3">Why Sajilo Rent<h3></h3> 
+           <p class="main-aside-p info2">
+               
+                   
+                     Welcome to Sajilo Rent – your one-stop solution for hassle-free renting! Whether you're looking for a place to stay, equipment for an event, or tools for your next project, Sajilo Rent connects you with trusted providers in just a few clicks. Enjoy a seamless renting experience with transparent pricing, verified listings, and reliable customer support. Renting has never been this easy – Sajilo Rent makes it simple!
+                
+            </p>
+        </aside>
+    </main>
+    <footer class="footer">
+        &copy; Sajilo Rent.co
+    </footer>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([27.6194, 85.5388], 50); // Latitude, Longitude, Zoom Level
+      
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+      
+        // Add a marker
+        var marker = L.marker([27.6194, 85.5388]).addTo(map);
+        var locker = L.marker([27.6294, 85.5388]).addTo(map);
+        var docker = L.marker([27.6194, 85.5488]).addTo(map);
+        marker.bindPopup("<b>Rent your Room!</b><br><button class='marker-button'>Rent!</button>.").openPopup();
+        locker.bindPopup("<b>Rent your Room!</b><br><button class='marker-button'>Rent!</button>.").openPopup();
+        docker.bindPopup("<b>Rent your Room!</b><br><button class='marker-button'>Rent!</button>.").openPopup();
+ /* --------------------------------------*/
+ const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('slideIn3');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.5 
+});
+
+const sliders = document.querySelectorAll('.slide3');
+sliders.forEach(slider => {
+  observer.observe(slider); 
+});
+/*********************************/
+const observer2 = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('slideIn1');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.5 
+});
+
+const sliders2 = document.querySelectorAll('.slide1');
+
+sliders2.forEach(slider => {
+  observer2.observe(slider); 
+});
+/**********************************/
+const observer3 = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('slideIn2');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.5 
+});
+
+const sliders3 = document.querySelectorAll('.slide2');
+
+sliders3.forEach(slider => {
+  observer3.observe(slider); 
+});
+      </script>
+</body>
+</html>
