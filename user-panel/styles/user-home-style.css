@@ -21,6 +21,7 @@
     --min-gap:0.5rem;
     --standard-padding:1rem;
     --small-padding:0.5rem;
+    --very-small-padding:0.25rem;
     --ultra-small-padding:0.25rem;
     --min-gap:0.5rem;
     --standard-margin:0.5rem;
@@ -62,6 +63,10 @@ img{
     gap:var(--min-gap);
     box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
 }
+#logo-btn{
+    border:none;
+    cursor:pointer;
+}
 .header-nav-element figure{
     width:var(--nav-element-width);
     height:auto;
@@ -98,7 +103,33 @@ img{
     height:var(--nav-element-height);
     width:var(--nav-element-width);
     background-color: var(--body-bgcolor);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: var(--small-padding);
+    border:none;
 }
+.bar , .bar:after , .bar:before{
+background-color: var(--heavy-bgcolor);
+width:40px;
+height:5px;
+border-radius:5px;
+position:absolute;
+transition:all 0.5s;
+
+}
+.bar::before {
+    content:'';
+    transform:translate(-20px , -12px);
+
+}
+ .bar::after {
+    content:'';
+    transform:translate(-20px , 12px);
+
+}
+
 /*main */
 #map{
     z-index:0;
@@ -176,6 +207,9 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
         border-right-color: black;
     }
 }
+.credentials{
+    border-radius:25px;
+}
 .slider{
     font-size:var(--body-font-size);
     background-color: var(--contrast-bgcolor);
@@ -202,15 +236,15 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
 }
 .slideIn1
 {
-    animation:slide1 3s 1s ease-in-out forwards;
+    animation:slide1 3s 0.5s ease-in-out forwards;
 }
 .slideIn2
 {
-    animation:slide2 3s 1s ease-in-out forwards;
+    animation:slide2 3s 0.5s ease-in-out forwards;
 }
 .slideIn3
 {
-    animation: slide3 3s 1s ease-in-out forwards;
+    animation: slide3 3s 0.5s ease-in-out forwards;
 }
 @keyframes slide1
 {
@@ -246,7 +280,7 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
     border-radius:50%;
     background-color: blue;
     top:-50%;
-    right:0%;
+    right:-40px;
 }
 .hidden
 {
@@ -298,16 +332,24 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
 }
 @media screen and (min-width:996px)
 {
+    .main-aside-credentials{
+        display:flex;
+        border-color:var(--heavy-bgcolor);
+    }
+  .credentials{
+     border:2px solid var(--heavy-bgcolor);
+    }
     :root{
         --map-height:100vh;
     }
     .aside1{
-        position:fixed;
-        bottom:50px;
-        justify-self: flex-start;
-        align-self: flex-start;
-        height:500px;
+        position:absolute;
+        top:10%;
+        align-self: flex-end;
         width:500px;
+       background-color: var(--contrast-bgcolor); 
+       display:none;
+       transition:all 0.5s;
     }
     .footer{
         display:none;
@@ -318,5 +360,25 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
     .slider{
         background-color: transparent;
     }
-    
+    .menu:hover .bar{
+        background-color:transparent;
+        
+     }
+     .menu:hover .bar:before{
+        transform:translateX(-20px) rotate(45deg);
+     }
+     .menu:hover .bar:after{
+        transform:translateX(-20px) rotate(-45deg);
+     }
+     .aside2{
+        position:absolute;
+        top:10%;
+        align-self: flex-start;
+        width:500px;
+        height:50vh;
+       background-color: var(--contrast-bgcolor); 
+       display:none;
+       transition:all 0.5s;
+    }
+     
 }
