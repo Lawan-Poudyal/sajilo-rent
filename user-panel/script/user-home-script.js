@@ -1,3 +1,4 @@
+
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -52,12 +53,12 @@ const observer = new IntersectionObserver((entries, observer) => {
   let isShown = false;
   function showaside(){
   let width= window.innerWidth;
-  if(isShown ===false && width>=996)
+  if(isShown ===false && width>=768)
   {
   document.getElementById('aside1').style.display = 'block';
   isShown=true;
   }
-  else if (isShown===true && width>=996)
+  else if (isShown===true && width>=768)
   {
     document.getElementById('aside1').style.display = 'none';
   isShown=false;
@@ -66,12 +67,12 @@ const observer = new IntersectionObserver((entries, observer) => {
   let isShown2 = false;
   function showaside2(){
   let width= window.innerWidth;
-  if(isShown2 ===false && width>=996)
+  if(isShown2 ===false && width>=768)
   {
   document.getElementById('aside2').style.display = 'block';
   isShown2=true;
   }
-  else if (isShown2===true && width>=996)
+  else if (isShown2===true && width>=768)
   {
     document.getElementById('aside2').style.display = 'none';
   isShown2=false;
@@ -80,18 +81,27 @@ const observer = new IntersectionObserver((entries, observer) => {
   
   window.addEventListener('resize', function () {
     let width=window.innerWidth;
-      if(width < 996)
+      if(width < 768)
   {
     document.getElementById('aside2').style.display = 'block';
     document.getElementById('aside1').style.display = 'block';
+    var text = 'minecraft';
+    
   }
-  else if(width >=996)
+  else if(width >=768)
   {
     document.getElementById('aside2').style.display = 'none';
     document.getElementById('aside1').style.display = 'none';
   }
   });
-  
+  /*******************************/
+  function studentverifybox()
+  {
+    document.getElementById('student-verification').style.display="block";
+    document.getElementById('map').style.filter="blur(25px)";
+    document.getElementById('aside1').style.filter="blur(25px)";
+    document.getElementById('aside2').style.filter="blur(25px)";
+  }
   /*****************************/
   // Getting the geolocation for ourown house right now 
   let lat, long;
