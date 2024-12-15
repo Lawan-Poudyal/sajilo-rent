@@ -154,6 +154,7 @@ transition:all 0.5s;
     background-color:var(--contrast-bgcolor) ;
     margin-top:10px;
 }
+
 .main-aside
 {
     width:min(100% , 648px);
@@ -327,8 +328,13 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
     width:min(500px, 100%);
     height:auto;
     position:fixed;
-    display:none;
     top:25vh;
+}
+.hidden{
+    display:none;
+}
+.blurred{
+    filter:blur(25px);
 }
 .student-verification-form{
     background-color: var(--contrast-bgcolor); 
@@ -346,6 +352,9 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
     font-weight:800;
     row-gap:var(--standard-gap);
  
+}
+#hidden-input , #hidden-info, #hidden-info2 , #hidden-info3{
+    display:none;
 }
 .student-verification-form-h2{
     
@@ -397,7 +406,7 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
     }
     .aside1{
         position:absolute;
-        top:10%;
+        top:calc(var(--standard-padding) +var(--standard-padding)+ var(--nav-element-height));
         align-self: flex-end;
         width:500px;
        background-color: var(--contrast-bgcolor); 
@@ -430,7 +439,7 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
     }
     .aside1{
         position:absolute;
-        top:10%;
+        top:calc(var(--standard-padding) +var(--standard-padding)+ var(--nav-element-height));
         align-self: flex-end;
         width:500px;
        background-color: var(--contrast-bgcolor); 
@@ -458,7 +467,7 @@ animation:moveforward 2s 0.5s ease-in-out forwards ,typewriter 0.5s  linear infi
      }
      .aside2{
         position:absolute;
-        top:10%;
+        top:calc(var(--standard-padding) +var(--standard-padding)+ var(--nav-element-height));
         align-self: flex-start;
         width:500px;
         height:50vh;
