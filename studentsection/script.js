@@ -23,7 +23,6 @@ let currentRoutingControl = null; // Variable to store the current routing contr
 
 let priceList = document.querySelector('.price');
 let selectedPrice = parseFloat(priceList.value); 
-console.log(selectedPrice);
 
 priceList.addEventListener('change',()=>{
     selectedPrice = parseFloat(priceList.value);
@@ -124,17 +123,16 @@ map.on('popupopen', function(event) {
 });
 const createMarker = (removedMarkers) => {
         removedMarkers.forEach(element => {
-            console.log(element);
             const [lat,lng] = element.split(",");
-
+            const key = `${lat},${lng}`;
             const marker = L.marker([lat,lng],{
                 icon : myIcon
             })
-
-            marker.addTo(map);
+            const popup = markers[key]._popup._content;
+            marker.bindPopup(popup).addTo(map);
             
         });
-} 
+}
 
 const calculateDistance = (lat, lng) => {
     if (currentRoutingControl) {
@@ -157,17 +155,11 @@ const calculateDistance = (lat, lng) => {
 
     const key = `${lat},${lng}`;
     removedMarkers.push(key);
+
     if (markers[key]) {
-        console.log(markers[key]);
         map.removeLayer(markers[key]); // Remove the marker from the map
     }
-
-
-currentRoutingControl.on("routesfound", function(e) {
-    const totalDistance = e.routes[0].summary.totalDistance;
-    console.log('Total distance:', totalDistance);
-});
-}
+};
 
 
 
