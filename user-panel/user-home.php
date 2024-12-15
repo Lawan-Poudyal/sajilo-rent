@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="icon" type="image/x-icon" href="../resources/logo.png">
-    <link rel="stylesheet" href="styles/user-home-style.css">
+    <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+    <link rel="stylesheet" href="../styles/user-home-style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
@@ -17,13 +17,13 @@
             <div class="header-nav-element">
               <button id="logo-btn" onclick="showaside2()">
                 <figure>
-                <img src="../resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+                <img src="/sajilo-rent/resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
             </figure>
           </button>
             </div>
             <div class="header-nav-element">
                 <form action="" class="header-nav-element-form search1">
-                    <input type="text" placeholder="Search">
+                    <input type="text" placeholder="Search" class="search-bar">
                     <button class="navbtn"> Search</button>
                    </form>
             </div>
@@ -45,7 +45,7 @@
         <aside id="aside1"class="main-aside aside1">
             <div class="main-aside-credentials">
             <figure>
-                <img src="../resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+                <img src="/sajilo-rent/resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
             </figure>
             
             <div class="main-aside-div credentials" onclick="studentverifybox()">Student</div>
@@ -90,13 +90,13 @@
                 <h2 class="student-verification-form-h2">Student Verification</h2>
                 <div class="input-field">
                 <label for="email">
-                    <img src="/resources/user.png" alt="" height="50" width="50">
+                    <img src="/sajilo-rent/resources/user.png" alt="" height="50" width="50">
                 </label>
                 <input type="email" placeholder="Your email here" class="email"> 
-                <img src="/resources/key.png" alt="" height="50" width="50">
+                <img src="/sajilo-rent/resources/key.png" alt="" height="50" width="50">
                 <input type="password" 
                 placeholder="Enter your password" class="password">
-                <img src="/resources/combination.png" alt="" height="50" width="50">
+                <img src="/sajilo-rent/resources/combination.png" alt="" height="50" width="50">
                 <input type="number" class="verification-number" placeholder="student-verification-code">
                  <input type="submit" value="Verify">
                 </div>
@@ -110,7 +110,7 @@
     <footer class="footer">
         &copy; Sajilo Rent.co
     </footer>
-    <script src="script/user-home-script.js">
+    <script src="../script/user-home-script.js">
       </script>
 </body>
 </html>

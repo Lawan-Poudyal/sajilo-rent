@@ -53,12 +53,12 @@ const observer = new IntersectionObserver((entries, observer) => {
   let isShown = false;
   function showaside(){
   let width= window.innerWidth;
-  if(isShown ===false && width>=768)
+  if(isShown ===false && width>=996)
   {
   document.getElementById('aside1').style.display = 'block';
   isShown=true;
   }
-  else if (isShown===true && width>=768)
+  else if (isShown===true && width>=996)
   {
     document.getElementById('aside1').style.display = 'none';
   isShown=false;
@@ -85,7 +85,7 @@ const observer = new IntersectionObserver((entries, observer) => {
   {
     document.getElementById('aside2').style.display = 'block';
     document.getElementById('aside1').style.display = 'block';
-    var text = 'minecraft';
+   
     
   }
   else if(width >=768)
