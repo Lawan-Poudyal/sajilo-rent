@@ -15,6 +15,7 @@
     </script>
 
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
@@ -27,27 +28,34 @@
                 <button class="saajiloRentLogo" ></button> -->
             <!-- </div> -->
             <button class="menu">Menu</button>
-            <select name = "price" class = "price">
-                <option value="10000" selected>Price</option>
-                <option value="3000">3000</option>
-                <option value="3500">3500</option>
-                <option value="4000">4000</option>
-                <option value="4500">4500</option>
-                <option value="5000">5000</option>
-                <option value="5500">5500</option>
-                <option value ="6000">6000</option>
-            </select>
-            
-            <select name = "houseType" class="houseType">
-                <option value="" selected>House Type</option>
-                <option value="1">Single Room</option>
-                <option value="2">Double Room</option>
-                <option value="3">Triple Room</option>
-                <option value="4">Appartment</option>
-            </select>
-            <button class="signup">Signup</button>
-            <span>/</span>
-            <button class="singin">Signin</button>
+
+            <div class="selectWrapper">
+                <select name = "price" class = "price">
+                    <i class='bx bxs-chevron-down'></i>
+                    <option value="10000" selected>Price</option>
+                    <option value="3000">3000</option>
+                    <option value="3500">3500</option>
+                    <option value="4000">4000</option>
+                    <option value="4500">4500</option>
+                    <option value="5000">5000</option>
+                    <option value="5500">5500</option>
+                    <option value ="6000">6000</option>
+                </select>
+                
+                <select name = "houseType" class="houseType">
+                    <option value="" selected>Type</option>
+                    <option value="1">Single Room</option>
+                    <option value="2">Double Room</option>
+                    <option value="3">Triple Room</option>
+                    <option value="4">Appartment</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button class="signup">Signup</button>
+                <span>/</span>
+                <button class="singin">Signin</button>
+            </div>
+            <!-- <button class="closerouting">Close Routing</button> -->
         </div>
     </nav>
     

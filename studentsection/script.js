@@ -1,9 +1,15 @@
-const map = L.map('map', {
-    center: [27.620339825608795, 85.5381077528],
-    zoom: 20
-});
+const MAP_CONFIG = {
+    defaultCenter: [27.620339825608795, 85.5381077528],
+    defaultZoom: 20,
+    tileLayerUrl: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+};
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const map = L.map('map', {
+    center: MAP_CONFIG.defaultCenter,
+    zoom: MAP_CONFIG.defaultZoom
+}); 
+
+L.tileLayer(MAP_CONFIG.tileLayerUrl, {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 

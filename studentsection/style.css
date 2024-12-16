@@ -1,3 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    /* Button  */
+    --button-font-size : 14px;
+    --button-border-radius: 0.8em;
+    
+    --button-width: 5em;
+    --button-height: 2.5rem;
+    --button-border-color:black;
+    --button-text-color:gray;
+
+    /* navbar */
+    --navbar-background-color:black;
+    --navbar-padding:00.5rem;
+    --navbar-margin:0.5rem;
+}
+.nav{
+    padding:var(--navbar-padding);
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    /* background: var(--navbar-background-color); */
+}
+button, select{
+    width: var(--button-width);
+    height: var(--button-height);
+    border-radius: var(--button-border-radius);
+    font-size: var(--button-font-size);
+    border-color: var(--button-border-color);
+   
+}   
 #map { 
     height: 80vh; 
     width: 100%;
