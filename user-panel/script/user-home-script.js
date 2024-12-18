@@ -203,7 +203,7 @@ verifyfor.value = "student";
               // Extract latitude and longitude from position
               lat = position.coords.latitude;
               long = position.coords.longitude;
-  
+   
               // Initialize the map after coordinates are retrieved
               const map = L.map('map').setView([27.6194, 85.5388], 15); // Set initial view
   

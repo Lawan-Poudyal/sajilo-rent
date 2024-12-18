@@ -1,4 +1,5 @@
 <?php
+session_start();
 if($_SERVER['REQUEST_METHOD']==='POST') {
     $email = $_POST['email'];
     $password=$_POST['password'];
@@ -14,10 +15,13 @@ if($num>0) {
     $row = mysqli_fetch_assoc($result); 
     $hashedPassword=$row['password'];
     if( password_verify($password , $hashedPassword)){
-        header("Location: http://localhost:8080/sajilo-rent/user-panel/user-home.html");
+        $username = $row['firstName']. " " . $row["lastName"];
+        $_SESSION['username'] = $username; 
+        $_SESSION['email'] = $email;
+        header("Location: /sajilo-rent/user-panel/owner-page.php");
         exit();  
     }
 }
-header("Location:http://localhost:8080/sajilo-rent/sign%20in/sign-up.html");
+header("Location:/sajilo-rent/sign%20in/sign-up.html");
    exit();
 ?>
