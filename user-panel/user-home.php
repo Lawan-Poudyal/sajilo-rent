@@ -8,6 +8,7 @@
         $conn = new mysqli('localhost' , 'root' , '' , 'user_database');
         $exists = false;
         $errorreason ='change';
+        $username ='';
         if($conn->connect_error)
         {
             echo ''. $conn->connect_error;
@@ -21,8 +22,10 @@
             $result = $stms->get_result();
             if($result->num_rows>0)
             {
+                $row = $result->fetch_assoc();
                 $exists = true;
                 $verificationfailure = 'false';
+                $username = $row['firstName'] . " " . $row['lastName'];
                 $errorreason = 'account verified';
             }
             else{
@@ -77,9 +80,13 @@
             $stms->bind_param('sss', $email , $verificationnumber , $ownerorstudent);
             if ($stms->execute()) {
     
-                $stms->close();
+            $stms->close();
             $conn->close();
-                
+            session_start();
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
+            header("Location:/sajilo-rent/user-panel/owner-page.php");
+
             } else {
                 echo "Error inserting data: " . $stmt->error;
                 $stms->close();
@@ -96,9 +103,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home Page</title>
         <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
-        <link rel="stylesheet" href="../styles/user-home-style.css">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+        <link rel="stylesheet" href="/sajilo-rent/user-panel/styles/user-home-style.css">
+        <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
         <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     </head>
@@ -115,7 +123,7 @@
                 <div class="header-nav-element">
                     <form action="" class="header-nav-element-form search1">
                         <input type="text" placeholder="Search" class="search-bar">
-                        <button class="navbtn"> Search</button>
+                        <button class="navbtn">Search</button>
                     </form>
                 </div>
                 <button id="menu-btn"
@@ -205,7 +213,7 @@
         <footer class="footer">
             &copy; Sajilo Rent.co
         </footer>
-        <script src="../script/user-home-script.js">
+        <script src="/sajilo-rent/user-panel/script/user-home-script.js">
         </script>
     </body>
     </html>
