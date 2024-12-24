@@ -15,7 +15,7 @@ export const rooms = [
         name: "Double Room",
         rating: {
             stars: 2.5,
-            count: 87,
+            count: 97,
         },
         price: 4000
     },
@@ -25,7 +25,7 @@ export const rooms = [
         name: "Apartment sunny ku Room",
         rating: {
             stars: 3.5,
-            count: 87,
+            count: 10,
         },
         price: 5000
     },
