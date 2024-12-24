@@ -21,28 +21,17 @@ rooms.forEach((room) => {
             />
             <span class="product-rating-count">${room.rating.count}</span>
           </div>
-          <div class="product-price">$${room.price}</div>
-          <div class="product-quantity">
-            <select class=js-quantity-selector-${room.id}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-          </div>
+          <div class="product-price">Rs ${room.price}</div>
+          
           <div class="product-spacer"></div>
           <div class="added-to-cart">
             <img src="../images/icons/checkmark.png" />
             Added
           </div>
+          <a href="../../studentsection/index.html">
           <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id=${room.id
-    }>Add to Cart</button>
+    }>Location</button>
+    </a>
         </div>`;
 });
 document.querySelector(".js-room-container-grid").innerHTML = roomsHTML;
