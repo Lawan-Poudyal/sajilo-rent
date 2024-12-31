@@ -143,6 +143,7 @@ class RoutingControl {
             
             closeRouting.addEventListener('click',()=>{
                 this.removeExistingRouting();
+                closeRouting.style.display = 'none';
             })
         }
         else{ 
