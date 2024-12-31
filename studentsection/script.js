@@ -69,6 +69,16 @@ class MarkerMaker {
             marker.addTo(this.mapInstance);
             this.markerList.push(marker);
         });
+        console.log(this.markerList);
+    }
+    addRemovedMarkers(removedLat,removedLng){
+        console.log(`LatR: ${removedLat} LngR: ${removedLng}`)
+        const removedMarker = markerMaker.markerList.find((marker)=>{
+            const {lat: latToBeChecked, lng: LngToBeChecked} = marker.getLatLng();
+            return removedLat == latToBeChecked && removedLng == LngToBeChecked;
+      })
+        console.log(removedMarker);
+        removedMarker.addTo(this.mapInstance);
     }
 
     removeMarker(lat, lng) {
@@ -90,14 +100,17 @@ class RoutingControl {
         this.markerMaker = markerMaker;
         this.center = center;
         this.currentRoutingControl = null;
+        this.removedMarkers = null;
+        this.lat = null;
+        this.lng = null;
     }
 
     addRoutingControl(lat, lng) {
-        console.log("Before addRoutingControl:", this.currentRoutingControl);
-        if (this.currentRoutingControl) {
-            console.log("Removing existing routing control...");
+       if (this.currentRoutingControl) {
             this.removeExistingRouting();
         }
+        this.lat = lat;
+        this.lng = lng;
 
         // Ensure the routing control is being correctly assigned
         this.currentRoutingControl = L.Routing.control({
@@ -107,14 +120,11 @@ class RoutingControl {
             ],
             draggableWaypoints: false
         }).addTo(this.mapInstance);
-
-        console.log("After adding routing control:", this.currentRoutingControl);
-
         this.markerMaker.removeMarker(lat, lng);
     }
 
     removeExistingRouting() {
-        console.log("Removing existing routing control...");
+
         if (this.currentRoutingControl) {
             this.mapInstance.removeControl(this.currentRoutingControl);
             const routingContainer = document.querySelector('.leaflet-routing-container');
@@ -122,7 +132,11 @@ class RoutingControl {
                 routingContainer.style.display = 'none';
             }
             this.currentRoutingControl = null;  // Reset the control to null
+            markerMaker.addRemovedMarkers(this.lat,this.lng);
         }
+        
+
+
     }
 }
 
@@ -135,8 +149,8 @@ const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">Ope
 const map = new Map(center, zoom, tileLayer, attribution);
 const mapInstance = map.createMap();
 
-let markerMaker,routing;
 // Fetching data from latlng.json and adding markers and popups
+let markerMaker,routing;
 fetch('./latlng.json')
     .then(response => response.json())
     .then(latlngData => {
