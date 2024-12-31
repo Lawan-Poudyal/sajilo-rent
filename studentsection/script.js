@@ -121,6 +121,7 @@ class RoutingControl {
             draggableWaypoints: false
         }).addTo(this.mapInstance);
         this.markerMaker.removeMarker(lat, lng);
+        this.displayCloseRouting();
     }
 
     removeExistingRouting() {
@@ -134,9 +135,19 @@ class RoutingControl {
             this.currentRoutingControl = null;  // Reset the control to null
             markerMaker.addRemovedMarkers(this.lat,this.lng);
         }
-        
-
-
+    }
+    displayCloseRouting(){  
+        if(this.currentRoutingControl){
+            const closeRouting = document.querySelector('.closeRouting')
+            closeRouting.style.display = 'block';
+            
+            closeRouting.addEventListener('click',()=>{
+                this.removeExistingRouting();
+            })
+        }
+        else{ 
+            closeRouting.style.display = 'none';    
+        }
     }
 }
 
@@ -168,7 +179,6 @@ mapInstance.on('popupopen', function(event) {
     directionButton.addEventListener('click', () => {
         const lat = event.popup._source._latlng.lat;
         const lng = event.popup._source._latlng.lng;
-        
         routing.addRoutingControl(lat, lng);
     });
 });
