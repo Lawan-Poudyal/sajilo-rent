@@ -20,7 +20,7 @@ let currentRoutingControl = null; // Variable to store the current routing contr
   //Working with the select tags
 
     //price 
-
+    
 let priceList = document.querySelector('.price');
 let selectedPrice = parseFloat(priceList.value); 
 console.log(selectedPrice);

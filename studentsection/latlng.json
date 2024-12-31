@@ -1,10 +1,17 @@
 [
     {
-        "LAT": "27.62184812",
-        "LNG": "85.53750703",
-        "PRICE": "3500",
-        "CONTACT": "contact1@example.com",
+        "LAT": "27.61549310",
+        "LNG": "85.53810207",
+        "PRICE": "3900",
+        "CONTACT": "contact9@example.com",
         "ROOMSAVAILABLE": "2"
+    },
+    {
+        "LAT": "27.61604536",
+        "LNG": "85.53902724",
+        "PRICE": "3950",
+        "CONTACT": "contact10@example.com",
+        "ROOMSAVAILABLE": "3"
     },
     {
         "LAT": "27.62073785",
@@ -14,11 +21,25 @@
         "ROOMSAVAILABLE": "3"
     },
     {
+        "LAT": "27.62091434",
+        "LNG": "85.54116091",
+        "PRICE": "3800",
+        "CONTACT": "contact7@example.com",
+        "ROOMSAVAILABLE": "2"
+    },
+    {
         "LAT": "27.62122757",
         "LNG": "85.53922422",
         "PRICE": "3600",
         "CONTACT": "contact3@example.com",
         "ROOMSAVAILABLE": "1"
+    },
+    {
+        "LAT": "27.62184812",
+        "LNG": "85.53750703",
+        "PRICE": "3500",
+        "CONTACT": "contact1@example.com",
+        "ROOMSAVAILABLE": "2"
     },
     {
         "LAT": "27.62203878",
@@ -42,101 +63,10 @@
         "ROOMSAVAILABLE": "3"
     },
     {
-        "LAT": "27.62091434",
-        "LNG": "85.54116091",
-        "PRICE": "3800",
-        "CONTACT": "contact7@example.com",
-        "ROOMSAVAILABLE": "2"
-    },
-    {
         "LAT": "27.62388027",
         "LNG": "85.54122813",
         "PRICE": "3850",
         "CONTACT": "contact8@example.com",
         "ROOMSAVAILABLE": "1"
-    },
-    {
-        "LAT": "27.61549310",
-        "LNG": "85.53810207",
-        "PRICE": "3900",
-        "CONTACT": "contact9@example.com",
-        "ROOMSAVAILABLE": "2"
-    },
-    {
-        "LAT": "27.61604536",
-        "LNG": "85.53902724",
-        "PRICE": "3950",
-        "CONTACT": "contact10@example.com",
-        "ROOMSAVAILABLE": "3"
-    },
-    {
-        "LAT": "27.62184812",
-        "LNG": "85.53750703",
-        "PRICE": "3500",
-        "CONTACT": "contact1@example.com",
-        "ROOMSAVAILABLE": "2"
-    },
-    {
-        "LAT": "27.62073785",
-        "LNG": "85.53761673",
-        "PRICE": "3550",
-        "CONTACT": "contact2@example.com",
-        "ROOMSAVAILABLE": "3"
-    },
-    {
-        "LAT": "27.62122757",
-        "LNG": "85.53922422",
-        "PRICE": "3600",
-        "CONTACT": "contact3@example.com",
-        "ROOMSAVAILABLE": "1"
-    },
-    {
-        "LAT": "27.62203878",
-        "LNG": "85.53905967",
-        "PRICE": "3650",
-        "CONTACT": "contact4@example.com",
-        "ROOMSAVAILABLE": "2"
-    },
-    {
-        "LAT": "27.62262568",
-        "LNG": "85.53814412",
-        "PRICE": "3700",
-        "CONTACT": "contact5@example.com",
-        "ROOMSAVAILABLE": "4"
-    },
-    {
-        "LAT": "27.62317712",
-        "LNG": "85.53982978",
-        "PRICE": "3750",
-        "CONTACT": "contact6@example.com",
-        "ROOMSAVAILABLE": "3"
-    },
-    {
-        "LAT": "27.62091434",
-        "LNG": "85.54116091",
-        "PRICE": "3800",
-        "CONTACT": "contact7@example.com",
-        "ROOMSAVAILABLE": "2"
-    },
-    {
-        "LAT": "27.62388027",
-        "LNG": "85.54122813",
-        "PRICE": "3850",
-        "CONTACT": "contact8@example.com",
-        "ROOMSAVAILABLE": "1"
-    },
-    {
-        "LAT": "27.61549310",
-        "LNG": "85.53810207",
-        "PRICE": "3900",
-        "CONTACT": "contact9@example.com",
-        "ROOMSAVAILABLE": "2"
-    },
-    {
-        "LAT": "27.61604536",
-        "LNG": "85.53902724",
-        "PRICE": "3950",
-        "CONTACT": "contact10@example.com",
-        "ROOMSAVAILABLE": "3"
     }
 ]

@@ -16,7 +16,6 @@
 
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <?php echo time(); ?>
     <link rel="stylesheet" href="./style.css"> 
     <title>Document</title>
 </head>
@@ -29,7 +28,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $database = "latlng.sql";
+        $database = "latlng";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $database);
