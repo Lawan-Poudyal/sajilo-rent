@@ -1,175 +1,92 @@
-const map = L.map('map', {
-    center: [27.620339825608795, 85.5381077528],
-    zoom: 20
-});
-
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-const myIcon = L.icon({
-    iconUrl: '../resources/marker.svg',
-    iconSize: [30, 30],
-});
-
-const markers = {};
-const removedMarkers = [];
-let count = 0;
-let currentRoutingControl = null; // Variable to store the current routing control
-
-  //Working with the select tags
-
-    //price 
-
-let priceList = document.querySelector('.price');
-let selectedPrice = parseFloat(priceList.value); 
-console.log(selectedPrice);
-
-priceList.addEventListener('change',()=>{
-    selectedPrice = parseFloat(priceList.value);
-    console.log(selectedPrice);
-    for (const key in markers) {
-        if (markers.hasOwnProperty(key)) {
-            map.removeLayer(markers[key]);
-        }
-    }
-    Object.keys(markers).forEach(key => delete markers[key]);
-    getHouseLocations();
-
-})
-//room tags
-let roomList = document.querySelector('.houseType');
-let selectedRoom = parseInt(roomList.value);
-
-roomList.addEventListener('change', () => {
-    selectedRoom = parseInt(roomList.value);
-    for (const key in markers) {
-        if (markers.hasOwnProperty(key)) {
-            map.removeLayer(markers[key]);
-        }
-    }
-    Object.keys(markers).forEach(key => delete markers[key]);
-    getHouseLocations();
-});
-
-function onEachFeature(feature) {
-    const lat = feature.geometry.coordinates[1];
-    const lng = feature.geometry.coordinates[0];
-    const key = `${lat},${lng}`;
-    const marker = L.marker([lat, lng], {
-        icon: myIcon
-    });
-
-    const price = feature.properties.price;
-    const rooms = feature.properties.rooms;
-    const contact = feature.properties.contact;
-
-    let selectedRooms = [];
-    if (isNaN(selectedRoom)) {
-        selectedRooms = [1, 2, 3, 4]; // Default to all possible room numbers
-    } else {
-        selectedRooms = [selectedRoom];
+class Map {
+    constructor(center, zoom, tileLayer, attribution) {
+        this.center = center;
+        this.zoom = zoom;
+        this.tileLayer = tileLayer;
+        this.attribution = attribution;
     }
 
-    if (selectedPrice >= price && selectedRooms.includes(rooms)) {
-        const popup = L.popup({
-            maxWidth: 'auto',
-            minWidth: 0
-        }).setContent(`
-            <div class="top-div"></div>  
-            <div class="bottom-div"> 
-                <div class="left-div"></div>  
-                <div class="right-div"></div>  
-            </div> 
-            <div class="infocontainer">
-                <div class="quickinfo">
-                    <div class="housetype">Rooms: ${rooms}</div>
-                    <div class="price">Price: NRP ${price}</div>
-                    <div class="contact">Contact: ${contact}</div>
-                </div>
-            
-                <div class="button">
-                    <button class="directionButton">
-                        <img src="../resources/direction.svg" alt="Directions">
-                        hi
-                    </button>
-                </div>
-            </div>
-        `);
-
-        marker.bindPopup(popup);
-        marker.addTo(map);
-        markers[key] = marker;
-    }
-}
-
-const getHouseLocations = () => {
-    L.geoJSON(houseLocations, {
-        onEachFeature: onEachFeature
-    });
-};
-
-getHouseLocations();
-
-map.on('popupopen', function(event) {
-    const directionButton = event.popup._contentNode.querySelector('.directionButton');
-    directionButton.addEventListener('click', () => {
-
-        const lat = event.popup._source._latlng.lat;
-        const lng = event.popup._source._latlng.lng;
-        createMarker(removedMarkers);
-        calculateDistance(lat, lng);
-
-    });
-});
-const createMarker = (removedMarkers) => {
-        removedMarkers.forEach(element => {
-            console.log(element);
-            const [lat,lng] = element.split(",");
-
-            const marker = L.marker([lat,lng],{
-                icon : myIcon
-            })
-
-            marker.addTo(map);
-            
+    createMap() {
+        // Create the map instance
+        const mapInstance = L.map('map', {
+            center: this.center,
+            zoom: this.zoom
         });
-} 
 
-const calculateDistance = (lat, lng) => {
-    if (currentRoutingControl) {
-        // Remove the existing routing control if it exists
-        map.removeControl(currentRoutingControl);
-        const routingAlt = document.querySelector('.leaflet-routing-container');
-        if (routingAlt) {
-            routingAlt.style.display = 'none';
-        }
+        // Add the tile layer to the map
+        L.tileLayer(this.tileLayer, {
+            attribution: this.attribution
+        }).addTo(mapInstance);
+
+        return mapInstance;
     }
-
-    // Create a new routing control
-    currentRoutingControl = L.Routing.control({
-        waypoints: [
-            L.latLng(lat, lng), 
-            L.latLng(27.620339825608795, 85.5381077528)
-        ],
-        draggableWaypoints: false
-    }).addTo(map);
-
-    const key = `${lat},${lng}`;
-    removedMarkers.push(key);
-    if (markers[key]) {
-        console.log(markers[key]);
-        map.removeLayer(markers[key]); // Remove the marker from the map
-    }
-
-
-currentRoutingControl.on("routesfound", function(e) {
-    const totalDistance = e.routes[0].summary.totalDistance;
-    console.log('Total distance:', totalDistance);
-});
 }
 
+class MarkerMaker {
+    constructor(mapInstance) {
+        this.mapInstance = mapInstance;
+        this.myIcon = L.icon({
+            iconUrl: '../resources/marker.svg',
+            iconSize: [30, 30]
+        });
+    }
 
+    addMarkers(latlngData) {
+        latlngData.forEach(location => {
+            // Generate the popup content dynamically
+            const content = `
+                <div class="top-div"></div>  
+                <div class="bottom-div"> 
+                    <div class="left-div"></div>  
+                    <div class="right-div"></div>  
+                </div> 
+                <div class="infocontainer">
+                    <div class="quickinfo">
+                        <div class="housetype">Rooms: ${location.ROOMSAVAILABLE}</div>
+                        <div class="price">Price: NRP ${location.PRICE}</div>
+                        <div class="contact">Contact: ${location.CONTACT}</div>
+                    </div>
+                    <div class="button">
+                        <button class="directionButton">
+                            <img src="../resources/direction.svg" alt="Directions">
+                            Directions
+                        </button>
+                    </div>
+                </div>
+            `;
 
+            // Create the popup
+            const popup = L.popup({
+                maxWidth: 'auto',
+                minWidth: 0
+            }).setContent(content);
 
+            // Create the marker and bind the popup
+            const marker = L.marker([location.LAT, location.LNG], {
+                icon: this.myIcon
+            });
+            marker.bindPopup(popup);
+            marker.addTo(this.mapInstance);
+        });
+    }
+}
 
+// Creating a Map object
+const center = [27.620339825608795, 85.5381077528];
+const zoom = 20;
+const tileLayer = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+const map = new Map(center, zoom, tileLayer, attribution);
+const mapInstance = map.createMap();
+
+// Fetching data from latlng.json and adding markers and popups
+fetch('./latlng.json')
+    .then(response => response.json())
+    .then(latlngData => {
+        const markerMaker = new MarkerMaker(mapInstance);
+        markerMaker.addMarkers(latlngData);
+    })
+    .catch(error => {
+        console.error(`Error: ${error.message}`);
+    });
