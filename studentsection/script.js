@@ -22,7 +22,66 @@ class Map {
         return mapInstance; // Return the map instance for further use
     }
 }
+class RoutingControl {
+    constructor(mapInstance, markerMaker, center) {
+        // Initialize routing-related properties
+        this.mapInstance = mapInstance;  // Reference to the map instance
+        this.markerMaker = markerMaker;  // Reference to the MarkerMaker instance
+        this.center = center;            // Default center for routing
+        this.currentRoutingControl = null; // Active routing control
+        this.removedMarkers = null;       // Track removed markers
+        this.lat = null;                  // Latitude of the current route
+        this.lng = null;                  // Longitude of the current route
+    }
 
+    addRoutingControl(lat, lng) {
+        // Add a routing control between the marker and the center
+        if (this.currentRoutingControl) {
+            this.removeExistingRouting(); // Remove existing routing if any
+        }
+        this.lat = lat;
+        this.lng = lng;
+
+        // Create the routing control
+        this.currentRoutingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(lat, lng),           // Start point (marker)
+                L.latLng(this.center[0], this.center[1]) // End point (center)
+            ],
+            draggableWaypoints: false       // Disable waypoint dragging
+        }).addTo(this.mapInstance);
+        this.markerMaker.removeMarker(lat, lng); // Remove the marker for the route
+        this.displayCloseRouting();             // Display the close button for the route
+    }
+
+    removeExistingRouting() {
+        // Remove the existing routing control
+        if (this.currentRoutingControl) {
+            this.mapInstance.removeControl(this.currentRoutingControl); // Remove the control
+            const routingContainer = document.querySelector('.leaflet-routing-container');
+            if (routingContainer) {
+                routingContainer.style.display = 'none'; // Hide the routing container
+            }
+            this.currentRoutingControl = null; // Reset the control to null
+            markerMaker.addRemovedMarkers(this.lat, this.lng); // Re-add the marker
+        }
+    }
+
+    displayCloseRouting() {
+        // Display the close routing button
+        if (this.currentRoutingControl) {
+            const closeRouting = document.querySelector('.closeRouting');
+            closeRouting.style.display = 'block';
+
+            closeRouting.addEventListener('click', () => {
+                this.removeExistingRouting(); // Remove the routing control on click
+                closeRouting.style.display = 'none'; // Hide the close button
+            });
+        } else {
+            closeRouting.style.display = 'none'; // Hide the close button if no routing
+        }
+    }
+}
 class MarkerMaker {
     constructor(mapInstance) {
         // Initialize marker-related properties
@@ -98,68 +157,33 @@ class MarkerMaker {
             console.warn(`Marker not found at coordinates: ${lat}, ${lng}`);
         }
     }
+    
 }
 
-class RoutingControl {
-    constructor(mapInstance, markerMaker, center) {
-        // Initialize routing-related properties
-        this.mapInstance = mapInstance;  // Reference to the map instance
-        this.markerMaker = markerMaker;  // Reference to the MarkerMaker instance
-        this.center = center;            // Default center for routing
-        this.currentRoutingControl = null; // Active routing control
-        this.removedMarkers = null;       // Track removed markers
-        this.lat = null;                  // Latitude of the current route
-        this.lng = null;                  // Longitude of the current route
+class SelectRanges {
+    constructor(mapInstance, markerMaker) {
+        this.mapInstance = mapInstance;
+        this.markerMaker = markerMaker;
     }
 
-    addRoutingControl(lat, lng) {
-        // Add a routing control between the marker and the center
-        if (this.currentRoutingControl) {
-            this.removeExistingRouting(); // Remove existing routing if any
-        }
-        this.lat = lat;
-        this.lng = lng;
-
-        // Create the routing control
-        this.currentRoutingControl = L.Routing.control({
-            waypoints: [
-                L.latLng(lat, lng),           // Start point (marker)
-                L.latLng(this.center[0], this.center[1]) // End point (center)
-            ],
-            draggableWaypoints: false       // Disable waypoint dragging
-        }).addTo(this.mapInstance);
-        this.markerMaker.removeMarker(lat, lng); // Remove the marker for the route
-        this.displayCloseRouting();             // Display the close button for the route
-    }
-
-    removeExistingRouting() {
-        // Remove the existing routing control
-        if (this.currentRoutingControl) {
-            this.mapInstance.removeControl(this.currentRoutingControl); // Remove the control
-            const routingContainer = document.querySelector('.leaflet-routing-container');
-            if (routingContainer) {
-                routingContainer.style.display = 'none'; // Hide the routing container
+    priceTags() {
+        const priceValue = parseInt(price.value); // Ensure this is a number
+        this.markerMaker.markerList.forEach((marker) => {
+            console.log("clicked")
+            let popupContent = marker.getPopup().getContent();
+            // Extract the price from the content
+            let priceText = popupContent.match(/Price:\s*NRP\s*(\d+)/); // Regex for price extraction
+            if (priceText && priceText[1]) {
+                if (parseInt(priceText[1]) > priceValue) {
+                    // const { lat: markerLat, lng: markerLng } = marker.getLatLng();
+                    // markerMaker.removeMarker(markerLat, markerLng);
+                    this.mapInstance.removeLayer(marker);
+                }
             }
-            this.currentRoutingControl = null; // Reset the control to null
-            markerMaker.addRemovedMarkers(this.lat, this.lng); // Re-add the marker
-        }
-    }
-
-    displayCloseRouting() {
-        // Display the close routing button
-        if (this.currentRoutingControl) {
-            const closeRouting = document.querySelector('.closeRouting');
-            closeRouting.style.display = 'block';
-
-            closeRouting.addEventListener('click', () => {
-                this.removeExistingRouting(); // Remove the routing control on click
-                closeRouting.style.display = 'none'; // Hide the close button
-            });
-        } else {
-            closeRouting.style.display = 'none'; // Hide the close button if no routing
-        }
+        });
     }
 }
+
 
 // Creating a Map object with specific configurations
 const center = [27.620339825608795, 85.5381077528]; // Map center coordinates
@@ -171,17 +195,18 @@ const map = new Map(center, zoom, tileLayer, attribution);
 const mapInstance = map.createMap(); // Create the map instance
 
 // Fetching data from latlng.json and adding markers and popups
-let markerMaker, routing;
+let markerMaker, routing,selecter;
 fetch('./latlng.json')
-    .then(response => response.json()) // Parse the JSON response
-    .then(latlngData => {
-        markerMaker = new MarkerMaker(mapInstance); // Create a MarkerMaker instance
-        routing = new RoutingControl(mapInstance, markerMaker, center); // Create a RoutingControl instance
-        markerMaker.addMarkers(latlngData); // Add markers to the map
-    })
-    .catch(error => {
-        console.error(`Error: ${error.message}`); // Handle fetch errors
-    });
+.then(response => response.json()) // Parse the JSON response
+.then(latlngData => {
+    markerMaker = new MarkerMaker(mapInstance); // Create a MarkerMaker instance
+    routing = new RoutingControl(mapInstance, markerMaker, center); // Create a RoutingControl instance
+    markerMaker.addMarkers(latlngData); // Add markers to the map
+    selecter = new SelectRanges(mapInstance,markerMaker);
+})
+.catch(error => {
+    console.error(`Error: ${error.message}`); // Handle fetch errors
+});
 
 // Add event listener for opening a popup
 mapInstance.on('popupopen', function(event) {
@@ -192,3 +217,8 @@ mapInstance.on('popupopen', function(event) {
         routing.addRoutingControl(lat, lng); // Add routing control for the clicked marker
     });
 });
+
+//creating a select object
+let price = document.querySelector('.price');
+
+price.addEventListener('change', () => selecter.priceTags());
