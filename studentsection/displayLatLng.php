@@ -74,7 +74,7 @@
                     <option value ="6000">6000</option>
                 </select>
                 
-                <select name = "houseType" class="houseType">
+                <select name = "houseType" class="housetype">
                     <option value="" selected>Type</option>
                     <option value="1">Single Room</option>
                     <option value="2">Double Room</option>

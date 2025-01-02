@@ -164,24 +164,50 @@ class SelectRanges {
     constructor(mapInstance, markerMaker) {
         this.mapInstance = mapInstance;
         this.markerMaker = markerMaker;
+        this.removedMarker = [];
     }
 
     priceTags() {
         const priceValue = parseInt(price.value); // Ensure this is a number
         this.markerMaker.markerList.forEach((marker) => {
-            console.log("clicked")
             let popupContent = marker.getPopup().getContent();
             // Extract the price from the content
             let priceText = popupContent.match(/Price:\s*NRP\s*(\d+)/); // Regex for price extraction
             if (priceText && priceText[1]) {
                 if (parseInt(priceText[1]) > priceValue) {
-                    // const { lat: markerLat, lng: markerLng } = marker.getLatLng();
-                    // markerMaker.removeMarker(markerLat, markerLng);
+                    this.removedMarker.push(marker);
                     this.mapInstance.removeLayer(marker);
                 }
             }
         });
     }
+    houseTypes(){
+        const houseValue = parseInt(houseType.value);
+        console.log(houseValue);
+        
+        if(isNaN(houseValue)){
+            this.addMarkers();
+            return;
+        }
+        this.markerMaker.markerList.forEach((marker)=>{
+            let popupContent = marker.getPopup().getContent();
+            let houseText = popupContent.match(/Rooms:\s*(\d+)/)
+        
+
+            if(houseText && houseText[1]){
+                if(parseInt(houseText[1]) != houseValue){
+                    this.removedMarker.push(marker);
+                    this.mapInstance.removeLayer(marker);
+                }
+            }
+        })
+    }
+    addMarkers(){
+        this.removedMarker.forEach((marker)=>{
+            marker.addTo(this.mapInstance);
+        })
+    }
+
 }
 
 
@@ -220,5 +246,12 @@ mapInstance.on('popupopen', function(event) {
 
 //creating a select object
 let price = document.querySelector('.price');
-
-price.addEventListener('change', () => selecter.priceTags());
+let houseType = document.querySelector('.housetype');
+price.addEventListener('change', () => {
+    selecter.addMarkers();
+    selecter.priceTags();
+});
+houseType.addEventListener('change',()=>{
+    selecter.addMarkers();
+    selecter.houseTypes();
+})
