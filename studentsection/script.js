@@ -162,53 +162,78 @@ class MarkerMaker {
 
 class SelectRanges {
     constructor(mapInstance, markerMaker) {
-        this.mapInstance = mapInstance;
-        this.markerMaker = markerMaker;
-        this.removedMarker = [];
+        // Initialize the mapInstance and markerMaker for future operations
+        this.mapInstance = mapInstance; // Reference to the map instance
+        this.markerMaker = markerMaker; // Reference to the MarkerMaker instance
+        this.removedMarker = []; // Array to store removed markers temporarily
     }
 
     priceTags() {
-        const priceValue = parseInt(price.value); // Ensure this is a number
+        // Function to filter markers based on the price input value
+        const priceValue = parseInt(price.value); // Parse the input price value as a number
+
+        // Iterate through the list of markers
         this.markerMaker.markerList.forEach((marker) => {
+            // Get the content of the popup associated with the marker
             let popupContent = marker.getPopup().getContent();
-            // Extract the price from the content
-            let priceText = popupContent.match(/Price:\s*NRP\s*(\d+)/); // Regex for price extraction
+
+            // Extract the price from the popup content using regex
+            let priceText = popupContent.match(/Price:\s*NRP\s*(\d+)/);
+
+            // If the price is found in the content, check if it exceeds the filter value
             if (priceText && priceText[1]) {
+                // If the price is greater than the input value, remove the marker
                 if (parseInt(priceText[1]) > priceValue) {
+                    // Push the marker into the removedMarker array for potential re-addition
                     this.removedMarker.push(marker);
+                    // Remove the marker from the map
                     this.mapInstance.removeLayer(marker);
                 }
             }
         });
     }
-    houseTypes(){
-        const houseValue = parseInt(houseType.value);
+
+    houseTypes() {
+        // Function to filter markers based on the house type (number of rooms)
+        const houseValue = parseInt(houseType.value); // Get the house value from input and convert to integer
         console.log(houseValue);
-        
-        if(isNaN(houseValue)){
+
+        // Check if the house value is valid (not NaN)
+        if (isNaN(houseValue)) {
+            // If no valid house value is selected, re-add previously removed markers and exit
             this.addMarkers();
             return;
         }
-        this.markerMaker.markerList.forEach((marker)=>{
-            let popupContent = marker.getPopup().getContent();
-            let houseText = popupContent.match(/Rooms:\s*(\d+)/)
-        
 
-            if(houseText && houseText[1]){
-                if(parseInt(houseText[1]) != houseValue){
+        // Iterate through the list of markers
+        this.markerMaker.markerList.forEach((marker) => {
+            // Get the content of the popup associated with the marker
+            let popupContent = marker.getPopup().getContent();
+            // Extract the number of rooms from the popup content
+            let houseText = popupContent.match(/Rooms:\s*(\d+)/);
+
+            // If the number of rooms is found in the content, check if it matches the filter value
+            if (houseText && houseText[1]) {
+                // If the number of rooms does not match the filter value, remove the marker
+                if (parseInt(houseText[1]) !== houseValue) {
+                    // Push the marker into the removedMarker array
                     this.removedMarker.push(marker);
+                    // Remove the marker from the map
                     this.mapInstance.removeLayer(marker);
                 }
             }
-        })
-    }
-    addMarkers(){
-        this.removedMarker.forEach((marker)=>{
-            marker.addTo(this.mapInstance);
-        })
+        });
     }
 
+    addMarkers() {
+        // Function to re-add markers that were previously removed
+        this.removedMarker.forEach((marker) => {
+            // Re-add each removed marker back to the map
+            marker.addTo(this.mapInstance);
+        });
+    }
 }
+
 
 
 // Creating a Map object with specific configurations
