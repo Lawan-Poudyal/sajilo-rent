@@ -38,7 +38,7 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT LAT, LNG,PRICE,CONTACT,ROOMSAVAILABLE FROM LatLng";
+        $sql = "SELECT LAT, LNG,PRICE,CONTACT,ROOMSAVAILABLE,BOOKED FROM LatLng";
         $result = $conn->query($sql);
 
         $latitudesandLongitudes = [];
@@ -51,7 +51,6 @@
         }
         $jsonData = json_encode($latitudesandLongitudes, JSON_PRETTY_PRINT);
         file_put_contents('latlng.json', $jsonData);
-
 ?>
 
 
@@ -90,14 +89,9 @@
                 <span>/</span>
                 <button class="singin">Signin</button>
             </div>
-            <!-- <button class="closerouting">Close Routing</button> -->
         </div>
     </nav>
-    
     <div id="map"></div>
-      <script src="map.js"></script>
-      <script src="script.js"></script>
-  
- 
+      <script type = "module"src="main.js"></script> 
     </body>
 </html>
