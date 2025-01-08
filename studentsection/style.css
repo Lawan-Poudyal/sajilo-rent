@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    /* Button  */
+    --button-font-size : 14px;
+    --button-border-radius: 0.8em;
+    
+    --button-width: 5em;
+    --button-height: 2.5rem;
+    --button-border-color:black;
+    --button-text-color:gray;
+
+    /* navbar */
+    --navbar-background-color:black;
+    --navbar-padding:00.5rem;
+    --navbar-margin:0.5rem;
+}
+.nav{
+    padding:var(--navbar-padding);
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    /* background: var(--navbar-background-color); */
+}
+button, select{
+    width: var(--button-width);
+    height: var(--button-height);
+    border-radius: var(--button-border-radius);
+    font-size: var(--button-font-size);
+    border-color: var(--button-border-color);
+   
+}   
+#map { 
+    height: 80vh; 
+    width: 100%;
+}
+.leaflet-popup-content-wrapper{
+    padding: 1px;
+    text-align: left;
+    border-radius: 12px;
+    width: 20vw !important;
+    height: 40vh !important;
+    display: flex;
+}
+.leaflet-popup-content{
+    margin: 13px 20px;
+    width: 25vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column ;    
+    gap: 10px;
+}
+.leaflet-popup-close-button{
+    display: none;
+}
+.top-div,.bottom-div{
+    flex: 1;
+}
+.quickinfo{
+    flex: 0.75;
+}
+.top-div, .left-div, .right-div {
+    background-size: cover;
+    background-position: center;
+}
+
+.top-div {
+    background-image: url('../resources/room1.jpg');
+}
+.left-div {
+    background-image: url('../resources/room2.jpg');
+}
+
+.right-div {
+    background-image: url('../resources/room3.jpg');
+}
+.bottom-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.left-div, .right-div {
+    flex: 1;
+}
+.infocontainer{
+    display: flex;
+    justify-content: space-between;
+}
+.button{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+.button,.infocontainer{
+    flex: 1;
+}
