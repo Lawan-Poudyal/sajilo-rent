@@ -22,7 +22,7 @@ session_start();
             $password = $_POST['password'];
             if (empty($email) || empty($password)) {
             }
-            $conn = mysqli_connect("localhost", "root", "", "user_database");
+            $conn = mysqli_connect("localhost", "root", "", "user_database.sql");
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             }
