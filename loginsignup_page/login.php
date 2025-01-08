@@ -14,59 +14,39 @@ session_start();
 
 <body>
     <!--      php         -->
-    <?php
-    ini_set('display_errors', 1);
+  <?php
+ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    session_start(); // Start session to use $_SESSION
+    
+    if($_SERVER['REQUEST_METHOD']==='POST') {
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+          }
+        $firstName = test_input($_POST['fname']);
+        $lastName = test_input($_POST['lname']);
+        $email = test_input($_POST['email']);
+        $password=test_input($_POST['password']);
+    
+        $database ="user_database.sql";
+        $conn = mysqli_connect("localhost","root" ,"", $database );
+    if(!$conn){
+       
+        die("connection failed");
+    }
+    echo"connection successful";
 
-    $error = ""; // Initialize error message
     
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!empty($_POST['email']) && !empty($_POST['password'])) {
-            $email = htmlspecialchars(trim($_POST['email']));
-            $password = trim($_POST['password']);
-    
-            // Database connection
-            $conn = mysqli_connect("localhost", "root", "", "user_database.sql");
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-    
-            // Use prepared statement for security
-            $stmt = $conn->prepare("SELECT * FROM signin WHERE email = ?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
-    
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $hashedPassword = $row['password'];
-    
-                // Verify the password
-                if (password_verify($password, $hashedPassword)) {
-                    $username = $row['firstName'] . " " . $row['lastName'];
-    
-                    // Set session variables
-                    $_SESSION['username'] = $username;
-                    $_SESSION['email'] = $email;
-    
-                    // Redirect to owner page
-                    echo"success";
-                    header("Location: /sajilo-rent/user-panel/owner-page.php");
-                    exit();
-                } else {
-                    $error = "* Password is incorrect.";
-                }
-            } else {
-                $error = "* Email not found.";
-            }
-    
-            $stmt->close();
-            $conn->close();
-        } else {
-            $error = "* Fill in both email and password.";
-        }
+    $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
+    $sql="INSERT INTO signin(email , firstName , lastName , password) VALUES ('$email', '$firstName' , '$lastName' , '$hashedPassword' )";
+    if(mysqli_query($conn , $sql)) {
+        header("Location:/sajilo-rent/loginsignup_page/login.php");
+    exit();
+    }
+    mysqli_close($conn);
     }
     ?>
     <main>
@@ -86,7 +66,8 @@ session_start();
                 <h1>Log In</h1>
                 <form id="signUpForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="email" id="email" name="email" placeholder="Email">
-                    <input type="pass   word" name="password" id="password" placeholder="password">
+
+                    <input type="password" name="password" id="password" placeholder="password">
                     <button class="sign-up-button" id="SignUpButton" type="submit">Log In</button>
                     <span class="error"> <?php echo $error; ?> </span>
                     <div>
