@@ -9,9 +9,9 @@ body{
     font-family:monospace;
     display:flex;
     flex-flow:column nowrap;
-    min-height:100vh;
+    min-height:200vh;
     border:1px solid black;
-    overflow:hidden;
+  
 }
 img{
     display:block;
@@ -73,6 +73,29 @@ img{
     padding: var(--standard-padding) 10px;
     gap:var(--min-gap); 
     box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
+}
+.header-nav-element{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-nav-element-side-menu{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap:var(--standard-gap);
+}
+.side-option{
+    height: var( --nav-element-height);
+    width:var(--nav-element-width);
+    border-right : 1px solid black; 
+    display:none;   
+}
+.side-option img{
+    height: var( --nav-element-height);
+    width:var(--nav-element-width); 
 }
 .menu{
     position:relative;
@@ -141,50 +164,113 @@ img{
 }
 /*---------------------- for the first input section */
 .form-div{
-position:absolute;
-height:auto;
-width:clamp(350px, 100% , 600px);
-top:0;
-padding:var(--standard-padding);
-display:none;
+    height:auto;
+    padding:var(--standard-padding);
+    position:absolute;
+    top:0;  
+    width: clamp(350px , 100% , 600px);
+   
+    display:none;
 }
-.form-div form{
-font:inherit;
-display: grid;
-grid-template-rows: repeat(1 , 1fr);
-gap:1.5rem;
-justify-content: center;
-border-radius: 10px;
-background-color: var(--contrast-bgcolor);
-padding:var(--standard-padding);
-}
-.form-div-h2{
-    display:flex;
+.form-div form {
+    font: inherit;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(50px, auto));
+    gap: 1.5rem;
     justify-content: center;
+    border-radius: 10px;
+    background-color: var(--contrast-bgcolor);
+    padding: var(--standard-padding);
 }
-.wrapper-div{
-display:flex;
-flex-flow:row wrap;
-justify-content: space-between;
 
+.form-div h2 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    color: #333333;
+    margin-bottom: 1rem;
 }
-.image-wrapper
-{
+
+.wrapper-div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #555555;
+}
+
+input, select {
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+input[type="radio"], input[type="file"] {
+    margin: 0 10px 0 5px;
+}
+
+.form-submit-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+}
+
+.form-submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.image-display {
+    height: 150px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #eaeaea;
+    border: 2px dashed #cccccc;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    color: #aaaaaa;
+    font-size: 1rem;
 }
-#wifi-price
-{
-    margin-left :auto;
+
+.hidden-latlng input {
+    display: none;
 }
-.image-display{
-height:200px;
-width:100%;
-border-radius:5px;
-display:none;
-margin:var(--standard-gap);
-}
-.hidden-latlng{
-   display:hidden;
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -10%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 .cross-icon
 {
@@ -195,49 +281,146 @@ margin:var(--standard-gap);
     right:0;
     cursor:pointer;
 }
-.form-submit-btn{
-    display:block;
-    padding:var(--standard-padding);
-    background-color: red;
-    width:100px;
-    font-size:1.5rem;
-    font-family:monospace;
-    border-radius:20px;
-    border:none;
-}
 /*this is for pop up box design*/
-.popup-window{
-    display:flex;
-    min-height:500px;
-    height:fit-content;
-    width:fit-content;
-    flex-flow:column nowrap;
-    padding:var(--standard-padding);
-}
-.image-wrapper{
-    display:flex;
-    flex-flow:row wrap;
-    justify-content: center;
-    align-content: space-between;
-    gap:var(--standard-gap);
-    margin:5px;
-}
-.faq-wrapper{
-    display:grid;
-    grid-template-columns: repeat(1, 1fr 1fr);
-    justify-content: space-between;
-    flex-grow:1;
-    align-content: space-between;
+.popup-window {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    min-height: 400px; 
+    width: 300px; 
+    padding: var(--small-padding);
+    background-color: var(--contrast-bgcolor);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
-.faq-wrapper span{
-    text-align: center;
+
+.image-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--min-gap);
+    margin: var(--min-gap);
+    background-color: var(--light-bgcolor);
+    padding: var(--very-small-padding);
+    border-radius: 6px;
+}
+
+.image-wrapper img {
+    width: 80px; 
+    height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.faq-wrapper {
+    display: grid;
+    grid-template-columns: auto auto; 
+    gap: var(--ultra-small-padding);
+    padding: var(--very-small-padding);
+    text-align: left; 
     font-family: monospace;
-    font-size: var(--body-medium-font-size);
+    font-size: var(--body-small-font-size);
+    background-color: var(--light-bgcolor);
+    border-radius: 6px;
+    width: 100%;
 }
-.info-btn{
-    display:grid;
-    grid-template-columns: repeat(1, 1fr 1fr);
-    gap:var(--standard-gap);
-    justify-content: space-evenly;
+
+.faq-wrapper span {
+    padding: var(--ultra-small-padding);
+    font-weight: bold;
+    font-size: var(--body-small-font-size); 
+}
+
+.info-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--min-gap);
+    width: 100%; 
+    margin-top: var(--min-gap);
+}
+
+.info-btn button {
+    flex: 1;
+    padding: var(--ultra-small-padding);
+    font-size: var(--body-small-font-size); 
+    color: var(--light-font-color);
+    background-color: var(--heavy-bgcolor);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--button-hover);
+}
+
+.info-btn button:hover {
+    background-color: var(--body-bgcolor);
+    color: var(--heavy-font-color);
+}
+/*media queries*/
+@media screen and (min-width:425px) /*for large mobile*/
+{
+    .side-option:first-child{
+        display:block;
+        border-right : none;
+    }
+    .option:first-child{
+        display:none;
+
+    }
+}
+@media screen and (min-width:600px)
+{
+    .form-div{
+    left: calc((100% - 600px)/2);
+    }
+}
+@media screen and (min-width:768px) /*for tablets */
+{
+    .side-option:first-child{
+        border-right : 1px solid black;
+    }
+    .side-option:nth-child(2){
+        display:block;
+        border-right : none;
+    }
+    .option:nth-child(2){
+        display:none;
+
+    }
+    
+}
+@media screen and (min-width:1024px) /*for laptops */
+{
+    .side-option:nth-child(2){
+        border-right : 1px solid black;
+    }
+    .side-option:nth-child(3){
+        display:block;
+        border-right : none;
+    }
+    .option:nth-child(3){
+        display:none;
+
+    }
+    
+}
+@media screen and (min-width:1440px) /*for large laptops*/
+{
+    .side-option:nth-child(3){
+        border-right : 1px solid black;
+    }
+    .side-option:nth-child(4){
+        display:block;
+        border-right : none;
+    }
+    .option:nth-child(4){
+        display:none;
+
+    }
+    .header-nav-element-menu{
+        display:none;
+    }
+   
 }

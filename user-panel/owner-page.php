@@ -57,6 +57,13 @@ $stmt->close();
             </button>
                 </div>
                 <div class="header-nav-element">
+                <div class="header-nav-element-side-menu">
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/house.png.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
+                    </div>
+                </div>  
                 <div class="header-nav-element-menu menu">
                     <figure id="js-menu">
                     <img src="/sajilo-rent/resources/menu.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
@@ -68,8 +75,6 @@ $stmt->close();
                      <div class="option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
                     </div>
                 </div>
-                </div>
-            
             </nav>
         </header>
 
@@ -165,7 +170,7 @@ Upload Three Images of the room :
 <div class="image-display image2" id="image-div2"></div>
 <div class="image-display image3" id="image-div3"></div>
 </div>
-<div class="hidden-latlng wrapper-div">
+<div class="hidden-latlng wrapper-div ">
 <input type="number" name="lat" id="js-lat" step="0.00000000000000001" required>
 <input type="number" name="lng" id="js-lng" step="0.00000000000000001" required>
 </div>

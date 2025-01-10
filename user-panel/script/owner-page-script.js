@@ -150,7 +150,7 @@ image3.addEventListener('change', function(){
  });
  function removehouse( lat ,  lng)
  {
-  stopper--;
+//   stopper--;
   console.log("lat :" +lat+ " lng:" +lng);
   var xmlrequest = new XMLHttpRequest();
   xmlrequest.open("GET" , `/sajilo-rent/user-panel/back_end/removehouses.php?lat=${lat}&lng=${lng}&username=${username}`,true);
@@ -160,11 +160,20 @@ image3.addEventListener('change', function(){
     if(this.readyState === 4 && this.status === 200)
     {
         console.log(this.responseText);
+        const key = `${lat}_${lng}`;
+        if (markerMap.has(key)) {
+            const marker = markerMap.get(key);
+            map.removeLayer(marker); // Remove the marker from the map
+            markerMap.delete(key);   // Delete the marker from the markerMap
+        }
+
+        stopper--;
     }
     else{
         console.log("we ran into this problem " + this.readyState + " and this " + this.status);
     }
   }
+  
  }
 //////////////////////////////////////////////// MAP //////////////////////////////
 var map = L.map('js-map').setView([27.6194, 85.5388], 50); 
@@ -175,6 +184,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // L.marker(holderlatlngarr[0][0] , holderlatlngarr[0][1]).addTo(map).bindPopup('Rent Your House Here <button id="pointer-btn">Rented</button>').openPopup();
 // console.log("the vlaue of stopper is " + stopper);
 var tempmarker = [];
+let markerMap = new Map();
 for(let i=0; i<stopper; i++)
 {
   
@@ -198,15 +208,31 @@ for(let i=0; i<stopper; i++)
         <button id="pointer-btn" onclick="removehouse(${holderlatlngarr[i][0]} , ${holderlatlngarr[i][1]})">Remove</button>
         <button id="pointer-btn">Update</button></div></div>`)
     .openPopup();
-    
+    markerMap.set(`${holderlatlngarr[i][0]}_${holderlatlngarr[i][1]}`, tempmarker[i]);
+
 
 }
+var routeControl = null;
+
+function showDirections(destinationLat, destinationLng) {
+    if (routeControl) {
+        map.removeControl(routeControl); 
+    }
+    routeControl = L.Routing.control({
+        waypoints: [
+            L.latLng(27.6194, 85.5388), 
+            L.latLng(destinationLat, destinationLng) 
+        ]
+    }).addTo(map);
+}
+
 tempmarker.forEach((marker) => {
     marker.addEventListener('click' ,function()
     {
         const position = marker.getLatLng(); // Get the position of the marker
         const lat = position.lat;
         const lng = position.lng;
+        showDirections(lat, lng);
         var xmlrequest = new XMLHttpRequest();
         xmlrequest.open("GET" , `/sajilo-rent/user-panel/back_end/showhousedetails.php?lat=${lat}&lng=${lng}&username=${username}`,true);
         xmlrequest.send();
