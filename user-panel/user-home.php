@@ -2,6 +2,7 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $password = $_POST['password'];
+        $checkpassword = '';
         $verificationnumber = $_POST['verificationnumber'];
         $email = $_POST['email'];
         $ownerorstudent = $_POST['ownerorstudent'];
@@ -14,8 +15,7 @@
             echo ''. $conn->connect_error;
         }
         else{
-            $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
-            $query = 'SELECT firstName , lastName FROM signin WHERE email = ?';
+            $query = 'SELECT firstName , lastName , password  FROM signin WHERE email = ?';
             $stms = $conn->prepare($query);
             $stms->bind_param("s", $email);
             $stms->execute();
@@ -25,14 +25,22 @@
                 $row = $result->fetch_assoc();
                 $exists = true;
                 $verificationfailure = 'false';
-                $username = $row['firstName'] . " " . $row['lastName'];
+                $username = $row['firstName'] . " " . $row['lastName']; // here the first and last name is beiung combined
                 $errorreason = 'account verified';
+                $checkpassword = $row['password'];
             }
             else{
                 $exists = false;
                 $verificationfailure = 'true';
-                $errorreason = 'email or password error';
+                $errorreason = 'email not found';
             }
+            if(!password_verify($password, $checkpassword) && $exists)
+            {
+                $exists = false;
+                $verificationfailure = 'true';
+                $errorreason = ' password error';
+            }
+
         }
         $conn->close();
         $stms->close();
@@ -144,7 +152,7 @@
             <aside id="aside1"class="main-aside aside1">
                 <div class="main-aside-credentials">
                 <figure>
-                    <img src="/sajilo-rent/resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+                    <img src="/sajilo-rent/resources/logo.svg" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
                 </figure>
                 
                 <div class="main-aside-div credentials" id="studentverifybtn">Student</div>

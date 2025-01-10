@@ -9,12 +9,13 @@ body{
     font-family:monospace;
     display:flex;
     flex-flow:column nowrap;
-    min-height:200vh;
+    min-height:250vh;
     border:1px solid black;
   
 }
 img{
     display:block;
+    border:none;
 }
 /*utility class*/
 .hidden{
@@ -79,6 +80,9 @@ img{
     flex-flow:row nowrap;
     justify-content: space-between;
     align-items: center;
+}
+#logo-btn{
+border:none; 
 }
 .header-nav-element-side-menu{
     display:flex;
@@ -172,7 +176,11 @@ img{
    
     display:none;
 }
+<<<<<<< HEAD
 
+=======
+    /*changed nothing*/
+>>>>>>> 42c4cb6dbc9db0fb1fe3ffe65cd80faa909a62f4
 .form-div form {
     font: inherit;
     display: grid;
