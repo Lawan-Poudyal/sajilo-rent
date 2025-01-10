@@ -4,7 +4,8 @@ function checkPassword(event) {
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (password !== confirmPassword) {
-        alert("Passwords do not match!");
+        // alert("Passwords do not match!");
+        document.querySelector(".error-message").innerHTML = `<span style="color:red;">Passwords do not match!</span>`
         event.preventDefault(); // Prevent form submission
        return false; // Return false to indicate failure
     }

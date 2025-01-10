@@ -9,7 +9,7 @@ body{
     font-family:monospace;
     display:flex;
     flex-flow:column nowrap;
-    min-height:200vh;
+    min-height:250vh;
     border:1px solid black;
   
 }
