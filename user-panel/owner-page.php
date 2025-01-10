@@ -4,32 +4,32 @@ if (!isset($_SESSION["username"] ) || !isset($_SESSION['email']))
 {
 header("Location:/sajilo-rent/user-panel/user-home.php");
 }
-if($_SERVER['REQUEST_METHOD'] === 'POST')
+$username = $_SESSION['username'];
+$latlngarr = [[0,0],[0,0],[0,0],[0,0]];
+$i=0;
+$j=0;
+$conn = new mysqli("localhost" , "root" , "" ,"user_database");
+if ($conn->connect_error)
 {
-    $number1 = $_POST['number1'];
-    $number2 = $_POST['number2'];
-    $number3 = $_POST['number3'];
-    $number4 = $_POST['number4'];
-    $number5 = $_POST['number5'];
-    $number6 = $_POST['number6'];
-    $number7 = $_POST['number7'];
-    $number8 = $_POST['number8'];
-    $email = '';
-    $conn = new mysqli('localhost','root' ,'' ,'user_database');
-    if(!$conn){
-        die("connection failed");
-    }
-    $query = 'INSERT into rent_house_location (email , lat1 ,lng1 , lat2 ,lng2 , lat3 ,lng3 , lat4 ,lng4 ) VALUES  (? , ?, ?, ?, ?, ?, ?, ?, ?)';
-    $stms = $conn->prepare($query);
-    $stms->bind_param('sssssssss', $_SESSION['email'],$number1 , $number2 ,$number3 ,$number4 ,$number5 ,$number6 ,$number7 ,$number8);
-    if(!$stms->execute())
-    {
-        echo ''. $stms->error;
-    }
-    else{
-        echo 'success';
-    }
+    die("". $conn->connect_error);
 }
+$query = "SELECT latitude , longitude FROM housedetails WHERE username = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s",$username);       
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows > 0)
+{
+   while($row = $result->fetch_assoc())
+{
+    $latlngarr[$i][0] = $row["latitude"];
+    $latlngarr[$i][1] = $row["longitude"];
+    $i++;
+}
+
+}
+$conn->close();
+$stmt->close();
 
 ?>
 <!DOCTYPE html>
@@ -52,11 +52,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
                 <div class="header-nav-element">
                 <button id="logo-btn">
                     <figure>
-                    <img src="/sajilo-rent/resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+                    <img src="/sajilo-rent/resources/logo.svg" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
                 </figure>
             </button>
                 </div>
                 <div class="header-nav-element">
+                <div class="header-nav-element-side-menu">
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/house.png.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
+                    </div>
+                </div>  
                 <div class="header-nav-element-menu menu">
                     <figure id="js-menu">
                     <img src="/sajilo-rent/resources/menu.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
@@ -68,27 +75,123 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
                      <div class="option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
                     </div>
                 </div>
-                </div>
-            
             </nav>
         </header>
 
 <main class="main">
 <div class="main-div" id="js-map"></div>
-<form action="<?php echo $_SERVER['PHP_SELF'];?>" class="main-form" method="POST">
-<input type="number" name="number1" step="any" id="number1" required="false">
-<input type="number" name="number2" step="any" id="number2" required="false">
-<input type="number" name="number3" step="any" id="number3" required="false">
-<input type="number" name="number4" step="any" id="number4" required="false">
-<input type="number" name="number5" step="any" id="number5" required="false">
-<input type="number" name="number6" step="any" id="number6" required="false">
-<input type="number" name="number7" step="any" id="number7" required="false">
-<input type="number" name="number8" step="any" id="number8" required="false">
-<input type="submit" value="Register" id="submit-btn">
+<div class="form-div" id="js-form-div">
+<form  class="house-info" method="POST" action="/sajilo-rent/user-panel/back_end/addhousedetails.php" enctype="multipart/form-data">
+<h2 class="form-div-h2">Answer These FAQs</h2>
+<div class="price wrapper-div">
+<label for="price">
+Price:
+</label>
+<input type="number" value ="500" min="500" name="price" step="100" required>
+</div>
+<div class="no-of-rooms wrapper-div">
+<label for="no-of-rooms">
+No of Rooms:
+</label>
+<input type="number" value ="1"  max="10" min="1" name="no-of-rooms" required>
+</div>
+<div class="no-of-roommates wrapper-div">
+<label for="no-of-roommates">
+No of Roommates:
+</label>
+<input type="number" value ="1"  max="4" min="1" name="no-of-roommates" required>
+</div>
+<div class="gates-open wrapper-div">
+<label for="gates-open">
+Gates Open:
+</label>
+<input type="time" name="gates-open" required>
+</div>
+<div class="gates-close wrapper-div">
+<label for="gates-close">
+Gates Close:
+</label>
+<input type="time" name="gates-close" required>
+</div>
+<div class="parking wrapper-div">
+<label for="parking">
+Parking:
+</label>
+available: <input type="radio" name="parking" value="available" required>
+unavailable: <input type="radio" name="parking" value="unavailable" required> 
+</div>
+<div class="floor-level wrapper-div">
+<label for="floor-level">
+Floor Level:
+</label>
+<select name="floor-level" id="floor-level" required>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+</div>
+<div class="house-facing-direction wrapper-div">
+<label for="house-facing-direction">
+House Direction:
+</label>
+<select name="house-facing-direction" id="house-facing-direction" required>
+  <option value="east">east</option>
+  <option value="west">west</option>
+  <option value="north">north</option>
+  <option value="south">south</option>
+</select>
+</div>
+<div class="wifi wrapper-div">
+<label for="wifi">
+Wifi (in NPR/month):
+</label>
+<input type="range" min="0" step="500" max="3000" value="0" name="wifi" id="wifi-price" required>
+<span id="price-value"></span>
+</div>
+<div class="electricity wrapper-div">
+<label for="electricity">
+Electricity:
+</label>
+Required:<input type="radio" name="electricity" value="required" required>
+Not Required: <input type="radio" name="electricity" value="notrequired" required>
+</div>
+<div class="image wrapper-div">
+<label for="image">
+Upload Three Images of the room :
+</label>
+<input type="file" name="image" id="image1" accept="image/*"required>
+<input type="file" name="image-2" id="image2" accept="image/*" required>
+<input type="file" name="image-3" id="image3" accept="image/*" required>
+
+</div>
+<div class="image-wrapper wrapper-div">
+<div class="image-display image1" id="image-div1"></div>
+<div class="image-display image2" id="image-div2"></div>
+<div class="image-display image3" id="image-div3"></div>
+</div>
+<div class="hidden-latlng wrapper-div ">
+<input type="number" name="lat" id="js-lat" step="0.00000000000000001" required>
+<input type="number" name="lng" id="js-lng" step="0.00000000000000001" required>
+</div>
+<input type="submit" class="form-submit-btn"value="Rent">
 </form>
+<div class="cross-icon" id="js-cross-icon"><img src="/sajilo-rent/resources/cross.png" alt="" height="50" width="50"></div>
+</div>
 </main>
 <footer class="footer">
 </footer>
+<div class="latitudeandlongitude hidden">
+    <div id="username"><?php echo $username?></div>
+    <div id="lat1"><?php echo number_format($latlngarr[0][0],17)?></div>
+    <div id="lng1"><?php echo number_format($latlngarr[0][1],17)?></div>
+    <div id="lat2"><?php echo number_format($latlngarr[1][0],17)?></div>
+    <div id="lng2"><?php echo number_format($latlngarr[1][1],17)?></div>
+    <div id="lat3"><?php echo number_format($latlngarr[2][0],17)?></div>
+    <div id="lng3"><?php echo number_format($latlngarr[2][1],17)?></div>
+    <div id="lat4"><?php echo number_format($latlngarr[3][0],17)?></div>
+    <div id="lng4"><?php echo number_format($latlngarr[3][1],17)?></div>
+</div>
 <script src="/sajilo-rent/user-panel/script/owner-page-script.js"></script>
 </body>
 </html>

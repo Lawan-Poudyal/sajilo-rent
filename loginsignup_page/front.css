@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+/* || css reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img {
+    display: block;
+    width:80%;
+    height: auto;
+    margin-inline:auto;
+}
+figcaption {
+    text-align: center;
+}
+html {
+    scroll-behavior: smooth;
+    color-scheme: light dark;
+}
+input , button {
+    border:none;
+}
+/* || end reset */
+
+
+/* utility classes */
+.container {
+    margin-inline:auto;
+    padding-inline:0.5rem;
+    width:100%;
+}
+
+/* || end utility classes */
+
+/* || property  */
+@property --BORDER-ROTATION {
+    syntax:"<angle>";
+    inherits: false;
+    initial-value:0deg;
+}
+
+
+
+/* || variables */
+:root {
+    --BORDER-ROTATION:0deg;
+    --CLR-DARK-GREEN:#094908;
+    --CLR-MEDIUM-GREEN:#00643a;
+    --CLR-MID2-GREEN:rgba(0, 128, 0, 0.30);
+    --CLR-LIGHT-GREEN:rgba(0, 128, 0, 0.21);
+    --CLR-BLUE:#00baff;
+    --CLR-LIGHT-BLUE:#d2f5ff;
+    --CLR-LIGHT-BLUEGRAY:#587b98;
+    --CLR-LIGHTPURPLE:#8B8DBA;
+    --CLR-DARK-PURPLE:purple;
+    --CLR-LIGHTNEUTRAL:#F8F8FF;
+    --CLR-WARMNEUTRAL:#F1F1E6;
+    --CLR-FADELIGHTNEUTRAL:#f8f8ff7a;
+    --CLR-DARK-BLUE:rgb(2, 16, 55);
+    /* width */
+    --INNER-BOX-WIDTH:clamp(16rem , 60vw,50rem);
+    --INNER-IMAGE-SIZE:clamp(5rem , 20% , 7rem);
+    --INNER-BOX-HEIGHT:78vh;
+    --OUTER-BOX-HEIGHT:79.1vh;
+    --OUTER-BOX-WIDTH:clamp(17rem , 61vw , 51rem);
+    --OUTER-IMAGE-WIDTH:min(50% ,18rem);
+    /* gaps */
+    --ROW-GAP:2%;
+}
+/* || end variables */
+
+
+body {
+    color: blue;
+    /* display stuffs */
+    display:flex;
+    justify-content:flex-end;
+    align-items: flex-end;
+    /* positioning stuff */
+    position: relative;
+    /* || box-model stuff*/
+    min-height: 100vh;
+    min-width: 100vw;
+    background-image: linear-gradient(rgba(32, 122, 179, 0.264),#00643a69) , url(..\\resources\\4x3__A_softly_blurred__high_resoluti.png) ;
+    background-size:cover;
+    /* typography */
+    font-family: sans-serif;
+    line-height: 1.5rem;
+}
+main {
+    position:relative;
+}
+main>figure {
+    display:none;
+    width:var(--OUTER-IMAGE-WIDTH) ;
+    height: var(--OUTER-IMAGE-WIDTH);
+    z-index:2;
+    position: absolute;
+    left:-53%;
+    top:12%;
+}
+main>figure figcaption {
+    color:var(--CLR-DARK-BLUE);
+    text-shadow: 2px -2px 10px;
+    font-family:"Playfair Display", serif;
+    font-size:1.8rem;
+    font-weight:900;
+    padding:0.5rem;
+}
+.outer-box {
+    /* postioning stuff */
+    position:absolute;
+    bottom:8vh;
+    right:8vw;
+    /* box-model stuff */
+background-color: var(--CLR-FADELIGHTNEUTRAL);
+width:var(--OUTER-BOX-WIDTH);
+height:var(--OUTER-BOX-HEIGHT);
+/* manipulation */
+border-radius:2rem;
+/* z-index */
+z-index: -2;
+}
+
+.inner-box {
+    /* display stuff */
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ROW-GAP);
+    /* positioning */
+    position: relative;
+    /* || box-modeling */
+    width:var(--INNER-BOX-WIDTH);
+    height:var(--INNER-BOX-HEIGHT);
+    background-color: var(--CLR-LIGHTNEUTRAL);
+    margin-bottom:9vh;
+    margin-right:5vw;
+    /* manipulation */
+    border-radius:1.5rem;
+}
+.inner-box::after { /* as there is no stacking context on parent .inner-box , the stacking context creted by ::after is bounded by html 
+    but if .parent(inner-box) has stacking context , then ::after is bounded by stacking context of .inner-box*/
+    content: "";
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    width: inherit;
+    height: inherit;
+    padding:0.25rem;
+    background-image:conic-gradient(from var(--BORDER-ROTATION),var(--CLR-DARK-GREEN),transparent 20%, var(--CLR-BLUE),var(--CLR-DARK-GREEN));
+    /*first and last color must be the same for smooth animation*/
+    z-index:-1;
+    border-radius: 1.5rem; 
+    animation: border-animation 1.5s linear 0s infinite normal forwards;
+    opacity:0.8;
+}
+.inner-box figure {
+    margin-top:3%;
+    margin-right:3%;
+    align-self:flex-end;
+    width: var(--INNER-IMAGE-SIZE);
+    height: var(--INNER-IMAGE-SIZE);
+}
+.inner-box section {
+    flex-grow:1;
+}
+.inner-box section h1 {
+    color:var(--CLR-MEDIUM-GREEN);
+    margin-bottom:7%;
+    text-align: center;
+    font-size: 2.3rem;
+}
+/* || styling form */
+.inner-box section form {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap:clamp(0.2rem ,2vh ,4rem);
+    align-items: center;
+}
+.inner-box section form :is(input , button){
+    text-align: center;
+    color: var(--CLR-DARK-GREEN);
+    background-color:var(--CLR-LIGHT-GREEN);
+    display: inline-block;
+    padding-block:2%;
+    padding-inline:8%;
+}
+.inner-box section form input::placeholder {
+    display:inline-block;
+    text-align: center;
+color:var(--CLR-DARK-GREEN);
+}
+.inner-box section form input:is(:hover ,:focus) {
+    text-align: center;
+    outline:none;
+    background-color: var(--CLR-MID2-GREEN);
+}
+.inner-box section form button:hover {
+    background-color: var(--CLR-MID2-GREEN);
+    cursor: pointer;
+}
+
+/* || last text */
+.inner-box section div {
+    font-size:80%;
+    color:var(--CLR-MEDIUM-GREEN);
+}
+.inner-box section div a{
+color:var(--CLR-MEDIUM-GREEN);
+}
+
+/* || animations */
+@keyframes border-animation {
+    from {
+        --BORDER-ROTATION:0deg;
+    }
+    to {
+        --BORDER-ROTATION:360deg;
+    }
+}
+
+/* error handling css */
+
+.error {
+   color:red;
+   font-size: 0.8rem;
+}
+
+
+/* || media queries */
+@media screen and (max-height:740px) {
+    .inner-box section form :is(input , button){
+        padding-block:1.1%;
+    }
+}
+@media screen and (max-height:590px) {
+    .inner-box figure {
+        margin-top:1%;
+        margin-right:1%;
+        --INNER-IMAGE-SIZE:5rem;
+    }
+    .inner-box section h1 {
+        font-size:1.6rem;
+       margin-bottom:3%;
+    }
+    .inner-box section form :is(input , button){
+        padding-block:0.6%;
+        padding-inline:6%;
+    }
+}
+@media screen and (min-width:700px) {
+    main>figure {
+        display:unset;
+    }
+}
