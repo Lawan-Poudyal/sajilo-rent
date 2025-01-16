@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD:database/user_database (2).sql
 -- Generation Time: Jan 10, 2025 at 01:16 PM
-=======
--- Generation Time: Dec 20, 2024 at 02:24 PM
->>>>>>> 78620a49f9f4b7be1dfc5e751a0aa3c14545eb74:database/user_database.sql
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -28,7 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD:database/user_database (2).sql
 -- Table structure for table `housedetails`
 --
 
@@ -61,8 +56,6 @@ INSERT INTO `housedetails` (`username`, `no_of_rooms`, `no_of_roommates`, `gates
 -- --------------------------------------------------------
 
 --
-=======
->>>>>>> 78620a49f9f4b7be1dfc5e751a0aa3c14545eb74:database/user_database.sql
 -- Table structure for table `signin`
 --
 
@@ -78,7 +71,6 @@ CREATE TABLE `signin` (
 --
 
 INSERT INTO `signin` (`email`, `firstName`, `lastName`, `password`) VALUES
-<<<<<<< HEAD:database/user_database (2).sql
 ('abhiyandondai@gmail.com', 'Abhiyan ', 'Dondai', '$2y$10$.afvIVtfrWndIOIgO5wVke4fFIWmQ2j40BaKzFmuhe4m56uIt8pXu'),
 ('abhiyanregmi12@gmail.com', 'Abhiyandon', 'Regmi', '$2y$10$rv3iKh13ZDabghMrEHLxh.Vn7km/Q4wCL4fR2D0L6VwCCswcmoQSu'),
 ('abhiyanthapa@gmail.com', 'abhiyan ', 'thapa', '$2y$10$L9WjpF6ildsVby2IKfEkMu1e7dAka3bXXDawsiyq2NfqmedKm/gTu'),
@@ -121,20 +113,12 @@ INSERT INTO `user_verification` (`email`, `verification_number`, `status`) VALUE
 ('ku@gmail.com', 2147483647, 'student'),
 ('swastikbhandari2006@gmail.com', 2006, 'student'),
 ('university@gmail.com', 123456, 'student');
-=======
-('', '', '', '$2y$10$Xs3b7md4/iPPX2LR1XL73eXp4E4tqsU2afz6EkJZhspbNfPZPseIO'),
-('abhiyanthapa@gmail.com', 'abhiyan ', 'thapa', '$2y$10$L9WjpF6ildsVby2IKfEkMu1e7dAka3bXXDawsiyq2NfqmedKm/gTu'),
-('lawan@gmail.com', 'lawan', 'paudel', '$2y$10$X6Jlc8B4r85a/Cx1ZgAZi.s.BSGEqiMxP7HkaWe1Tj3rKkU/IcqdC'),
-('seasonrana@gmail.com', 'season', 'rana', '$2y$10$j8Js2SsFOzxfCK.3XqOyk.9tyb9f7efjsoyID6Bhxren.LgTrFJg.'),
-('swastikbhandari2006@gmail.com', 'swastik ', 'bhandari', '$2y$10$zEUbk9kpMcUPswB4PUkLeuwdnnMreLam8Yo.TRp5Rf4D9U/Ky1POu');
->>>>>>> 78620a49f9f4b7be1dfc5e751a0aa3c14545eb74:database/user_database.sql
 
 --
 -- Indexes for dumped tables
 --
 
 --
-<<<<<<< HEAD:database/user_database (2).sql
 -- Indexes for table `housedetails`
 --
 ALTER TABLE `housedetails`
@@ -142,8 +126,6 @@ ALTER TABLE `housedetails`
   ADD UNIQUE KEY `username` (`username`,`latitude`,`longitude`);
 
 --
-=======
->>>>>>> 78620a49f9f4b7be1dfc5e751a0aa3c14545eb74:database/user_database.sql
 -- Indexes for table `signin`
 --
 ALTER TABLE `signin`

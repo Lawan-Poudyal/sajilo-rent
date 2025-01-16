@@ -69,7 +69,7 @@ $stmt->close();
                     <img src="/sajilo-rent/resources/menu.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
                     </figure>
                     <div class="dropdown-menu" id="js-drop-down">
-                     <div class="option"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
+                     <div class="option js-profile-btn"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
                      <div class="option"><figure><img src="/sajilo-rent/resources/house.png.png" alt="" width="25" height="25"></figure></div>
                      <div class="option"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
                      <div class="option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
