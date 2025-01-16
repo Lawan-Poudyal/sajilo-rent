@@ -109,7 +109,7 @@ section {
     background-color: #F8F8FF;
     padding:2rem;
     border-radius: 3%;
-    min-height:30rem;
+    min-height: 30rem;
 }
 .data_box div {
     display: flex;

@@ -6,7 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image1_name = $_FILES['image']['name'];
     $target_dir = "images/";
     $image1_path = $target_dir . basename($image1_name);
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $image1_path)) {
+    $target_dir = "images/";
+    $image2_path =  $target_dir . basename($image1_name);
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $image2_path)) {
         $conn = new mysqli("localhost", "root", "", "user_database");
         if($conn->connect_error)
         {
