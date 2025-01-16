@@ -106,6 +106,7 @@ class MarkerMaker {
                         <div class="housetype">Rooms: ${location.no_of_rooms}</div>
                         <div class="price">Price: NRP ${location.price}</div>
                         <div class="contact">Contact: ${location.username}</div>
+                        <
                     </div>
                     <div class="button">
                     <button class = "bookButton">

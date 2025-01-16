@@ -1,5 +1,7 @@
 <?php
 session_start();
+session_abort();
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +18,7 @@ session_start();
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
+    session_start();
     $error = ""; // Initialize error message
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

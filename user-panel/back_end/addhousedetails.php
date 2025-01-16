@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $parking = $_POST['parking'];
     $house_facing_direction = $_POST['house-facing-direction'];
     $wifi_price = $_POST['wifi'];
-    $username = $_SESSION['username']; 
+    $username = $_SESSION['email']; 
     $latitude = $_POST['lat'];
     $longitude = $_POST['lng'];
     $floor_level = $_POST['floor-level'];

@@ -22,7 +22,7 @@ else{
         echo json_encode($jsonobj);
     }
     else{
-        $jsonobj = ["image" => $row['false']];
+        $jsonobj = ["image" => "false"];
         echo json_encode($jsonobj);
     }
    

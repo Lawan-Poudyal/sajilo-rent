@@ -4,7 +4,7 @@ if (!isset($_SESSION["username"] ) || !isset($_SESSION['email']))
 {
 header("Location:/sajilo-rent/user-panel/user-home.php");
 }
-$username = $_SESSION['username'];
+$username = $_SESSION['email'];
 $latlngarr = [[0,0],[0,0],[0,0],[0,0]];
 $i=0;
 $j=0;
@@ -58,7 +58,7 @@ $stmt->close();
                 </div>
                 <div class="header-nav-element">
                 <div class="header-nav-element-side-menu">
-                     <div class="side-option"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option js-profile-btn"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
                      <div class="side-option"><figure><img src="/sajilo-rent/resources/house.png.png" alt="" width="25" height="25"></figure></div>
                      <div class="side-option"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
                      <div class="side-option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
