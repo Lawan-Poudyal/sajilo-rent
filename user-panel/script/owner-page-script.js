@@ -23,6 +23,7 @@ let lng3 = document.getElementById('lng3');
 let lat4 = document.getElementById('lat4');
 let lng4 = document.getElementById('lng4');
 let username = document.getElementById('username').innerText;
+let profileBtn = document.querySelector('.js-profile-btn');
 let rentval , electricityval , image1val , image2val , image3val , wifival;
 let latlngarr = [
     [parseFloat(lat1.innerText), parseFloat(lng1.innerText)],
@@ -175,6 +176,10 @@ image3.addEventListener('change', function(){
   }
   
  }
+ ////////// for redirection purposes ////////////////////////
+profileBtn.addEventListener('click' , ()=>{
+window.location = "/sajilo-rent/user-panel/owner-profile.php";
+});
 //////////////////////////////////////////////// MAP //////////////////////////////
 var map = L.map('js-map').setView([27.6194, 85.5388], 50); 
 
@@ -282,6 +287,5 @@ dynamicMarkers.forEach(function(marker) {
 dynamicMarkers.push(newMarker);
 
 });
-
 
 ////////////////////////////////////////////////////////////////////////////

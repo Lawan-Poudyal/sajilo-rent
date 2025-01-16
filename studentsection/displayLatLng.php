@@ -25,10 +25,19 @@
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
+        session_start();
+
+        // Check if the user is logged in
+        
+        if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
+        // User is logged in, you can use the session variables
+        $username = $_SESSION['username'];
+        $email = $_SESSION['email'];
+        }
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $database = "latlng";
+        $database = "user_database";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $database);
@@ -37,8 +46,9 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
+        echo"success";
 
-        $sql = "SELECT LAT, LNG,PRICE,CONTACT,ROOMSAVAILABLE,BOOKED FROM LatLng";
+        $sql = "SELECT * FROM housedetails";
         $result = $conn->query($sql);
 
         $latitudesandLongitudes = [];
@@ -84,14 +94,17 @@
             <button class="closeRouting" style="display: none;">
                 Close Routing
             </button>
-            <div class="buttons">
-                <button class="signup">Signup</button>
-                <span>/</span>
-                <button class="singin">Signin</button>
+            <div class="userInformation">
+                <button class="userButton"><i class='bx bx-user'></i></button>
+                <div class="displayUserName">
+                    <div class="email"><?php echo $_SESSION['email']; ?></div>
+                    <div class="userName"><?php echo $_SESSION['username']?></div>
+                 </div>
             </div>
         </div>
     </nav>
     <div id="map"></div>
-      <script type = "module"src="main.js"></script> 
+      <script type = "module"src="main.js">
+      </script> 
     </body>
 </html>

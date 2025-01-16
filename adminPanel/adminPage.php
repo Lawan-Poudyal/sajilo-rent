@@ -39,6 +39,80 @@ if ($result2->num_rows > 0) {
 
     $conn->close();
     ?>
+    <?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Retrieve the email value from $_POST
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+        $database = "user_database";
+
+        // Create a database connection
+        $conn = new mysqli("localhost", "root", "", $database);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Prepare the SQL statement
+        $verification_number = $user_email_code[$email];
+        $status = $user_email_status[$email];
+        $stmt3 = $conn->prepare("INSERT INTO notification(email, message) VALUES (?, ?)");
+        if ($stmt3 === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+        
+        // Bind parameters
+        $message = "Hello sir! You are verified by the admin. You will be directed to " . $status . " page in 5 seconds.";
+        $stmt3->bind_param("ss", $email, $message);
+        
+        // Execute the statement
+        if ($stmt3->execute()) {
+            echo "Data is inserted successfully";
+        } else {
+            die("Failed execution: " . $stmt3->error); // Changed $stmt2 to $stmt3
+        }
+        
+        // Close the statement
+        $stmt3->close();
+        // Correct the SQL query by using placeholders correctly
+        $stmt2 = $conn->prepare("INSERT INTO verified_users (email, verification_number, status) VALUES (?, ?, ?)");
+        if ($stmt2 === false) {
+            die("prepare failed: " . $conn->error);
+        }
+        // Bind the parameters correctly
+        $stmt2->bind_param("sss", $email, $verification_number, $status);
+        
+        if ($stmt2->execute()) {
+            echo "Data is inserted successfully";
+        } else {
+            die("Failed execution: " . $stmt2->error);
+        }
+        
+        $stmt2->close();
+        $stmt = $conn->prepare("DELETE FROM user_verification WHERE email=?");
+        if ($stmt === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+
+        // Bind the email parameter
+        $stmt->bind_param("s", $email);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "User with email '$email' has been successfully deleted.";
+        } else {
+            die("Execute failed: " . $stmt->error);
+        }
+
+        // Close the statement and connection
+        $stmt->close();
+        $conn->close();
+    } else {
+        echo "Email not provided.";
+    }
+}
+?>
 
     <header>
         <figure>
@@ -61,25 +135,6 @@ if ($result2->num_rows > 0) {
             ?>
         </div>
     </section>
-    <script>
-        const body = document.body ;
-        const section = body.querySelector('section');
-        const dataBox = section.querySelector('.data_box')
-        const dataBlock = body.getElementsByClassName('data_block');
-        const buttonClass =section.querySelector('.check-box').className;
-        function addGlobalEventListener(type , selector , callback , parent) {
-        parent.addEventListener(type , function(e) {
-           if(e.target.className==='check-box'){
-           callback();
-           }
-        });
-    }
-        addGlobalEventListener("click","check-box", verifyUser , dataBox);
-
-        function verifyUser() {
-            console.log('hello');
-        }
-
-    </script>
+    <script src="..\\adminPanel\\adminPage.js"></script>
 </body>
 </html>

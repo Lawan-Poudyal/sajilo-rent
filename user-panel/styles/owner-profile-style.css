@@ -1,0 +1,255 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    background-color:var(--body-bgcolor);
+    font-size:var(--body-small-font-size);
+    font-family:monospace;
+    display:flex;
+    flex-flow:column nowrap;
+    min-height:100vh;
+    border:1px solid black;
+  
+}
+img{
+    display:block;
+    border:none;
+}
+/* utility class*/
+.nowrap{
+    white-space: nowrap;
+}
+.hidden{
+    display:none;
+}
+.rotate{
+    animation:rotate 1s 0s ease-in-out 1 forwards;
+}
+.reverserotate{
+    animation:rotate 1s 0s ease-in-out 1 forwards reverse;
+}
+.expand{
+    transform-origin:top;
+    animation:expand 1s 0s ease-in-out 1 forwards;
+}
+.reverseexpand{
+    transform-origin:top;
+    animation:expand 1s 0s ease-in-out 1 forwards reverse; 
+}
+@keyframes rotate{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+@keyframes expand{
+    0%{
+        transform:scaleY(0);
+    }
+    75%{
+        transform:scaleY(1.2);
+    }
+    100%{
+        transform:scaleY(1);
+    }
+}
+/* end of utility class*/
+.header{
+    position:sticky;
+    z-index:10;
+    top:0;
+}
+.footer{
+    position:sticky;
+    z-index:10;
+    bottom:0;
+}
+/*nav design */
+.header-nav{
+    background-color: var(--contrast-bgcolor);
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--standard-padding) 10px;
+    gap:var(--min-gap); 
+    box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
+}
+.header-nav-element{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+#logo-btn{
+border:none; 
+}
+.header-nav-element-side-menu{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap:var(--standard-gap);
+}
+
+.menu{
+    position:relative;
+}
+.dropdown-menu{
+    position:absolute;
+    top:calc(var(--standard-padding) + var(--standard-padding) + var(--nav-element-height));
+    left:calc(-1 * (var(--drop-down-width) - var(--nav-element-width)));
+    width:var(--drop-down-width);
+    text-align: center;
+    font-weight: 800;
+    display:flex;
+    flex-flow:column nowrap;
+    padding: var(--standard-padding) 5px;
+    border-radius:10px;
+    background-color: var(--contrast-bgcolor);
+    gap:var(--standard-gap);
+    display:none;
+}
+.option
+{
+    border-bottom: 1px solid var(--body-bgcolor);
+    border-radius:20px;
+    padding:var(--small-padding);
+    transition:1s linear;
+}
+.option:last-child{
+    border-bottom:none;
+}
+.option:hover {
+    background-color: black;
+    color:white;
+
+}
+.header-nav-element-menu figure{
+    height:var(--nav-element-height);
+    width:var(--nav-element-width);
+    border-radius:50%;
+    background-color: var(--body-bgcolor);
+    box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
+    cursor: pointer;
+}
+/* moving to main section of the whole damn thing */
+.main{
+ flex-grow:1;
+ display:flex;
+ flex-flow:column nowrap;
+ align-items: center;
+ padding:var(--standard-padding);
+}
+.main-div{
+    width:clamp(350px , 100% , 600px);
+    height:auto;
+    background-color: var(--contrast-bgcolor);
+    margin-bottom:var(--standard-gap);
+}
+.profilepic{
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    border:2px solid black;
+    background-image: url('/sajilo-rent/resources/add.png');
+    background-size: cover;
+    background-position:-45px center;
+    cursor:pointer;
+}
+.name{
+    font-weight:bolder;
+    font-size: 1.5rem;
+    margin-bottom:var(--standard-gap);
+}
+.profilestatus{
+    display:grid;
+    grid-template-columns: repeat(1 , 1fr 1fr);
+    grid-auto-rows: var(--small-element-height);
+    gap:var(--standard-gap);
+    padding:var(--standard-padding);
+}
+.info{
+    display:flex;
+}
+.info:nth-child(2n){
+    justify-content: flex-end ;
+}
+.main-section{
+    width:clamp(350px , 100% , 600px);
+    height:400px;
+    gap:var(--standard-gap);
+    background-color: var(--contrast-bgcolor);
+    margin-bottom:var(--standard-gap);
+    padding:var(--standard-padding);    
+}
+.comments{
+    display:flex;
+    flex-flow: column nowrap;
+    gap:var(--standard-gap);
+}
+.commentsection{
+    display:flex;
+    flex-flow:column nowrap;
+    gap:var(--standard-gap);
+}
+.comment{
+    height:var(--nav-element-height);
+    width:100%;
+    resize: none;
+   }
+.addcomment{
+ height:var(--nav-element-height);
+ width:100px;
+}
+.commentinfo{
+    color:gray;
+    margin-bottom:var(--standard-gap);
+}
+.commenter , .commentdate{
+font-weight: 800;
+color:black;
+}
+.comment{
+    border:1px solid black;
+    height:fit-content;
+}
+/*----------for floating ----------------------------*/
+.uploadphoto{
+    position:fixed; 
+    top:calc(50vh - 200px);
+    border:1px solid black;
+    width:clamp(350px , 100% , 600px);
+    height:400px;
+    background-color: var(--contrast-bgcolor);
+    display:flex;
+    flex-flow:column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding:var(--standard-padding);
+    gap:var(--standard-gap);
+   
+}
+
+.photo{
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    border:2px solid black;
+    background-image: url('/sajilo-rent/resources/add.png');
+    background-size: cover;
+    background-position:-40px center;
+    cursor:pointer;
+}
+.send{
+    background-color: lime;
+    cursor:pointer;
+    padding:var(--standard-padding);
+    border-radius:10px;
+    border:none;
+    font-style: monospace;
+    font-weight:bolder;
+}

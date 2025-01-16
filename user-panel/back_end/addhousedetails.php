@@ -70,14 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $house_facing_direction
     );
 
-    // Execute the statement
     if ($stmt->execute()) {
         header("Location:/sajilo-rent/user-panel/owner-page.php");
     } else {
         echo "Error executing query: " . $stmt->error;
     }
-
-    // Close the statement and connection
     $stmt->close();
     $conn->close();
     }else{
