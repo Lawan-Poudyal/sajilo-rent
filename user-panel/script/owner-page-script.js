@@ -249,7 +249,7 @@ tempmarker.forEach((marker) => {
                     </div>
                     <div class= 'info-wrapper faq-wrapper'>
                     <span>Rent:</span>
-                    <span>${jsonobj["pricem"]}</span>
+                    <span>${jsonobj["price"]}</span>
                     <span>Wifi:</span>
                     <span>${jsonobj["wifi_price"]}</span>
                     <span>Electricity</span>
