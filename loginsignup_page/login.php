@@ -31,7 +31,7 @@ session_start();
             }
 
             // Use prepared statement for security
-            $stmt = $conn->prepare("SELECT * FROM signin WHERE email = ?");
+            $stmt = $conn->prepare("SELECT signin.firstName , signin.lastName, signin.email ,signin.password , user_verification.status FROM signin JOIN user_verification ON signin.email = user_verification.email WHERE signin.email = ? ");
             if ($stmt === false) {
                 die("Prepare failed: " . $conn->error);
             }
@@ -55,7 +55,15 @@ session_start();
                     // Set session variables
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
-                    header("Location: /sajilo-rent/studentsection/displayLatLng.php");
+                    $verificationvalue = $row['status'];
+                    if($verificationvalue === "student")
+                    {
+                        header("Location: /sajilo-rent/studentsection/displayLatLng.php");
+                    }
+                    else if($verificationvalue === "owner")
+                    {
+                    header("Location: /sajilo-rent/user-panel/owner-page.php");// change gareu
+                    }
                     exit();
                 } else {
                     $error = "* Password is incorrect.";
