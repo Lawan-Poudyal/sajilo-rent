@@ -33,7 +33,7 @@ session_abort();
             }
 
             // Use prepared statement for security
-            $stmt = $conn->prepare("SELECT signin.firstName , signin.lastName, signin.email ,signin.password , user_verification.status FROM signin JOIN user_verification WHERE signin.email = ? ");
+            $stmt = $conn->prepare("SELECT * FROM signin WHERE email = ? ");
             if ($stmt === false) {
                 die("Prepare failed: " . $conn->error);
             }
@@ -43,9 +43,25 @@ session_abort();
             if (!$stmt->execute()) {
                 die("Execute failed: " . $stmt->error);
             }
-
             $result = $stmt->get_result();
+////////////////////////////////////////////////////////////
+$conn = mysqli_connect("localhost", "root", "", "user_database");
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+            $stmt2 = $conn->prepare("SELECT * FROM verified_users WHERE email = ? ");
+            if ($stmt2 === false) {
+                die("Prepare failed: " . $conn->error);
+            }
 
+            $stmt2->bind_param("s", $email);
+
+            if (!$stmt2->execute()) {
+                die("Execute failed: " . $stmt2->error);
+            }
+
+            $result2 = $stmt2->get_result();
+//////////////////////////////////////////////////////////
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $hashedPassword = $row['password'];
@@ -56,15 +72,27 @@ session_abort();
                     // Set session variables
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
-                    $verificationvalue = $row['status'];
-                    if($verificationvalue === "student")
-                    {
-                        header("Location: /sajilo-rent/user-panel/user-home.php");
+                    if ($result2->num_rows > 0) {
+                        $row2=$result2->fetch_assoc();
+                        $status = $row2['status'];
+                        if($status=='student') {
+                            header("Location: /sajilo-rent/studentsection/displayLatLng.php");
+                        }
+                        else {
+                            header("Location: /sajilo-rent/user-panel/owner-page.php");
+                        }
+                    } else {
+                    header("Location: /sajilo-rent/user-panel/user-home.php");
                     }
-                    else if($verificationvalue === "owner")
-                    {
-                    header("Location: /sajilo-rent/user-panel/owner-page.php");// change gareu
-                    }
+                    // $verificationvalue = $row['status'];
+                    // if($verificationvalue === "student")
+                    // {
+                    //     header("Location: /sajilo-rent/user-panel/user-home.php");
+                    // }
+                    // else if($verificationvalue === "owner")
+                    // {
+                    // header("Location: /sajilo-rent/user-panel/owner-page.php");// change gareu
+                    // }
                     exit();
                 } else {
                     $error = "* Password is incorrect.";
@@ -74,6 +102,7 @@ session_abort();
             }
 
             $stmt->close();
+            $stmt2->close();
             $conn->close();
         } else {
             $error = "* Fill in both email and password.";

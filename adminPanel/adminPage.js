@@ -16,7 +16,7 @@ function verifyUser(pNode) {
     console.log(email);
     pNode.remove();
     const xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "http://localhost/sajilo-rent/user-panel/user-home.php", true);
+    xmlhttp.open("POST", "http://localhost/sajilo-rent/adminPanel/insert_verified_user.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Set the content type
     
     // Prepare data in key=value&key2=value2 format
