@@ -120,11 +120,13 @@
         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     </head>
     <body>
-       <?php
-       if($_SERVER['REQUEST_METHOD']==='POST') {
-        $verifyEmail=$_POST['email'];
+    <?php
+    $verifyEmail=null;
+       if($_SERVER['REQUEST_METHOD']==='GET') {
+        if(isset($_GET['q'])){
+        $verifyEmail=$_GET['q'];
+        }
          if($_SESSION['email']==$verifyEmail) {
-            $verifyEmail = $_POST['email'];
         $conn = mysqli_connect("localhost", "root", "", "user_database");
         
         if (!$conn) {
@@ -189,7 +191,7 @@
             setcookie('msgs','you are verified by the admin ! \n you will be redirected to login page in 10s ' ,time()+5000 ,"/");
         }
        }
-       ?>
+?>
         <div class="notification">
         </div>
         <header class="header">
