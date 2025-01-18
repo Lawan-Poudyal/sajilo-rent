@@ -11,13 +11,12 @@ parent.addEventListener(type , function(e) {
 });
 }
 addGlobalEventListener("click","check-box", verifyUser , dataBox);
-
 function verifyUser(pNode) {
     const email = pNode.querySelector('span').textContent;
     console.log(email);
     pNode.remove();
     const xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "http://localhost/sajilo-rent/adminPanel/adminPage.php", true);
+    xmlhttp.open("POST", "http://localhost/sajilo-rent/user-panel/user-home.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // Set the content type
     
     // Prepare data in key=value&key2=value2 format
@@ -29,5 +28,4 @@ function verifyUser(pNode) {
             console.log("Response: " + this.responseText); // Log server response
         }
     };
-    
 }

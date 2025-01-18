@@ -1,4 +1,7 @@
     <?php 
+    session_start();
+    ?>
+    <?php
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $password = $_POST['password'];
@@ -90,10 +93,8 @@
     
             $stms->close();
             $conn->close();
-            session_start();
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
-            header("Location:/sajilo-rent/user-panel/owner-page.php");
 
             } else {
                 echo "Error inserting data: " . $stmt->error;
@@ -119,6 +120,17 @@
         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     </head>
     <body>
+       <?php
+       if($_SERVER['REQUEST_METHOD']==='POST') {
+        $verifyEmail=$_POST['email'];
+        if($_SESSION['email']==$verifyEmail) {
+            setcookie('msgs','you are verified by the admin ! \n you will be redirected to login page in 10s ' ,time()+5000 ,"/");
+        }
+       }
+       ?>
+
+        <div class="notification">
+        </div>
         <header class="header">
             <nav class="header-nav">
                 <div class="header-nav-element">
@@ -223,5 +235,38 @@
         </footer>
         <script src="/sajilo-rent/user-panel/script/user-home-script.js">
         </script>
+
+        <!-- notification handling -->
+        <script>
+function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
+
+const notify = document.querySelector('.notification');
+
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+            return cookie.substring(name.length + 1);
+        }
+    }
+    return null;
+}
+
+const myCookie = getCookie('msgs');
+if (myCookie) {
+    setTimeout(() => {
+        notify.style = 'display:none';
+        deleteCookie('msgs'); // Use the correct cookie name here
+        window.location.href = "http://localhost/sajilo-rent/loginsignup_page/login.php";
+    }, 10000);
+    notify.style = 'display:unset';
+    const msg = decodeURIComponent(myCookie);
+    notify.innerText = msg;
+}
+
+         </script>
     </body>
     </html>

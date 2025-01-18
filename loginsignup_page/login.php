@@ -33,7 +33,7 @@ session_abort();
             }
 
             // Use prepared statement for security
-            $stmt = $conn->prepare("SELECT signin.firstName , signin.lastName, signin.email ,signin.password , user_verification.status FROM signin JOIN user_verification ON signin.email = user_verification.email WHERE signin.email = ? ");
+            $stmt = $conn->prepare("SELECT signin.firstName , signin.lastName, signin.email ,signin.password , user_verification.status FROM signin JOIN user_verification WHERE signin.email = ? ");
             if ($stmt === false) {
                 die("Prepare failed: " . $conn->error);
             }
@@ -53,14 +53,13 @@ session_abort();
                 // Verify the password
                 if (password_verify($password, $hashedPassword)) {
                     $username = $row['firstName'] . " " . $row['lastName'];
-
                     // Set session variables
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
                     $verificationvalue = $row['status'];
                     if($verificationvalue === "student")
                     {
-                        header("Location: /sajilo-rent/studentsection/displayLatLng.php");
+                        header("Location: /sajilo-rent/user-panel/user-home.php");
                     }
                     else if($verificationvalue === "owner")
                     {
