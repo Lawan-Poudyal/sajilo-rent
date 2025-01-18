@@ -159,20 +159,6 @@
             exit; // Exit if no record found
         }
         
-        // Prepare and execute the DELETE statement
-        $stmt2 = $conn->prepare("DELETE FROM user_verification WHERE email = ?");
-        if ($stmt2 === false) {
-            die("Prepare failed: " . $conn->error);
-        }
-        
-        $stmt2->bind_param("s", $verifyEmail);
-        $stmt2->execute();
-        
-        if ($stmt2->affected_rows > 0) {
-            echo "Record deleted successfully.";
-        } else {
-            echo "No record found with that email.";
-        }
         
         // Prepare and execute the INSERT statement
         $stmt3 = $conn->prepare("INSERT INTO verified_users(email, verification_number, status) VALUES (?, ?, ?)");
@@ -181,14 +167,29 @@
         }
         
         // Correctly bind parameters with types
-        $stmt3->bind_param("ssi", $verifyEmail, $verification_number, $status); // Assuming verification_number and status are integers
+        $stmt3->bind_param("sis", $verifyEmail, $verification_number, $status); // Assuming verification_number and status are integers
         $stmt3->execute();
+        
+        setcookie('msgs','you are verified by the admin ! , you will be redirected to login page in 10s ' ,time()+5000 ,"/");
+        
+        // Prepare and execute the DELETE statement
+        $stmt2 = $conn->prepare("DELETE FROM user_verification WHERE email = ?");
+        if ($stmt2 === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+        $stmt2->bind_param("s", $verifyEmail);
+        $stmt2->execute();
+        
+        if ($stmt2->affected_rows > 0) {
+            echo "Record deleted successfully.";
+        } else {
+            echo "No record found with that email.";
+        }
         // Close statements and connection
         $stmt->close();
         $stmt2->close();
         $stmt3->close();
         $conn->close();
-            setcookie('msgs','you are verified by the admin ! \n you will be redirected to login page in 10s ' ,time()+5000 ,"/");
         }
        }
 ?>
@@ -281,7 +282,7 @@
                     <img src="/sajilo-rent/resources/combination.png" alt="" height="50" width="50">
                     <input type="number" class="verification-number" id="verification-number" placeholder="" name="verificationnumber" id="verificationnumber">
                     <input type="text" id="hidden-input" name="ownerorstudent" value="<?php if($_SERVER['REQUEST_METHOD'] === 'POST'){echo $_POST['ownerorstudent'];}else{echo '';}?>">
-                    <input type="submit" value="Verify">
+                    <input id="submit-button" type="submit" value="Verify">
                     </div>
                 
                 </form>

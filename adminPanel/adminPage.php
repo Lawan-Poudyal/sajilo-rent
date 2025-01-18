@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="http://localhost/sajilo-rent/adminPanel/adminPage.css">
 </head>
-<body>
+<body class ="container">
     <?php
     $database = "user_database";
     $conn = new mysqli("localhost", "root", "", $database);
@@ -119,7 +119,7 @@ if ($result2->num_rows > 0) {
         </figure>
     </header>
 
-    <section>
+    <section class="container">
         <div class="data_box">
             <figure>
                 <img src="../resources/logo.svg" alt="sajilo rent">

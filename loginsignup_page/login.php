@@ -15,100 +15,93 @@ session_abort();
 <body>
     <!--      php         -->
     <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    session_start();
-    $error = ""; // Initialize error message
-    
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+ session_start();
+ $error = ""; // Initialize error message
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $email = htmlspecialchars(trim($_POST['email']));
             $password = trim($_POST['password']);
 
             // Database connection
-            $conn = mysqli_connect("localhost", "root", "", "user_database");
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+      // Database connection
+      $conn = mysqli_connect("localhost", "root", "", "user_database");
+      if (!$conn) {
+          die("Connection failed: " . mysqli_connect_error());
+      }
 
-            // Use prepared statement for security
-            $stmt = $conn->prepare("SELECT * FROM signin WHERE email = ? ");
-            if ($stmt === false) {
-                die("Prepare failed: " . $conn->error);
-            }
+      // First query - check signin table
+      $stmt = $conn->prepare("SELECT * FROM signin WHERE email = ?");
+      if ($stmt === false) {
+          die("Prepare failed: " . $conn->error);
+      }
 
-            $stmt->bind_param("s", $email);
+      $stmt->bind_param("s", $email);
 
-            if (!$stmt->execute()) {
-                die("Execute failed: " . $stmt->error);
-            }
-            $result = $stmt->get_result();
-////////////////////////////////////////////////////////////
-$conn = mysqli_connect("localhost", "root", "", "user_database");
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-            $stmt2 = $conn->prepare("SELECT * FROM verified_users WHERE email = ? ");
-            if ($stmt2 === false) {
-                die("Prepare failed: " . $conn->error);
-            }
+      if (!$stmt->execute()) {
+          die("Execute failed: " . $stmt->error);
+      }
 
-            $stmt2->bind_param("s", $email);
+      $result = $stmt->get_result();
 
-            if (!$stmt2->execute()) {
-                die("Execute failed: " . $stmt2->error);
-            }
+      if ($result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $hashedPassword = $row['password'];
 
-            $result2 = $stmt2->get_result();
-//////////////////////////////////////////////////////////
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $hashedPassword = $row['password'];
+          // Verify the password
+          if (password_verify($password, $hashedPassword)) {
+              $username = $row['firstName'] . " " . $row['lastName'];
+              // Set session variables
+              $_SESSION['username'] = $username;
+              $_SESSION['email'] = $email;
 
-                // Verify the password
-                if (password_verify($password, $hashedPassword)) {
-                    $username = $row['firstName'] . " " . $row['lastName'];
-                    // Set session variables
-                    $_SESSION['username'] = $username;
-                    $_SESSION['email'] = $email;
-                    if ($result2->num_rows > 0) {
-                        $row2=$result2->fetch_assoc();
-                        $status = $row2['status'];
-                        if($status=='student') {
-                            header("Location: /sajilo-rent/studentsection/displayLatLng.php");
-                        }
-                        else {
-                            header("Location: /sajilo-rent/user-panel/owner-page.php");
-                        }
-                    } else {
-                    header("Location: /sajilo-rent/user-panel/user-home.php");
-                    }
-                    // $verificationvalue = $row['status'];
-                    // if($verificationvalue === "student")
-                    // {
-                    //     header("Location: /sajilo-rent/user-panel/user-home.php");
-                    // }
-                    // else if($verificationvalue === "owner")
-                    // {
-                    // header("Location: /sajilo-rent/user-panel/owner-page.php");// change gareu
-                    // }
-                    exit();
-                } else {
-                    $error = "* Password is incorrect.";
-                }
-            } else {
-                $error = "* Email not found.";
-            }
+              // Second query - check verified_users table
+              $stmt2 = $conn->prepare("SELECT * FROM verified_users WHERE email = ?");
+              if ($stmt2 === false) {
+                  die("Prepare failed: " . $conn->error);
+              }
 
-            $stmt->close();
-            $stmt2->close();
-            $conn->close();
-        } else {
-            $error = "* Fill in both email and password.";
-        }
-    }
-    ?>
+              $stmt2->bind_param("s", $email);
+
+              if (!$stmt2->execute()) {
+                  die("Execute failed: " . $stmt2->error);
+              }
+
+              $result2 = $stmt2->get_result();
+
+              if ($result2->num_rows > 0) {
+                  $row2 = $result2->fetch_assoc();
+                  $status = $row2['status'];
+                  
+                  if ($status == 'student') {
+                      header("Location: /sajilo-rent/studentsection/displayLatLng.php");
+                  } else {
+                      header("Location: /sajilo-rent/user-panel/owner-page.php");
+                  }
+              } else {
+                  header("Location: /sajilo-rent/user-panel/user-home.php");
+              }
+              exit();
+          } else {
+              $error = "* Password is incorrect.";
+          }
+      } else {
+          $error = "* Email not found.";
+      }
+
+      // Close all statements and connection
+      $stmt->close();
+      if (isset($stmt2)) {
+          $stmt2->close();
+      }
+      $conn->close();
+  } else {
+      $error = "* Fill in both email and password.";
+  }
+}
+?>
     <main>
         <figure>
             <img src="../resources/logo.svg" alt="sajilo rent">
