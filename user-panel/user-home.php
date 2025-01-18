@@ -1,7 +1,11 @@
     <?php 
+    session_start();
+    ?>
+    <?php
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $password = $_POST['password'];
+        $checkpassword = '';
         $verificationnumber = $_POST['verificationnumber'];
         $email = $_POST['email'];
         $ownerorstudent = $_POST['ownerorstudent'];
@@ -14,8 +18,7 @@
             echo ''. $conn->connect_error;
         }
         else{
-            $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
-            $query = 'SELECT firstName , lastName FROM signin WHERE email = ?';
+            $query = 'SELECT firstName , lastName , password  FROM signin WHERE email = ?';
             $stms = $conn->prepare($query);
             $stms->bind_param("s", $email);
             $stms->execute();
@@ -25,14 +28,22 @@
                 $row = $result->fetch_assoc();
                 $exists = true;
                 $verificationfailure = 'false';
-                $username = $row['firstName'] . " " . $row['lastName'];
+                $username = $row['firstName'] . " " . $row['lastName']; // here the first and last name is beiung combined
                 $errorreason = 'account verified';
+                $checkpassword = $row['password'];
             }
             else{
                 $exists = false;
                 $verificationfailure = 'true';
-                $errorreason = 'email or password error';
+                $errorreason = 'email not found';
             }
+            if(!password_verify($password, $checkpassword) && $exists)
+            {
+                $exists = false;
+                $verificationfailure = 'true';
+                $errorreason = ' password error';
+            }
+
         }
         $conn->close();
         $stms->close();
@@ -82,10 +93,8 @@
     
             $stms->close();
             $conn->close();
-            session_start();
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
-            header("Location:/sajilo-rent/user-panel/owner-page.php");
 
             } else {
                 echo "Error inserting data: " . $stmt->error;
@@ -111,6 +120,17 @@
         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     </head>
     <body>
+       <?php
+       if($_SERVER['REQUEST_METHOD']==='POST') {
+        $verifyEmail=$_POST['email'];
+        if($_SESSION['email']==$verifyEmail) {
+            setcookie('msgs','you are verified by the admin ! \n you will be redirected to login page in 10s ' ,time()+5000 ,"/");
+        }
+       }
+       ?>
+
+        <div class="notification">
+        </div>
         <header class="header">
             <nav class="header-nav">
                 <div class="header-nav-element">
@@ -144,7 +164,7 @@
             <aside id="aside1"class="main-aside aside1">
                 <div class="main-aside-credentials">
                 <figure>
-                    <img src="/sajilo-rent/resources/logo.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+                    <img src="/sajilo-rent/resources/logo.svg" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
                 </figure>
                 
                 <div class="main-aside-div credentials" id="studentverifybtn">Student</div>
@@ -215,5 +235,38 @@
         </footer>
         <script src="/sajilo-rent/user-panel/script/user-home-script.js">
         </script>
+
+        <!-- notification handling -->
+        <script>
+function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
+
+const notify = document.querySelector('.notification');
+
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+            return cookie.substring(name.length + 1);
+        }
+    }
+    return null;
+}
+
+const myCookie = getCookie('msgs');
+if (myCookie) {
+    setTimeout(() => {
+        notify.style = 'display:none';
+        deleteCookie('msgs'); // Use the correct cookie name here
+        window.location.href = "http://localhost/sajilo-rent/loginsignup_page/login.php";
+    }, 10000);
+    notify.style = 'display:unset';
+    const msg = decodeURIComponent(myCookie);
+    notify.innerText = msg;
+}
+
+         </script>
     </body>
     </html>

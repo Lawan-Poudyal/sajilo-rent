@@ -43,3 +43,47 @@ houseType.addEventListener('change', () => {
     selecter.addMarkers();
     selecter.houseTypes();
 });
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const userButton = document.querySelector('.userButton');
+    const displayUserName = document.querySelector('.displayUserName');
+
+    userButton.addEventListener('click', () => {
+        console.log('hi');
+        displayUserName.classList.toggle('show');
+    });
+
+    window.addEventListener('click', (e) => {
+        if (!e.target.closest('.userInformation')) {
+            displayUserName.classList.remove('show');
+        }
+    });
+});
+
+mapInstance.on('popupopen', function(event) {
+    const bookForRent = event.popup._contentNode.querySelector('.bookButton');
+    const studentName = document.querySelector('.email').textContent;
+    const contactDiv = event.popup._content.match(/Contact:\s*([^<]*)/);
+    const ownerName = contactDiv[1];
+    bookForRent.addEventListener('click', () => {
+        fetch('./backend/BookForRent.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                lat: event.popup._source._latlng.lat,
+                lng: event.popup._source._latlng.lng,
+                student: studentName,
+                owner: ownerName 
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Parsed JSON:', data); // Log the parsed JSON
+        })
+        .catch(error => {
+            console.error('Error:', error); // Catch and log parsing or network errors
+        });
+    });
+});
