@@ -21,7 +21,7 @@ nav{
 }
 
 .mainimage {
-    background-image: url(../resources/room1.jpg);
+    background-image: url(../../resources/room1.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -39,7 +39,7 @@ nav{
 }
 
 .topimage {
-    background-image: url(../resources/room2.jpg);
+    background-image: url(../../resources/room2.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -49,7 +49,7 @@ nav{
 }
 
 .bottomimage {
-    background-image: url(../resources/room3.jpg);
+    background-image: url(../../resources/room3.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -160,4 +160,10 @@ nav{
     padding-bottom: 2rem;
     text-align: center;
 
+}
+.userInformation{
+    display: none;
+}
+.userInformation.show{
+    display: block;
 }

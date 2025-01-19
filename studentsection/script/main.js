@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const displayUserName = document.querySelector('.displayUserName');
 
     userButton.addEventListener('click', () => {
-        console.log('hi');
         displayUserName.classList.toggle('show');
     });
 
