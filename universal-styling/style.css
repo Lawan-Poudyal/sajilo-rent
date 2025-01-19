@@ -1,0 +1,34 @@
+:root{
+    /*font property */
+    --body-font-size:1.5rem;
+    --body-font-color:black;
+    --body-medium-font-size:1.25rem;
+    --body-small-font-size:1rem;
+    --light-font-color:white;
+    --heavy-font-color:black;
+    /*bgcolor property*/
+    --body-bgcolor:lightgray;
+    --contrast-bgcolor:whitesmoke;
+    --heavy-bgcolor:black;
+    --light-bgcolor:white;
+    /*spacing property*/
+    --standard-gap:1rem;
+    --min-gap:0.5rem;
+    --standard-padding:1rem;
+    --small-padding:0.5rem;
+    --very-small-padding:0.25rem;
+    --ultra-small-padding:0.25rem;
+    --min-gap:0.5rem;
+    --standard-margin:0.5rem;
+    --heavy-margin:1.5rem;
+    /*proprtions*/
+    --nav-element-height:50px;
+    --nav-element-width:50px;
+    --small-element-width:20px;
+    --small-element-height:20px;
+    --map-height:80vw;
+    /*animations*/
+    --button-hover:all ease-in 0.5s 0s;
+    /**/
+
+}

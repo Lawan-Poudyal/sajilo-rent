@@ -16,7 +16,7 @@ L.tileLayer(MAP_CONFIG.tileLayerUrl, {
 const myIcon = L.icon({
     iconUrl: '../resources/marker.svg',
     iconSize: [30, 30],
-});
+}); 
 
 const markers = {};
 const removedMarkers = [];
@@ -26,7 +26,7 @@ let currentRoutingControl = null; // Variable to store the current routing contr
   //Working with the select tags
 
     //price 
-
+    
 let priceList = document.querySelector('.price');
 let selectedPrice = parseFloat(priceList.value); 
 
