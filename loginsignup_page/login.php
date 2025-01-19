@@ -59,7 +59,7 @@ session_abort();
                     $verificationvalue = $row['status'];
                     if($verificationvalue === "student")
                     {
-                        header("Location: /sajilo-rent/user-panel/user-home.php");
+                        header("Location: /sajilo-rent/studentsection/displayLatLng.php");
                     }
                     else if($verificationvalue === "owner")
                     {
