@@ -121,14 +121,14 @@
     </head>
     <body>
     <?php
-    $verifyEmail=null;
+    $verifyEmail=' ';
        if($_SERVER['REQUEST_METHOD']==='GET') {
         if(isset($_GET['q'])){
         $verifyEmail=$_GET['q'];
-        }
          if($_SESSION['email']==$verifyEmail) {
+            header("Location: " . $_SERVER['PHP_SELF'] . "&verified=true");
         $conn = mysqli_connect("localhost", "root", "", "user_database");
-        
+        unset($_GET['q']);
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
@@ -152,11 +152,6 @@
             $rows = $result->fetch_assoc();
             $verification_number = $rows['verification_number'];
             $status = $rows['status'];
-        } else {
-            echo "No record found with that email.";
-            $stmt->close();
-            $conn->close();
-            exit; // Exit if no record found
         }
         
         
@@ -177,19 +172,14 @@
         if ($stmt2 === false) {
             die("Prepare failed: " . $conn->error);
         }
-        $stmt2->bind_param("s", $verifyEmail);
+        $stmt2->bind_param("s",$verifyEmail);
         $stmt2->execute();
-        
-        if ($stmt2->affected_rows > 0) {
-            echo "Record deleted successfully.";
-        } else {
-            echo "No record found with that email.";
-        }
         // Close statements and connection
         $stmt->close();
         $stmt2->close();
         $stmt3->close();
         $conn->close();
+    }
         }
        }
 ?>

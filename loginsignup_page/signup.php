@@ -30,8 +30,6 @@
        
         die("connection failed");
     }
-    echo"connection successful";
-
     $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
     $sql="INSERT INTO signin(email , firstName , lastName , password) VALUES ('$email', '$firstName' , '$lastName' , '$hashedPassword' )";
     if(mysqli_query($conn , $sql)) {
