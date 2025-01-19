@@ -87,3 +87,39 @@ mapInstance.on('popupopen', function(event) {
         });
     });
 });
+mapInstance.on('popupopen', function(event) {
+    const container = event.popup._contentNode;
+    const lat = event.popup._source._latlng.lat;
+    const lng = event.popup._source._latlng.lng;
+    const coordinates = {
+         "lat" : lat,
+         "lng" : lng
+    }
+    if (container) {
+        container.addEventListener('click', (e) => {
+            // Check if the clicked element is a button
+            if (!e.target.classList.contains('bookButton') && !e.target.classList.contains('directionButton')) {
+                fetch('./backend/displayDetails.php', {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(coordinates)
+                })
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.status === 'success') {
+                        // Redirect to the details page
+                        window.location.href = '/sajilo-rent/studentsection/details.php';
+                    } else {
+                        console.error('Error:', data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+
+            }   
+
+        });
+    }
+
+});
