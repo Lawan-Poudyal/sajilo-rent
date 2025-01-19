@@ -96,16 +96,17 @@ class MarkerMaker {
                 return;
             }
             const content = `
-                <div class="top-div"></div>
+                <div class="top-div" style = "background-image: ${location.image1}"></div>
                 <div class="bottom-div">
-                    <div class="left-div"></div>
-                    <div class="right-div"></div>
+                    <div class="left-div style = "background-image: ${location.image2}"></div>
+                    <div class="right-div style = "background-image: ${location.image3}"></div>
                 </div>
                 <div class="infocontainer">
                     <div class="quickinfo">
-                        <div class="housetype">Rooms: ${location.ROOMSAVAILABLE}</div>
-                        <div class="price">Price: NRP ${location.PRICE}</div>
-                        <div class="contact">Contact: ${location.CONTACT}</div>
+                        <div class="housetype">Rooms: ${location.no_of_rooms}</div>
+                        <div class="price">Price: NRP ${location.price}</div>
+                        <div class="contact">Contact: ${location.username}</div>
+                        <
                     </div>
                     <div class="button">
                     <button class = "bookButton">
@@ -122,7 +123,7 @@ class MarkerMaker {
                 minWidth: 0
             }).setContent(content);
 
-            const marker = L.marker([location.LAT, location.LNG], {
+            const marker = L.marker([parseFloat(location.latitude), parseFloat(location.longitude)], {
                 icon: this.myIcon
             });
             marker.bindPopup(popup);
