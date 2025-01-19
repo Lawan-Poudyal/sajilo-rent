@@ -29,10 +29,10 @@
 
         // Check if the user is logged in
         
-        if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
+        if (isset($_SESSION['s_username']) && isset($_SESSION['s_email'])) {
         // User is logged in, you can use the session variables
-        $username = $_SESSION['username'];
-        $email = $_SESSION['email'];
+        $username = $_SESSION['s_username'];
+        $email = $_SESSION['s_email'];
         }
         $servername = "localhost";
         $username = "root";
@@ -96,14 +96,13 @@
             <div class="userInformation">
                 <button class="userButton"><i class='bx bx-user'></i></button>
                 <div class="displayUserName">
-                    <div class="email"><?php echo $_SESSION['email']; ?></div>
-                    <div class="userName"><?php echo $_SESSION['username']?></div>
+                    <div class="email"><?php echo $_SESSION['s_email']; ?></div>
+                    <div class="userName"><?php echo $_SESSION['s_username']?></div>
                  </div>
             </div>
         </div>
     </nav>
     <div id="map"></div>
-      <script type = "module"src="main.js">
-      </script> 
+    <script type="module" src="./script/main.js"></script>
     </body>
 </html>

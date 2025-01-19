@@ -52,23 +52,5 @@
         "electricity": "required",
         "floor_level": "2",
         "house_facing_direction": "west"
-    },
-    {
-        "username": "pawan a",
-        "no_of_rooms": "1",
-        "no_of_roommates": "1",
-        "gates_open": "20:47:00",
-        "gates_close": "23:48:00",
-        "wifi_price": "500",
-        "image1": "images\/Screenshot 2024-01-02 181900.png",
-        "image2": "images\/Screenshot 2024-01-10 174546.png",
-        "image3": "images\/Screenshot 2024-01-31 210847.png",
-        "latitude": "27.620490022985425",
-        "longitude": "85.53829765319811",
-        "price": "500",
-        "parking": "unavailable",
-        "electricity": "required",
-        "floor_level": "2",
-        "house_facing_direction": "east"
     }
 ]
