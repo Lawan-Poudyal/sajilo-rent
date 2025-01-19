@@ -10,7 +10,7 @@ const mapInstance = map.createMap();
 
 let markerMaker, routing, selecter;
 
-fetch('./latlng.json')
+fetch('./data/latlng.json')
     .then(response => response.json())
     .then(latlngData => {
         markerMaker = new MarkerMaker(mapInstance);

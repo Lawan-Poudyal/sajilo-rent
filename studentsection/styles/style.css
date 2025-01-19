@@ -68,14 +68,14 @@ button, select{
 }
 
 .top-div {
-    background-image: url('../resources/room1.jpg');
+    background-image: url('../../resources/room1.jpg');
 }
 .left-div {
-    background-image: url('../resources/room2.jpg');
+    background-image: url('../../resources/room2.jpg');
 }
 
 .right-div {
-    background-image: url('../resources/room3.jpg');
+    background-image: url('../../resources/room3.jpg');
 }
 .bottom-div {
     display: flex;

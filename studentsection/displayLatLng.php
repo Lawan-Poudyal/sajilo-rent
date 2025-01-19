@@ -16,7 +16,7 @@
 
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./style.css"> 
+    <link rel="stylesheet" href="./styles/style.css"> 
     <title>Document</title>
 </head>
 <body>
@@ -59,7 +59,7 @@
             die("Query failed: " . $conn->error);
         }
         $jsonData = json_encode($latitudesandLongitudes, JSON_PRETTY_PRINT);
-        file_put_contents('latlng.json', $jsonData);
+        file_put_contents('./data/latlng.json', $jsonData);
 ?>
 
 
