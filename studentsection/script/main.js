@@ -47,9 +47,9 @@ houseType.addEventListener('change', () => {
 document.addEventListener('DOMContentLoaded', (event) => {
     const userButton = document.querySelector('.userButton');
     const displayUserName = document.querySelector('.displayUserName');
-
     userButton.addEventListener('click', () => {
         displayUserName.classList.toggle('show');
+        window.location = "/sajilo-rent/studentsection/student-profile.php"
     });
 
     window.addEventListener('click', (e) => {

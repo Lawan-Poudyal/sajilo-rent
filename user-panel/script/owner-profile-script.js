@@ -17,6 +17,7 @@ const rentRequestBtn = document.querySelector('.js-rent-request');
 const mainItem = document.querySelectorAll('.main-item');
 const requestCard = document.querySelector('.js-request-card');
 const myProfile = document.querySelector('.js-my-profile');
+
 menu.addEventListener('click' , function()
 {
 if(menuClick === false)

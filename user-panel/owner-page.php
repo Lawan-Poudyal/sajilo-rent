@@ -52,9 +52,9 @@ $stmt->close();
                 <div class="header-nav-element">
                 <button id="logo-btn">
                     <figure>
-                    <img src="/sajilo-rent/resources/logo.svg" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
-                </figure>
-            </button>
+                     <img src="/sajilo-rent/resources/logo.svg" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
+                    </figure>
+                 </button>
                 </div>
                 <div class="header-nav-element">
                 <div class="header-nav-element-side-menu">
