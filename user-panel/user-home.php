@@ -121,12 +121,11 @@
     </head>
     <body>
     <?php
-    $verifyEmail=' ';
+    $verifyEmail='';
        if($_SERVER['REQUEST_METHOD']==='GET') {
         if(isset($_GET['q'])){
         $verifyEmail=$_GET['q'];
          if($_SESSION['email']==$verifyEmail) {
-            header("Location: " . $_SERVER['PHP_SELF'] . "&verified=true");
         $conn = mysqli_connect("localhost", "root", "", "user_database");
         unset($_GET['q']);
         if (!$conn) {
