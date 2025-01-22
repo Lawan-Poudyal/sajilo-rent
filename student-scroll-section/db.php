@@ -2,7 +2,7 @@
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "lawan9863760395";
-$db_name = "proto";
+$db_name = "mydb";
 $conn = "";
 
 try {
@@ -14,8 +14,4 @@ try {
     );
 } catch (mysqli_sql_exception) {
     echo "Couldnt connect!<br>";
-}
-
-if ($conn) {
-    echo "DB connected! <br>";
 }
