@@ -36,8 +36,4 @@ rooms.forEach((room) => {
 });
 document.querySelector(".js-room-container-grid").innerHTML = roomsHTML;
 
-console.log("HI")
-// function displayCartQuantity() {
-//   const cartQuantity = calculateCartQuantity();
-//   document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
-// }
+// console.log("HI")
