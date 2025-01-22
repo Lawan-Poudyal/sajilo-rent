@@ -100,7 +100,6 @@ sureLogoutBtn.addEventListener('click', async () => {
         if (response.ok) {
             const jsonfile = await response.json();
             if (jsonfile.image !== 'false') {
-                console.log(jsonfile)
                 profilePic.style.backgroundImage = `url(${imagePath + jsonfile.image})`;
             }
         } else {
@@ -122,57 +121,6 @@ myProfile.addEventListener('click', () => {
     mainItems.forEach(item => item.classList.toggle('hidden'));
 });
 
-// Show requests
-async function showRequest() {
-    try {
-        const response = await fetch(`/sajilo-rent/user-panel/back_end/loadrequest.php?email=${email.innerText}`);
-        if (response.ok) {
-            const jsonObj = await response.json();
-            let htmlForRequest = '';
-            jsonObj.forEach(obj => {
-                htmlForRequest += `
-                    <div class="request-card">
-                        <div class="profile-info">
-                            <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic">
-                            <div>
-                                <h3 class="username">${obj.email}</h3>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <button class="accept-btn js-accept-btn" data-sender="${obj.email}" data-lat="${obj.lat}" data-lng="${obj.lng}">Accept</button>
-                            <button class="decline-btn">Decline</button>
-                        </div>
-                    </div>`;
-            });
-            requestCard.innerHTML = htmlForRequest;
-
-            document.querySelectorAll('.js-accept-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    acceptRequest(btn.dataset.sender, btn.dataset.lat, btn.dataset.lng);
-                });
-            });
-        } else {
-            console.error('Failed to load requests:', response.status);
-        }
-    } catch (error) {
-        console.error('Error loading requests:', error);
-    }
-}
-
-// Accept request
-async function acceptRequest(sender, lat, lng) {
-    try {
-        const response = await fetch(`/sajilo-rent/user-panel/back_end/acceptrequest.php?email=${sender}&lat=${lat}&lng=${lng}&username=${email.innerText}`);
-        if (response.ok) {
-            showRequest();
-        } else {
-            console.error('Failed to accept request:', response.status);
-        }
-    } catch (error) {
-        console.error('Error accepting request:', error);
-    }
-}
-
 // Set profile picture
 photo.addEventListener('click', () => {
     image.click();
@@ -192,5 +140,4 @@ image.addEventListener('change', (event) => {
     }
 });
 
-// Initialize
-showRequest();
+

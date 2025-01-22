@@ -1,5 +1,23 @@
 [
     {
+        "username": "abhim@123",
+        "no_of_rooms": "1",
+        "no_of_roommates": "1",
+        "gates_open": "00:19:00",
+        "gates_close": "00:20:00",
+        "wifi_price": "0",
+        "image1": "images\/room3.jpg",
+        "image2": "images\/room2.jpg",
+        "image3": "images\/room1.jpg",
+        "latitude": "27.621789506595988",
+        "longitude": "85.53729772567749",
+        "price": "5000",
+        "parking": "available",
+        "electricity": "required",
+        "floor_level": "1",
+        "house_facing_direction": "east"
+    },
+    {
         "username": "Abhiyan MulaSag",
         "no_of_rooms": "1",
         "no_of_roommates": "1",

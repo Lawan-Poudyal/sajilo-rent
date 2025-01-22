@@ -32,7 +32,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                     </figure>
                     <div class="dropdown-menu" id="js-drop-down">
                     <div class="option js-my-profile"><span class="nowrap">Your Profile</span></div>  
-                    <div class="option"><span class="nowarp">Tenants Profile</span></div>  
+                    <div class="option js-gharbeti-profile"><span class="nowarp">Gharbetis Profile</span></div>  
                     <div class="option js-rent-request"><span class="nowarp">Rent Request</span></div>  
                     <div class="option"><span class="nowarp">Change Password</span></div>  
                     <div class="option js-logout"><span class="nowarp">logout</span></div>  
@@ -47,23 +47,16 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <div class="main-div profilestatus main-item">
                 <span class="main-div-span info nowrap ">Rating</span>
                 <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
-                <span class="main-div-span info nowrap ">Tenants Living</span>
-                <span class="main-div-span info nowrap ">5</span>
-                <span class="main-div-span info nowrap ">Rooms Rented</span>
-                <span class="main-div-span info nowrap ">5</span>
             </div>
-            <section class="main-section main-item">
+        <section class="main-section main-item">
             <div class="main-section-div commentsection">
-            <textarea name="" id="" class="main-section-div-textarea comment" placeholder="add your comment....."></textarea>
-            <button class="main-section-div-button addcomment" >Add Comment</button>    
-        </div>
-        <div class="main-section-div comments">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div></div>
-            <div class="main-section-div-div comment">This guys is just disgusting , i really don't like him at all this guy is the worst of all time , like i hate him who does he think he is </div>
-            </section>
-        <div class="main-section-div request js-request-card hidden">
-        
-        </div>
+                <textarea name="" id="" class="main-section-div-textarea comment" placeholder="add your comment....."></textarea>
+                <button class="main-section-div-button addcomment" >Add Comment</button>    
+            </div>
+            <div class="main-section-div comments">
+                <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div></div>
+                <div class="main-section-div-div comment">This guys is just disgusting , i really don't like him at all this guy is the worst of all time , like i hate him who does he think he is </div>
+        </section>
         </main>
         <div class="uploadphoto js-upload-photo">
             <div class="photo js-photo">
@@ -83,5 +76,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <div class="cross2-icon js-cross2-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
         </div>
         <script src="/sajilo-rent/studentsection/script/student-profile-script.js"></script>
+        <script src="/sajilo-rent/studentsection/script/booked.js" ></script>
+
 </body>
 </html>

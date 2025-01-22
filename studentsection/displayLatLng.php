@@ -104,5 +104,6 @@
     </nav>
     <div id="map"></div>
     <script type="module" src="./script/main.js"></script>
+    <script src="./script/booked.js"></script>
     </body>
 </html>
