@@ -8,6 +8,7 @@ if(window.location.pathname == '/sajilo-rent/studentsection/student-profile.php'
     commentsection.style.display = 'none';
     comments.style.display = 'none';
 }
+let Json;
 // setInterval(callFetch,5000);
 function callFetch(){
     {fetch('./backend/booked.php')
@@ -20,19 +21,20 @@ function callFetch(){
         })
         .then(json => {
             if(!json.status){
-                updateGharbeti(json)
+                Json = json;
+                updateGharbeti()
             }})
         .catch(console.warn);
         }
-}
+}   
 callFetch();
-
-function updateGharbeti(json){
-    console.log(json);
+function updateGharbeti() {
+    console.log(Json);
     const coordinates = {
-        lat : json.latitude,
-        lng: json.longitude,
-    }
+        lat: Json.latitude,
+        lng: Json.longitude,
+    };
+
     fetch('./backend/displayDetails.php', {
         method: "POST",
         headers: {
@@ -50,8 +52,36 @@ function updateGharbeti(json){
     })
     .catch(error => console.error('Error:', error));
 
-    gharbetis.innerHTML = `<div>Owner: ${json.username}</div>
-                            <a class = "details" href = "./details.php">Details</a>`;
+    // Dynamically update the DOM
+    gharbetis.innerHTML = `
+        <div>Owner: ${Json.username}</div>
+        <a class="details" href="./details.php">Details</a>
+        <button class="leaveHouse">Leave your owner and free yourself</button>
+    `;
 
-
-}   
+    // Add the event listener after the button is added to the DOM
+    const leaveHouse = document.querySelector(".leaveHouse");
+    leaveHouse.addEventListener('click', () => {
+        fetch("./backend/leave.php", {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                latitude: Json.latitude,
+                longitude: Json.longitude
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Handle success
+                console.log('Successfully left the house');
+                gharbetis.textContent = "You have no owner, you are free"; 
+            } else {
+                console.error('Error:', data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+}
