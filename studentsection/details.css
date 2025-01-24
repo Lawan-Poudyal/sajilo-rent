@@ -1,0 +1,163 @@
+*{
+    margin: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 0.5rem 1.5rem;
+}
+nav{
+    background-color: gray;
+    padding: 0 0.5rem;
+    border-radius: 1rem;
+}
+.displayimage {
+    min-width: 100%;
+    min-height: 40vh; /* Added viewport height */
+    display: flex;
+    gap: 1rem;
+    border-radius: 1rem;
+    padding: 1rem 0 0 0 ;
+}
+
+.mainimage {
+    background-image: url(../resources/room1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 70%;
+    height: 400px; /* Added height */
+    border-radius: 1rem;
+}
+
+.sideimage {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 1rem;
+}
+
+.topimage {
+    background-image: url(../resources/room2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 190px; /* Added height */
+    border-radius: 1rem;
+    flex: 1;
+}
+
+.bottomimage {
+    background-image: url(../resources/room3.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 190px; /* Added height */
+    border-radius: 1rem;
+    flex: 1;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.flexit{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 1rem;
+}   
+aside{
+    border: 1px solid gray;
+    padding: 0.5rem 1rem;
+    order: 1;
+    flex: 0.75;    
+} 
+.contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-flow: column wrap;
+    gap: 1rem;
+}
+.flexit>div{
+    flex: 1 ;
+}
+.contactline{
+    color: black;
+    font-size: 32px; 
+}
+.rent,.message{
+    background-color: #4A4A4A;
+    width: 75%;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+.owner{
+    color: gray;
+    font-size: 32px; 
+    margin-bottom: 1rem;
+}
+.info{
+    padding: 0.5rem 1rem;
+    display: flex;
+    border: 1px solid gray;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+.priceTag,.roomTag{
+    color: gray;
+    font-size: 18px;
+}
+.monthlyRent,.availableRoom{
+    color: black;
+    font-size: 24px;
+}
+.features{
+    margin-bottom: 1rem;
+}
+.features>p{
+    color: gray;
+    font-size: 28px;
+}
+.features>ul{
+    font-size: 20px;
+}
+.review{
+    display: flex;
+    font-size: 24px;
+    color: black;
+    gap: 20px;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+.writeReview{
+    background-color: #E5E4E2;
+    padding: 0.5rem 0.5rem;
+    flex: 1;
+    text-align: center;
+}
+.giveReview{
+    background-color: #4A4A4A;
+    width: 75%;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+.leftSide{
+    display: flex;
+    gap: 2rem;
+}
+.signup,.menu,.profile{
+    background-color: #4A4A4A;
+    height: 100%;
+    height: 2rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
+
+}

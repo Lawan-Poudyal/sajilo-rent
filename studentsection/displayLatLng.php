@@ -103,7 +103,6 @@
         </div>
     </nav>
     <div id="map"></div>
-      <script type = "module"src="main.js">
-      </script> 
+    <script type="module" src="./script/main.js"></script>
     </body>
 </html>
