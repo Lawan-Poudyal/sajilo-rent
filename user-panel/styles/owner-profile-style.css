@@ -56,6 +56,24 @@ img{
     100%{
         transform:scaleY(1);
     }
+    
+}
+@keyframes borderAnimation {
+    0%{
+        box-shadow: 0px -4px blue;
+    }
+    25%{
+        box-shadow: 4px 0px lime;
+    }
+    50%{
+        box-shadow: 0px 4px red;
+    }
+    75%{
+        box-shadow: -4px 0px orange;
+    } 
+    100%{
+        box-shadow: 0px -4px blue;
+    }
 }
 /* end of utility class*/
 .header{
@@ -141,37 +159,69 @@ border:none;
 .main{
  flex-grow:1;
  display:flex;
- flex-flow:column nowrap;
- align-items: center;
+ flex-flow:row wrap;
+ justify-content: center;
+ /* align-items: center; */
  padding:var(--standard-padding);
+ background-image:url('/sajilo-rent/resources/blurred.png');
+ background-size:cover;
+ gap:var(--standard-gap);
 }
 .main-div{
     width:clamp(350px , 100% , 600px);
     height:auto;
     background-color: var(--contrast-bgcolor);
     margin-bottom:var(--standard-gap);
+    
+}
+.container-for-info
+{
+    width:clamp(350px , 100% , 600px);
+    background-color: var(--contrast-bgcolor);
+    padding:calc(var(--very-small-padding) + var(--very-small-padding));
+    border-radius: 1.5rem;
+    display:flex;
+    flex-flow:column nowrap;
+    min-height:450px;
+    animation : borderAnimation 2s linear infinite;
 }
 .profilepic{
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    border:2px solid black;
+    height:200px;
+    width:100%;
     background-image: url('/sajilo-rent/resources/add.png');
     background-size: cover;
     background-position:-45px center;
     cursor:pointer;
+    border-radius:1.5rem 1.5rem 0 0;
 }
 .name{
     font-weight:bolder;
     font-size: 1.5rem;
     margin-bottom:var(--standard-gap);
 }
+.email{
+    color:gray;
+}
+.contacts{
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+}
+
 .profilestatus{
+    flex-grow: 1;
     display:grid;
     grid-template-columns: repeat(1 , 1fr 1fr);
-    grid-auto-rows: var(--small-element-height);
-    gap:var(--standard-gap);
-    padding:var(--standard-padding);
+    grid-auto-rows: var(--very-small-element-height);
+    align-content: space-between;
+    padding:var(--very-small-padding);
+    font-size:var(--body-small-font-size);
+    font-weight:600;
+    width:100%;
+}
+.main-div-span img{
+    height: var(--very-small-element-height);
+    width:100px;
 }
 .info{
     display:flex;
@@ -181,30 +231,20 @@ border:none;
 }
 .main-section{
     width:clamp(350px , 100% , 600px);
-    height:400px;
-    gap:var(--standard-gap);
     background-color: var(--contrast-bgcolor);
-    margin-bottom:var(--standard-gap);
-    padding:var(--standard-padding);    
+    padding:calc(var(--very-small-padding) + var(--very-small-padding));
+    border-radius: 1.5rem;
+    display:flex;
+    flex-flow:column nowrap;
+    gap:var(--standard-gap);
+    height:450px;
+    overflow-y: scroll;
+    animation : borderAnimation 2s linear infinite;    
 }
 .comments{
     display:flex;
     flex-flow: column nowrap;
     gap:var(--standard-gap);
-}
-.commentsection{
-    display:flex;
-    flex-flow:column nowrap;
-    gap:var(--standard-gap);
-}
-.comment{
-    height:var(--nav-element-height);
-    width:100%;
-    resize: none;
-   }
-.addcomment{
- height:var(--nav-element-height);
- width:100px;
 }
 .commentinfo{
     color:gray;
@@ -214,8 +254,8 @@ border:none;
 font-weight: 800;
 color:black;
 }
-.comment{
-    border:1px solid black;
+.commentdata{
+    
     height:fit-content;
 }
 /*----------for floating ----------------------------*/
@@ -309,6 +349,7 @@ color:black;
 }
 .request {
     width: 90%;
+    min-height:500px;
     max-width: 600px;
     margin: 20px auto;
     background-color: #fff;
@@ -398,4 +439,51 @@ color:black;
 .decline-btn:hover {
     background-color: #e53935;
     transform: scale(1.05);
+}
+/*for media queries */
+@media screen and (min-width:600px)
+{
+    .uploadphoto , .logout {
+        left: calc(50vw - 300px);
+    }
+}
+@media screen and (min-width:425px) /*for large mobile*/
+{
+    .container-for-info
+    {
+        padding:calc(var(--small-padding) + var(--small-padding));
+        height:600px;
+    }
+    .profilepic{
+        height:300px;
+    }
+    .email{
+        color:gray;
+    }
+    .contacts{
+        display:flex;
+        width:100%;
+        justify-content: space-between;
+    }
+    
+    .profilestatus{
+        padding:var(--small-padding);
+        font-size:var(--body-medium-font-size);
+    }
+    .main-div-span img{
+        width:150px;
+    }
+    .main-section{
+        padding:calc(var(--small-padding) + var(--small-padding));
+        height:600px;   
+    }
+    
+}
+@media screen and (min-width:1440px) /*for large laptops*/
+{
+   .main{
+    justify-content: space-evenly;
+    align-items: center;
+   }
+   
 }

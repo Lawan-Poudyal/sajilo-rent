@@ -41,25 +41,138 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             </nav>
         </header>
         <main class="main">
-            <div class="main-div profilepic js-profile-pic main-item"></div>
-            <div class="name main-item"><?php echo $_SESSION['username']?></div>
-            <div class="email js-email main-item" style="display:none"><?php echo $_SESSION['email']?></div>
-            <div class="main-div profilestatus main-item">
+        <div class="container-for-info ">
+            <div class="main-div profilepic js-profile-pic"></div>
+            <div class="contacts">
+            <div class="name "><?php echo $_SESSION['username']?></div>    
+            <div class="email js-email "><?php echo $_SESSION['email']?></div>
+            </div>
+            <div class="main-div profilestatus">
                 <span class="main-div-span info nowrap ">Rating</span>
                 <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
                 <span class="main-div-span info nowrap ">Tenants Living</span>
-                <span class="main-div-span info nowrap ">5</span>
+                <span class="main-div-span info js-tenants nowrap ">5</span>
                 <span class="main-div-span info nowrap ">Rooms Rented</span>
-                <span class="main-div-span info nowrap ">5</span>
+                <span class="main-div-span info nowrap js-rooms ">5</span>
             </div>
-            <section class="main-section main-item">
-            <div class="main-section-div commentsection">
-            <textarea name="" id="" class="main-section-div-textarea comment" placeholder="add your comment....."></textarea>
-            <button class="main-section-div-button addcomment" >Add Comment</button>    
-        </div>
+            </div>
+            <section class="main-section">
+            <h2>Comments</h2>
+            <hr>
         <div class="main-section-div comments">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div></div>
-            <div class="main-section-div-div comment">This guys is just disgusting , i really don't like him at all this guy is the worst of all time , like i hate him who does he think he is </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            </div>
             </section>
         <div class="main-section-div request js-request-card hidden">
         

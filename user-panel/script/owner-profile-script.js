@@ -14,9 +14,12 @@ const notLogoutBtn = document.querySelector('.js-notlogout');
 const sureLogoutBtn = document.querySelector('.js-sure');
 const email = document.querySelector('.js-email');
 const rentRequestBtn = document.querySelector('.js-rent-request');
-const mainItem = document.querySelectorAll('.main-item');
+const mainSection = document.querySelector('.main-section');
+const containerForInfo = document.querySelector('.container-for-info');
 const requestCard = document.querySelector('.js-request-card');
 const myProfile = document.querySelector('.js-my-profile');
+const tenants = document.querySelector('.js-tenants');
+const rooms = document.querySelector('.js-rooms');
 menu.addEventListener('click' , function()
 {
 if(menuClick === false)
@@ -102,24 +105,40 @@ if(this.readyState === 4 && this.status === 200)
  if(jsonfile["image"] !== "false")
  {
  profilepic.style.backgroundImage = `url(${imagePath})`;
+ profilepic.style.backgroundSize = 'fill';
+ profilepic.style.backgroundPosition = 'center';
  } 
 }
 else{
     console.log("the messagte is " + this.readyState + " and " +this.status );
 }
 }
-////////////////////////////////////////////////////////////////////////
+//////////////////////////////for owner info like tenants living rooms rating etc//////////////////////////////////////
+const xml = new XMLHttpRequest();
+xml.open('GET' , `/sajilo-rent/user-panel/back_end/ownerinfo.php?email=${email.innerText}`);
+xml.send();
+xml.onload = function(){
+    let jsonObj;
+    if(this.readyState === 4 && this.status === 200)
+        {
+        jsonObj = JSON.parse(this.responseText);
+        tenants.innerText = jsonObj['tenants'];
+        rooms.innerText = jsonObj['rooms'];
+        }
+        else{
+            console.log("the messagte is " + this.readyState + " and " +this.status );
+        }
+}
+/////////////////////////////////////////////////////////////////////////
 rentRequestBtn.addEventListener('click' , ()=>{
-requestCard.classList.toggle('hidden');
-mainItem.forEach((item)=>{
-    item.classList.toggle('hidden');
-});
+requestCard.classList.remove('hidden');
+containerForInfo.style.display = 'none';
+mainSection.style.display = 'none';
 });
 myProfile.addEventListener('click' , ()=>{
-    requestCard.classList.toggle('hidden');
-    mainItem.forEach((item)=>{
-        item.classList.toggle('hidden');
-    });
+    requestCard.classList.add('hidden');
+    containerForInfo.style.display = 'flex';
+    mainSection.style.display = 'flex';
 });
 //////////////////////////////////////////////////////////////////////////
 showRequest();
