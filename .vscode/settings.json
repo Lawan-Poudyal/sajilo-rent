@@ -11,8 +11,9 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "sijan",
-            "database": "userdetails",
-            "username": "root"
+            "database": "user_database",
+            "username": "root",
+            "password": ""
         }
     ]
 }
