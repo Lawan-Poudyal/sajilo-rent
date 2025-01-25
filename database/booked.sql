@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 14, 2025 at 02:15 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jan 22, 2025 at 07:03 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,15 +24,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rentrequest`
+-- Table structure for table `booked`
 --
 
-CREATE TABLE `rentrequest` (
-  `sender` varchar(255) NOT NULL,
-  `receiver` varchar(255) NOT NULL,
-  `lat` double NOT NULL,
-  `lng` double NOT NULL,
-  `seen` varchar(10) NOT NULL
+CREATE TABLE `booked` (
+  `email` varchar(255) NOT NULL,
+  `owner` varchar(255) DEFAULT NULL,
+  `lat` decimal(20,17) DEFAULT NULL,
+  `lng` decimal(20,17) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -40,10 +39,10 @@ CREATE TABLE `rentrequest` (
 --
 
 --
--- Indexes for table `rentrequest`
+-- Indexes for table `booked`
 --
-ALTER TABLE `rentrequest`
-  ADD PRIMARY KEY (`sender`,`receiver`);
+ALTER TABLE `booked`
+  ADD PRIMARY KEY (`email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

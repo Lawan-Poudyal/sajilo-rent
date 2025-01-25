@@ -17,7 +17,6 @@ if ($conn->connect_error) {
     error_log("Connection failed: " . $conn->connect_error); // Log connection error
     die(json_encode(['status' => 'error', 'message' => 'Database connection failed']));
 }
-
 // Get JSON input
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);

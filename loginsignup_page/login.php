@@ -54,8 +54,7 @@ session_abort();
           if (password_verify($password, $hashedPassword)) {
               $username = $row['firstName'] . " " . $row['lastName'];
               // Set session variables
-              $_SESSION['username'] = $username;
-              $_SESSION['email'] = $email;
+            
 
               // Second query - check verified_users table
               $stmt2 = $conn->prepare("SELECT * FROM verified_users WHERE email = ?");
@@ -77,8 +76,12 @@ session_abort();
                   
                   if ($status == 'student') {
                       header("Location: /sajilo-rent/studentsection/displayLatLng.php");
+                      $_SESSION['s_username'] = $username;
+                        $_SESSION['s_email'] = $email;
                   } else {
                       header("Location: /sajilo-rent/user-panel/owner-page.php");
+                      $_SESSION['username'] = $username;
+                      $_SESSION['email'] = $email;
                   }
               } else {
                   header("Location: /sajilo-rent/user-panel/user-home.php");

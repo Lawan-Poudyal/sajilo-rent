@@ -10,7 +10,7 @@ const mapInstance = map.createMap();
 
 let markerMaker, routing, selecter;
 
-fetch('./latlng.json')
+fetch('./data/latlng.json')
     .then(response => response.json())
     .then(latlngData => {
         markerMaker = new MarkerMaker(mapInstance);
@@ -47,10 +47,9 @@ houseType.addEventListener('change', () => {
 document.addEventListener('DOMContentLoaded', (event) => {
     const userButton = document.querySelector('.userButton');
     const displayUserName = document.querySelector('.displayUserName');
-
     userButton.addEventListener('click', () => {
-        console.log('hi');
         displayUserName.classList.toggle('show');
+        window.location = "/sajilo-rent/studentsection/student-profile.php"
     });
 
     window.addEventListener('click', (e) => {

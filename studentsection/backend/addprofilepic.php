@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $query = "SELECT * FROM profilepicture WHERE email = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("s" , $_SESSION['email']);
+        $stmt->bind_param("s" , $_SESSION['s_email']);
         if(!$stmt->execute())
         {
             die("SOME ERROR WHILE TRYING TO FIND THE EMAIL QUERY");
@@ -38,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        {
         $query = "INSERT INTO profilepicture (email , image ) VALUE (? , ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ss" , $_SESSION['email'] , $image1_path);
+        $stmt->bind_param("ss" , $_SESSION['s_email'] , $image1_path);
        }else{
         $query = "UPDATE profilepicture SET image = ? WHERE email=?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ss" , $image1_path, $_SESSION['email'] );
+        $stmt->bind_param("ss" , $image1_path, $_SESSION['s_email'] );
        }
         if ($stmt->execute()) {
-            header("Location:/sajilo-rent/user-panel/owner-profile.php");
+            header("Location:/sajilo-rent/studentsection/student-profile.php");
         } else {
             echo "Error executing query: " . $stmt->error;
         }

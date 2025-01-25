@@ -16,7 +16,7 @@
 
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./style.css"> 
+    <link rel="stylesheet" href="./styles/style.css"> 
     <title>Document</title>
 </head>
 <body>
@@ -29,10 +29,10 @@
 
         // Check if the user is logged in
         
-        if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
+        if (isset($_SESSION['s_username']) && isset($_SESSION['s_email'])) {
         // User is logged in, you can use the session variables
-        $username = $_SESSION['username'];
-        $email = $_SESSION['email'];
+        $username = $_SESSION['s_username'];
+        $email = $_SESSION['s_email'];
         }
         $servername = "localhost";
         $username = "root";
@@ -59,7 +59,7 @@
             die("Query failed: " . $conn->error);
         }
         $jsonData = json_encode($latitudesandLongitudes, JSON_PRETTY_PRINT);
-        file_put_contents('latlng.json', $jsonData);
+        file_put_contents('./data/latlng.json', $jsonData);
 ?>
 
 
@@ -96,13 +96,14 @@
             <div class="userInformation">
                 <button class="userButton"><i class='bx bx-user'></i></button>
                 <div class="displayUserName">
-                    <div class="email"><?php echo $_SESSION['email']; ?></div>
-                    <div class="userName"><?php echo $_SESSION['username']?></div>
+                    <div class="email"><?php echo $_SESSION['s_email']; ?></div>
+                    <div class="userName"><?php echo $_SESSION['s_username']?></div>
                  </div>
             </div>
         </div>
     </nav>
     <div id="map"></div>
     <script type="module" src="./script/main.js"></script>
+    <script src="./script/booked.js"></script>
     </body>
 </html>

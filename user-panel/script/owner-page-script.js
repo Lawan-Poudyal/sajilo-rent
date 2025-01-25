@@ -32,7 +32,6 @@ let latlngarr = [
     [parseFloat(lat4.innerText), parseFloat(lng4.innerText)]
   ];
 let holderlatlngarr = [[0,0],[0,0],[0,0],[0,0]];
-console.log(latlngarr);
 let stopper =0;
 for(let i=0; i<4; i++)
 {
@@ -43,7 +42,6 @@ holderlatlngarr[stopper][1] = latlngarr[i][1];
 stopper++;
 }
 }
-console.log(holderlatlngarr);
 menu.addEventListener('click' , function()
 {
 if(menuClick === false)
