@@ -14,6 +14,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
     <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
     <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/student-profile.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
+
 </head>
 <body>
 <header class="header">
@@ -32,36 +33,64 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                     </figure>
                     <div class="dropdown-menu" id="js-drop-down">
                     <div class="option js-my-profile"><span class="nowrap">Your Profile</span></div>  
-                    <div class="option js-gharbeti-profile"><span class="nowarp">Gharbetis Profile</span></div>  
-                    <div class="option js-rent-request"><span class="nowarp">Rent Request</span></div>  
-                    <div class="option"><span class="nowarp">Change Password</span></div>  
+                    <div class="option js-owner-profile"><span class="nowarp">Owner Profile</span></div>  
+                    <div class="option"><span class="nowarp js-password">Change Password</span></div>  
                     <div class="option js-logout"><span class="nowarp">logout</span></div>  
                     </div>
                 </div>
             </nav>
-        </header>
+</header>
         <main class="main">
-            <div class="main-div profilepic js-profile-pic main-item"></div>
-            <div class="name main-item"><?php echo $_SESSION['s_username']?></div>
-            <div class="email js-email main-item" style="display:none"><?php echo $_SESSION['s_email']?></div>
-            <div class="main-div profilestatus main-item">
+        <div class="container-for-info ">
+            <div class="main-div profilepic js-profile-pic"></div>
+            <div class="contacts">
+            <div class="name "><?php echo $_SESSION['s_username']?></div>    
+            <div class="email js-email "><?php echo $_SESSION['s_email']?></div>
+            </div>
+            <div class="main-div profilestatus">
                 <span class="main-div-span info nowrap ">Rating</span>
                 <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
             </div>
-        <section class="main-section main-item">
-            <div class="main-section-div commentsection">
-                <textarea name="" id="" class="main-section-div-textarea comment" placeholder="add your comment....."></textarea>
-                <button class="main-section-div-button addcomment" >Add Comment</button>    
+            <div class="leaveButton" style="display:none;" ><button>Leave House</button></div>
             </div>
-            <div class="main-section-div comments">
-                <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div></div>
-                <div class="main-section-div-div comment">This guys is just disgusting , i really don't like him at all this guy is the worst of all time , like i hate him who does he think he is </div>
-        </section>
+            <section class="main-section">
+            <h2>Comments</h2>
+            <hr>
+        <div class="main-section-div comments">
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            </div>
+            </section>
+        <div class="main-section-div request js-request-card hidden">
+        
+        </div>
         </main>
         <div class="uploadphoto js-upload-photo">
             <div class="photo js-photo">
             </div>
-            <form action="/sajilo-rent/studentsection/backend/addprofilepic.php" method="post" enctype="multipart/form-data">
+            <form action="/sajilo-rent/user-panel/backend/addprofilepic.php" method="post" enctype="multipart/form-data">
             <input type="submit" class="send" value="Save Profile Pic"></input>
             <input type="file" class="js-image hidden" name="image">
             </form>
@@ -75,8 +104,17 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
              </div>
             <div class="cross2-icon js-cross2-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
         </div>
-        <script src="/sajilo-rent/studentsection/script/student-profile-script.js"></script>
-        <script src="/sajilo-rent/studentsection/script/booked.js" ></script>
-
+        <div class="change-password js-change-password">
+        <span class="change-password-msg">Change Password</span>
+        <input type="text" placeholder="old password" class="js-old-password">
+        <input type="text" placeholder="new password" class="js-new-password">
+        <div class="change-password-option">
+                <button class="confirm js-confirm">Confirm</button>
+                <button class="notlogout js-notlogout">Don't Change</button>
+             </div>
+             <div class="cross3-icon js-cross3-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
+        </div>
+        <script src="/sajilo-rent/studentsection/script/student-profile-script.js" defer></script>
+        <script src="/sajilo-rent/studentsection/script/booked.js" defer></script>
 </body>
 </html>

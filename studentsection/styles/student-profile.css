@@ -56,6 +56,24 @@ img{
     100%{
         transform:scaleY(1);
     }
+    
+}
+@keyframes borderAnimation {
+    0%{
+        box-shadow: 0px -4px blue;
+    }
+    25%{
+        box-shadow: 4px 0px lime;
+    }
+    50%{
+        box-shadow: 0px 4px red;
+    }
+    75%{
+        box-shadow: -4px 0px orange;
+    } 
+    100%{
+        box-shadow: 0px -4px blue;
+    }
 }
 /* end of utility class*/
 .header{
@@ -141,37 +159,69 @@ border:none;
 .main{
  flex-grow:1;
  display:flex;
- flex-flow:column nowrap;
- align-items: center;
+ flex-flow:row wrap;
+ justify-content: center;
+ /* align-items: center; */
  padding:var(--standard-padding);
+ background-image:url('/sajilo-rent/resources/blurred.png');
+ background-size:cover;
+ gap:var(--standard-gap);
 }
 .main-div{
     width:clamp(350px , 100% , 600px);
     height:auto;
     background-color: var(--contrast-bgcolor);
     margin-bottom:var(--standard-gap);
+    
+}
+.container-for-info
+{
+    width:clamp(350px , 100% , 600px);
+    background-color: var(--contrast-bgcolor);
+    padding:calc(var(--very-small-padding) + var(--very-small-padding));
+    border-radius: 1.5rem;
+    display:flex;
+    flex-flow:column nowrap;
+    min-height:450px;
+    animation : borderAnimation 2s linear infinite;
+    transition:all ease-in 0.5s;
+}
+.container-for-info:hover{
+    transform:scale(1.1) translateY(-5px); 
 }
 .profilepic{
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    border:2px solid black;
+    height:200px;
+    width:100%;
     background-image: url('/sajilo-rent/resources/add.png');
     background-size: cover;
     background-position:-45px center;
     cursor:pointer;
+    border-radius:1.5rem 1.5rem 0 0;
 }
 .name{
     font-weight:bolder;
     font-size: 1.5rem;
     margin-bottom:var(--standard-gap);
 }
+.email{
+    color:gray;
+}
+.contacts{
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+}
+
 .profilestatus{
-    display:grid;
-    grid-template-columns: repeat(1 , 1fr 1fr);
-    grid-auto-rows: var(--small-element-height);
-    gap:var(--standard-gap);
-    padding:var(--standard-padding);
+    display: flex;
+    justify-content: space-between;
+    font-weight:600;
+    width:100%;
+}
+
+.main-div-span img{
+    height: var(--very-small-element-height);
+    width:100px;
 }
 .info{
     display:flex;
@@ -181,30 +231,25 @@ border:none;
 }
 .main-section{
     width:clamp(350px , 100% , 600px);
-    height:400px;
-    gap:var(--standard-gap);
     background-color: var(--contrast-bgcolor);
-    margin-bottom:var(--standard-gap);
-    padding:var(--standard-padding);    
+    padding:calc(var(--very-small-padding) + var(--very-small-padding));
+    border-radius: 1.5rem;
+    display:flex;
+    flex-flow:column nowrap;
+    gap:var(--standard-gap);
+    height:450px;
+    overflow-y: scroll;
+    animation : borderAnimation 2s linear infinite;    
+    transition:0.5s ease-in all;
 }
 .comments{
     display:flex;
     flex-flow: column nowrap;
     gap:var(--standard-gap);
+   
 }
-.commentsection{
-    display:flex;
-    flex-flow:column nowrap;
-    gap:var(--standard-gap);
-}
-.comment{
-    height:var(--nav-element-height);
-    width:100%;
-    resize: none;
-   }
-.addcomment{
- height:var(--nav-element-height);
- width:100px;
+.main-section:hover{
+    transform:scale(1.1) translateY(-5px); 
 }
 .commentinfo{
     color:gray;
@@ -214,101 +259,171 @@ border:none;
 font-weight: 800;
 color:black;
 }
-.comment{
-    border:1px solid black;
+.commentdata{
+    
     height:fit-content;
 }
 /*----------for floating ----------------------------*/
-.uploadphoto{
-    position:fixed; 
-    top:calc(50vh - 200px);
-    border:1px solid black;
-    width:clamp(350px , 100% , 600px);
-    height:400px;
-    background-color: var(--contrast-bgcolor);
-    display:flex;
-    flex-flow:column nowrap;
+.uploadphoto {
+    position: absolute;
+    top:calc(50vh - 225px);
+    border: 2px solid #333;
+    width: clamp(320px , 100% , 600px);
+    height: 450px;
+    background-color: var(--contrast-bgcolor, #f9f9f9);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding:var(--standard-padding);
-    gap:var(--standard-gap);
-   
+    padding: 20px;
+    gap: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
-.cross-icon{
-    position:absolute;
-    top:0;
-    right:0;
-    height: var(--nav-element-height);
-    width: var(--nav-element-width);
-    cursor:pointer;
+
+.cross-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    background: transparent;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
-.photo{
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    border:2px solid black;
+
+.cross-icon img {
+    height: 100%;
+    width: 100%;
+}
+
+.cross-icon:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+
+.photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px dashed #555;
     background-image: url('/sajilo-rent/resources/add.png');
     background-size: cover;
-    background-position:-40px center;
-    cursor:pointer;
+    background-position: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.2s ease;
 }
-.send{
-    background-color: lime;
-    cursor:pointer;
-    padding:var(--standard-padding);
-    border-radius:10px;
-    border:none;
-    font-style: monospace;
-    font-weight:bolder;
+
+.photo:hover {
+    border-color: limegreen;
+    transform: scale(1.05);
 }
-.logout{
-    position:fixed; 
-    top:calc(50vh - 100px);
-    border:1px solid black;
-    width:clamp(350px , 100% , 600px);
-    height:200px;
-    background-color: var(--contrast-bgcolor);
-    display:flex;
-    flex-flow:column nowrap;
+
+.uploadphoto form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.send {
+    background-color: limegreen;
+    color: white;
+    cursor: pointer;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: none;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.send:hover {
+    background-color: darkgreen;
+    transform: translateY(-3px);
+}
+
+
+.logout {
+    position: fixed;
+    top: calc(50vh - 100px); /* Retaining your positioning logic */
+    border: 2px solid #333;
+    width: clamp(350px, 90%, 600px);
+    height: 200px;
+    background-color: var(--contrast-bgcolor, #f9f9f9);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding:var(--standard-padding);
-    gap:var(--standard-gap);
-    display: none;
+    padding: 20px;
+    gap: 20px;
+    display: none; /* Keeps it hidden by default */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000; /* Ensure it stays on top */
 }
-.logout span{
-    width:100%;
+
+.logout span {
+    width: 100%;
     font-family: monospace;
     font-style: italic;
-    white-space: nowrap;
-    font-size:1.15rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 10px;
 }
-.logout-option{
-    width:100%;
+
+.logout-option {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    gap: var(--standard-gap);
-    justify-content: flex-end;
+    gap: 15px;
+    justify-content: center; /* Center-aligns the buttons */
 }
-.logout-option button{
-    height: var(--nav-element-height);
-    width:100px;
-    border-radius:10px;
-    border:none;
-    background-color: lime;
-    color:white;
-    font-weight:bolder;
+
+.logout-option button {
+    height: var(--nav-element-height, 40px);
+    width: 120px;
+    border-radius: 20px;
+    border: none;
+    background-color: limegreen;
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
 }
-.cross2-icon{
-    position:absolute;
-    top:0;
-    right:0;
-    height: var(--nav-element-height);
-    width: var(--nav-element-width);
-    cursor:pointer;
+
+.logout-option button:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+}
+
+.cross2-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cross2-icon img {
+    height: 100%;
+    width: 100%;
+}
+
+.cross2-icon:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
 }
 .request {
     width: 90%;
+    min-height:500px;
     max-width: 600px;
     margin: 20px auto;
     background-color: #fff;
@@ -398,4 +513,169 @@ color:black;
 .decline-btn:hover {
     background-color: #e53935;
     transform: scale(1.05);
+}
+.change-password {
+    position: fixed;
+    top: calc(50vh - 100px); /* Same top position as logout */
+    border: 2px solid #333;
+    width: clamp(350px, 90%, 600px); /* Matches the logout width */
+    height: auto; /* Adapts height dynamically based on content */
+    background-color: var(--contrast-bgcolor, #f9f9f9);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.change-password-msg {
+    width: 100%;
+    font-family: monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #444;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.change-password input {
+    width: 90%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.change-password input:focus {
+    border-color: limegreen;
+    box-shadow: 0px 0px 8px rgba(50, 205, 50, 0.5);
+    outline: none;
+}
+
+.change-password-option {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center; /* Center the buttons */
+}
+
+.change-password-option button {
+    height: 40px;
+    width: 120px;
+    border-radius: 20px;
+    border: none;
+    background-color: limegreen;
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+}
+
+.change-password-option button:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+}
+
+.notlogout {
+    background-color: #ccc;
+    color: #333;
+}
+
+.notlogout:hover {
+    background-color: #bbb;
+    transform: scale(1.05);
+}
+.cross2-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cross3-icon {
+    position:absolute;
+    top:0;
+    right:0;
+}
+.cross3-icon:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+/*for media queries */
+@media screen and (min-width:600px)
+{
+    .uploadphoto , .logout ,.change-password {
+        left: calc(50vw - 300px);
+    }
+}
+@media screen and (min-width:425px) /*for large mobile*/
+{
+    .container-for-info
+    {
+        padding:calc(var(--small-padding) + var(--small-padding));
+        height:600px;
+    }
+    .profilepic{
+        height:300px;
+    }
+    .email{
+        color:gray;
+    }
+    .contacts{
+        display:flex;
+        width:100%;
+        justify-content: space-between;
+    }
+    
+    .profilestatus{
+
+        font-size:var(--body-medium-font-size);
+    }
+    .main-div-span img{
+        width:150px;
+    }
+    .main-section{
+        padding:calc(var(--small-padding) + var(--small-padding));
+        height:600px;   
+    }
+    
+}
+@media screen and (min-width:1440px) /*for large laptops*/
+{
+   .main{
+    justify-content: space-evenly;
+    align-items: center;
+   }
+   
+}
+/*This one is just for the photos section*/
+
+.leaveButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 1.5rem; */
+}
+.leaveButton>button{
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid gray ;
+    border-radius: 0.3rem;
+    background-color: red;
+    
 }
