@@ -20,6 +20,12 @@ const requestCard = document.querySelector('.js-request-card');
 const myProfile = document.querySelector('.js-my-profile');
 const tenants = document.querySelector('.js-tenants');
 const rooms = document.querySelector('.js-rooms');
+const oldPassword = document.querySelector('.js-old-password');
+const newPassword = document.querySelector('.js-new-password');
+const confirmBtn =  document.querySelector('.js-confirm');
+const closeBtn3 =document.querySelector('.js-cross3-icon');
+const changePassword = document.querySelector('.js-change-password');
+const setPassword = document.querySelector('.js-password');
 menu.addEventListener('click' , function()
 {
 if(menuClick === false)
@@ -217,5 +223,44 @@ image.addEventListener('change', (event) => {
         photo.textContent = 'No image selected';
     }
 });
+confirmBtn.addEventListener('click' , ()=>{
+const xml = new XMLHttpRequest();
+xml.open('GET' , `/sajilo-rent/user-panel/back_end/changepassword.php?oldPassword=${oldPassword.value}&newPassword=${newPassword.value}&email=${email.innerText}`);
+xml.send();
+xml.onload = function()
+{
+    if(this.readyState === 4 && this.status === 200)
+        {   
+            console.log(this.responseText);
+            if(this.responseText === 'error')
+            {
+                oldPassword.placeholder = "password mismatch";
+                newPassword.placeholder = "password mismatch";
+                oldPassword.style.border = "1px solid red";
+                newPassword.style.border = "1px solid red";
+                
+            }
+            else if(this.responseText === 'success'){
+                oldPassword.placeholder = "password changed";
+                newPassword.placeholder = "password changed";
+                oldPassword.style.border = "none";
+                newPassword.style.border = "none";
+            }
+            oldPassword.value ='';
+            newPassword.value ='';
+        }
+        else {
+            console.log("the messagte is " + this.readyState + " and " +this.status );
+        }
+}
 
+});
+setPassword.addEventListener('click' ,()=>{
+    changePassword.style.display = "flex";
+    document.querySelector('main').style.filter = "blur(10px)";
+});
+closeBtn3.addEventListener('click' , ()=>{
+    changePassword.style.display = "none";
+    document.querySelector('main').style.filter = "blur(0px)";
+});
 //////////////////////////////////////////////////////////////////////////////

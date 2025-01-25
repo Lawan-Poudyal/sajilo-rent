@@ -34,7 +34,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                     <div class="option js-my-profile"><span class="nowrap">Your Profile</span></div>  
                     <div class="option"><span class="nowarp">Tenants Profile</span></div>  
                     <div class="option js-rent-request"><span class="nowarp">Rent Request</span></div>  
-                    <div class="option"><span class="nowarp">Change Password</span></div>  
+                    <div class="option"><span class="nowarp js-password">Change Password</span></div>  
                     <div class="option js-logout"><span class="nowarp">logout</span></div>  
                     </div>
                 </div>
@@ -194,6 +194,16 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                 <button class="notlogout js-notlogout">No</button>
              </div>
             <div class="cross2-icon js-cross2-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
+        </div>
+        <div class="change-password js-change-password">
+        <span class="change-password-msg">Change Password</span>
+        <input type="text" placeholder="old password" class="js-old-password">
+        <input type="text" placeholder="new password" class="js-new-password">
+        <div class="change-password-option">
+                <button class="confirm js-confirm">Confirm</button>
+                <button class="notlogout js-notlogout">Don't Change</button>
+             </div>
+             <div class="cross3-icon js-cross3-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
         </div>
         <script src="/sajilo-rent/user-panel/script/owner-profile-script.js"></script>
 </body>
