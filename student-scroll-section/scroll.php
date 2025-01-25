@@ -79,6 +79,9 @@ include("./data-generation.php")
             <?php echo $roomsHTML; ?>
         </section>
     </main>
+
+    <script type="module" src="/sajilo-rent/studentsection/script/location.js"></script>
+
     <!-- <script src="../scripts/data/cart.js"></script>
 
     <script src="../scripts/data/products.js"></script> 
