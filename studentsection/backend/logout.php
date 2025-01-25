@@ -1,4 +1,5 @@
 <?php 
 session_start();
-session_unset();
+unset($_SESSION['s_username']);
+unset($_SESSION['s_email']);
 ?>
