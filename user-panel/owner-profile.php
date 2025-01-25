@@ -34,32 +34,145 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                     <div class="option js-my-profile"><span class="nowrap">Your Profile</span></div>  
                     <div class="option"><span class="nowarp">Tenants Profile</span></div>  
                     <div class="option js-rent-request"><span class="nowarp">Rent Request</span></div>  
-                    <div class="option"><span class="nowarp">Change Password</span></div>  
+                    <div class="option"><span class="nowarp js-password">Change Password</span></div>  
                     <div class="option js-logout"><span class="nowarp">logout</span></div>  
                     </div>
                 </div>
             </nav>
         </header>
         <main class="main">
-            <div class="main-div profilepic js-profile-pic main-item"></div>
-            <div class="name main-item"><?php echo $_SESSION['username']?></div>
-            <div class="email js-email main-item" style="display:none"><?php echo $_SESSION['email']?></div>
-            <div class="main-div profilestatus main-item">
+        <div class="container-for-info ">
+            <div class="main-div profilepic js-profile-pic"></div>
+            <div class="contacts">
+            <div class="name "><?php echo $_SESSION['username']?></div>    
+            <div class="email js-email "><?php echo $_SESSION['email']?></div>
+            </div>
+            <div class="main-div profilestatus">
                 <span class="main-div-span info nowrap ">Rating</span>
                 <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
                 <span class="main-div-span info nowrap ">Tenants Living</span>
-                <span class="main-div-span info nowrap ">5</span>
+                <span class="main-div-span info js-tenants nowrap ">5</span>
                 <span class="main-div-span info nowrap ">Rooms Rented</span>
-                <span class="main-div-span info nowrap ">5</span>
+                <span class="main-div-span info nowrap js-rooms ">5</span>
             </div>
-            <section class="main-section main-item">
-            <div class="main-section-div commentsection">
-            <textarea name="" id="" class="main-section-div-textarea comment" placeholder="add your comment....."></textarea>
-            <button class="main-section-div-button addcomment" >Add Comment</button>    
-        </div>
+            </div>
+            <section class="main-section">
+            <h2>Comments</h2>
+            <hr>
         <div class="main-section-div comments">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div></div>
-            <div class="main-section-div-div comment">This guys is just disgusting , i really don't like him at all this guy is the worst of all time , like i hate him who does he think he is </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">i don't like this place</div>
+            </div>
+            </div>
             </section>
         <div class="main-section-div request js-request-card hidden">
         
@@ -81,6 +194,16 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                 <button class="notlogout js-notlogout">No</button>
              </div>
             <div class="cross2-icon js-cross2-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
+        </div>
+        <div class="change-password js-change-password">
+        <span class="change-password-msg">Change Password</span>
+        <input type="text" placeholder="old password" class="js-old-password">
+        <input type="text" placeholder="new password" class="js-new-password">
+        <div class="change-password-option">
+                <button class="confirm js-confirm">Confirm</button>
+                <button class="notlogout js-notlogout">Don't Change</button>
+             </div>
+             <div class="cross3-icon js-cross3-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
         </div>
         <script src="/sajilo-rent/user-panel/script/owner-profile-script.js"></script>
 </body>

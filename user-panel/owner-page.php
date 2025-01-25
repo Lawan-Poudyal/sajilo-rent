@@ -181,6 +181,7 @@ Upload Three Images of the room :
 </main>
 <footer class="footer">
 </footer>
+<div ><?php echo $username?></div>
 <div class="latitudeandlongitude hidden">
     <div id="username"><?php echo $username?></div>
     <div id="lat1"><?php echo number_format($latlngarr[0][0],17)?></div>

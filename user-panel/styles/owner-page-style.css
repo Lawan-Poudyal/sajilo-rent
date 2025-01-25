@@ -95,8 +95,14 @@ border:none;
     height: var( --nav-element-height);
     width:var(--nav-element-width);
     border-right : 1px solid black; 
-    display:none;   
+    cursor:pointer;
+    display:none; 
+    transition:all 1s;  
 }
+.side-optio:hover{
+    background-color: black;
+}
+
 .side-option img{
     height: var( --nav-element-height);
     width:var(--nav-element-width); 
