@@ -61,7 +61,7 @@ if (!empty($rooms)) {
                 <div class="product-spacer"></div>
               
                 
-                <button class="location-button button-primary js-location-button" ><a href="./map.php">Location</a></button>
+                <button class="location-button button-primary js-location-button" data-room-lat="' . htmlspecialchars($room['latitude']) . '" data-room-lng="' . htmlspecialchars($room['longitude']) . '" ><a href="#">Location</a></button>
                 <button class="details-button button-primary " >Details</button>
                  
               </div>
