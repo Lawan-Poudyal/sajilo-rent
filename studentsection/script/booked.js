@@ -3,7 +3,6 @@ let Json;
 
 document.addEventListener("DOMContentLoaded", () => {
     leaveHouse = document.querySelector(".leaveButton");
-    console.log(leaveHouse); // Check if the element is successfully selected
     if(leaveHouse){
     leaveHouse.addEventListener('click',()=>{
         leave();
@@ -21,7 +20,6 @@ function callFetch() {
             return response.json();
         })
         .then(json => {
-            console.log(json.status)
                 if(json.status != 'error'){
                     Json = json;
                     leaveHouse.classList.add('show');

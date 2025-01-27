@@ -16,5 +16,23 @@
         "electricity": "required",
         "floor_level": "1",
         "house_facing_direction": "west"
+    },
+    {
+        "username": "sachin@gmail.com",
+        "no_of_rooms": "1",
+        "no_of_roommates": "1",
+        "gates_open": "22:36:00",
+        "gates_close": "22:36:00",
+        "wifi_price": "0",
+        "image1": "images\/room1.jpg",
+        "image2": "images\/room3.jpg",
+        "image3": "images\/room3.jpg",
+        "latitude": "27.623947356845406",
+        "longitude": "85.53853690624237",
+        "price": "500",
+        "parking": "available",
+        "electricity": "required",
+        "floor_level": "1",
+        "house_facing_direction": "east"
     }
 ]
