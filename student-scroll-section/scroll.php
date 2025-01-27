@@ -80,13 +80,7 @@ include("./data-generation.php")
         </section>
     </main>
 
-    <script type="module" src="/sajilo-rent/studentsection/script/location.js"></script>
-
-    <!-- <script src="../scripts/data/cart.js"></script>
-
-    <script src="../scripts/data/products.js"></script> 
-    <script type="module" src="../student-scroll-section/scripts/rooms.js"></script>
-    <script type="module" src="../student-scroll-section/scripts/data/rooms-info.js"></script>-->
+    <script type="module" src="../studentsection/script/location.js"></script>
 </body>
 
 </html>
