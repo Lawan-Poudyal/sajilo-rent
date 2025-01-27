@@ -51,7 +51,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                 <span class="main-div-span info nowrap ">Rating</span>
                 <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
             </div>
-            <div class="leaveButton" style="display:none;" ><button>Leave House</button></div>
+            <div class="leaveButton"><button>Leave House</button></div>
             </div>
             <section class="main-section">
             <h2>Comments</h2>
@@ -69,7 +69,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
             <div class="main-section-div-div commentdata">i don't like this place</div>
             </div>
-            <div class="comment">
+            <div class="comment">   
             <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
             <div class="main-section-div-div commentdata">i don't like this place</div>
             </div>

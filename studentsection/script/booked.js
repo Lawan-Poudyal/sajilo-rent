@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function callFetch() {
-    console.log("hi");
     fetch('./backend/booked.php')
         .then(response => {
             if (!response.ok) {
@@ -22,25 +21,17 @@ function callFetch() {
             return response.json();
         })
         .then(json => {
-            if (!json.status) {
-                Json = json;
-                console.log("hi");
-                updateGharbeti();
-            }
+            console.log(json.status)
+                if(json.status != 'error'){
+                    Json = json;
+                    leaveHouse.classList.add('show');
+                }
+                
         })
         .catch(console.warn);
 }
 
-function updateGharbeti() {
-    const coordinates = {
-        lat: Json.latitude,
-        lng: Json.longitude,
-    };
-    console.log("hi");
-    leaveHouse.style.display = 'block';
-}
 const leave = ()=>{
-    console.log("hi")
     fetch("./backend/leave.php", {
         method: 'POST',
         headers: {
@@ -55,7 +46,7 @@ const leave = ()=>{
     .then(data => {
         if (data.status === 'success') {
             console.log('Successfully left the house');
-            leaveHouse.display.style = 'none'
+            leaveHouse.classList.remove('show')
         } else {
             console.error('Error:', data.message);
 
