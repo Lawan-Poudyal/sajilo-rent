@@ -65,11 +65,7 @@ include("./data-generation.php")
                 <!-- <span class="return-text">Returns</span> -->
                 <span class="order-text">Map</span>
             </a>
-            <!-- <a class="cart-link header-link" href="../html/checkout.html">
-                <img class="cart-icon" src="../images/icons/cart-icon.png" />
-                <span class="cart-quantity js-cart-quantity"></span>
-                <span class="cart-text">Cart</span>
-            </a> -->
+
         </div>
     </header>
 
