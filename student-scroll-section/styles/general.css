@@ -25,7 +25,11 @@ body {
 }
 input:focus,
 select:focus {
-  outline: 2px solid rgb(255, 153, 0);
+  outline: none;
+}
+
+label{
+  color: black;
 }
 
 select {
