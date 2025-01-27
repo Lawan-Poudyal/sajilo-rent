@@ -1,21 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('log_errors', 1);
-ini_set('error_log', 'php_errors.log');
+
 session_start();
 
-$database = 'user_database';
-$server = 'localhost';
-$user = 'root';
-$password = '';
+require_once 'db.php';
 
-// Establish database connection
-$conn = new mysqli($server, $user, $password, $database);
-if ($conn->connect_error) {
-    echo json_encode(['status' => 'error', 'message' => 'Database connection failed']);
-    exit;
-}
 
 // Check if session variable is set
 if (!isset($_SESSION['s_email'])) {

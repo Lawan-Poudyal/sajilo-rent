@@ -90,7 +90,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
         <div class="uploadphoto js-upload-photo">
             <div class="photo js-photo">
             </div>
-            <form action="/sajilo-rent/user-panel/backend/addprofilepic.php" method="post" enctype="multipart/form-data">
+            <form action="/sajilo-rent/studentsection/backend/addprofilepic.php" method="post" enctype="multipart/form-data">
             <input type="submit" class="send" value="Save Profile Pic"></input>
             <input type="file" class="js-image hidden" name="image">
             </form>

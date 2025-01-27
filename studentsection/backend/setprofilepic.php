@@ -1,11 +1,8 @@
 <?php 
 session_start();
-$conn = new mysqli('localhost' ,'root' ,'' ,'user_database');
+require_once 'db.php';
+
 $jsonobj = [];
-if($conn->connect_error)
-{
-    die("connnection couldn't be established");
-}
 $query = "SELECT image FROM  profilepicture WHERE email = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s" ,$_SESSION['s_email']);

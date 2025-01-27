@@ -3,7 +3,7 @@ let menuClick = false;
 let dropDown = document.getElementById('js-drop-down');
 const photo = document.querySelector('.js-photo');
 const image = document.querySelector('.js-image');
-let imagePath = '/sajilo-rent/user-panel/back_end/';
+let imagePath = '/sajilo-rent/studentsection/backend/';
 let profilepic = document.querySelector('.js-profile-pic');
 const uploadPhoto = document.querySelector('.js-upload-photo');
 const closeBtn = document.querySelector('.js-cross-icon');
@@ -74,7 +74,7 @@ notLogoutBtn.addEventListener('click', () => {
     document.querySelector('main').style.filter = "blur(0px)";
 });
 sureLogoutBtn.addEventListener('click', () => {
-    fetch('/sajilo-rent/user-panel/back_end/logout.php', { method: 'POST' })
+    fetch('/sajilo-rent/studentsection/backend/logout.php', { method: 'POST' })
         .then(response => {
             if (response.ok) {
                 window.location = "/sajilo-rent/loginsignup_page/login.php";
@@ -86,7 +86,7 @@ sureLogoutBtn.addEventListener('click', () => {
 
 async function loadProfilePic() {
     try {
-        const response = await fetch('/sajilo-rent/user-panel/back_end/setprofilepic.php', { method: 'POST' });
+        const response = await fetch('/sajilo-rent/studentsection/backend/setprofilepic.php', { method: 'POST' });
         if (response.ok) {
             const jsonfile = await response.json();
             imagePath += jsonfile["image"];

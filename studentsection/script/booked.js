@@ -28,28 +28,24 @@ function callFetch() {
         })
         .catch(console.warn);
 }
-
 const leave = ()=>{
-    fetch("./backend/leave.php", {
-        method: 'POST',
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify({
-            latitude: Json.latitude,
-            longitude: Json.longitude
+    leaveHouse.classList.remove('show');
+        fetch("./backend/leave.php", {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                latitude: Json.latitude,
+                longitude: Json.longitude
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            console.log('Successfully left the house');
-            leaveHouse.classList.remove('show')
-        } else {
-            console.error('Error:', data.message);
-
-        }
-    })
-    .catch(error => console.error('Error:', error));
-};
+        .then(response => response.text())
+        .then(data => {
+            if (data.status == 'success') {
+                console.log('Successfully left the house');
+            } 
+        })
+        .catch(error => console.error('Error:', error));
+    };
 

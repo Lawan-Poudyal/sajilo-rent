@@ -6,19 +6,7 @@ ini_set('error_log', 'php_errors.log'); // Specify the error log file
 
 session_start(); // Start the session
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "user_database";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    error_log("Connection failed: " . $conn->connect_error); // Log connection error
-    die(json_encode(['status' => 'error', 'message' => 'Database connection failed']));
-}
+require_once 'db.php';
 
 if (!isset($_SESSION['s_email'])) {
     die(json_encode(['status' => 'error', 'message' => 'Session email not found']));
