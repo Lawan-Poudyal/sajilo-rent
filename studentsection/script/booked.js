@@ -6,13 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     leaveHouse = document.querySelector(".leaveButton");
     modal = document.querySelector(".review-container");
     const textarea = document.querySelector(".writeText");
-    console.log(textarea)
-    if (textarea) {
-        textarea.addEventListener("focus", () => {
-            // Set the cursor position to the top-left corner
-            textarea.setSelectionRange(0, 0);
-        });
-    }
+    // if (textarea) {
+    //     textarea.addEventListener("click", () => {
+    //         // Set the cursor position to the top-left corner
+    //         textarea.setSelectionRange(0, 0);
+    //     });
+    // }
     if(leaveHouse){
     leaveHouse.addEventListener('click',()=>{
         modal.showModal();
