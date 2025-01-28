@@ -164,6 +164,3 @@ closeBtn3.addEventListener('click', () => {
     document.querySelector('main').style.filter = "blur(0px)";
 });
 
-leaveHouse.addEventListener('click',()=>{
-    
-})

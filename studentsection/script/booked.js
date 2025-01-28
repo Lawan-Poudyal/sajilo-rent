@@ -1,11 +1,21 @@
 let leaveHouse;
 let Json;
+let modal;
 
 document.addEventListener("DOMContentLoaded", () => {
     leaveHouse = document.querySelector(".leaveButton");
+    modal = document.querySelector(".review-container");
+    const textarea = document.querySelector(".writeText");
+    console.log(textarea)
+    if (textarea) {
+        textarea.addEventListener("focus", () => {
+            // Set the cursor position to the top-left corner
+            textarea.setSelectionRange(0, 0);
+        });
+    }
     if(leaveHouse){
     leaveHouse.addEventListener('click',()=>{
-        // leave();
+        modal.showModal();
     })}
 
     callFetch();
@@ -47,8 +57,4 @@ const leave = ()=>{
             } 
         })
         .catch(error => console.error('Error:', error));
-    };
-
-leaveHouse.addEventListener('click',()=>{
-        
-})
+};

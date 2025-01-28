@@ -14,7 +14,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
     <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
     <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/student-profile.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
-
+    <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/leavehouse-style.css">
 </head>
 <body>
 <header class="header">
@@ -53,17 +53,29 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             </div>
             <div class="leaveButton"><button>Leave House</button></div>
             </div>
+            <dialog class="review-container">
+                <h1 class="text">Write a Review</h1>
+                
+                <form action="" method = "dialog" class="review-form">
+                    
+                    <h2 class="owner-heading">Review for Owner</h2>
+
+                    <textarea class="writeText">
+                    
+                    </textarea>
+                    
+                    <h2 class="house-heading">Review for House</h2>
+                    <textarea class="writeText">
+                    
+                    </textarea>
+                    
+                    <button class="submit-button" type="submit" value="Submit">Submit</button>
+                </form>
+            </dialog>
             <section class="main-section">
             <h2>Comments</h2>
             <hr>
         <!-- popup for review before leaving -->
-        <div class="ReviewContainer">
-            <h1 class="text">Write a Review</h1>
-            <textarea class="writeText">
-
-            </textarea>
-            <button type="submit" value="Submit">Submit</button>
-            </div>
         <div class="main-section-div comments">
             <div class="comment">
             <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
