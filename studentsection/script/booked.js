@@ -1,27 +1,57 @@
 let leaveHouse;
 let Json;
 let modal;
+let submitButton;
+let reviewForm;
 
 document.addEventListener("DOMContentLoaded", () => {
     leaveHouse = document.querySelector(".leaveButton");
     modal = document.querySelector(".review-container");
-    const textarea = document.querySelector(".writeText");
-    // if (textarea) {
-    //     textarea.addEventListener("click", () => {
-    //         // Set the cursor position to the top-left corner
-    //         textarea.setSelectionRange(0, 0);
-    //     });
-    // }
-    if(leaveHouse){
-    leaveHouse.addEventListener('click',()=>{
-        modal.showModal();
-    })}
-
-    callFetch();
+    submitButton = document.querySelector(".submit-button");
+    reviewForm = document.querySelector(".review-form");
+    
+    if (leaveHouse) {
+        leaveHouse.addEventListener('click', () => {
+            modal.showModal();
+        });
+    }
+    
+    if (reviewForm) {
+        processForm(reviewForm);
+    }
+    
+    callBooked(); // Make sure this function is defined somewhere
 });
 
-function callFetch() {
-    fetch('./backend/booked.php')
+function processForm(form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        
+        fetch('./backend/addReviewHouse.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json()) // Changed from response.text
+        .then(data => {
+            // Handle the response
+            if (data.status === 'success') {
+                alert('Review submitted successfully!');
+                modal.close(); // Close the modal after successful submission
+                form.reset(); // Reset the form
+                leave(); // leave the house
+            } else {
+                alert('Failed to submit review: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the review');
+        });
+    });
+}
+function callBooked() {
+        fetch('./backend/booked.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Invalid');
@@ -32,8 +62,7 @@ function callFetch() {
                 if(json.status != 'error'){
                     Json = json;
                     leaveHouse.classList.add('show');
-                }
-                
+                }    
         })
         .catch(console.warn);
 }

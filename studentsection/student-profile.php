@@ -55,7 +55,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             </div>
             <dialog class="review-container">
                 <h1 class="text">Write a Review</h1>
-                <form action = "/sajilo-rent/studentsection/backend/addReviewHouse.php" method = "POST" method = "dialog" class="review-form"> 
+                <form action = "/sajilo-rent/studentsection/backend/addReviewHouse.php" method = "POST" class="review-form"> 
                     <h2 class="owner-heading">Review for Owner</h2>
                     <textarea class="writeText" name = "ownerReview" placeholder="Write a review for Owner"></textarea>
                     <h2 class="house-heading">Review for House</h2>
