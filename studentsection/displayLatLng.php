@@ -21,7 +21,6 @@
 </head>
 <body>
 <?php
-
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
@@ -61,7 +60,6 @@
         $jsonData = json_encode($latitudesandLongitudes, JSON_PRETTY_PRINT);
         file_put_contents('./data/latlng.json', $jsonData);
 ?>
-
 
 <nav>
         <div class="nav">
@@ -104,6 +102,5 @@
     </nav>
     <div id="map"></div>
     <script type="module" src="./script/main.js"></script>
-    <script src="./script/booked.js"></script>
-    </body>
+        </body>
 </html>

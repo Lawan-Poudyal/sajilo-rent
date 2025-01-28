@@ -1,6 +1,6 @@
 [
     {
-        "username": "loopfelloff@gmail.com",
+        "username": "abhim@123",
         "no_of_rooms": "1",
         "no_of_roommates": "1",
         "gates_open": "23:29:00",
@@ -50,7 +50,7 @@
         "price": "1500",
         "parking": "available",
         "electricity": "required",
-        "floor_level": "2",
+        "floor_level": "1",
         "house_facing_direction": "west"
     }
 ]
