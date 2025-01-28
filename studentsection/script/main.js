@@ -23,6 +23,7 @@ fetch('./data/latlng.json')
     });
 
 mapInstance.on('popupopen', function(event) {
+    console.log(event)
     const directionButton = event.popup._contentNode.querySelector('.directionButton');
     directionButton.addEventListener('click', () => {
         const lat = event.popup._source._latlng.lat;
@@ -77,7 +78,7 @@ mapInstance.on('popupopen', function(event) {
                 owner: ownerName 
             })
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             console.log('Parsed JSON:', data); // Log the parsed JSON
         })

@@ -25,7 +25,7 @@
         $password=test_input($_POST['password']);
     
         $database ="user_database";
-        $conn = mysqli_connect("localhost","root" ,"", $database );
+          $conn = mysqli_connect("localhost","root" ,"", $database );
     if(!$conn){
        
         die("connection failed");
