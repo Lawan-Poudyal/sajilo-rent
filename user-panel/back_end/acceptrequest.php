@@ -1,7 +1,7 @@
 <?php 
 $email = $_REQUEST['email'];
-$lat = (number_format($_REQUEST['lat'],17)*10)/10;
-$lng = (number_format($_REQUEST['lng'] , 17)*10)/10;
+$lat = number_format($_REQUEST['lat'],17);
+$lng = number_format($_REQUEST['lng'] , 17);
 $reciever = $_REQUEST['username'];
 $conn = new mysqli('localhost' , 'root' , '' , 'user_database');
 if($conn->connect_error)

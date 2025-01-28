@@ -31,11 +31,11 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                     <img src="/sajilo-rent/resources/menu.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
                     </figure>
                     <div class="dropdown-menu" id="js-drop-down">
-                    <div class="option js-my-profile"><span class="nowrap">Your Profile</span></div>  
-                    <div class="option"><span class="nowarp">Tenants Profile</span></div>  
-                    <div class="option js-rent-request"><span class="nowarp">Rent Request</span></div>  
-                    <div class="option"><span class="nowarp js-password">Change Password</span></div>  
-                    <div class="option js-logout"><span class="nowarp">logout</span></div>  
+                    <div class="option js-my-profile js-option"><span class="nowrap">Your Profile</span></div>  
+                    <div class="option  js-option"><span class="nowarp  js-tenants-option">Tenants Profile</span></div>  
+                    <div class="option js-rent-request js-option"><span class="nowarp">Rent Request</span></div>  
+                    <div class="option js-option"><span class="nowarp js-password">Change Password</span></div>  
+                    <div class="option js-logout js-option"><span class="nowarp">logout</span></div>  
                     </div>
                 </div>
             </nav>
@@ -48,7 +48,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <div class="email js-email "><?php echo $_SESSION['email']?></div>
             </div>
             <div class="main-div profilestatus">
-                <span class="main-div-span info nowrap ">Rating</span>
+                <span class="main-div-span info nowrap  ">Rating</span>
                 <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
                 <span class="main-div-span info nowrap ">Tenants Living</span>
                 <span class="main-div-span info js-tenants nowrap ">5</span>
@@ -177,6 +177,32 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
         <div class="main-section-div request js-request-card hidden">
         
         </div>
+        <div class="main-section-div tenants js-tenants-profile hidden">
+        <div class="tenants-card js-tenants-card">
+        <img src="/sajilo-rent/resources/add.png" alt="something-in-the-way">
+        <div class="tenants-credential"><span class="tenants-username"><?php echo $_SESSION['username']?></span> <span class="tenants-email"><?php echo $_SESSION['email']?></span></div>
+        <div class="interactive-btn">
+            <button class="kick-out">Kick Out</button>
+            <button class="view-profile">View Profile</button>
+        </div>
+        </div>
+        <div class="tenants-card js-tenants-card">
+        <img src="/sajilo-rent/resources/add.png" alt="something-in-the-way">
+        <div class="tenants-credential"><span class="tenants-username"><?php echo $_SESSION['username']?></span> <span class="tenants-email"><?php echo $_SESSION['email']?></span></div>
+        <div class="interactive-btn">
+            <button class="kick-out">Kick Out</button>
+            <button class="view-profile">View Profile</button>
+        </div>
+        </div>
+        <div class="tenants-card js-tenants-card">
+        <img src="/sajilo-rent/resources/add.png" alt="something-in-the-way">
+        <div class="tenants-credential"><span class="tenants-username"><?php echo $_SESSION['username']?></span> <span class="tenants-email"><?php echo $_SESSION['email']?></span></div>
+        <div class="interactive-btn">
+            <button class="kick-out">Kick Out</button>
+            <button class="view-profile">View Profile</button>
+        </div>
+        </div>
+        </div>
         </main>
         <div class="uploadphoto js-upload-photo">
             <div class="photo js-photo">
@@ -205,6 +231,21 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
              </div>
              <div class="cross3-icon js-cross3-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
         </div>
+        <dialog class="review js-review">
+            <h2>Review</h2>
+            <div id="stars" >
+      <span class="star js-star" data-value="1">★</span>
+      <span class="star js-star" data-value="2">★</span>
+      <span class="star js-star" data-value="3">★</span>
+      <span class="star js-star" data-value="4">★</span>
+      <span class="star js-star" data-value="5">★</span>
+      
+    </div>
+            <section class="comment-section">
+                <textarea name="" id="" class="comment-section-area js-text-area" placeholder="Your comment here..."></textarea>
+            </section>
+            <button class="submit-review-btn js-submit-review-btn" method="dialog">Kick without response</button>
+        </dialog>
         <script src="/sajilo-rent/user-panel/script/owner-profile-script.js"></script>
 </body>
 </html>
