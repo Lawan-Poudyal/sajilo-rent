@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     leaveHouse = document.querySelector(".leaveButton");
     if(leaveHouse){
     leaveHouse.addEventListener('click',()=>{
-        leave();
+        // leave();
     })}
 
     callFetch();
@@ -49,3 +49,6 @@ const leave = ()=>{
         .catch(error => console.error('Error:', error));
     };
 
+leaveHouse.addEventListener('click',()=>{
+        
+})

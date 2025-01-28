@@ -56,6 +56,14 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <section class="main-section">
             <h2>Comments</h2>
             <hr>
+        <!-- popup for review before leaving -->
+        <div class="ReviewContainer">
+            <h1 class="text">Write a Review</h1>
+            <textarea class="writeText">
+
+            </textarea>
+            <button type="submit" value="Submit">Submit</button>
+            </div>
         <div class="main-section-div comments">
             <div class="comment">
             <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
@@ -83,9 +91,6 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             </div>
             </div>
             </section>
-        <div class="main-section-div request js-request-card hidden">
-        
-        </div>
         </main>
         <div class="uploadphoto js-upload-photo">
             <div class="photo js-photo">

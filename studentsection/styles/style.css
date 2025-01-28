@@ -41,13 +41,13 @@ button, select{
     padding: 1px;
     text-align: left;
     border-radius: 12px;
-    width: 20vw !important;
+    min-width: 320px;
     height: 40vh !important;
     display: flex;
 }
 .leaflet-popup-content{
     margin: 13px 20px;
-    width: 25vw;
+    min-width: 320px;
     height: 100%;
     display: flex;
     flex-direction: column ;    

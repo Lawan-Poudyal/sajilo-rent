@@ -163,3 +163,7 @@ closeBtn3.addEventListener('click', () => {
     changePassword.style.display = "none";
     document.querySelector('main').style.filter = "blur(0px)";
 });
+
+leaveHouse.addEventListener('click',()=>{
+    
+})

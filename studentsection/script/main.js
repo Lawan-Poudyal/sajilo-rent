@@ -78,7 +78,7 @@ mapInstance.on('popupopen', function(event) {
                 owner: ownerName 
             })
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             console.log('Parsed JSON:', data); // Log the parsed JSON
         })
