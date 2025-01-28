@@ -123,3 +123,26 @@ mapInstance.on('popupopen', function(event) {
     }
 
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/sajilo-rent/studentsection/backend/saveLocation.php')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Backend response:', data);
+            if (data.status === 'success') {
+                const { lat, lng } = data;
+
+                // Center the map at the provided location
+                mapInstance.setView([lat, lng]);
+
+                // Add a popup at the location without a marker
+                L.popup()
+                    .setLatLng([lat, lng])
+                    .setContent("This is the selected location!")
+                    .openOn(mapInstance);
+            } else {
+                console.error('Error:', data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+});
