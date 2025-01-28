@@ -69,7 +69,7 @@ img{
     img{
         display:block;
         border:none;
-    }
+    }}
     /* utility class*/
     .flex{
         display:flex;
