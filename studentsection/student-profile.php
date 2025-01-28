@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
 {
-header("Location:/sajilo-rent/user-panel/user-home.php");
+    header("Location:/sajilo-rent/user-panel/user-home.php");
 }
 ?>
 <!DOCTYPE html>

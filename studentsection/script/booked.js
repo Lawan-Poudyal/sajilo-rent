@@ -27,34 +27,15 @@ function processForm(form) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(form);
-        
-        fetch('./backend/addReviewHouse.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json()) // Changed from response.text
-        .then(data => {
-            // Handle the response
-            if (data.status === 'success') {
-                alert('Review submitted successfully!');
-                modal.close(); // Close the modal after successful submission
-                form.reset(); // Reset the form
-                leave(); // leave the house
-            } else {
-                alert('Failed to submit review: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while submitting the review');
-        });
+        addReview(formData);
+
     });
 }
 function callBooked() {
         fetch('./backend/booked.php')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Invalid');
+                throw new Erroror('Invalid');
             }
             return response.json();
         })
@@ -86,3 +67,27 @@ const leave = ()=>{
         })
         .catch(error => console.error('Error:', error));
 };
+async function addReview(formData){
+
+    const url1 = 'backend/addReviewHouse.php';
+    const url2 = 'backend/addReview.php';
+
+    const request1 = new Request(url1,{
+            method: 'POST',
+            body: formData
+        })
+    
+    const request2 = new Request(url2,{
+        method: 'POST',
+        body: formData
+    })
+
+    const response = await Promise.all([fetch(request1),fetch(request2)]);
+    const reponse1 = response[0];
+    const reponse2 = response[1];
+    if(reponse1.status == 'success' && reponse2.status == 'success'){
+        alert("Successful review submission");
+        leave();
+    }
+
+}
