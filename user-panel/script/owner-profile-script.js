@@ -26,6 +26,19 @@ const confirmBtn =  document.querySelector('.js-confirm');
 const closeBtn3 =document.querySelector('.js-cross3-icon');
 const changePassword = document.querySelector('.js-change-password');
 const setPassword = document.querySelector('.js-password');
+const tenantsOption = document.querySelector('.js-tenants-option');
+const tenantsProfile = document.querySelector('.js-tenants-profile');
+const options = document.querySelectorAll('.js-option');
+var star = document.querySelectorAll('.js-star');
+let rating =0;
+let comment = '';
+let reviewer = '';
+const sendBtn = document.querySelector('.js-submit-review-btn');
+options.forEach(option =>{
+option.addEventListener('click' , (event)=>{
+    event.currentTarget.querySelector('span').click();
+})
+});
 menu.addEventListener('click' , function()
 {
 if(menuClick === false)
@@ -59,7 +72,7 @@ profilepic.addEventListener('click' , ()=>{
     {
         uploadPhoto.style.display = "flex"; 
         document.querySelector('main').style.filter = "blur(10px)";
-    }
+    }       
 });
 closeBtn.addEventListener('click' , ()=>{
  uploadPhoto.style.display = "none";
@@ -138,11 +151,15 @@ xml.onload = function(){
 /////////////////////////////////////////////////////////////////////////
 rentRequestBtn.addEventListener('click' , ()=>{
 requestCard.classList.remove('hidden');
+tenantsProfile.classList.add('hidden');
+tenantsProfile.classList.remove('flex');
 containerForInfo.style.display = 'none';
 mainSection.style.display = 'none';
 });
 myProfile.addEventListener('click' , ()=>{
     requestCard.classList.add('hidden');
+    tenantsProfile.classList.add('hidden');
+    tenantsProfile.classList.remove('flex');
     containerForInfo.style.display = 'flex';
     mainSection.style.display = 'flex';
 });
@@ -160,9 +177,9 @@ httprequest.onload = function(){
         jsonObj = JSON.parse(this.responseText);
         let htmlforrequest = '';
         jsonObj.forEach((obj)=>{
-            htmlforrequest += `<div class="request-card">
+            htmlforrequest += `<div class="request-card" data-email=''>
                <div class="profile-info">
-                   <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic">
+                   <img src="/sajilo-rent/user-panel/back_end/${obj["img"]}" alt="Profile Picture" class="profile-pic">
                    <div>
                        <h3 class="username">${obj['email']}</h3>
                    </div>
@@ -263,4 +280,93 @@ closeBtn3.addEventListener('click' , ()=>{
     changePassword.style.display = "none";
     document.querySelector('main').style.filter = "blur(0px)";
 });
-//////////////////////////////////////////////////////////////////////////////
+tenantsOption.addEventListener('click' , ()=>{
+    console.log('clicked');
+    requestCard.classList.add('hidden');
+    tenantsProfile.classList.add('flex');
+    tenantsProfile.classList.remove('hidden');
+    containerForInfo.style.display = 'none';
+    mainSection.style.display = 'none';
+});
+///////////////loading tenants profiles .com lol ////////////////////////////
+function loadTenantCard()
+{
+const tenantsxml  = new XMLHttpRequest();
+tenantsxml.open('GET' , `/sajilo-rent/user-panel/back_end/loadtenants.php?email=${email.innerText}` , true);
+tenantsxml.send();
+tenantsxml.onload = function (){
+    if(this.status === 200 && this.readyState === 4)
+    {
+       const arr = JSON.parse(this.responseText);
+       let HTML = ``;
+       arr.forEach((person)=>{
+        HTML += `
+        <div class="tenants-card js-tenants-card">
+        <img src="/sajilo-rent/user-panel/back_end/${person["image"]}" alt="something-in-the-way">
+        <div class="tenants-credential"><span class="tenants-username">${person["username"]}</span> <span class="tenants-email">${person["email"]}</span></div>
+        <div class="interactive-btn">
+            <button class="kick-out" data-tenant = '${person['email']}'>Kick Out</button>
+            <button class="view-profile">View Profile</button>
+        </div>
+        </div>
+        `;
+        
+    });
+    document.querySelector('.js-tenants-profile').innerHTML = HTML;
+    const modal = document.querySelector('.js-review');
+    const kickOut = document.querySelector('.kick-out');
+    kickOut.addEventListener('click',(event)=>{
+       reciever = event.currentTarget.dataset.tenant;
+        modal.showModal();
+    })
+    }else{
+        console.log(this.status + this.readyState);
+    }
+}
+let starSymb = "⭐";
+let lock = false;
+star.forEach((rate,index)=>{
+rate.addEventListener('click' , (event)=>{
+    sendBtn.innerText = 'Submit';
+    var rated = rate;
+    rate.innerText = starSymb;
+    rating = rate.dataset.value;
+    while(rated.previousElementSibling)
+        {
+            rated = rated.previousElementSibling;
+            rated.innerHTML = starSymb;
+        }
+        rated = rate;
+    while(rated.nextElementSibling)
+        {
+            rated = rated.nextElementSibling;
+            rated.innerHTML = '★';
+        } 
+        console.log(rating); 
+});
+
+
+});
+}
+loadTenantCard();
+//////// i told you 1 2 3 4  4 5 6 7  ta aaa times , /////////////////////////////
+sendBtn.addEventListener('click' , ()=>{
+    comment = document.querySelector('.js-text-area').value;
+    const xmlevent = new XMLHttpRequest();
+    xmlevent.open('GET' ,`/sajilo-rent/user-panel/back_end/setreview.php?rating=${rating}&comment=${comment}&reviewer=${email.innerText}&reciever=${reciever}` , true);
+    xmlevent.send();
+    xmlevent.onload = function()
+{
+    if(this.status === 200 && this.readyState === 4)
+    {
+        console.log(this.responseText);
+        loadTenantCard();
+    }
+    else{
+        console.log(this.status + ' ' + this.readyState);
+    }
+
+}
+});
+
+///////////////shakalaka boom boom //////////////////////////////////

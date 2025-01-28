@@ -6,9 +6,11 @@ if($conn->connect_error)
 {
     die(''. $conn->connect_error);
 }
-$query = 'SELECT rentrequest.sender , rentrequest.lat , rentrequest.lng , profilepicture.image FROM rentrequest 
-INNER JOIN profilepicture ON rentrequest.sender = profilepicture.email
-WHERE rentrequest.receiver = ?';
+$query = "SELECT booked.email ,profilepicture.image, signin.firstName , signin.lastName
+FROM booked 
+INNER JOIN  profilepicture ON booked.email = profilepicture.email
+INNER JOIN signin  ON booked.email = signin.email
+WHERE booked.owner = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s" , $email);
 if(!$stmt->execute()){
@@ -19,7 +21,7 @@ if($result->num_rows > 0)
 {
     while($row = $result->fetch_assoc())
     {   
-        $jsonarray[] = ["email" => $row['sender'] , "lat"=> $row['lat'] , "lng"=>$row['lng'] , "img"=>$row["image"]];
+        array_push($jsonarray , ["email" => $row['email'] , "username"=> $row['firstName'].' '.$row['lastName'] , "image"=>$row['image']]);
     }
 }
 $stmt->close();
