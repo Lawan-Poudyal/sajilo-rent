@@ -49,7 +49,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             </div>
             <div class="main-div profilestatus">
                 <span class="main-div-span info nowrap  ">Rating</span>
-                <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
+                <span class="main-div-span info nowrap js-rating-icon"><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
                 <span class="main-div-span info nowrap ">Tenants Living</span>
                 <span class="main-div-span info js-tenants nowrap ">5</span>
                 <span class="main-div-span info nowrap ">Rooms Rented</span>
@@ -59,115 +59,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <section class="main-section">
             <h2>Comments</h2>
             <hr>
-        <div class="main-section-div comments">
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
+        <div class="main-section-div comments js-main-section-div">
             <div class="comment">
             <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
             <div class="main-section-div-div commentdata">i don't like this place</div>
@@ -244,7 +136,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <section class="comment-section">
                 <textarea name="" id="" class="comment-section-area js-text-area" placeholder="Your comment here..."></textarea>
             </section>
-            <button class="submit-review-btn js-submit-review-btn" method="dialog">Kick without response</button>
+            <button class="submit-review-btn js-submit-review-btn">Kick without response</button>
         </dialog>
         <script src="/sajilo-rent/user-panel/script/owner-profile-script.js"></script>
 </body>

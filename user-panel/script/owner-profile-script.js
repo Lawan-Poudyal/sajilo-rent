@@ -29,7 +29,9 @@ const setPassword = document.querySelector('.js-password');
 const tenantsOption = document.querySelector('.js-tenants-option');
 const tenantsProfile = document.querySelector('.js-tenants-profile');
 const options = document.querySelectorAll('.js-option');
+const commentBox = document.querySelector('.js-main-section-div');
 var star = document.querySelectorAll('.js-star');
+const ratingIcon = document.querySelector('.js-rating-icon')
 let rating =0;
 let comment = '';
 let reviewer = '';
@@ -312,6 +314,8 @@ tenantsxml.onload = function (){
         `;
         
     });
+    if(arr.length > 0)
+    {
     document.querySelector('.js-tenants-profile').innerHTML = HTML;
     const modal = document.querySelector('.js-review');
     const kickOut = document.querySelector('.kick-out');
@@ -319,9 +323,11 @@ tenantsxml.onload = function (){
        reciever = event.currentTarget.dataset.tenant;
         modal.showModal();
     })
-    }else{
-        console.log(this.status + this.readyState);
     }
+}
+else{
+    console.log(this.status + this.readyState);
+}
 }
 let starSymb = "⭐";
 let lock = false;
@@ -370,3 +376,60 @@ sendBtn.addEventListener('click' , ()=>{
 });
 
 ///////////////shakalaka boom boom //////////////////////////////////
+
+///////////////////// Loading Comments from the reviewer //////
+let commentObj;
+const loadCommentXml = new XMLHttpRequest();
+loadCommentXml.open('GET'  , `/sajilo-rent/user-panel/back_end/loadcomment.php?email=${email.innerText}` ,true);
+loadCommentXml.send();
+loadCommentXml.onload = function(){
+    if(this.status===200 && this.readyState === 4)
+    {
+       commentObj =  JSON.parse(this.responseText);
+       console.log(commentObj);
+       loadRating(commentObj);
+       let HTML = ``;
+       commentObj.forEach(comment =>{
+        HTML += `
+         <div class="comment">
+            <div class="main-section-div-div commentinfo"><span class="commenter">${comment['username']} </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentdata">${comment['comment']}</div>
+            </div>
+        `;
+       });
+       commentBox.innerHTML = HTML;
+    }else{
+        console.log('the vlaue of status is ' + this.status + "the value of readystate " + this.readyState);
+    }
+}
+
+
+//// Choota Bheem /////////////////////////////
+/////////////// For loading the average review rounded up to five/////////
+function loadRating(jsonObj)
+{
+    let totalRating =0;
+    let averageRating = 0;
+    let nearestToFive = 0;
+    jsonObj.forEach(rate=>{
+        totalRating += rate["rating"];
+    });
+    averageRating = Math.round((totalRating/jsonObj.length)*10)/10;
+    nearestToFive = loadDecimal(averageRating);
+    ratingIcon.innerHTML =`<img src="/sajilo-rent/resources/ratings/rating-${nearestToFive}.png" alt="">`;
+}
+function loadDecimal(averageRating){
+    let floatingPoint = averageRating*10 - Math.floor(averageRating)*10;
+    if(floatingPoint <5 && floatingPoint !==0)
+    {
+        return (averageRating*10 - floatingPoint);
+    }
+    else if (floatingPoint ===0){
+        return averageRating*10;
+    }
+    else {
+        return (averageRating*10 - floatingPoint*10 +5);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
