@@ -664,22 +664,5 @@ color:black;
    
 }
 /*This one is just for the photos section*/
-.leaveButton {
-    display: none; /* Initially hidden */
-}
 
-.leaveButton.show{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* font-size: 1.5rem; */
-}
-.leaveButton.show>button{
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid gray ;
-    border-radius: 0.3rem;
-    background-color: red;
-    
-}
 

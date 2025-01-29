@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
 {
-header("Location:/sajilo-rent/user-panel/user-home.php");
+    header("Location:/sajilo-rent/user-panel/user-home.php");
 }
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
     <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
     <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/student-profile.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
-
+    <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/leavehouse-style.css">
 </head>
 <body>
 <header class="header">
@@ -53,9 +53,20 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             </div>
             <div class="leaveButton"><button>Leave House</button></div>
             </div>
+            <dialog class="review-container">
+                <h1 class="text">Write a Review</h1>
+                <form action = "/sajilo-rent/studentsection/backend/addReviewHouse.php" method = "POST" class="review-form"> 
+                    <h2 class="owner-heading">Review for Owner</h2>
+                    <textarea class="writeText" name = "ownerReview" placeholder="Write a review for Owner"></textarea>
+                    <h2 class="house-heading">Review for House</h2>
+                    <textarea class="writeText" name = "houseReview" placeholder="Write a review for house"></textarea>
+                    <button class="submit-button" type="submit" value="Submit">Submit</button>
+                </form>
+            </dialog>
             <section class="main-section">
             <h2>Comments</h2>
             <hr>
+        <!-- popup for review before leaving -->
         <div class="main-section-div comments">
             <div class="comment">
             <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
@@ -83,14 +94,11 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             </div>
             </div>
             </section>
-        <div class="main-section-div request js-request-card hidden">
-        
-        </div>
         </main>
         <div class="uploadphoto js-upload-photo">
             <div class="photo js-photo">
             </div>
-            <form action="/sajilo-rent/user-panel/backend/addprofilepic.php" method="post" enctype="multipart/form-data">
+            <form action="/sajilo-rent/studentsection/backend/addprofilepic.php" method="post" enctype="multipart/form-data">
             <input type="submit" class="send" value="Save Profile Pic"></input>
             <input type="file" class="js-image hidden" name="image">
             </form>

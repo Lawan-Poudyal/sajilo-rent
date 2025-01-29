@@ -1,3 +1,6 @@
+<?php
+include("./data-generation.php")
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,13 +14,14 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="./styles/header.css" />
 
-    <link rel="stylesheet" href="../styles/general.css" />
+    <link rel="stylesheet" href="./styles/general.css" />
     <link rel="stylesheet" href="./styles/rooms.css" />
 
     <title>Sajilo rent</title>
 </head>
 
 <body>
+
     <header>
         <div class="header-left-section">
             <div>
@@ -32,7 +36,7 @@
 
             <div class="selectWrapper">
                 <select name="price" class="price">
-                    <i class='bx bxs-chevron-down'></i>
+
                     <option value="10000" selected>Price</option>
                     <option value="3000">3000</option>
                     <option value="3500">3500</option>
@@ -61,22 +65,18 @@
                 <!-- <span class="return-text">Returns</span> -->
                 <span class="order-text">Map</span>
             </a>
-            <!-- <a class="cart-link header-link" href="../html/checkout.html">
-                <img class="cart-icon" src="../images/icons/cart-icon.png" />
-                <span class="cart-quantity js-cart-quantity"></span>
-                <span class="cart-text">Cart</span>
-            </a> -->
+
         </div>
     </header>
 
-    <main class="main">
-        <section class="room-container-grid js-room-container-grid"></section>
-    </main>
-    <!-- <script src="../scripts/data/cart.js"></script>
 
-    <script src="../scripts/data/products.js"></script> -->
-    <script type="module" src="../student-scroll-section/scripts/rooms.js"></script>
-    <script type="module" src="../student-scroll-section/scripts/data/rooms-info.js"></script>
+    <main class="main">
+        <section class="room-container-grid">
+            <?php echo $roomsHTML; ?>
+        </section>
+    </main>
+
+    <script type="module" src="../studentsection/script/location.js"></script>
 </body>
 
 </html>

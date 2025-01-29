@@ -1,0 +1,83 @@
+.leaveButton {
+    display: none; /* Initially hidden */
+}
+.leaveButton.show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 1.5rem; */
+}
+.leaveButton.show>button{
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid gray ;
+    border-radius: 0.3rem;
+    background-color: red;
+    
+}
+.review-container {
+    position: relative;
+    top: 5vw;
+    left: 25vw;
+    padding: 20px;
+    width: 50vw;
+    height: 80vh;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* REMOVE THIS */
+}
+
+.review-container:not([open]) {
+    display: none; /* Only hide if the dialog doesn't have the 'open' attribute */
+}
+
+.review-container[open] {
+    display: flex; /* Show the modal only when 'open' is present */
+    flex-direction: column;
+}
+
+.review-form{
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
+}
+textarea{
+    flex: 1;
+}
+
+.text{
+    text-align: center;
+    flex: 0.1;
+}
+
+.writeText {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 16px; 
+    box-sizing: border-box;
+    resize: none;
+}
+
+.submit-button{
+    margin: 0 auto; /* Centers the button horizontally within the dialog */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.review-container::backdrop{
+    backdrop-filter: blur(10px);
+}
