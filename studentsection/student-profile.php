@@ -15,6 +15,10 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
     <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/student-profile.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
     <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/leavehouse-style.css">
+    <script src="/sajilo-rent/studentsection/script/student-profile-script.js" defer></script>
+    <script src="/sajilo-rent/studentsection/script/booked.js" defer></script>
+    <script src="/sajilo-rent/studentsection/script/loadcomment.js" defer></script>
+
 </head>
 <body>
 <header class="header">
@@ -72,27 +76,7 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
             <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
             <div class="main-section-div-div commentdata">i don't like this place</div>
             </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">   
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
-            </div>
+        </div>
             </section>
         </main>
         <div class="uploadphoto js-upload-photo">
@@ -122,7 +106,6 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
              </div>
              <div class="cross3-icon js-cross3-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
         </div>
-        <script src="/sajilo-rent/studentsection/script/student-profile-script.js" defer></script>
-        <script src="/sajilo-rent/studentsection/script/booked.js" defer></script>
+ 
 </body>
 </html>

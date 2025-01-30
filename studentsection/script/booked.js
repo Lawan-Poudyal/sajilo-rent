@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         processForm(reviewForm);
     }
     
-    callBooked(); // Make sure this function is defined somewhere
+    callBooked();
 });
 
 function processForm(form) {
@@ -82,26 +82,20 @@ async function addReview(formData) {
     });
 
     try {
-        // Await both fetch requests in parallel
         const response = await Promise.all([fetch(request1), fetch(request2)]);
 
-        // Await the JSON parsing of both responses
         const [data1, data2] = await Promise.all([response[0].json(), response[1].json()]);
 
-        // Log the parsed JSON data
         console.log(data1, data2);
 
-        // Check the status of both responses
         if (data1.status === 'success' && data2.status === 'success') {
             alert("Successful review submission");
             leave();
             modal.close();
         } else {
-            // Handle the case where one or both requests failed
             alert("Failed to submit review");
         }
     } catch (error) {
-        // Handle any errors that occurred during the fetch or JSON parsing
         console.error("Error:", error);
         alert("An error occurred while submitting the review");
     }

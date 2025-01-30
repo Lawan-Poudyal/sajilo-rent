@@ -10,11 +10,6 @@
 </head>
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1); // Enable error reporting
-ini_set('log_errors', 1);     // Log errors instead of displaying them
-ini_set('error_log', 'php_errors.log'); // Specify the error log file
-
 $houseDetails = isset($_SESSION['houseDetails']) ? $_SESSION['houseDetails'] : null;
 ?>
 <script>

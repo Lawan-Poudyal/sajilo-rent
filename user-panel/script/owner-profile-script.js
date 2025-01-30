@@ -392,14 +392,14 @@ loadCommentXml.onload = function(){
        commentObj.forEach(comment =>{
         HTML += `
          <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">${comment['username']} </span>  posted on <span class="commentdate">2074/03/15</span></div>
+            <div class="main-section-div-div commentinfo"><span class="commenter">${comment['username']} </span>  posted on <span class="commentdate">${comment['date']}</span></div>
             <div class="main-section-div-div commentdata">${comment['comment']}</div>
             </div>
         `;
        });
        commentBox.innerHTML = HTML;
     }else{
-        console.log('the vlaue of status is ' + this.status + "the value of readystate " + this.readyState);
+        console.log('the value of status is ' + this.status + "the value of readystate " + this.readyState);
     }
 }
 
