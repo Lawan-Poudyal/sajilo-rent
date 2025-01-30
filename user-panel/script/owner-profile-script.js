@@ -432,4 +432,17 @@ function loadDecimal(averageRating){
     }
 }
 
-///////////////////////////////////////////////////////////////////////
+/////////////////////////////////// test of fetch and promise  /////////////////////////////////
+function testFunction(){
+const promise = fetch(`/sajilo-rent/user-panel/back_end/loaderequest.php?email=${email.innerText}`);
+return promise;
+}
+console.log(testFunction());
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////
