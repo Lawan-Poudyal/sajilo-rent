@@ -2,8 +2,9 @@ const commentContainer = document.querySelector('.comments');
 (async function (){
     const response = await fetch('/sajilo-rent/studentsection/backend/loadComment.php');
     const json = await response.json();
-    loadComments(json);
-}());
+    if(json.status != "error"){
+            loadComments(json);
+}}());
 
 function loadComments(json){
     commentContainer.innerHTML =

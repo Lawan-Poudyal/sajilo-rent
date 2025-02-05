@@ -22,11 +22,11 @@ $stmt->close();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reviewer = manipulateData($_POST['houseReview']);
-    
+    $rating = $_POST['houserating'];
+
     // Ensure $latLngData keys are set
     if (!empty($latLngData['lat']) && !empty($latLngData['lng'])) {
         $stmt = $conn->prepare("INSERT INTO review_house (reviewer, lat, lng,rating, comment) VALUES (?, ?, ?,?, ?)");
-        $rating = 5;
         // Use correct data types (assuming lat/lng are doubles)
         $stmt->bind_param("sddis", $_SESSION['s_email'], $latLngData['lat'], $latLngData['lng'],$rating ,$reviewer);
         

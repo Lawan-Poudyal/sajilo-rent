@@ -61,7 +61,7 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
             </div>
             <dialog class="review-container">
                 <h1 class="text">Write a Review</h1>
-                <form action = "/sajilo-rent/studentsection/backend/addReviewHouse.php" method = "POST" class="review-form"> 
+                <form  method="dialog" class="review-form"> 
                     <div class="owner-section">
                         <div class="heading-ratings">
                             <h2 class="owner-heading">Review for Owner</h2>

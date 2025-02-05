@@ -70,7 +70,9 @@ textarea{
     text-align: center;
     flex: 0.1;
 }
-
+#stars{
+    cursor: pointer;
+}
 .writeText {
     width: 100%;
     margin-bottom: 10px;
