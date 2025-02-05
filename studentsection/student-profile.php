@@ -55,11 +55,11 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
             </div>
             <div class="main-div profilestatus">
                 <span class="main-div-span info nowrap ">Rating</span>
-                <span class="main-div-span info nowrap "><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
+                <span class="main-div-span info nowrap rating"></span>
             </div>
             <div class="leaveButton"><button>Leave House</button></div>
             </div>
-            <dialog class="review-container">
+            <dialog class="review-container">`
                 <h1 class="text">Write a Review</h1>
                 <form  method="dialog" class="review-form"> 
                     <div class="owner-section">

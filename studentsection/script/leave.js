@@ -100,7 +100,7 @@ async function addReview(formData) {
 
         if (data1.status === 'success' && data2.status === 'success') {
             alert("Successful review submission");
-            // leave();
+            leave();
             modal.close();
         } else {
             alert("Failed to submit review");
