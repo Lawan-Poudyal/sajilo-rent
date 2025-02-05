@@ -16,12 +16,14 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
     <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/leavehouse-style.css">
     <script src="/sajilo-rent/studentsection/script/student-profile-script.js" defer></script>
-    <script src="/sajilo-rent/studentsection/script/booked.js" defer></script>
+    <script src="/sajilo-rent/studentsection/script/leave.js" defer></script>
     <script src="/sajilo-rent/studentsection/script/loadcomment.js" defer></script>
 
 </head>
 <body>
 <header class="header">
+
+
             <nav class="header-nav">
                 <div class="header-nav-element">
                 <button id="logo-btn">
@@ -60,10 +62,32 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
             <dialog class="review-container">
                 <h1 class="text">Write a Review</h1>
                 <form action = "/sajilo-rent/studentsection/backend/addReviewHouse.php" method = "POST" class="review-form"> 
-                    <h2 class="owner-heading">Review for Owner</h2>
-                    <textarea class="writeText" name = "ownerReview" placeholder="Write a review for Owner"></textarea>
-                    <h2 class="house-heading">Review for House</h2>
-                    <textarea class="writeText" name = "houseReview" placeholder="Write a review for house"></textarea>
+                    <div class="owner-section">
+                        <div class="heading-ratings">
+                            <h2 class="owner-heading">Review for Owner</h2>
+                            <div id="stars" >
+                                <span class="star js-star-owner" data-value="1">★</span>
+                                <span class="star js-star-owner" data-value="2">★</span>
+                                <span class="star js-star-owner" data-value="3">★</span>
+                                <span class="star js-star-owner" data-value="4">★</span>
+                                <span class="star js-star-owner" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <textarea class="writeText" name = "ownerReview" placeholder="Write a review for Owner"></textarea>
+                    </div>
+                    <div class="house-section">
+                        <div class="heading-ratings">
+                            <h2 class="house-heading">Review for House</h2>
+                            <div id="stars" >
+                                <span class="star js-star-house" data-value="1">★</span>
+                                <span class="star js-star-house" data-value="2">★</span>
+                                <span class="star js-star-house" data-value="3">★</span>
+                                <span class="star js-star-house" data-value="4">★</span>
+                                <span class="star js-star-house" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <textarea class="writeText" name = "houseReview" placeholder="Write a review for house"></textarea>
+                    </div>
                     <button class="submit-button" type="submit" value="Submit">Submit</button>
                 </form>
             </dialog>
@@ -72,10 +96,7 @@ if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
             <hr>
         <!-- popup for review before leaving -->
         <div class="main-section-div comments">
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
+            
         </div>
             </section>
         </main>

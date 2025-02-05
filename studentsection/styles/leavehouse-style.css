@@ -37,11 +37,30 @@
     display: flex; /* Show the modal only when 'open' is present */
     flex-direction: column;
 }
-
-.review-form{
+dialog{
     display: flex;
     flex-flow: column nowrap;
+
+}
+.review-form{
     flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    /* border: 3px solid red; */
+}
+.heading-ratings{
+    display: flex;
+    justify-content: space-between;
+}
+.owner-section{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.house-section{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 textarea{
     flex: 1;

@@ -666,3 +666,12 @@ color:black;
 /*This one is just for the photos section*/
 
 
+.js-star{
+    transform:scale(1.1);
+    margin-top:var(--standard-gap);
+    cursor:pointer;
+    transition:0.3s all;
+}
+.js-star:hover{
+    transform:translateY(-8px);
+}

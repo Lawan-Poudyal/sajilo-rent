@@ -14,6 +14,8 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
     <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
     <link rel="stylesheet" href="/sajilo-rent/user-panel/styles/owner-profile-style.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
+    <script src="/sajilo-rent/user-panel/script/owner-profile-script.js" defer></script>
+
 </head>
 <body>
 <header class="header">
@@ -54,6 +56,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                 <span class="main-div-span info js-tenants nowrap ">5</span>
                 <span class="main-div-span info nowrap ">Rooms Rented</span>
                 <span class="main-div-span info nowrap js-rooms ">5</span>
+                
             </div>
             </div>
             <section class="main-section">
@@ -126,18 +129,16 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
         <dialog class="review js-review">
             <h2>Review</h2>
             <div id="stars" >
-      <span class="star js-star" data-value="1">★</span>
-      <span class="star js-star" data-value="2">★</span>
-      <span class="star js-star" data-value="3">★</span>
-      <span class="star js-star" data-value="4">★</span>
-      <span class="star js-star" data-value="5">★</span>
-      
-    </div>
+                <span class="star js-star" data-value="1">★</span>
+                <span class="star js-star" data-value="2">★</span>
+                <span class="star js-star" data-value="3">★</span>
+                <span class="star js-star" data-value="4">★</span>
+                <span class="star js-star" data-value="5">★</span>
+            </div>
             <section class="comment-section">
                 <textarea name="" id="" class="comment-section-area js-text-area" placeholder="Your comment here..."></textarea>
             </section>
             <button class="submit-review-btn js-submit-review-btn">Kick without response</button>
         </dialog>
-        <script src="/sajilo-rent/user-panel/script/owner-profile-script.js"></script>
 </body>
 </html>

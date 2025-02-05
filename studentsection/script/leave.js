@@ -3,16 +3,23 @@ let Json;
 let modal;
 let submitButton;
 let reviewForm;
+let starOwner,starHouse;
+let starSymb = "⭐";
+let ratingHouse,ratingOwner;
 
 document.addEventListener("DOMContentLoaded", () => {
     leaveHouse = document.querySelector(".leaveButton");
     modal = document.querySelector(".review-container");
     submitButton = document.querySelector(".submit-button");
     reviewForm = document.querySelector(".review-form");
-    
+    starOwner = document.querySelectorAll('.js-star-owner');
+    starHouse = document.querySelectorAll('.js-star-house');
+
     if (leaveHouse) {
         leaveHouse.addEventListener('click', () => {
             modal.showModal();
+            addRatingOwner();
+            addRatingHouse();
         });
     }
     
@@ -99,4 +106,51 @@ async function addReview(formData) {
         console.error("Error:", error);
         alert("An error occurred while submitting the review");
     }
+}
+function addRatingOwner(){
+if(starOwner){
+    starOwner.forEach((rate,index)=>{
+        rate.addEventListener('click' , (event)=>{
+          
+            var rated = rate;
+            rate.innerText = starSymb;
+            ratingOwner = rate.dataset.value;
+            while(rated.previousElementSibling)
+                {
+                    rated = rated.previousElementSibling;
+                    rated.innerHTML = starSymb;
+                }
+                rated = rate;
+            while(rated.nextElementSibling)
+                {
+                    rated = rated.nextElementSibling;
+                    rated.innerHTML = '★';
+                } 
+            console.log(ratingOwner); 
+    })
+    })
+};}
+function addRatingHouse(){
+    if(starHouse){
+        starHouse.forEach((rate,index)=>{
+            rate.addEventListener('click' , (event)=>{
+              
+                var rated = rate;
+                rate.innerText = starSymb;
+                ratingHouse = rate.dataset.value;
+                while(rated.previousElementSibling)
+                    {
+                        rated = rated.previousElementSibling;
+                        rated.innerHTML = starSymb;
+                    }
+                    rated = rate;
+                while(rated.nextElementSibling)
+                    {
+                        rated = rated.nextElementSibling;
+                        rated.innerHTML = '★';
+                    } 
+                console.log(ratingHouse); 
+        })
+        })
+    };
 }
