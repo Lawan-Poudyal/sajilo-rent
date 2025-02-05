@@ -8,7 +8,7 @@ if($conn->connect_error)
 {
     die(''. $conn->connect_error);
 }
-$query = "INSERT INTO review (reviewer , reciever , rating ,comment) VALUES (? , ? , ? ,?)";
+$query = "INSERT INTO review (reviewer , receiver , rating ,comment) VALUES (? , ? , ? ,?)";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('ssis' , $reviewer , $reciever , $rating , $comment );
 if(!$stmt->execute())

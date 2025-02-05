@@ -11,10 +11,10 @@ if($conn->connect_error)
 {
     die("lol conn error");
 }
-$query ="SELECT review.reviewer , review.reciever , review.rating  ,review.comment, review.date , signin.firstName , signin.lastName
+$query ="SELECT review.reviewer , review.receiver , review.rating  ,review.comment, review.date , signin.firstName , signin.lastName
 FROM review 
 INNER JOIN signin ON review.reviewer = signin.email
-WHERE review.reciever = ?
+WHERE review.receiver = ?
 ";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $email);
