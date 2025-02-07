@@ -24,6 +24,7 @@ let lat4 = document.getElementById('lat4');
 let lng4 = document.getElementById('lng4');
 let username = document.getElementById('username').innerText;
 let profileBtn = document.querySelectorAll('.js-profile-btn');
+let chatBtn = document.querySelectorAll('.js-chat-btn');
 let rentval , electricityval , image1val , image2val , image3val , wifival;
 let latlngarr = [
     [parseFloat(lat1.innerText), parseFloat(lng1.innerText)],
@@ -42,6 +43,15 @@ holderlatlngarr[stopper][1] = latlngarr[i][1];
 stopper++;
 }
 }
+
+chatBtn.forEach((btn)=>{
+btn.addEventListener('click' , ()=>{
+window.location.href = `/sajilo-rent/chatapplication/messenger.php?email=${username}`
+});
+});
+
+
+
 menu.addEventListener('click' , function()
 {
 if(menuClick === false)

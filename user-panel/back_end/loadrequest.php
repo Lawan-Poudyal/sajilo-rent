@@ -7,7 +7,7 @@ if($conn->connect_error)
     die(''. $conn->connect_error);
 }
 $query = 'SELECT rentrequest.sender , rentrequest.lat , rentrequest.lng , profilepicture.image FROM rentrequest 
-INNER JOIN profilepicture ON rentrequest.sender = profilepicture.email
+LEFT JOIN profilepicture ON rentrequest.sender = profilepicture.email
 WHERE rentrequest.receiver = ?';
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s" , $email);

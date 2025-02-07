@@ -6,13 +6,13 @@ if($conn->connect_error)
 {
     die(''. $conn->connect_error);
 }
-$query = "SELECT booked.email ,profilepicture.image, signin.firstName , signin.lastName
+$query = "SELECT booked.email ,booked.owner,profilepicture.image, signin.firstName , signin.lastName
 FROM booked 
-INNER JOIN  profilepicture ON booked.email = profilepicture.email
-INNER JOIN signin  ON booked.email = signin.email
-WHERE booked.owner = ?";
+LEFT JOIN  profilepicture ON booked.email = profilepicture.email
+INNER JOIN signin  ON booked.email = signin.email 
+WHERE booked.owner = ? OR booked.email = ?"; // remove the OR part later on
 $stmt = $conn->prepare($query);
-$stmt->bind_param("s" , $email);
+$stmt->bind_param("ss" , $email , $email);
 if(!$stmt->execute()){
     die("lol error");
 }
@@ -21,7 +21,13 @@ if($result->num_rows > 0)
 {
     while($row = $result->fetch_assoc())
     {   
+        if($row['owner'] === $email)
+        {
         array_push($jsonarray , ["email" => $row['email'] , "username"=> $row['firstName'].' '.$row['lastName'] , "image"=>$row['image']]);
+        }
+        else{
+            array_push($jsonarray , ["email" => $row['owner'] , "username"=> $row['firstName'].' '.$row['lastName'] , "image"=>$row['image']]);
+        }
     }
 }
 $stmt->close();

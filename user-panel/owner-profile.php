@@ -87,7 +87,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
         </div>
         </div>
         <div class="tenants-card js-tenants-card">
-        <img src="/sajilo-rent/resources/add.png" alt="something-in-the-way">
+        <img src="/sajilo-rent/resources/add.png" alt="photo-no-uploaded">
         <div class="tenants-credential"><span class="tenants-username"><?php echo $_SESSION['username']?></span> <span class="tenants-email"><?php echo $_SESSION['email']?></span></div>
         <div class="interactive-btn">
             <button class="kick-out">Kick Out</button>

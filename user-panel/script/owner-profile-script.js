@@ -314,16 +314,17 @@ tenantsxml.onload = function (){
         `;
         
     });
-    if(arr.length > 0)
-    {
+    
     document.querySelector('.js-tenants-profile').innerHTML = HTML;
     const modal = document.querySelector('.js-review');
-    const kickOut = document.querySelector('.kick-out');
-    kickOut.addEventListener('click',(event)=>{
-       reciever = event.currentTarget.dataset.tenant;
-        modal.showModal();
+    const kickOut = document.querySelectorAll('.kick-out');
+    kickOut.forEach(button =>{
+        button.addEventListener('click',(event)=>{
+            reciever = event.currentTarget.dataset.tenant;
+             modal.showModal();
+         })
     })
-    }
+    
 }
 else{
     console.log(this.status + this.readyState);
@@ -387,7 +388,7 @@ loadCommentXml.onload = function(){
     {
        commentObj =  JSON.parse(this.responseText);
        console.log(commentObj);
-       loadRating(commentObj);
+       loadRating(commentObj); // reciever  reviewer rating comment
        let HTML = ``;
        commentObj.forEach(comment =>{
         HTML += `
@@ -433,16 +434,23 @@ function loadDecimal(averageRating){
 }
 
 /////////////////////////////////// test of fetch and promise  /////////////////////////////////
-function testFunction(){
-const promise = fetch(`/sajilo-rent/user-panel/back_end/loaderequest.php?email=${email.innerText}`);
-return promise;
+function doSomething(){
+    fetch(`/sajilo-rent/user-panel/back_end/loadcomment.php?email=${email.innerText}`).
+    then((response)=>{
+    return response.json();
+    })
+    .then(data=>{
+    console.log(data);
+    });
+    }
+    doSomething();
+    // we can do it in a better way
+
+async function doBetter()
+{
+ let response = await fetch(`/sajilo-rent/user-panel/back_end/loadcomment.php?email=${email.innerText}`);
+ let data = await response.json();
+ console.log(data);
 }
-console.log(testFunction());
-
-
-
-
-
-
-
+doBetter();
 ////////////////////////////////////////////////////////////
