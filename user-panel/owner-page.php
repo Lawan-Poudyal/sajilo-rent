@@ -60,7 +60,7 @@ $stmt->close();
                 <div class="header-nav-element-side-menu">
                      <div class="side-option js-profile-btn"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
                      <div class="side-option"><figure><img src="/sajilo-rent/resources/house.png.png" alt="" width="25" height="25"></figure></div>
-                     <div class="side-option"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
+                     <div class="side-option js-chat-btn"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
                      <div class="side-option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
                     </div>
                 </div>  
@@ -71,7 +71,7 @@ $stmt->close();
                     <div class="dropdown-menu" id="js-drop-down">
                      <div class="option js-profile-btn"><figure><img src="/sajilo-rent/resources/profile.png" alt="" width="25" height="25"></figure></div>
                      <div class="option"><figure><img src="/sajilo-rent/resources/house.png.png" alt="" width="25" height="25"></figure></div>
-                     <div class="option"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
+                     <div class="option js-chat-btn"><figure><img src="/sajilo-rent/resources/chat.png" alt="" width="25" height="25"></figure></div>
                      <div class="option"><figure><img src="/sajilo-rent/resources/dollar.png" alt="" width="25" height="25"></figure></div>   
                     </div>
                 </div>
