@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const displayUserName = document.querySelector('.displayUserName');
     userButton.addEventListener('click', () => {
         displayUserName.classList.toggle('show');
-        window.location = "/sajilo-rent/userprofiles/studentProfile.php"
+        window.location = "/sajilo-rent/studentsection/student-profile.php"
     });
 
     window.addEventListener('click', (e) => {

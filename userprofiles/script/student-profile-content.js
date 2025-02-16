@@ -9,9 +9,12 @@ const reviewerCount = document.querySelector(".reviewer-count");
 const ratingImage = document.querySelector(".rating-image");
 const imgBlock = document.querySelector('.js-house-image');
 const profileimage = document.querySelector('.profile-image')
-let imagePathHouse = '/sajilo-rent/user-panel/back_end/';
-let imagePathStudent = '/sajilo-rent/studentsection/backend/';
 
+const PATHS = {
+    house: '/sajilo-rent/user-panel/back_end/',
+    student: '/sajilo-rent/studentsection/backend/',
+    defaultProfile: '../resources/profile-related/default-profile.png'
+};
 document.addEventListener('DOMContentLoaded', () => {
     notResiding.classList.add("hide");
 
@@ -36,11 +39,16 @@ function putHouseContent(jsonDataProfile) {
         housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
         Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  // Fixed here
         imgBlock.src = imagePathHouse + jsonDataProfile['image1'];
-        profileimage.src = imagePathStudent + jsonDataProfile['image'];
-        console.log(imgBlock);
-        console.log(imagePathStudent + jsonDataProfile['image']);
-
-    }
+        console.log(jsonDataProfile["image"]);
+        // if (jsonDataProfile["image"] && jsonDataProfile["image"] !== "null") { 
+      
+        //     // profileimage.src = imagePathStudent + jsonDataProfile["image"];
+        // } else {
+        //     profileimage.src = "../resources/profile-related/default-profile.png";
+        // }
+        
+        
+    }   
     else{
         houseCard.classList.add('hide');
         notResiding.classList.remove('hide')
