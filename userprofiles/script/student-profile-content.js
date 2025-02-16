@@ -7,7 +7,11 @@ const mainComment = document.querySelector(".main-comment");
 const ratingNumber = document.querySelector(".rating-number")
 const reviewerCount = document.querySelector(".reviewer-count");
 const ratingImage = document.querySelector(".rating-image");
-// let imagePath = '/sajilo-rent/userprofiles/backend/';
+const imgBlock = document.querySelector('.js-house-image');
+const profileimage = document.querySelector('.profile-image')
+let imagePathHouse = '/sajilo-rent/user-panel/back_end/';
+let imagePathStudent = '/sajilo-rent/studentsection/backend/';
+
 document.addEventListener('DOMContentLoaded', () => {
     notResiding.classList.add("hide");
 
@@ -29,8 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function putHouseContent(jsonDataProfile) {
     if(!jsonDataProfile["status"]){
 
-        housePrice.innerText = `Price : ${jsonData["price"]}`;
-        Owner.innerText = `Owner : ${jsonData["username"]}`;  // Fixed here
+        housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
+        Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  // Fixed here
+        imgBlock.src = imagePathHouse + jsonDataProfile['image1'];
+        profileimage.src = imagePathStudent + jsonDataProfile['image'];
+        console.log(imgBlock);
+        console.log(imagePathStudent + jsonDataProfile['image']);
+
     }
     else{
         houseCard.classList.add('hide');

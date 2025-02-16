@@ -23,7 +23,7 @@ error_reporting(E_ALL);
 
     <section class="section-profile">
         <div class="user-information">
-            <div class="avatar"><img src="../resources/profile.png" alt="Profile image"></div>
+            <div class="avatar"><img src="../resources/profile.png" alt="Profile image" class="profile-image"></div>
             <div class="personal-info">
                 <p class="user-name"><?php echo $_SESSION["s_username"]?></p>
                 <p class="user-status">Student</p>
@@ -37,7 +37,7 @@ error_reporting(E_ALL);
     <p class="text-student text-owner">Currently Residing in</p>
     <div class="current-residence">
         <div class="house-card">
-            <img alt="Current residence image" src="../resources/rooms/room1.jpg" class="living-house-image">
+            <img alt="Current residence image" class="living-house-image js-house-image" >
             <div class="house-information">
                 <div class="residence-details">
                     <p class="house-price"></p>

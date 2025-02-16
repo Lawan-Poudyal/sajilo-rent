@@ -24,10 +24,13 @@ if (!isset($_SESSION["s_email"])) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT housedetails.username, housedetails.price,housedetails.image1,housedetails.image2,housedetails.image3 
-                        FROM housedetails 
-                        INNER JOIN booked ON booked.owner = housedetails.username 
-                        WHERE booked.email = ?");
+$stmt = $conn->prepare("SELECT housedetails.username, housedetails.price, housedetails.image1, 
+       housedetails.image2, housedetails.image3, profilepicture.image
+        FROM housedetails
+        INNER JOIN booked ON booked.owner = housedetails.username
+        INNER JOIN profilepicture ON profilepicture.email = booked.email
+        WHERE booked.email = ?;
+        ");
 
 $stmt->bind_param("s", $_SESSION["s_email"]);
 
