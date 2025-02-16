@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    
 }
 body
 {padding: 2rem;
@@ -13,7 +14,7 @@ body > * {
 
 /* user-profile */
 
-.section-profile{
+.section-profile {
     display: flex;
     height: 25vh;
     align-items: center;
@@ -23,15 +24,31 @@ body > * {
     border-radius: 2rem;
     margin-bottom: 1rem;
 }
+
 .avatar {
-    position: relative;
     width: 200px; 
     height: 200px; 
     overflow: hidden; 
-    border-radius: 50%; 
+    border-radius: 50%;
 }
-
-
+.avatar-wrapper{
+    position: relative;
+}
+.change-profile-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    bottom: 10px;  /* Changed from bottom: 1 */
+    right: 10px;   /* Changed from right: 65 */
+    cursor: pointer;
+}
+.user-information{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
 .profile-image { 
     width: 100%;
@@ -50,12 +67,9 @@ body > * {
     border-radius: 1rem;
     padding: .2rem .5rem;
 }
-.user-information{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+#imageInput {
+    display: none;
 }
-
 /* user-recents */
 
 .section-recent{

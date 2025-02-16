@@ -9,6 +9,8 @@ const reviewerCount = document.querySelector(".reviewer-count");
 const ratingImage = document.querySelector(".rating-image");
 const imgBlock = document.querySelector('.js-house-image');
 const profileimage = document.querySelector('.profile-image')
+const changeProfile = document.querySelector('.change-profile-icon');
+const imageInput = document.querySelector('#imageInput'); 
 
 const PATHS = {
     house: '/sajilo-rent/user-panel/back_end/',
@@ -95,3 +97,44 @@ function adjustAverage(ratings, total) {
 
     return total;
 }
+
+
+//change or add profile pictures
+
+changeProfile.addEventListener('click', (event) => {
+    imageInput.click();
+});
+
+imageInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        setProfilePic(file);
+    }
+});
+
+async function setProfilePic(file) {
+    try {
+        const formData = new FormData();
+        formData.append('image', file); // Changed from 'profile_image' to 'image' to match PHP
+
+        const response = await fetch('/sajilo-rent/studentsection/backend/addprofilepic.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Preview the image
+        const reader = new FileReader();
+        reader.onload = () => {
+            profileimage.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+
+    } catch (error) {
+        console.error('Error uploading profile picture:', error);
+    }
+}
+

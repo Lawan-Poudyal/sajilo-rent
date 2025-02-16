@@ -8,7 +8,7 @@ let starSymb = "⭐";
 let ratingHouse,ratingOwner;
 
 document.addEventListener("DOMContentLoaded", () => {
-    leaveHouse = document.querySelector(".leaveButton");
+    leaveHouse = document.querySelector(".leave-house");
     modal = document.querySelector(".review-container");
     submitButton = document.querySelector(".submit-button");
     reviewForm = document.querySelector(".review-form");

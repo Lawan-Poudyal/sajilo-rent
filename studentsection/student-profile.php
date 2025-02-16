@@ -12,7 +12,9 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./styles/student-profile.css">
+    <link rel="stylesheet" href="./styles/leavehouse-style.css">
     <script src="./script/student-profile-script.js" defer></script>
+    <script src="./script/leave.js" defer></script>
 </head>
 <body>
     <header>
@@ -23,7 +25,12 @@ error_reporting(E_ALL);
 
     <section class="section-profile">
         <div class="user-information">
-            <div class="avatar"><img alt="Profile image" class="profile-image">
+            <div class="avatar-wrapper">
+                <div class="avatar">
+                    <img alt="Profile image" class="profile-image">
+                    <img src="../resources/profile-related/change-profile.svg" class="change-profile-icon" alt="">
+                    <input type="file" id="imageInput" accept="image/*">
+                </div>
             </div>
             <div class="personal-info">
                 <p class="user-name"><?php echo $_SESSION["s_username"]?></p>
@@ -77,5 +84,37 @@ error_reporting(E_ALL);
             </div>
         </div>
     </section>
+    <dialog class="review-container">`
+                <h1 class="text">Write a Review</h1>
+                <form  method="dialog" class="review-form"> 
+                    <div class="owner-section">
+                        <div class="heading-ratings">
+                            <h2 class="owner-heading">Review for Owner</h2>
+                            <div id="stars" >
+                                <span class="star js-star-owner" data-value="1">★</span>
+                                <span class="star js-star-owner" data-value="2">★</span>
+                                <span class="star js-star-owner" data-value="3">★</span>
+                                <span class="star js-star-owner" data-value="4">★</span>
+                                <span class="star js-star-owner" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <textarea class="writeText" name = "ownerReview" placeholder="Write a review for Owner"></textarea>
+                    </div>
+                    <div class="house-section">
+                        <div class="heading-ratings">
+                            <h2 class="house-heading">Review for House</h2>
+                            <div id="stars" >
+                                <span class="star js-star-house" data-value="1">★</span>
+                                <span class="star js-star-house" data-value="2">★</span>
+                                <span class="star js-star-house" data-value="3">★</span>
+                                <span class="star js-star-house" data-value="4">★</span>
+                                <span class="star js-star-house" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <textarea class="writeText" name = "houseReview" placeholder="Write a review for house"></textarea>
+                    </div>
+                    <button class="submit-button" type="submit" value="Submit">Submit</button>
+                </form>
+            </dialog>
 </body>
 </html>
