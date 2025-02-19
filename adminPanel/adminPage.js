@@ -1,9 +1,11 @@
 const body = document.body ;
 const section = body.querySelector('section');
 const dataBox = section.querySelector('.data_box')
+const checkBox = section.querySelector('.check-box');
+const buttonClass = checkBox ? checkBox.className : '';
 const dataBlock = body.getElementsByClassName('data_block');
 const  menu_btn = body.querySelector('.menu-btn');
-const buttonClass =section.querySelector('.check-box').className;
+// const buttonClass =section.querySelector('.check-box').className;
 function addGlobalEventListener(type , selector , callback , parent) {
 parent.addEventListener(type , function(e) {
    if(e.target.className==='check-box'){
@@ -37,8 +39,6 @@ menu_btn.addEventListener('click',()=>{
 const admin_btn = document.querySelector('.admin-btn');
 const admin_bar = document.querySelector('.logout-bar');
 document.addEventListener('click' , (e)=>{
-    console.log(admin_btn.className);
-    console.log(e.target.className);
     if(e.target.className===admin_btn.className){
         admin_bar.style="display:unset";
     }
