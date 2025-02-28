@@ -249,65 +249,6 @@ background-color: #c53030;
     height: calc(100vh - var(--navbar-total-space));
     overflow: hidden; /* Prevent scrolling within main-body */
 }
-.aside-bar {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    width: 60px; /* Initial collapsed width to show only icons */
-    background-color: #f8f8f8;
-    border-radius: 0.5rem;
-    transition: width 0.3s ease; /* Smooth transition for width change */
-    overflow: hidden; /* Prevents content from showing outside container */
-    padding: 1.5rem 0.8rem;
-}
-
-.aside-bar:hover {
-    width: 15vw; /* Expanded width on hover */
-}
-
-.main-links, .bottom-links {
-    display: flex;
-    flex-flow: column;
-    /* gap: 1.5rem; */
-    width: 100%;
-}
-
-/* Style for all links */
-a {
-    display: flex;
-    height: 6rem;
-    align-items: center;
-    gap: 1rem;
-    font: 1.2rem Arial, sans-serif;
-    text-decoration: none;
-    color: #000;
-    /* border: 0.2rem solid #e0e6ed; */
-    border-radius: 0.2rem;
-    padding: 0.2rem;
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden; /* Ensures the link doesn't break layout */
-}
-a:hover{
-    background-color: #e0e6ed;
-    transition: all 0.3s ease;    
-}
-
-/* Style for icons */
-a img {
-    min-width: 24px;
-    width: 24px;
-    height: 24px;
-}
-
-/* Style for link text */
-.link-text {
-    opacity: 0; /* Hide text initially */
-    transition: opacity 0.3s ease; /* Smooth fade-in for text */
-}
-
-.aside-bar:hover .link-text {
-    opacity: 1; /* Show text on hover */
-}
 
 /* Ensure map takes remaining space */
 #map {

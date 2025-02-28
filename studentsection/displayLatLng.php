@@ -58,12 +58,12 @@
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./styles/style.css"> 
+    <link rel="stylesheet" href="../universal-styling/aside-bar.css">
     <title>Document</title>
     <script type = "module" src="./script/main.js"></script>
-
+    
 </head>
 <body>
-
     <nav>
         <div class="nav">
           <div class="sajilo-rent-logo-div">
@@ -100,19 +100,7 @@
         </div>
       </nav>
     <section class="main-body">
-        <aside class="aside-bar">
-            <div class="main-links">
-                <a href="./student-profile.php"><img class="user-proile-pic" src="https://img.icons8.com/fluency-systems-regular/50/user--v1.png" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
-                <a href="#"><img src="https://img.icons8.com/ios/50/messages-mac.png" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
-                <a href="#"><img class="tenants-proile-pic" src="https://img.icons8.com/ios/50/conference-call.png" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
-                <a href=""><img class="rent-request-pic" src="https://img.icons8.com/fluency-systems-regular/50/request-feedback.png" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
-                <a href="#"><img class="change-password-pic" src="https://img.icons8.com/fluency-systems-regular/50/password-window.png" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
-            </div>
-            <div class="bottom-links">
-                <a href="#"><img class="log-out-pic" src="https://img.icons8.com/fluency-systems-regular/50/exit--v1.png" alt="log out icon"/><span class="link-text log-out">Log-out</span></a>
-                <a href="#"><img class="about-pic" src="https://img.icons8.com/fluency-systems-regular/50/about.png" alt="about icon"/><span class="link-text about">About</span></a>
-            </div>
-        </aside>
+        <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php'?>
         <div id="map">
         <button class="closeRouting" style="display: none;">Close Routing</button>
         </div>

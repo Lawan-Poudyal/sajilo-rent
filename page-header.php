@@ -7,10 +7,10 @@
     <title>Document</title>
 
 
-    <link rel="stylesheet" href="./universal-styling/page-header.css">
+    <link rel="stylesheet" href="/sajilo-rent/universal-styling/page-header.css">
     </link>
 
-    <link rel="stylesheet" href="./student-scroll-section/styles/general.css">
+    <link rel="stylesheet" href="/sajilo-rent/student-scroll-section/styles/general.css">
     </link>
 </head>
 
@@ -21,8 +21,8 @@
         <div class="header-left-section">
             <div>
                 <a class="header-link" href="./scroll.html">
-                    <img src="./resources/logo.svg" class="sajilo-rent-logo" />
-                    <img src="./resources/logo.png" class="sajilo-rent-mobile-logo" />
+                    <img src="/sajilo-rent/resources/logo.svg" class="sajilo-rent-logo" />
+                    <img src="/sajilo-rent/resources/logo.png" class="sajilo-rent-mobile-logo" />
                 </a>
             </div>
         </div>
@@ -34,10 +34,10 @@
             <input type="text" placeholder="Search" class="search-bar" />
 
             <button class="filter-btn" onclick="toggleFilters()">
-                <img src="./resources/filter-icon-black.png" alt="Filter" class="filter-icon">
+                <img src="/sajilo-rent/resources/filter-icon-black.png" alt="Filter" class="filter-icon">
             </button>
             <button class="search-btn">
-                <img src="./resources/search-icon.png" alt="Search" class="search-icon">
+                <img src="/sajilo-rent/resources/search-icon.png" alt="Search" class="search-icon">
             </button>
 
 
@@ -77,13 +77,13 @@
         <div class="header-right-section">
             <a class="map-link header-link">
 
-                <img class="map-icon" src="./resources/map-icon.png" />
+                <img class="map-icon" src="/sajilo-rent/resources/map-icon.png" />
 
                 <span class="map-text">Map</span>
             </a>
 
             <a class="profile-link header-link" href="#">
-                <img class="profile-icon" src="./resources/profile-icon-white.png" />
+                <img class="profile-icon" src="/sajilo-rent/resources/profile-icon-white.png" />
                 <span class="profile-text">Profile</span>
             </a>
 

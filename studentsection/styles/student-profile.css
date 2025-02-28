@@ -4,14 +4,12 @@
     padding: 0;
     
 }
-body
-{padding: 2rem;
-}
-body > * {
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
+.main-body{
+    display: flex;
+    margin: 0.2rem 2rem;
+    gap: 1rem;
+}
 /* user-profile */
 
 .section-profile {

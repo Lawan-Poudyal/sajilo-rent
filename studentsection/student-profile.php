@@ -11,79 +11,84 @@ error_reporting(E_ALL);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../universal-styling/aside-bar.css">
     <link rel="stylesheet" href="./styles/student-profile.css">
     <link rel="stylesheet" href="./styles/leavehouse-style.css">
+    <link rel="stylesheet" href = "../universal-styling/header.css">
     <script src="./script/student-profile-script.js" defer></script>
     <script src="./script/leave.js" defer></script>
 </head>
 <body>
     <header>
-        <nav>
-
-        </nav>
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
     </header>
-
-    <section class="section-profile">
-        <div class="user-information">
-            <div class="avatar-wrapper">
-                <div class="avatar">
-                    <img alt="Profile image" class="profile-image">
-                    <img src="../resources/profile-related/change-profile.svg" class="change-profile-icon" alt="">
-                    <input type="file" id="imageInput" accept="image/*">
+    <div class="main-body">
+    <?php
+        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
+    ?>
+    <div class="section-wrapper">
+        <section class="section-profile">
+            <div class="user-information">
+                <div class="avatar-wrapper">
+                    <div class="avatar">
+                        <img alt="Profile image" class="profile-image">
+                        <img src="../resources/profile-related/change-profile.svg" class="change-profile-icon" alt="">
+                        <input type="file" id="imageInput" accept="image/*">
+                    </div>
+                </div>
+                <div class="personal-info">
+                    <p class="user-name"><?php echo $_SESSION["s_username"]?></p>
+                    <p class="user-status">Student</p>
                 </div>
             </div>
-            <div class="personal-info">
-                <p class="user-name"><?php echo $_SESSION["s_username"]?></p>
-                <p class="user-status">Student</p>
+            <button class="message-user">
+                Message
+            </button>
+        </section>
+        <section class="section-recent">
+        <p class="text-student text-owner">Currently Residing in</p>
+        <div class="current-residence">
+            <div class="house-card">
+                <img alt="Current residence image" class="living-house-image js-house-image" >
+                <div class="house-information">
+                    <div class="residence-details">
+                        <p class="house-price"></p>
+                        <p class="owner-name"></p>
+                    </div>
+                    <div class="residence-status">
+                        <button class="leave-house">Leave House</button>
+                    </div>
+                </div>
+            </div>
+            <div class="not-residing">
+                <h1>You are not residing in any house</h1>
             </div>
         </div>
-        <button class="message-user">
-            Message
-        </button>
-    </section>
-    <section class="section-recent">
-    <p class="text-student text-owner">Currently Residing in</p>
-    <div class="current-residence">
-        <div class="house-card">
-            <img alt="Current residence image" class="living-house-image js-house-image" >
-            <div class="house-information">
-                <div class="residence-details">
-                    <p class="house-price"></p>
-                    <p class="owner-name"></p>
+        </section>
+        <section class="section-review">
+            <p class="text-comment">Review</p>
+            <div class="rating-comment">
+                <div class="main-rating">
+                    <div class="rating-box">
+                        <div class="rating-number"></div>
+                        <div class="rating-text">Out of 5</div>
+                    </div>
+                    <div class="write-review">
+                        <div class="rating-image-counter">
+                            <img class="rating-image" src = "../resources/ratings/rating-30.png" alt="star rating image">
+                            <p class="reviewer-count"></p>
+                        </div>
+                        <div class="share-review">
+                            <p class="text-review">Here's some review About you</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="residence-status">
-                    <button class="leave-house">Leave House</button>
+                <div class="main-comment">
                 </div>
             </div>
-        </div>
-        <div class="not-residing">
-            <h1>You are not residing in any house</h1>
+            </section>
         </div>
     </div>
-</section>
-    <section class="section-review">
-        <p class="text-comment">Review</p>
-        <div class="rating-comment">
-            <div class="main-rating">
-                <div class="rating-box">
-                    <div class="rating-number"></div>
-                    <div class="rating-text">Out of 5</div>
-                </div>
-                <div class="write-review">
-                    <div class="rating-image-counter">
-                        <img class="rating-image" src = "../resources/ratings/rating-30.png" alt="star rating image">
-                        <p class="reviewer-count"></p>
-                    </div>
-                    <div class="share-review">
-                        <p class="text-review">Here's some review About you</p>
-                    </div>
-                </div>
-            </div>  
-            <div class="main-comment">
-
-            </div>
-        </div>
-    </section>
     <dialog class="review-container">`
                 <h1 class="text">Write a Review</h1>
                 <form  method="dialog" class="review-form"> 
