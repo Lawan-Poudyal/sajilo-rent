@@ -59,50 +59,62 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./styles/style.css"> 
     <title>Document</title>
-    <script type="module" src="./script/main.js" defer></script>
+    <script type = "module" src="./script/main.js"></script>
 
 </head>
 <body>
 
-<nav>
+    <nav>
         <div class="nav">
-            <!-- <div class="logo">
-                <button class="saajiloRentLogo" ></button> -->
-            <!-- </div> -->
-            <button class="menu">Menu</button>
-
-            <div class="selectWrapper">
-                <select name = "price" class = "price">
-                    <option value="10000" selected>Price</option>
-                    <option value="3000">3000</option>
-                    <option value="3500">3500</option>
-                    <option value="4000">4000</option>
-                    <option value="4500">4500</option>
-                    <option value="5000">5000</option>
-                    <option value="5500">5500</option>
-                    <option value ="6000">6000</option>
-                </select>
-                
-                <select name = "houseType" class="housetype">
-                    <option value="" selected>Type</option>
-                    <option value="1">Single Room</option>
-                    <option value="2">Double Room</option>
-                    <option value="3">Triple Room</option>
-                    <option value="4">Appartment</option>
-                </select>
-            </div>
-            <button class="closeRouting" style="display: none;">
-                Close Routing
+          <div class="sajilo-rent-logo-div">
+            <div class="sajilo-rent-logo"></div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">
+              Price
+              <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon"/>
             </button>
-            <div class="userInformation">
-                <button class="userButton"><i class='bx bx-user'></i></button>
-                <div class="displayUserName">
-                    <div class="email"><?php echo $_SESSION['s_email']; ?></div>
-                    <div class="userName"><?php echo $_SESSION['s_username']?></div>
-                 </div>
+            <div class="dropdown-content" id="priceDropdown">
+              <div class="price-option">$3,500</div>
+              <div class="price-option">$4,000</div>
+              <div class="price-option">$4,500</div>
+              <div class="price-option">$5,000</div>
+              <div class="price-option">$5,500</div>
+              <div class="price-option">$6,000</div>
+              <div class="price-option">$6,500</div>
             </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">
+              Rooms
+              <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon"/>
+            </button>
+            <div class="dropdown-content" id="roomsDropdown">
+              <div class="room-option">1 Room</div>
+              <div class="room-option">2 Rooms</div>
+              <div class="room-option">3 Rooms</div>
+              <div class="room-option">4 Rooms</div>
+            </div>
+          </div>
+        
         </div>
-    </nav>
-    <div id="map"></div>
-        </body>
+      </nav>
+    <section class="main-body">
+        <aside class="aside-bar">
+            <div class="main-links">
+                <a href="./student-profile.php"><img class="user-proile-pic" src="https://img.icons8.com/fluency-systems-regular/50/user--v1.png" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
+                <a href="#"><img src="https://img.icons8.com/ios/50/messages-mac.png" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
+                <a href="#"><img class="tenants-proile-pic" src="https://img.icons8.com/ios/50/conference-call.png" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
+                <a href=""><img class="rent-request-pic" src="https://img.icons8.com/fluency-systems-regular/50/request-feedback.png" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
+                <a href="#"><img class="change-password-pic" src="https://img.icons8.com/fluency-systems-regular/50/password-window.png" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
+            </div>
+            <div class="bottom-links">
+                <a href="#"><img class="log-out-pic" src="https://img.icons8.com/fluency-systems-regular/50/exit--v1.png" alt="log out icon"/><span class="link-text log-out">Log-out</span></a>
+                <a href="#"><img class="about-pic" src="https://img.icons8.com/fluency-systems-regular/50/about.png" alt="about icon"/><span class="link-text about">About</span></a>
+            </div>
+        </aside>
+        <div id="map">
+        <button class="closeRouting" style="display: none;">Close Routing</button>
+        </div>
+    </section>
 </html>

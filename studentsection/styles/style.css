@@ -14,16 +14,19 @@
     --button-text-color:gray;
 
     /* navbar */
-    --navbar-background-color:black;
-    --navbar-padding:00.5rem;
-    --navbar-margin:0.5rem;
+    --navbar-background-color: ;
+    --navbar-padding:0.5rem;
+    --navbar-height: 2.5rem;
+    --navbar-total-space: calc(var(--navbar-height) );
+
 }
 .nav{
     padding:var(--navbar-padding);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 16px;
-    /* background: var(--navbar-background-color); */
+    height: var(--navbar-height);
+    background: var(--navbar-background-color);
 }
 button, select{
     width: var(--button-width);
@@ -31,10 +34,10 @@ button, select{
     border-radius: var(--button-border-radius);
     font-size: var(--button-font-size);
     border-color: var(--button-border-color);
-   
 }   
 #map { 
-    height: 80vh; 
+    border-radius: 0.5rem;
+    height: auto; 
     width: 100%;
 }
 .leaflet-popup-content-wrapper{
@@ -54,6 +57,9 @@ button, select{
     gap: 10px;
 }
 .leaflet-popup-close-button{
+    display: none;
+}
+.leaflet-bottom.leaflet-right{
     display: none;
 }
 .top-div,.bottom-div{
@@ -102,4 +108,211 @@ button, select{
 }
 .displayUserName{
     display: none;
+}
+
+/* nav-bar */
+nav {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.nav {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    position: relative;
+}
+.sajilo-rent-logo {
+    background: url("/sajilo-rent/resources/logo.png") no-repeat center;
+    background-size: contain; /* or 'cover' depending on your needs */
+    height: 50px; /* explicit height */
+    width: 50px; /* explicit width */
+    
+    position: absolute;
+    left: 0px;
+    bottom: 0;
+}
+/* Dropdown button styling */
+.dropbtn {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.dropbtn:hover {
+    background-color: #e9ecef;
+}
+
+.dropbtn.active {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+
+.dropdown-icon {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s ease;
+}
+
+.dropbtn.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 180px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    z-index: 1000;
+    margin-top: 5px;
+    border: 1px solid #eaeaea;
+}
+
+.dropdown-content.show {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+}
+
+.dropdown-content > div {
+    padding: 10px 16px;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dropdown-content > div:hover {
+    background-color: #4a5568;
+    color: #ffffff;
+}
+
+/* Close routing button */
+.closeRouting {
+    position: absolute;
+    background-color: #e53e3e;
+    width: 10rem;
+    color: white;
+    border: none;
+    padding: 0.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    z-index: 800;
+    top: 200px;
+    right: 0px;
+}
+
+.closeRouting:hover {
+background-color: #c53030;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+}
+
+.dropdown-content {
+    width: 100%;
+    position: relative;
+}
+}
+
+/* aside-bar */
+.main-body {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    /* Use the total navbar space in the calculation */
+    height: calc(100vh - var(--navbar-total-space));
+    overflow: hidden; /* Prevent scrolling within main-body */
+}
+.aside-bar {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 60px; /* Initial collapsed width to show only icons */
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
+    transition: width 0.3s ease; /* Smooth transition for width change */
+    overflow: hidden; /* Prevents content from showing outside container */
+    padding: 1.5rem 0.8rem;
+}
+
+.aside-bar:hover {
+    width: 15vw; /* Expanded width on hover */
+}
+
+.main-links, .bottom-links {
+    display: flex;
+    flex-flow: column;
+    /* gap: 1.5rem; */
+    width: 100%;
+}
+
+/* Style for all links */
+a {
+    display: flex;
+    height: 6rem;
+    align-items: center;
+    gap: 1rem;
+    font: 1.2rem Arial, sans-serif;
+    text-decoration: none;
+    color: #000;
+    /* border: 0.2rem solid #e0e6ed; */
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Ensures the link doesn't break layout */
+}
+a:hover{
+    background-color: #e0e6ed;
+    transition: all 0.3s ease;    
+}
+
+/* Style for icons */
+a img {
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+/* Style for link text */
+.link-text {
+    opacity: 0; /* Hide text initially */
+    transition: opacity 0.3s ease; /* Smooth fade-in for text */
+}
+
+.aside-bar:hover .link-text {
+    opacity: 1; /* Show text on hover */
+}
+
+/* Ensure map takes remaining space */
+#map {
+    flex: 1;
+    z-index: 0;
+    overflow: hidden;
+    position: relative;
 }

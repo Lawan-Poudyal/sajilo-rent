@@ -32,37 +32,10 @@ mapInstance.on('popupopen', function(event) {
     });
 });
 
-let price = document.querySelector('.price');
-let houseType = document.querySelector('.housetype');
-
-price.addEventListener('change', () => {
-    selecter.addMarkers();
-    selecter.priceTags();
-});
-
-houseType.addEventListener('change', () => {
-    selecter.addMarkers();
-    selecter.houseTypes();
-});
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    const userButton = document.querySelector('.userButton');
-    const displayUserName = document.querySelector('.displayUserName');
-    userButton.addEventListener('click', () => {
-        displayUserName.classList.toggle('show');
-        window.location = "/sajilo-rent/studentsection/student-profile.php"
-    });
-
-    window.addEventListener('click', (e) => {
-        if (!e.target.closest('.userInformation')) {
-            displayUserName.classList.remove('show');
-        }
-    });
-});
 
 mapInstance.on('popupopen', function(event) {
     const bookForRent = event.popup._contentNode.querySelector('.bookButton');
-    const studentName = document.querySelector('.email').textContent;
+    // const studentName = document.querySelector('.email').textContent;
     const contactDiv = event.popup._content.match(/Contact:\s*([^<]*)/);
     const ownerName = contactDiv[1];
     bookForRent.addEventListener('click', () => {
@@ -124,25 +97,23 @@ mapInstance.on('popupopen', function(event) {
 
 });
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     fetch('/sajilo-rent/studentsection/backend/saveLocation.php')
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log('Backend response:', data);
-//             if (data.status === 'success') {
-//                 const { lat, lng } = data;
+// navbar
 
-//                 // Center the map at the provided location
-//                 mapInstance.setView([lat, lng]);
+document.querySelectorAll('.dropbtn').forEach(element =>{
+   
+    element.addEventListener('click',()=>{
+        element.classList.toggle('active');
+        const dropdownContent = element.nextElementSibling;
+        dropdownContent.classList.toggle("show")
+})});   
 
-//                 // Add a popup at the location without a marker
-//                 L.popup()
-//                     .setLatLng([lat, lng])
-//                     .setContent("This is the selected location!")
-//                     .openOn(mapInstance);
-//             } else {
-//                 console.error('Error:', data.message);
-//             }
-//         })
-//         .catch(error => console.error('Error:', error)); 
-// });
+//profile
+
+//event delegation
+
+// const anchorDiv = document.querySelectorAll(".aside-bar a");
+// sidebarLinks.forEach(link => {
+//     link.addEventListener('click', function(e) {
+//       e.preventDefault();
+
+//     })});
