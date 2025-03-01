@@ -107,13 +107,3 @@ document.querySelectorAll('.dropbtn').forEach(element =>{
         dropdownContent.classList.toggle("show")
 })});   
 
-//profile
-
-//event delegation
-
-// const anchorDiv = document.querySelectorAll(".aside-bar a");
-// sidebarLinks.forEach(link => {
-//     link.addEventListener('click', function(e) {
-//       e.preventDefault();
-
-//     })});
