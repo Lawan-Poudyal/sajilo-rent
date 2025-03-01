@@ -8,14 +8,11 @@
     <link rel="stylesheet" href="../universal-styling/aside-bar.css">
     <link rel="stylesheet" href="./styles/student-profile.css">
     <link rel="stylesheet" href="./styles/leavehouse-style.css">
-    <link rel="stylesheet" href = "../universal-styling/header.css">
     <script src="./script/student-profile-script.js" defer></script>
     <script src="./script/leave.js" defer></script>
 </head>
 <body>
-    <header>
     <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
-    </header>
     <div class="main-body">
     <?php
         require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
