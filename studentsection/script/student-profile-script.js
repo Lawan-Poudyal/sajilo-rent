@@ -138,11 +138,3 @@ async function setProfilePic(file) {
     }
 }
 
-//change aside-bar settings
-const asideBar = document.querySelector('.aside-bar');
-asideBar.style.width = '15vw';
-const linkText = document.querySelectorAll('.link-text');
-console.log(linkText);
-linkText.forEach((element)=>{
-    element.style.opacity = '1';
-})

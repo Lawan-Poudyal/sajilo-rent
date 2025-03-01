@@ -3,15 +3,22 @@
     margin: 0;
     padding: 0;
 }
-body
-{padding: 2rem;
-}
-body > * {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+
 
 /* user-profile */
+.main-body{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.aside-bar-student {
+    width: 30vw;
+}
+
+.section-wrapper {
+    width: 70vw;
+}
 
 .section-profile{
     display: flex;
@@ -72,7 +79,7 @@ body > * {
 .house-posted{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 2rem .5rem; 
     align-content: flex-start;
 }

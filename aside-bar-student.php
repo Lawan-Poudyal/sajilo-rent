@@ -12,6 +12,16 @@
                 <a href="#"><img class="about-pic" src="https://img.icons8.com/fluency-systems-regular/50/about.png" alt="about icon"/><span class="link-text about">About</span></a>
             </div>
 </aside>
+
+<script>
+    const ownerLink = document.querySelector(".main-links a:nth-of-type(4)");
+    console.log(ownerLink);
+    ownerLink.addEventListener('click',(event)=>{
+        event.preventDefault();
+        
+    })
+</script>
+
 <!-- modal for changepassword -->
 
 <dialog class="dialog-change-password"> 

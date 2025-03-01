@@ -11,7 +11,13 @@
 }
 
 /* user-profile */
+.aside-bar-student {
+    width: 30vw;
+}
 
+.section-wrapper {
+    width: 70vw;
+}
 .section-profile {
     display: flex;
     height: 25vh;
