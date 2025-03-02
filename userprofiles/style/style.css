@@ -79,7 +79,7 @@
 .house-posted{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 2rem .5rem; 
     align-content: flex-start;
 }

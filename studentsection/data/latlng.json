@@ -18,6 +18,24 @@
         "house_facing_direction": "west"
     },
     {
+        "username": "abhim@123",
+        "no_of_rooms": "3",
+        "no_of_roommates": "2",
+        "gates_open": "06:00:00",
+        "gates_close": "22:00:00",
+        "wifi_price": "20",
+        "image1": "images\/room2.jpg",
+        "image2": "images\/room2_1.jpg",
+        "image3": "images\/room2_2.jpg",
+        "latitude": "27.7172",
+        "longitude": "85.324",
+        "price": "500",
+        "parking": "Yes",
+        "electricity": "Included",
+        "floor_level": "2",
+        "house_facing_direction": "North"
+    },
+    {
         "username": "sachin@gmail.com",
         "no_of_rooms": "1",
         "no_of_roommates": "1",

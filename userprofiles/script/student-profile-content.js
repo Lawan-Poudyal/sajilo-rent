@@ -20,33 +20,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     (async function(){
         try {
-            const response = await Promise.all([fetch("./backend/load-profile.php"), fetch("./backend/load-reviews.php")]);
+            const response = await Promise.all([fetch("./backend/load-profile-student.php"), fetch("./backend/load-reviews-student.php")]);
 
             const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
             console.log(jsonDataProfile,jsonDataReview);
             putHouseContent(jsonDataProfile);
-            putReviewContent(jsonDataReview)
+            putProfileContents(jsonDataProfile);
+            putReviewContent(jsonDataReview);
                 
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     })();
 });
+function putProfileContents(jsonDataProfile){
+    profileimage.src = PATHS.student + jsonDataProfile["image"];
+}
 
 function putHouseContent(jsonDataProfile) {
     if(!jsonDataProfile["status"]){
 
         housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
         Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  // Fixed here
-        imgBlock.src = imagePathHouse + jsonDataProfile['image1'];
+        imgBlock.src = PATHS.house + jsonDataProfile['image1'];
         console.log(jsonDataProfile["image"]);
-        // if (jsonDataProfile["image"] && jsonDataProfile["image"] !== "null") { 
-      
-        //     // profileimage.src = imagePathStudent + jsonDataProfile["image"];
-        // } else {
-        //     profileimage.src = "../resources/profile-related/default-profile.png";
-        // }
-        
         
     }   
     else{
@@ -54,8 +51,8 @@ function putHouseContent(jsonDataProfile) {
         notResiding.classList.remove('hide')
     }
 }   
-function putReviewContent(jsonDataReview){
-    if(!jsonDataReview["status"]){
+function putReviewContent(jsonDataReview) {
+    if(!jsonDataReview["status"]) {
         let totalRating = 0;
        
         reviewerCount.innerText = `${jsonDataReview.length} Reviewers`;
@@ -68,37 +65,26 @@ function putReviewContent(jsonDataReview){
                             <p class="reviewer-name">${element["reviewer"]}</p>
                             <p class="review-date">${element["date"]}</p>
                         </div>
-                        <img class="reviewer-rating-image" src = "../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
+                        <img class="reviewer-rating-image" src="../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image">
                     </div>
                     <div class="review-comment">
                         ${element["comment"]}
                     </div>
-                `
-            totalRating += `${element["rating"]}`
+                `;
+            totalRating += Number(element["rating"]);
             mainComment.appendChild(reviewWrapper);    
-        }
-    );
-    const Rating = adjustAverage(totalRating,jsonDataReview.length)
-    ratingNumber.innerText = Rating;  
-    ratingImage.innerHTML =`<img src="/sajilo-rent/resources/ratings/rating-${Rating * 10}.png" alt="">`;
-
+        });
+        
+        const Rating = adjustAverage(totalRating, jsonDataReview.length);
+        ratingNumber.innerText = Rating;  
+        ratingImage.innerHTML = `<img src="/sajilo-rent/resources/ratings/rating-${Rating * 10}.png" alt="">`;
     }
 }
-function adjustAverage(ratings, total) {
-    let count = ratings.length;
-    let average = total / count;
 
-    if (Number.isInteger(average) || Number.isInteger((total * 2) / count)) {
-        return total;  // Already valid
-    }
-
-    // Adjust total to the nearest integer or .5
-    let remainder = total % count;
-    if (remainder >= count / 2) {
-        total += (count - remainder);
-    } else {
-        total -= remainder;
-    }
-
-    return total;
+function adjustAverage(totalRating, count) {
+    if (count === 0) return 0;
+    
+    let average = totalRating / count;
+    // Round to nearest 0.5
+    return Math.round(average * 2) / 2;
 }
