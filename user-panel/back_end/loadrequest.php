@@ -1,5 +1,6 @@
 <?php 
-$email = $_REQUEST['email'];
+session_start();
+$email = $_SESSION['email'];
 $jsonarray=[];
 $conn = new mysqli('localhost' , 'root' , '' , 'user_database');
 if($conn->connect_error)
@@ -21,6 +22,9 @@ if($result->num_rows > 0)
     {   
         $jsonarray[] = ["email" => $row['sender'] , "lat"=> $row['lat'] , "lng"=>$row['lng'] , "img"=>$row["image"]];
     }
+}
+else{
+    $jsonarray[] = ["error" => "error"];
 }
 $stmt->close();
 $conn->close();

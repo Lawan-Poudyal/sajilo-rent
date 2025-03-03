@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 $email = $_SESSION['email'];
 ?>
 
@@ -9,7 +9,7 @@ $email = $_SESSION['email'];
                 <a href="/sajilo-rent/chatapplication/messenger.php?email=<?php echo $email?>"><img src="https://img.icons8.com/ios/50/messages-mac.png" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
                 <a href="#"><img src="https://img.icons8.com/ios/50/conference-call.png" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
 <!----create the tenants request section by yourselves ----->
-                <a href="" class="js-tenants-request"><img src="https://img.icons8.com/fluency-systems-regular/50/request-feedback.png" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
+                <a href="#" class="js-tenants-request"><img src="https://img.icons8.com/fluency-systems-regular/50/request-feedback.png" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
                 <a href="#"><img src="https://img.icons8.com/fluency-systems-regular/50/password-window.png" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
             </div>
             <div class="bottom-links">
@@ -187,14 +187,29 @@ cancelLogoutButton.addEventListener('click', () => {
 });
 </script>
 <!------------------ dialog for seeing tenants profile dumbo  --->
-<diaglo class="main-section-div request js-request-card xyz ">
+<dialog class="main-section-div request js-request-card xyz  ">
         
 </dialog>
 <!----------this is the script to load the tenants profile dumbo -->
 <script>
 const tenantsRequest = document.querySelector('.js-tenants-request');
 const requestCard  = document.querySelector('.js-request-card');
-tenantsRequest.addEventListener('click' , ()=>{
+
+tenantsRequest.addEventListener('click' , (event)=>{
+    event.preventDefault();
 requestCard.showModal();
+loadRequests();
 });
+async function loadRequests(){
+    let response = await fetch(`/sajilo-rent/user-panel/back_end/loadrequest.php`);
+    let data = await response.json();
+
+}
+function loadRequestDOM(data){
+data.forEach(element => {
+if(element['error']) return;
+
+
+});
+}
 </script>
