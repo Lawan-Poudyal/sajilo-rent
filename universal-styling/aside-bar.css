@@ -306,7 +306,7 @@ dialog::backdrop {
 }
 .request
 {
-    width:600px;
+    max-width: 700px;
     position:absolute;
     min-height:500px;
     background-color: whitesmoke;
@@ -314,18 +314,23 @@ dialog::backdrop {
     margin:auto;    
 }   
 /*---------------------*/
-.tenants-card{
-    width:clamp(320px , 100% , 400px);
+.tenants-card{ 
     background-color: var(--contrast-bgcolor);
-    display:flex;
-    flex-flow:column nowrap;
     padding:var(--standard-padding);
     border-radius:10px; 
-    gap:var(--standard-gap);   
+    gap:var(--standard-gap);  
+    display:grid;
+    height:fit-content;
+    grid-template-columns: repeat(1,1fr 1fr 1fr);
+    width:clamp(600px , 100% , 700px);
+    margin:auto;     
     }
     .tenants-card img{
         width:100%;
+        max-width:300px;
         height:auto;
+        grid-column: 1/3;
+        grid-row : 1/3;
     }
     .interactive-btn{
         display:flex;
@@ -367,3 +372,4 @@ dialog::backdrop {
         color:gray;
         font-style:italic;
     }
+   
