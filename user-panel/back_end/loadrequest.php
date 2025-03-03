@@ -7,8 +7,9 @@ if($conn->connect_error)
 {
     die(''. $conn->connect_error);
 }
-$query = 'SELECT rentrequest.sender , rentrequest.lat , rentrequest.lng , profilepicture.image FROM rentrequest 
+$query = 'SELECT rentrequest.sender , rentrequest.lat , rentrequest.lng , profilepicture.image,signin.firstName,signin.lastName FROM rentrequest 
 LEFT JOIN profilepicture ON rentrequest.sender = profilepicture.email
+INNER JOIN signin ON rentrequest.sender = signin.email
 WHERE rentrequest.receiver = ?';
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s" , $email);
@@ -20,7 +21,7 @@ if($result->num_rows > 0)
 {
     while($row = $result->fetch_assoc())
     {   
-        $jsonarray[] = ["email" => $row['sender'] , "lat"=> $row['lat'] , "lng"=>$row['lng'] , "img"=>$row["image"]];
+        $jsonarray[] = ["email" => $row['sender'] , "lat"=> $row['lat'] , "lng"=>$row['lng'] , "img"=>$row["image"],"username" => $row['firstName']." ".$row["lastName"]];
     }
 }
 else{
