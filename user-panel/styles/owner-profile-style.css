@@ -1,390 +1,517 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    
-}
-.main-body{
-    display: flex;
-    padding: 1rem;
-    gap: 1rem;
-}
-
-/* user-profile */
-.aside-bar-student {
-    width: 30vw;
-}
-
-.section-wrapper {
-    width: 70vw;
-}
-.section-profile {
-    display: flex;
-    height: 25vh;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 2rem;
-    margin-bottom: 1rem;
-}
-
-.avatar {
-    width: 200px; 
-    height: 200px; 
-    overflow: hidden; 
-    border-radius: 50%;
-}
-.avatar-wrapper{
-    position: relative;
-}
-.change-profile-icon {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    z-index: 1;
-    bottom: 10px;  /* Changed from bottom: 1 */
-    right: 10px;   /* Changed from right: 65 */
-    cursor: pointer;
-}
-.user-information{
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.profile-image { 
-    width: 100%;
-    height: auto; 
-}
-.user-name{
-    font-size: 32px;
-    font-weight: 700;
-}
-.user-status{
-    font-size: 22px;
-    font-weight: 100;
-}
-.message-user{
-    font-size: 28px;
-    border-radius: 1rem;
-    padding: .2rem .5rem;
-}
-#imageInput {
-    display: none;
-}
-/* user-recents */
-
-.section-recent{
-    border: 1px solid #ccc;
-    border-radius: 2rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem 1rem;   
-}
-.text-owner{
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.house-posted{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 2rem .5rem; 
-    align-content: flex-start;
-}
-
-.house-card{
-    width: 40%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 5px;
-    height: 250px;
-    margin-bottom: 2rem
-}
-.house-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-
-}
-.house-information{   
-    display: flex;
-    justify-content: space-between;
-    padding:2px 16px;
-}
-.house-card>img{
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-}
-.house-information>p{
-    font-size: 20px;
-}
-.book-for-rent{
-    font-size: 20px;
-    border-radius: 1rem;
-    padding: .2rem .5rem;
-}
-
-/* user-ratings */
-
-
-.text-comment{
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-.section-review{
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 2rem;
-    margin-bottom: 1rem;
-}
-.main-rating{
-    display: flex;
-    gap: 2rem;    
-}
-
-.rating-box {
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    padding: 12px 20px;
-    width: fit-content;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    flex: 0.3;
-}
-
-.rating-number {
-    font-size: 28px;
-    font-weight: bold;
-    color: black;
-    line-height: 1.2;
-}
-
-.rating-text {
-    color: #666;
-    font-size: 14px;
-    margin-top: 2px;
-}
-.write-review{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex: 0.7;
-    border: 1px solid black;
-    border-radius: 1rem;
-}
-.share-review{
-    flex: 1;
-    gap: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 26px;
-    background-color: #f8f8f8;
-    border-radius: 1rem;
-    padding: 1rem 2rem;
-}
-.button-write-review{
-    text-align: center;
-    font-size: 20px;
-    border-radius: 1rem;
-    padding: .2rem .5rem;
-}
-.rating-image-counter{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 .3rem;
-    gap: 1rem;
-}
-.reviewer-count{
-    font-size: 22px;
-}
-.rating-comment{
-    display: flex;
-    flex-direction: column;
-}
-.rating-image{
-    height: 1rem;
-    object-fit: cover;
-}
-.main-comment{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 2rem .5rem; 
-    gap: 2rem;
-
-}
-.reviews-wrapper{
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: flex-start;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-.reviews-wrapper:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-
-}
-.reviewer-info-wrapper{
-    display: flex;  
-    gap: 1rem;
-    margin-bottom: 2rem;
-    align-items: center;
-}
-.review-date{
-    color: #666;
-}
-.reviewer-name{
-    font-size: 28px;
-    font-weight: 800;
-}
-.reviewer-rating-image{
-    height: 1rem;
-    object-fit: cover;
-
-}
-
-/* student part */
-.update-house{
-    text-align: center;
-    font-size: 20px;
-    border-radius: 1rem;
-    padding: .2rem .5rem;
-}
-.house-card.hide,.not-rented.hide { 
-    display: none; 
-}
-.not-residing>h1{
-    font-weight: 500;
-}
-/* media queries */
-/* Large screens (laptops/desktops, 1200px and below) */
-@media screen and (max-width: 1200px) {
-
-    
-    body > * {
-        max-width: 100%;
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        
     }
-
-    .house-card {
-        width: 45%;
-    }
-
-    .main-rating {
+    .main-body{
+        display: flex;
+        padding: 1rem;
         gap: 1rem;
     }
-}
+    .hidden{
+        display:none;
+    }
+    /* user-profile */
+    .aside-bar-student {
+        width: 30vw;
+    }
 
-
-/* Medium screens (tablets/smaller laptops, 992px and below) */
-@media screen and (max-width: 992px) {
+    .section-wrapper {
+        width: 70vw;
+    }
     .section-profile {
-        height: auto;
-        padding: 1rem;
+        display: flex;
+        height: 25vh;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 2rem;
+        margin-bottom: 1rem;
     }
 
     .avatar {
-        width: 150px;
-        height: 150px;
+        width: 200px; 
+        height: 200px; 
+        overflow: hidden; 
+        border-radius: 50%;
+    }
+    .avatar-wrapper{
+        position: relative;
+    }
+    .change-profile-icon {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        z-index: 1;
+        bottom: 10px;  /* Changed from bottom: 1 */
+        right: 10px;   /* Changed from right: 65 */
+        cursor: pointer;
+    }
+    .user-information{
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
     }
 
-    .user-name {
+    .profile-image { 
+        width: 100%;
+        height: auto; 
+    }
+    .user-name{
+        font-size: 32px;
+        font-weight: 700;
+    }
+    .user-status{
+        font-size: 22px;
+        font-weight: 100;
+    }
+    .message-user{
         font-size: 28px;
+        border-radius: 1rem;
+        padding: .2rem .5rem;
+    }
+    #imageInput {
+        display: none;
+    }
+    /* user-recents */
+
+    .section-recent{
+        border: 1px solid #ccc;
+        border-radius: 2rem;
+        margin-bottom: 1rem;
+        display:flex;
+        flex-flow: column nowrap;
+        padding: 0.5rem 1rem;   
+    }
+    .text-owner{
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 1rem;
     }
 
-    .user-status {
+    .house-posted{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 2rem .5rem; 
+        align-content: flex-start;
+    }
+    .current-houses{
+        width:100%;
+        display:flex;
+        flex-flow:row nowrap;
+        overflow-x:scroll;
+        gap:1.5rem;
+    }
+    .house-card{
+        width: 250px;
+        flex-shrink:0;
+        justify-content: space-around;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+        height: 250px;
+        margin-bottom: 2rem;
+    
+    }
+    .house-card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+    }
+    .house-information{   
+        display: flex;
+        justify-content: space-between;
+        padding:2px 16px;
+    }
+    .house-card>img{
+        width: 100%;
+        height: 70%;
+        object-fit: cover;
+    }
+    .house-information>p{
         font-size: 20px;
     }
-
-    .message-user {
-        font-size: 24px;
+    .book-for-rent{
+        font-size: 20px;
+        border-radius: 1rem;
+        padding: .2rem .5rem;
     }
 
-    .main-rating {
-        flex-direction: column;
-        gap: 1rem;
+    /* user-ratings */
+
+
+    .text-comment{
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 1rem;
     }
-
-}
-
-/* Small screens (tablets, 768px and below) */
-@media screen and (max-width: 768px) {
-    .house-card {
-        width: 90%;
+    .section-review{
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 2rem;
+        border: 1px solid #ccc;
+        border-radius: 2rem;
+        margin-bottom: 1rem;
     }
-
-    .text-owner, .text-comment {
-        font-size: 26px;
+    .main-rating{
+        display: flex;
+        gap: 2rem;    
     }
-
-    .house-information > p {
-        font-size: 18px;
-    }
-
-    .book-for-rent {
-        font-size: 18px;
-    }
-
-    .reviews-wrapper {
-        width: 100%;
-    }
-
-    .reviewer-name {
-        font-size: 24px;
-    }
-}
-
-/* Extra small screens (phones, 576px and below) */
-@media screen and (max-width: 576px) {
-    .section-profile {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
-    .user-information {
-        flex-direction: column;
-    }
-
-    .avatar {
-        width: 120px;
-        height: 120px;
-    }
-
-    .user-name {
-        font-size: 24px;
-    }
-
-    .user-status {
-        font-size: 18px;
-    }
-
 
     .rating-box {
-        width: 100%;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+        padding: 12px 20px;
+        width: fit-content;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        flex: 0.3;
     }
 
     .rating-number {
-        font-size: 24px;
+        font-size: 28px;
+        font-weight: bold;
+        color: black;
+        line-height: 1.2;
     }
 
-    .share-review {
+    .rating-text {
+        color: #666;
+        font-size: 14px;
+        margin-top: 2px;
+    }
+    .write-review{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        flex: 0.7;
+        border: 1px solid black;
+        border-radius: 1rem;
+    }
+    .share-review{
+        flex: 1;
+        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        background-color: #f8f8f8;
+        border-radius: 1rem;
+        padding: 1rem 2rem;
+    }
+    .button-write-review{
+        text-align: center;
         font-size: 20px;
-        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        padding: .2rem .5rem;
+    }
+    .rating-image-counter{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 .3rem;
+        gap: 1rem;
+    }
+    .reviewer-count{
+        font-size: 22px;
+    }
+    .rating-comment{
+        display: flex;
+        flex-direction: column;
+    }
+    .rating-image{
+        height: 1rem;
+        object-fit: cover;
+    }
+    .main-comment{
+        width:100%;
+        display:flex;
+        flex-flow:row nowrap;
+        gap:1.5rem;
+        overflow-x : scroll;
+        padding:1.5rem;
+    }
+    .comment-card{
+    flex-shrink : 0;
+    margin-top:10px;
+    width:350px;    
+    display:flex;
+    flex-flow:column nowrap;
+    background-color: whitesmoke;
+    box-shadow:0px 5px 18px gray;
+    border-radius:5px;
+    gap:1.5rem;
+    padding:0.5rem;
+    }
+    .reviewer-info-wrapper{
+        display:flex;
+        flex-flow:column nowrap;
+        gap:1.5rem;
+    }
+    .reviewer-info{
+        display:flex;
+        flex-flow:row nowrap;
+        justify-content: space-between;
+    }
+    .reviewer-info p:first-child{
+        font-weight:bolder;
+        font-size:1.25rem;
+    }
+    .reviewer-rating-image{
+        height:25px;
+        width:125px;
+     
     }
 
-    .reviewer-count {
-        font-size: 18px;
+
+    /* student part */
+    .update-house{
+        text-align: center;
+        font-size: 20px;
+        border-radius: 1rem;
+        padding: .2rem .5rem;
     }
-}
+    .house-card .hide, .not-rented .hide { 
+        display: none; 
+    }
+    .not-residing>h1{
+        font-weight: 500;
+    }
+    /* media queries */
+    /* Large screens (laptops/desktops, 1200px and below) */
+    @media screen and (max-width: 1200px) {
+
+        
+        body > * {
+            max-width: 100%;
+        }
+
+        .house-card {
+            width: 45%;
+        }
+
+        .main-rating {
+            gap: 1rem;
+        }
+    }
+
+
+    /* Medium screens (tablets/smaller laptops, 992px and below) */
+    @media screen and (max-width: 992px) {
+        .section-profile {
+            height: auto;
+            padding: 1rem;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+        }
+
+        .user-name {
+            font-size: 28px;
+        }
+
+        .user-status {
+            font-size: 20px;
+        }
+
+        .message-user {
+            font-size: 24px;
+        }
+
+        .main-rating {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+    }
+
+    /* Small screens (tablets, 768px and below) */
+    @media screen and (max-width: 768px) {
+        .house-card {
+            width: 90%;
+        }
+
+        .text-owner, .text-comment {
+            font-size: 26px;
+        }
+
+        .house-information > p {
+            font-size: 18px;
+        }
+
+        .book-for-rent {
+            font-size: 18px;
+        }
+
+        .reviews-wrapper {
+            width: 100%;
+        }
+
+        .reviewer-name {
+            font-size: 24px;
+        }
+    }
+
+    /* Extra small screens (phones, 576px and below) */
+    @media screen and (max-width: 576px) {
+        .section-profile {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .user-information {
+            flex-direction: column;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+        }
+
+        .user-name {
+            font-size: 24px;
+        }
+
+        .user-status {
+            font-size: 18px;
+        }
+
+
+        .rating-box {
+            width: 100%;
+        }
+
+        .rating-number {
+            font-size: 24px;
+        }
+
+        .share-review {
+            font-size: 20px;
+            padding: 0.5rem 1rem;
+        }
+
+        .reviewer-count {
+            font-size: 18px;
+        }
+    }
+    /*this one is for form*/
+    .form-div{
+        z-index: 10;
+        height:65vh;
+        padding:var(--standard-padding);
+        position:absolute;
+        top:10vh;  
+        margin:auto;
+        width: clamp(350px , 100% , 600px);
+        left:calc(50vw - 300px);
+        display:none;
+    }
+        /*changed nothing*/
+    .form-div form {
+        height:65vh;
+        overflow-y : scroll;    
+        font: inherit;
+        display: grid;
+        grid-template-rows: repeat(auto-fit, minmax(50px, auto));
+        gap: 1.5rem;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: var(--contrast-bgcolor);
+        padding: var(--standard-padding);
+    }
+
+    .form-div h2 {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.8rem;
+        color: #333333;
+        margin-bottom: 1rem;
+    }
+
+    .wrapper-div {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    label {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        color: #555555;
+    }
+
+    input, select {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        outline: none;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    input:focus, select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    input[type="radio"], input[type="file"] {
+        margin: 0 10px 0 5px;
+    }
+
+    .form-submit-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+        display: block;
+        width: 100%;
+    }
+
+    .form-submit-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .image-display {
+        height: 150px;
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #eaeaea;
+        border: 2px dashed #cccccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #aaaaaa;
+        font-size: 1rem;
+    }
+    .cross-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        z-index: 20; /* Ensure it's above other elements */
+        transition: transform 0.3s ease;
+    }
+
+    .cross-icon:hover {
+        transform: scale(1.1); /* Slight zoom effect on hover */
+    }
+    .hidden-latlng{
+        display:none;
+    }
