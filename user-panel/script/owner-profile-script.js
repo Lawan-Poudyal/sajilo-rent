@@ -151,7 +151,7 @@ function loadReview(data)
                     </div>`
    });
    avgRating /= count;
-   ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustAverage(avgRating))*10}.png`;
+   ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustRating(avgRating))*10}.png`;
 }
 function adjustRating(avgRating)
 {

@@ -203,13 +203,19 @@ loadRequests();
 async function loadRequests(){
     let response = await fetch(`/sajilo-rent/user-panel/back_end/loadrequest.php`);
     let data = await response.json();
-
+    loadRequestDOM(data);
 }
 function loadRequestDOM(data){
 data.forEach(element => {
 if(element['error']) return;
-
-
+requestCard.innerHTML = ` <div class="tenants-card js-tenants-card">
+        <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
+        <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>
+        <div class="interactive-btn">
+            <button class="kick-out" data-tenant = '${element['email']}'>Kick Out</button>
+            <button class="view-profile">View Profile</button>
+        </div>
+        </div>`;
 });
 }
 </script>
