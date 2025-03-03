@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await Promise.all([fetch("./backend/load-profile.php"), fetch("./backend/load-reviews.php")]);
 
             const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
-            console.log(jsonDataProfile,jsonDataReview);
             putHouseContent(jsonDataProfile);
             putReviewContent(jsonDataReview)
                 

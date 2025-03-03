@@ -1,8 +1,8 @@
-    
+
 <aside class="aside-bar">
             <div class="main-links">
                 <a href="/sajilo-rent/studentsection/displayLatLng.php"><img src="https://img.icons8.com/ios/50/home--v1.png" alt="home--v1"/><span class="link-text home">Home</span></a>
-                <a href="./student-profile.php"><img src="https://img.icons8.com/fluency-systems-regular/50/user--v1.png" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
+                <a href="/sajilo-rent/studentsection/student-profile.php"><img src="https://img.icons8.com/fluency-systems-regular/50/user--v1.png" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
                 <a href="#"><img src="https://img.icons8.com/ios/50/messages-mac.png" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
                 <a href="/sajilo-rent/userprofiles/ownerProfile.php"><img src="https://img.icons8.com/ios/50/landlord.png" alt="landlord"/><span class="link-text owner-profile">Owner Profile</span></a>
                 <a href="#"><img src="https://img.icons8.com/fluency-systems-regular/50/password-window.png" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
@@ -17,21 +17,21 @@
 <!-- modal for changepassword -->
 
 <dialog class="dialog-change-password"> 
-    <form action="/sajilo-rent/user-panel/backend/chagepassword.php" method="post" class="form-change-password">
+    <form action="/sajilo-rent/user-panel/back_end/changepassword.php" method="post" class="form-change-password">
         <h1>Change Password</h1>
         <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/cancel--v1.png" alt="cancel--v1" class="cancel-icon"/>
         <div class="password-wrapper">
             <div class="old-password-wrapper">
                 <label for="old-password">Current-Password: </label>
                 <div class="old-password-input">
-                    <input type="password" name="old-password" id="old-password" placeholder="Enter current Password">
+                    <input type="password" name="oldPassword" id="old-password" placeholder="Enter current Password">
                     <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/hide.png" alt="hide" class="hide-eye-icon"/>
                 </div>
             </div>
             <div class="new-password-wrapper">
                 <label for="new-password">New-Password</label>
                 <div class="new-password-input">
-                    <input type="password" name="new-password" id="new-password" placeholder="Enter new Password">
+                    <input type="password" name="newPassword" id="new-password" placeholder="Enter new Password">
                     <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/hide.png" alt="hide" class="hide-eye-icon"/>
                 </div>
             </div>
@@ -46,7 +46,7 @@
 <!-- modal for logout  -->
 
 <dialog class="dialog-logout">
-    <form action="/sajilo-rent/user-panel/backend/logout.php" method="post" class="form-logout">
+    <form action="/sajilo-rent/studentsection/backend/logout.php" method="post" class="form-logout">
         <h1>Log Out</h1>
         <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/cancel--v1.png" alt="cancel--v1" class="cancel-icon"/>
         <div class="logout-content">
@@ -66,7 +66,6 @@ const seeEyeUrl = "https://img.icons8.com/material-outlined/24/visible--v1.png";
 const hideEyeUrl = "https://img.icons8.com/material-outlined/24/hide.png";
 
 const changePassword = document.querySelector(".main-links a:nth-of-type(5)");
-const about = document.querySelector(".bottom-links a:nth-of-type(2)");
 const changePasswordDialog = document.querySelector(".dialog-change-password");
 const cancelModalIcon = document.querySelector(".cancel-icon");
 const cancelButton = document.querySelector(".cancel-button");
@@ -120,7 +119,49 @@ changePassword.addEventListener('click', (event) => {
     event.preventDefault();
     changePasswordDialog.showModal();
 });
+
+//backend calls
+
+const formChangePassword = document.querySelector(".form-change-password");
+const confirmChangePassword = document.querySelector(".confirm-button")
+formChangePassword.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    const changePasswordData = new FormData(formChangePassword);
+    callChangePassword(changePasswordData);
+    
+})
+async function callChangePassword(changePasswordData){
+    try{
+        const reponse = await fetch("/sajilo-rent/user-panel/back_end/changepassword.php",{
+        method : 'POST',
+        body: changePasswordData
+    })
+    const reponseJson = await reponse.json();
+    if(reponseJson.status  == "success"){
+        changePasswordDialog.close();
+        formChangePassword.reset();
+        alert("Password Change Successfully");
+    }   
+    else{
+        oldPasswordInput.style.outline = "1px solid red";
+        newPasswordInput.style.outline = "1px solid red";
+        oldPasswordInput.value = "";
+        newPasswordInput.value = "";
+        oldPasswordInput.placeholder = "Current password mismatch";
+        newPasswordInput.placeholder = "Current password mismatch";
+
+    }
+    console.log(reponseJson);
+}
+    catch(error){
+        console.log('Error:', error);
+        alert('An error occurred while changing the password.');
+    }
+}
+
 </script>
+
+<!-- script for logout -->
 
 <script>
 const logOut = document.querySelector(".bottom-links a:nth-of-type(1)");
@@ -130,7 +171,6 @@ const cancelLogoutButton = document.querySelector(".dialog-logout .cancel-button
 
 // Show logout dialog when logout link is clicked
 logOut.addEventListener('click', (event) => {
-    event.preventDefault();
     logoutDialog.showModal();
 });
 
