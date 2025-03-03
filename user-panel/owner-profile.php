@@ -16,10 +16,10 @@ error_reporting(E_ALL);
     <script src="/sajilo-rent/user-panel/script/owner-profile-script.js" defer></script>
     </head>
 <body>
-    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
+    <?php require_once '/xampp/htdocs/sajilo-rent/header.php'; ?>
     <div class="main-body">
     <?php
-        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-owner.php';
+        require_once '/xampp/htdocs/sajilo-rent/aside-bar-owner.php';
     ?>
     <div class="section-wrapper">
         <section class="section-profile">
