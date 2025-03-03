@@ -314,7 +314,56 @@ dialog::backdrop {
     margin:auto;    
 }   
 /*---------------------*/
-
 .tenants-card{
+    width:clamp(320px , 100% , 400px);
+    background-color: var(--contrast-bgcolor);
+    display:flex;
+    flex-flow:column nowrap;
+    padding:var(--standard-padding);
+    border-radius:10px; 
+    gap:var(--standard-gap);   
+    }
+    .tenants-card img{
+        width:100%;
+        height:auto;
+    }
+    .interactive-btn{
+        display:flex;
+        justify-content: space-between;
+    }
+    .interactive-btn button {
+        height: var(--nav-element-height, 40px);
+        width: 120px;
+        border-radius: 20px;
+        border: none;
+        background-color: limegreen;
+        color: white;
+        font-family: monospace;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-transform: uppercase;
+    }
     
-}
+    .interactive-btn button:hover {
+        background-color: darkgreen;
+        transform: scale(1.05);
+    }
+    .interactive-btn button:first-child:hover{
+        background-color:darkred;
+    }
+    .interactive-btn button:first-child{
+    background-color: red;
+    }
+    .tenants-credential{
+    display:flex;
+    justify-content: space-between;
+    }
+    .tenants-username{
+        color:black;
+        font-weight: 600;
+    }
+    .tenants-email{
+        color:gray;
+        font-style:italic;
+    }
