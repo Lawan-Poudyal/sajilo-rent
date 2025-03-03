@@ -208,15 +208,49 @@ async function loadRequests(){
 function loadRequestDOM(data){
 data.forEach(element => {
 if(element['error']) return;
-console.log(element);
-requestCard.innerHTML = ` <div class="tenants-card js-tenants-card">
+requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
         <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
         <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>
         <div class="interactive-btn">
-            <button class="kick-out" data-tenant = '${element['email']}'>Kick Out</button>
-            <button class="view-profile">View Profile</button>
+            <button class="accept js-accept" data-email='${element['email']}' data-tenant = '${element['email']}' data-lat = ${element['lat']} data-lng=${element['lng']}>Accept</button>
+            <button class="decline js-decline" data-tenant='${element['email']}'>Decline</button>
         </div>
         </div>`;
 });
+const acceptBtn = document.querySelectorAll('.js-accept');
+const removeBtn = document.querySelectorAll('.js-decline');
+acceptBtn.forEach(btn =>{
+btn.addEventListener('click' , (event)=>{
+const btn = event.target.closest('button');
+if(btn)
+{
+   acceptRequest(btn); 
+}
+});
+});
+removeBtn.forEach(btn=>{
+    btn.addEventListener('click', (event)=>{
+        const btn = event.target.closest('button');
+        if(btn)
+    {
+        removeRequest(btn);
+    }
+    });
+})
+}
+async function removeRequest(btn)
+{
+    let response = await fetch(`/sajilo-rent/user-panel/back_end/removerequest.php?username=${btn.dataset['tenant']}`);
+    let data = await response.text();
+    console.log(data);
+    requestCard.innerHTML = '';
+    loadRequests();
+}
+async function acceptRequest(btn)
+{
+    let response = await fetch(`/sajilo-rent/user-panel/back_end/acceptrequest.php?lat=${btn.dataset['lat']}&lng=${btn.dataset['lng']}&username=${btn.dataset['email']}`);
+    let data  = await response.text();
+    requestCard.innerHTML = '';
+    loadRequests();
 }
 </script>
