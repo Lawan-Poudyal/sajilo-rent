@@ -187,7 +187,7 @@ cancelLogoutButton.addEventListener('click', () => {
 });
 </script>
 <!------------------ dialog for seeing tenants profile dumbo  --->
-<diaglog class="main-section-div request js-request-card xyz ">
+<diaglo class="main-section-div request js-request-card xyz ">
         
 </dialog>
 <!----------this is the script to load the tenants profile dumbo -->
