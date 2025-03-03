@@ -43,11 +43,12 @@ $stmt->close();
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
+    <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 </head>
 <body>
-<header class="header">
+<!-- <header class="header">
             <nav class="header-nav">
                 <div class="header-nav-element">
                 <button id="logo-btn">
@@ -76,8 +77,10 @@ $stmt->close();
                     </div>
                 </div>
             </nav>
-        </header>
-
+        </header> -->
+<?php require_once '/xampp/htdocs/sajilo-rent/header.php'?>
+<div class="main-body">
+<?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-owner.php'?>
 <main class="main">
 <div class="main-div" id="js-map"></div>
 <div class="form-div" id="js-form-div">
@@ -179,9 +182,10 @@ Upload Three Images of the room :
 <div class="cross-icon" id="js-cross-icon"><img src="/sajilo-rent/resources/cross.png" alt="" height="50" width="50"></div>
 </div>
 </main>
+</div>
 <footer class="footer">
 </footer>
-<div ><?php echo $username?></div>
+<div  class="hidden"><?php echo $username?></div>
 <div class="latitudeandlongitude hidden">
     <div id="username"><?php echo $username?></div>
     <div id="lat1"><?php echo number_format($latlngarr[0][0],17)?></div>
