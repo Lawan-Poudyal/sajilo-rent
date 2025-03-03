@@ -61,7 +61,7 @@
         </div>
       </nav>
     <section class="main-body">
-        <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php'?>
+        <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php'?>
         <div id="map">
         <button class="closeRouting" style="display: none;">Close Routing</button>
         </div>

@@ -19,7 +19,7 @@ error_reporting(E_ALL);
 
 <div class="main-body">
     <?php
-        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
+        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-owner.php';
     ?>
     <div class="section-wrapper">
         <section class="section-profile">

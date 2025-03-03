@@ -184,6 +184,7 @@ border:none;
     top:10vh;  
     width: clamp(350px , 100% , 600px);
     overflow-y : scroll;
+    background-color: var(--contrast-bgcolor);
     display:none;
 }
     /*changed nothing*/
