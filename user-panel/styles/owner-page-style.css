@@ -9,7 +9,7 @@ body{
     font-family:monospace;
     display:flex;
     flex-flow:column nowrap;
-    min-height:250vh;
+    min-height:100vh;
     border:1px solid black;
   
 }
@@ -64,6 +64,10 @@ img{
     position:sticky;
     z-index:10;
     bottom:0;
+}
+.main-body{
+    display:flex;
+
 }
 /*nav design */
 .header-nav{
@@ -174,12 +178,12 @@ border:none;
 }
 /*---------------------- for the first input section */
 .form-div{
-    height:auto;
+    height:65vh;
     padding:var(--standard-padding);
     position:absolute;
-    top:0;  
+    top:10vh;  
     width: clamp(350px , 100% , 600px);
-   
+    overflow-y : scroll;
     display:none;
 }
     /*changed nothing*/

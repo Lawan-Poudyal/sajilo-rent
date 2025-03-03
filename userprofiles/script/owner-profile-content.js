@@ -52,8 +52,7 @@ const putHousePosts = (json) => {
         houseCard.innerHTML = `
             <img src="${"/sajilo-rent/user-panel/back_end/" + element.image1}" alt="House image" >
             <div class="house-information">
-                <p class="house-price">Rs. ${element.price}</p>
-                <button class="book-for-rent">Book For Rent</button>
+                <p class="house-price">Price: Rs. ${element.price}</p>
             </div>
         `;
         housePosted.appendChild(houseCard);

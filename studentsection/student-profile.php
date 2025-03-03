@@ -37,9 +37,6 @@ error_reporting(E_ALL);
                     <p class="user-status">Student</p>
                 </div>
             </div>
-            <button class="message-user">
-                Message
-            </button>
         </section>
         <section class="section-recent">
         <p class="text-student text-owner">Currently Residing in</p>
