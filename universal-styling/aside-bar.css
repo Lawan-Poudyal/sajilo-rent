@@ -8,6 +8,7 @@
     transition: width 0.3s ease; /* Smooth transition for width change */
     overflow: hidden; /* Prevents content from showing outside container */
     padding: 1.5rem 0.8rem;
+    position:relative;
 }
 
 .aside-bar:hover {
@@ -303,3 +304,13 @@ dialog::backdrop {
 .confirm-button:hover {
     background-color: #c82333;
 }
+.xyz
+{
+    width:600px;
+    position:absolute;
+    min-height:500px;
+    background-color: red;
+    border-radius:10px;
+    top:calc(50vh - 250px);
+    left:calc(50vw - 300px);
+}   
