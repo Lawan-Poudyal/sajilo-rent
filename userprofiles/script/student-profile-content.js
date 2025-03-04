@@ -2,7 +2,6 @@ const housePrice = document.querySelector(".house-price");
 const Owner = document.querySelector(".owner-name");
 const picture = document.querySelector(".living-house-image");
 const houseCard = document.querySelector(".house-card");
-const notResiding = document.querySelector(".not-residing");
 const mainComment = document.querySelector(".main-comment");
 const ratingNumber = document.querySelector(".rating-number")
 const reviewerCount = document.querySelector(".reviewer-count");
@@ -10,19 +9,21 @@ const ratingImage = document.querySelector(".rating-image");
 const imgBlock = document.querySelector('.js-house-image');
 const profileimage = document.querySelector('.profile-image')
 
+
+const searchEmail = window.location.search;
+
+
 const PATHS = {
     house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
     defaultProfile: '../resources/profile-related/default-profile.png'
 };
 document.addEventListener('DOMContentLoaded', () => {
-    notResiding.classList.add("hide");
 
     (async function(){
         try {
-            const response = await Promise.all([fetch("./backend/load-profile-student.php"), fetch("./backend/load-reviews-student.php")]);
-
-            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
+            const response = await Promise.all([fetch("/sajilo-rent/userprofiles/backend/load-profile-student.php"), fetch("/sajilo-rent/userprofiles/backend/load-reviews-student.php")]);
+            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].text(), response[1].text()]);
             console.log(jsonDataProfile,jsonDataReview);
             putHouseContent(jsonDataProfile);
             putProfileContents(jsonDataProfile);
@@ -46,10 +47,6 @@ function putHouseContent(jsonDataProfile) {
         console.log(jsonDataProfile["image"]);
         
     }   
-    else{
-        houseCard.classList.add('hide');
-        notResiding.classList.remove('hide')
-    }
 }   
 function putReviewContent(jsonDataReview) {
     if(!jsonDataReview["status"]) {

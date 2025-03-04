@@ -17,10 +17,10 @@ error_reporting(E_ALL);
     <script src="./script/leave.js" defer></script>
 </head>
 <body>
-    <?php require_once '/xampp/htdocs/sajilo-rent/header.php'; ?>
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
     <div class="main-body">
     <?php
-        require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php';
+        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
     ?>
     <div class="section-wrapper">
         <section class="section-profile">
@@ -37,9 +37,6 @@ error_reporting(E_ALL);
                     <p class="user-status">Student</p>
                 </div>
             </div>
-            <button class="message-user">
-                Message
-            </button>
         </section>
         <section class="section-recent">
         <p class="text-student text-owner">Currently Residing in</p>

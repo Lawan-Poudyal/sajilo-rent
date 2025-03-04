@@ -14,6 +14,8 @@
 </aside>
 
 
+<!-- js to style for persistant active -->
+
 <!-- modal for changepassword -->
 
 <dialog class="dialog-change-password"> 
@@ -46,7 +48,7 @@
 <!-- modal for logout  -->
 
 <dialog class="dialog-logout">
-    <form action="/sajilo-rent/studentsection/backend/logout.php" method="post" class="form-logout">
+    <form action="" method="post" class="form-logout">
         <h1>Log Out</h1>
         <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/cancel--v1.png" alt="cancel--v1" class="cancel-icon"/>
         <div class="logout-content">
@@ -54,7 +56,7 @@
         </div>
         <div class="button-wrapper">
             <button type="button" class="cancel-button">Cancel</button>
-            <button type="submit" class="confirm-button">Log Out</button>
+            <button type="button" class="confirm-button .logout-button">Log Out</button>
         </div>
     </form>
 </dialog>
@@ -162,15 +164,16 @@ async function callChangePassword(changePasswordData){
 </script>
 
 <!-- script for logout -->
-
 <script>
 const logOut = document.querySelector(".bottom-links a:nth-of-type(1)");
 const logoutDialog = document.querySelector(".dialog-logout");
 const cancelLogoutIcon = document.querySelector(".dialog-logout .cancel-icon");
 const cancelLogoutButton = document.querySelector(".dialog-logout .cancel-button");
-
+const confirmLogoutButton = document.querySelector(".dialog-logout .confirm-button");
+console.log(confirmLogoutButton);
 // Show logout dialog when logout link is clicked
 logOut.addEventListener('click', (event) => {
+    event.preventDefault();  // Prevent default link behavior
     logoutDialog.showModal();
 });
 
@@ -182,5 +185,13 @@ cancelLogoutIcon.addEventListener('click', () => {
 // Close logout dialog when cancel button is clicked
 cancelLogoutButton.addEventListener('click', () => {
     logoutDialog.close();
+});
+
+// Log out when confirm button is clicked
+confirmLogoutButton.addEventListener('click', async (event) => {
+    console.log("hi")
+    event.preventDefault();  // Prevent default button behavior
+    await fetch("/sajilo-rent/studentsection/backend/logout.php");
+    window.location.href = '/sajilo-rent/loginsignup_page/login.php';
 });
 </script>

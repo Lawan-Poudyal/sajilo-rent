@@ -1,3 +1,4 @@
+
 const housePrice = document.querySelector(".house-price");
 const Owner = document.querySelector(".owner-name");
 const picture = document.querySelector(".living-house-image");
@@ -13,7 +14,7 @@ const changeProfile = document.querySelector('.change-profile-icon');
 const imageInput = document.querySelector('#imageInput'); 
 
 const PATHS = {
-    house: '/sajilo-rent/user-panel/back_end/', 
+    house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
     defaultProfile: '/sajilo-rent/resources/profile-related/default-profile.png'
 };
@@ -22,11 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     (async function(){
         try {
-            const response = await Promise.all([fetch("/sajilo-rent/studentsection/backend/load-profile.php"), fetch("/sajilo-rent/studentsection/backend/load-reviews.php")]);
+            const response = await Promise.all([fetch("./backend/load-profile.php"), fetch("./backend/load-reviews.php")]);
 
-            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].text(), response[1].text()]);
+            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
             putHouseContent(jsonDataProfile);
-            putReviewContent(jsonDataReview);
+            putReviewContent(jsonDataReview)
+                
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -135,4 +137,3 @@ async function setProfilePic(file) {
         console.error('Error uploading profile picture:', error);
     }
 }
-

@@ -1,5 +1,6 @@
 const changeProfileBtn = document.querySelector('.js-change-profile-icon');
 const imageInput  = document.querySelector('.js-image-input');
+<<<<<<< HEAD
 const profileForm = document.querySelector('.js-profile-form');
 const fileDir = '/sajilo-rent/user-panel/back_end/';
 const profileImage = document.querySelector('.js-profile-image');
@@ -42,21 +43,37 @@ loadReview(data[2]);
         console.log(err);
     }
 });
+=======
+
+
+>>>>>>> c2e6caf7b409775b368bc4bfad40629706d81a87
 changeProfileBtn.addEventListener('click' , ()=>{
-    imageInput.click();
+imageInput.click();
 });
 imageInput.addEventListener('change', async ()=>{
     const file = imageInput.files[0];
-    profileForm.submit();
-});
-function changeProfile(filePath)
-{
-if(filePath === 'false') return;
-profileImage.src = filePath;
-}
-function addHouseDetails(houses)
-{
+    if (file) {
+        const formData = new FormData();
+        formData.append('image', file);
+        try {
+            const response = await fetch('/sajilo-rent/user-panel/owner-profile.php', {
+                method: 'POST',
+                body: formData
+            });
 
+            if (response.ok) {
+                // Reload the page to show the updated profile image
+                window.location.reload();
+            } else {
+                alert('Image upload failed.');
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    }
+   
+
+<<<<<<< HEAD
     houses.forEach(house => {    
         if(house['error']) return;
         notRentedTag.classList.add('hide');
@@ -167,3 +184,6 @@ function adjustRating(avgRating)
         return (Math.floor(avgRating) + 0.5);
     }
 }
+=======
+});
+>>>>>>> c2e6caf7b409775b368bc4bfad40629706d81a87

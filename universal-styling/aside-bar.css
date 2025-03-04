@@ -8,7 +8,8 @@
     transition: width 0.3s ease-in-out; /* Smooth transition for width change */
     overflow: hidden; /* Prevents content from showing outside container */
     padding: 1.5rem 0.8rem;
-    position:relative;
+    height: calc(100vh - 40px - 16px);
+    /* outline: 1px solid red; */
 }
 .aside-bar span{
     color:white;
@@ -53,6 +54,9 @@ a {
 a:hover{
     background-color: #cd727b;
     transition: all 0.3s ease;    
+}
+a.active{
+    background-color: #e0e6ed;
 }
 
 /* Style for icons */
