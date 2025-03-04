@@ -24,8 +24,9 @@
     width:100%;
 }
 .all-link{
+
     position:fixed;
-    top: 0; 
+    top: 80px; 
     /* border:1px solid black;/   to understand how it works please turns the border back on */
 }
 .main-links, .bottom-links {
