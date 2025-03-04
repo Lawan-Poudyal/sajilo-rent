@@ -54,40 +54,26 @@ error_reporting(E_ALL);
             <div class="rating-comment">
                 <div class="main-rating">
                     <div class="rating-box">
-                        <div class="rating-number"></div>
-                        <div class="rating-text">Out of 5</div>
-                    </div>
-                    <div class="write-review">
-                        <div class="rating-image-counter">
+                    <div class="rating-image-counter">
                             <img  class="rating-image js-rating-image" src = "../resources/ratings/rating-30.png" alt="star rating image">
                             <p class="reviewer-count"></p>
                         </div>
+                        <div class="rating-text">Out of 5</div>
+                    </div>
+                    <div class="write-review">
                         <div class="share-review">
                             <p class="text-review">Here's what people say about you</p>
                         </div>
                     </div>
                 </div>
                 <div class="main-comment js-main-comment">
-                <!--
-                
-                 <div class='comment-card'>
-    <div class="reviewer-info-wrapper">
-                        <div class="reviewer-info">
-                            <p class="reviewer-name">${element["username"]}</p>
-                            <p class="review-date">${element["date"]}</p>
-                        </div>
-                        <img class="reviewer-rating-image" src = "/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
-                    
-                    <div class="review-comment">
-                        ${element["comment"]}
-                    </div>
-                    </div> -->
-                    </div>
+<!----------------------INSERT YOUR REVIEWS  HERE--------------->
+                </div>
             </div>
             </section>
         </div>
     </div>
-<div class="form-div" id="js-form-div">
+<dialog class="form-div" id="js-form-div">
 <form  class="house-info" method="POST" action="/sajilo-rent/user-panel/back_end/updatehousedetails.php" enctype="multipart/form-data">
 <h2 class="form-div-h2">Answer These FAQs</h2>
 <div class="price wrapper-div">     
@@ -181,9 +167,9 @@ Upload Three Images of the room :
 <input type="number" name="lat" id="js-lat" step="0.00000000000000001" required>
 <input type="number" name="lng" id="js-lng" step="0.00000000000000001" required>
 </div>
-<input type="submit" class="form-submit-btn"value="Update">
+<input class="form-update js-form-update" type="submit" class="form-submit-btn"value="Update">
 </form>
 <div class="cross-icon" id="js-cross-icon"><img src="/sajilo-rent/resources/cross.png" alt="" height="50" width="50"></div>
-</div>
+</dialog>
 </body>
 </html>

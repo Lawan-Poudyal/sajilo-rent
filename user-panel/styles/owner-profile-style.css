@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    
+    scrollbar-width: thin;
 }
 .main-body{
     display: flex;
@@ -18,7 +18,12 @@
 }
 
 .section-wrapper {
-    width: 70vw;
+    width: 100%;
+}
+.section-wrapper section{
+border:none;
+/* box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px; */
+box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 .section-profile {
     display: flex;
@@ -26,8 +31,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 2rem;
+    border-radius: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -79,8 +83,7 @@
 /* user-recents */
 
 .section-recent{
-    border: 1px solid #ccc;
-    border-radius: 2rem;
+    border-radius: 1rem;
     margin-bottom: 1rem;
     display:flex;
     flex-flow: column nowrap;
@@ -152,8 +155,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 2rem;
-    border: 1px solid #ccc;
-    border-radius: 2rem;
+    border-radius: 1rem;
     margin-bottom: 1rem;
 }
 .main-rating{
@@ -188,7 +190,6 @@
     align-items: center;
     gap: 2rem;
     flex: 0.7;
-    border: 1px solid black;
     border-radius: 1rem;
 }
 .share-review{
@@ -267,13 +268,32 @@ padding:0.5rem;
  
 }
 
+.form-update{
+    background-color: #dc3545;
+    color:white;
+    transition: 0.25s;
+    font: 1.5rem;
+    font-weight: 600;
+    border:none;
+}
+.form-update:hover{
+    background-color: darkred;
+    transform: translateY(-5px);
 
+}
 /* student part */
 .update-house{
-    text-align: center;
+    display:grid;
+    place-content:center;
+    cursor:pointer;
     font-size: 20px;
-    border-radius: 1rem;
-    padding: .2rem .5rem;
+    border-radius:10px;
+    background-color: #dc3545;
+    color:white;
+    border:none;
+    height:25px;
+    width:fit-content;
+    padding: 1.25rem 1rem;
 }
 .house-card .hide, .not-rented .hide { 
     display: none; 
@@ -406,12 +426,9 @@ padding:0.5rem;
     z-index: 10;
     height:65vh;
     padding:var(--standard-padding);
-    position:absolute;
-    top:10vh;  
-    margin:auto;
+    place-content: center;
     width: clamp(350px , 100% , 600px);
-    left:calc(50vw - 300px);
-    display:none;
+    overflow-y:hidden;      
 }
     /*changed nothing*/
 .form-div form {
@@ -451,7 +468,6 @@ label {
 input, select {
     padding: 0.6rem;
     font-size: 1rem;
-    border: 1px solid #cccccc;
     border-radius: 5px;
     outline: none;
     transition: all 0.3s ease;

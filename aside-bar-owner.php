@@ -3,18 +3,20 @@ $email = $_SESSION['email'];
 ?>
 
 <aside class="aside-bar">
+    <div class="all-link">
             <div class="main-links">
-                <a href="/sajilo-rent/user-panel/owner-page.php"><img src="https://img.icons8.com/ios/50/home--v1.png" alt="home--v1"/><span class="link-text home">Home</span></a>
-                <a href="/sajilo-rent/user-panel/owner-profile.php"><img src="https://img.icons8.com/fluency-systems-regular/50/user--v1.png" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
-                <a href="/sajilo-rent/chatapplication/messenger.php?email=<?php echo $email?>"><img src="https://img.icons8.com/ios/50/messages-mac.png" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
-                <a href="#"><img src="https://img.icons8.com/ios/50/conference-call.png" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
+                <a href="/sajilo-rent/user-panel/owner-page.php"><img src="https://img.icons8.com/?size=100&id=2797&format=png&color=FFFFFF" alt="home--v1"/><span class="link-text home">Home</span></a>
+                <a href="/sajilo-rent/user-panel/owner-profile.php"><img src="https://img.icons8.com/?size=100&id=14736&format=png&color=FFFFFF" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
+                <a href="/sajilo-rent/chatapplication/messenger.php?email=<?php echo $email?>"><img src="https://img.icons8.com/?size=100&id=R7M0cowL2BCb&format=png&color=FFFFFF" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
+                <a href="#"><img src="https://img.icons8.com/?size=100&id=J715ns61u5eV&format=png&color=FFFFFF" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
 <!----create the tenants request section by yourselves ----->
-                <a href="#" class="js-tenants-request"><img src="https://img.icons8.com/fluency-systems-regular/50/request-feedback.png" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
-                <a href="#"><img src="https://img.icons8.com/fluency-systems-regular/50/password-window.png" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
+                <a href="#" class="js-tenants-request"><img src="https://img.icons8.com/?size=100&id=123784&format=png&color=FFFFFF" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
+                <a href="#"><img src="https://img.icons8.com/?size=100&id=10480&format=png&color=FFFFFF" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
             </div>
             <div class="bottom-links">
-                <a href="#"><img class="log-out-pic" src="https://img.icons8.com/fluency-systems-regular/50/exit--v1.png" alt="log out icon"/><span class="link-text log-out">Log-out</span></a>
-                <a href="#"><img class="about-pic" src="https://img.icons8.com/fluency-systems-regular/50/about.png" alt="about icon"/><span class="link-text about">About</span></a>
+                <a href="#"><img class="log-out-pic" src="https://img.icons8.com/?size=100&id=JdaYRcm8sarQ&format=png&color=FFFFFF" alt="log out icon"/><span class="link-text log-out">Log-out</span></a>
+                <a href="#"><img class="about-pic" src="https://img.icons8.com/?size=100&id=7694&format=png&color=FFFFFF" alt="about icon"/><span class="link-text about">About</span></a>
+            </div>
             </div>
 </aside>
 <!-------------------------- modal for changing password  --->

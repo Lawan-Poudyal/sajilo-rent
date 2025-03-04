@@ -6,7 +6,7 @@ const profileImage = document.querySelector('.js-profile-image');
 const currentHouses = document.querySelector('.js-current-houses');
 const notRentedTag = document.querySelector('.js-not-rented-tag');
 const crossIcon = document.getElementById("js-cross-icon");
-const formDiv = document.getElementById("js-form-div");
+const formDiv = document.querySelector("#js-form-div");
 const email = document.querySelector(".js-email").innerText;
 const price = document.querySelector('.js-price');
 const rooms = document.querySelector('.js-rooms');
@@ -78,8 +78,10 @@ function addHouseDetails(houses)
 }
 function updateButtonEvents(){
     const updateHouse = document.querySelectorAll('.js-update-house');
+    
     updateHouse.forEach(button=>{
         button.addEventListener('click' , ()=>{
+            console.log(button);
             showHouseDetail(button.dataset);
         })
     })
@@ -93,7 +95,7 @@ const data= await response.json();
 showForm(data);
 }
 function showForm(data){
-formDiv.style.display = "block";
+formDiv.showModal();
 if(data['electricity'] === 'required'){
     electricityRequired.checked = true;
 }
@@ -126,7 +128,7 @@ latitude.value = data['latitude'];
 longitude.value = data['longitude'];
 }
 crossIcon.addEventListener("click", function() {
-    formDiv.style.display = "none";
+    formDiv.close();
 });
 function loadReview(data)
 {

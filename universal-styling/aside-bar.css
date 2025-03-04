@@ -1,24 +1,36 @@
 .aside-bar {
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 60px; /* Initial collapsed width to show only icons */
-    background-color: #f8f8f8;
+    background-color: #dc3545;
     border-radius: 0.5rem;
-    transition: width 0.3s ease; /* Smooth transition for width change */
+    transition: width 0.3s ease-in-out; /* Smooth transition for width change */
     overflow: hidden; /* Prevents content from showing outside container */
     padding: 1.5rem 0.8rem;
     position:relative;
 }
-
+.aside-bar span{
+    color:white;
+}
+.all-link a{
+    width:60px;
+    transition:width 0.3s ease-in-out;
+}
 .aside-bar:hover {
     width: 15vw; /* Expanded width on hover */
 }
-
+.aside-bar:hover a{
+    width:100%;
+}
+.all-link{
+    position:fixed;
+    top: 0; 
+    /* border:1px solid black;/   to understand how it works please turns the border back on */
+}
 .main-links, .bottom-links {
     display: flex;
     flex-flow: column;
-    /* gap: 1.5rem; */
     width: 100%;
 }
 
@@ -38,7 +50,7 @@ a {
     overflow: hidden; /* Ensures the link doesn't break layout */
 }
 a:hover{
-    background-color: #e0e6ed;
+    background-color: #cd727b;
     transition: all 0.3s ease;    
 }
 
@@ -314,6 +326,9 @@ dialog::backdrop {
     margin:auto;    
 }   
 /*---------------------*/
+.request-card{
+    padding:1.5rem;
+}
 .tenants-card{ 
     background-color: var(--contrast-bgcolor);
     padding:var(--standard-padding);
@@ -322,24 +337,36 @@ dialog::backdrop {
     display:grid;
     height:fit-content;
     grid-template-columns: repeat(1,1fr 1fr 1fr);
-    width:clamp(600px , 100% , 700px);
-    margin:auto;     
+    width:clamp(600px , 95% , 700px);
+    margin:5px auto; 
+    background-color:whitesmoke;
+    box-shadow: 0px 5px 10px gray;
+   
     }
     .tenants-card img{
         width:100%;
         max-width:300px;
         height:auto;
-        grid-column: 1/3;
+        grid-column: 1/2;
         grid-row : 1/3;
+        /* border-radius:50000px; */
+      
+    }
+    .tenants-credential{
+        grid-column: 2/4;
+        display: flex;
+        justify-content: flex-start;
     }
     .interactive-btn{
         display:flex;
-        justify-content: space-between;
+        justify-content:flex-start;
+        grid-column: 2/4;
+        gap:1.5rem;
     }
     .interactive-btn button {
         height: var(--nav-element-height, 40px);
         width: 120px;
-        border-radius: 20px;
+        border-radius: 10px;
         border: none;
         background-color: limegreen;
         color: white;
@@ -358,7 +385,7 @@ dialog::backdrop {
         background-color:darkred;
     }
     .interactive-btn button:first-child{
-    background-color: red;
+    background-color: #dc3545;
     }
     .tenants-credential{
     display:flex;
