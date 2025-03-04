@@ -248,13 +248,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const tenantsProfileLink = document.querySelector('.aside-bar a:nth-child(4)');
     const tenantDialog = document.querySelector('.tenant-dialog');
     const tenantDialogClose = document.querySelector('.tenant-dialog-close');
-    
+    const viewProfile = document.querySelectorAll('.view-profile-btn');
+
+
+    viewProfile.forEach((button) =>  {
+        button.addEventListener('click' , function(){
+            const tenantCard = this.closest('.tenant-card');
+            currentTenantElement = tenantCard;
+
+            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            const tenantSince = tenantCard.querySelector('.tenant-since').textContent;
+            const tenantPic = tenantCard.querySelector('.tenant-pic').src;
+
+            window.location = `/sajilo-rent/userprofiles/studentProfile.php/?email=${tenantEmail}`;            
+
+            })
+    })
     // Only open dialog when Tenants Profile link is clicked
     if(tenantsProfileLink) {
         tenantsProfileLink.addEventListener('click', function(e) {
             e.preventDefault(); // Prevent default navigation
             tenantDialog.showModal();
-            loadTenants();
         });
     }
     
@@ -265,15 +279,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Add keyboard event for ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && tenantDialog.open) {
-            tenantDialog.close();
-        }
-    });
     
-    // Rest of your code...
-});
+
+    });
 </script>
 
 <style>

@@ -26,7 +26,7 @@ error_reporting(E_ALL);
             <div class="user-information">
                 <div class="avatar"><img src="/sajilo-rent/resources/profile-related/default-profile.png" alt="Profile image" class="profile-image"></div>
                 <div class="personal-info">
-                    <p class="user-name"><?php echo $_SESSION["s_username"]?></p>
+                    <p class="user-name"></p>
                     <p class="user-status">Student</p>
                 </div>
             </div>
@@ -48,9 +48,6 @@ error_reporting(E_ALL);
                         <button class="leave-house">Leave House</button>
                     </div>
                 </div>
-            </div>
-            <div class="not-residing">
-                <h1>You are not residing in any house</h1>
             </div>
         </div>
         </section>

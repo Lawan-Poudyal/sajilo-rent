@@ -33,11 +33,10 @@ mapInstance.on('popupopen', function(event) {
     });
 });
 
-
 mapInstance.on('popupopen', function(event) {
     const bookForRent = event.popup._contentNode.querySelector('.bookButton');
-    // const studentName = document.querySelector('.email').textContent;
-    const contactDiv = event.popup._content.match(/Contact:\s*([^<]*)/);
+    const studentName = document.querySelector('.email').textContent;
+    const contactDiv = event.popup._content.match(/Owner: <span class="bold">(.*?)<\/span>/);
     const ownerName = contactDiv[1];
     bookForRent.addEventListener('click', () => {
         fetch('./backend/BookForRent.php', {

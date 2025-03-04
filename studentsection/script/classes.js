@@ -89,7 +89,7 @@ class MarkerMaker {
     constructor(mapInstance) {
         this.mapInstance = mapInstance;
         this.myIcon = L.icon({
-            iconUrl: '../resources/marker.svg',
+            iconUrl: '/sajilo-rent/resources/marker.svg',
             iconSize: [30, 30]
         });
         this.markerList = [];
@@ -97,22 +97,20 @@ class MarkerMaker {
 
     addMarkers(latlngData) {
         latlngData.forEach(location => {
-            if(location.BOOKED == 0){
-                return;
-            }
             console.log(location);
+            console.log(location.image1);
+            console.log(PATHS.house + location.image2);
             const content = `
-                <div class="top-div" style = "background-image: ${PATHS.house + location.image1}"></div>
+                <div class="top-div" style = "background-image: url(${PATHS.house + location.image1})"></div>
                 <div class="bottom-div">
-                    <div class="left-div style = "background-image: ${PATHS.house + location.image2}"></div>
-                    <div class="right-div style = "background-image: ${PATHS.house + location.image3}"></div>
+                    <div class="left-div "style = "background-image: url(${PATHS.house + location.image2})"></div>
+                    <div class="right-div "style = "background-image: url(${PATHS.house + location.image3})"></div>
                 </div>
                 <div class="infocontainer">
                     <div class="quickinfo">
-                        <div class="housetype">Rooms: ${location.no_of_rooms}</div>
-                        <div class="price">Price: NRP ${location.price}</div>
-                        <div class="contact">Contact: ${location.username}</div>
-                        <
+                        <div class="housetype">Rooms: <span class="bold">${location.no_of_rooms}</span></div>
+                        <div class="price">Price: <span class="bold">NRP ${location.price}</span></div>
+                        <div class="contact">Owner: <span class="bold">${location.username}</span></div>
                     </div>
                     <div class="button">
                     <button class = "bookButton">
