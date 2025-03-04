@@ -1,5 +1,10 @@
 let price = document.querySelector('.price');
 let houseType = document.querySelector('.housetype');
+const PATHS = {
+    house: '/sajilo-rent/user-panel/back_end/',
+    student: '/sajilo-rent/studentsection/backend/',
+    defaultProfile: '/sajilo-rent/resources/profile-related/default-profile.png'
+};
 
 class Map {
     constructor(center, zoom, tileLayer, attribution) {
@@ -95,11 +100,12 @@ class MarkerMaker {
             if(location.BOOKED == 0){
                 return;
             }
+            console.log(location);
             const content = `
-                <div class="top-div" style = "background-image: ${location.image1}"></div>
+                <div class="top-div" style = "background-image: ${PATHS.house + location.image1}"></div>
                 <div class="bottom-div">
-                    <div class="left-div style = "background-image: ${location.image2}"></div>
-                    <div class="right-div style = "background-image: ${location.image3}"></div>
+                    <div class="left-div style = "background-image: ${PATHS.house + location.image2}"></div>
+                    <div class="right-div style = "background-image: ${PATHS.house + location.image3}"></div>
                 </div>
                 <div class="infocontainer">
                     <div class="quickinfo">

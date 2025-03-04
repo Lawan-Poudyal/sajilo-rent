@@ -10,11 +10,12 @@ const mapInstance = map.createMap();
 
 let markerMaker, routing, selecter;
 
-fetch('./data/latlng.json')
+fetch('/sajilo-rent/studentsection/data/latlng.json')
     .then(response => response.json())
     .then(latlngData => {
         markerMaker = new MarkerMaker(mapInstance);
         routing = new RoutingControl(mapInstance, markerMaker, center);
+        console.log(latlngData);
         markerMaker.addMarkers(latlngData);
         selecter = new SelectRanges(mapInstance, markerMaker);
     })
@@ -106,4 +107,6 @@ document.querySelectorAll('.dropbtn').forEach(element =>{
         const dropdownContent = element.nextElementSibling;
         dropdownContent.classList.toggle("show")
 })});   
+
+//select tags
 

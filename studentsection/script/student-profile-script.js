@@ -15,7 +15,7 @@ const imageInput = document.querySelector('#imageInput');
 const PATHS = {
     house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
-    defaultProfile: '../resources/profile-related/default-profile.png'
+    defaultProfile: '/sajilo-rent/resources/profile-related/default-profile.png'
 };
 document.addEventListener('DOMContentLoaded', () => {
     notResiding.classList.add("hide");
