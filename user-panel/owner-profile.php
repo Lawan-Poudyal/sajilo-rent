@@ -1,144 +1,189 @@
 <?php 
 session_start();
-if (!isset($_SESSION["username"] ) || !isset($_SESSION['email']))
-{
-header("Location:/sajilo-rent/user-panel/user-home.php");
-}
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}else{echo 'Profile';}?></title>
-    <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+    <title>Document</title>
+    <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
     <link rel="stylesheet" href="/sajilo-rent/user-panel/styles/owner-profile-style.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
     <script src="/sajilo-rent/user-panel/script/owner-profile-script.js" defer></script>
-
-</head>
+    </head>
 <body>
-<header class="header">
-            <nav class="header-nav">
-                <div class="header-nav-element">
-                <button id="logo-btn">
-                    <figure>
-                    <img src="/sajilo-rent/resources/logo.svg" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
-                </figure>
-            </button>
-                </div>
-                <div class="header-nav-element">  
-                <div class="header-nav-element-menu menu">
-                    <figure id="js-menu">
-                    <img src="/sajilo-rent/resources/menu.png" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
-                    </figure>
-                    <div class="dropdown-menu" id="js-drop-down">
-                    <div class="option js-my-profile js-option"><span class="nowrap">Your Profile</span></div>  
-                    <div class="option  js-option"><span class="nowarp  js-tenants-option">Tenants Profile</span></div>  
-                    <div class="option js-rent-request js-option"><span class="nowarp">Rent Request</span></div>  
-                    <div class="option js-option"><span class="nowarp js-password">Change Password</span></div>  
-                    <div class="option js-logout js-option"><span class="nowarp">logout</span></div>  
+    <?php require_once '/xampp/htdocs/sajilo-rent/header.php'; ?>
+    <div class="main-body">
+    <?php
+        require_once '/xampp/htdocs/sajilo-rent/aside-bar-owner.php';
+    ?>
+    <div class="section-wrapper">
+        <section class="section-profile">
+            <div class="user-information">
+                <div class="avatar-wrapper">
+                    <div class="avatar">
+                        <img src="/sajilo-rent/resources/profile-related/default-profile.png" alt="Profile image" class="profile-image js-profile-image">
+                        <img src="../resources/profile-related/change-profile.svg" class="change-profile-icon js-change-profile-icon" alt="">
+                        <form action="/sajilo-rent/user-panel/back_end/addprofilepic.php" method="POST" enctype="multipart/form-data" class="js-profile-form">
+                        <input type="file" name="image" id="imageInput" class="js-image-input" accept="image/*">
+                        </form>
                     </div>
                 </div>
-            </nav>
-        </header>
-        <main class="main">
-        <div class="container-for-info ">
-            <div class="main-div profilepic js-profile-pic"></div>
-            <div class="contacts">
-            <div class="name "><?php echo $_SESSION['username']?></div>    
-            <div class="email js-email "><?php echo $_SESSION['email']?></div>
+                <div class="personal-info">
+                    <p class="user-name"><?php echo $_SESSION["username"]?></p>
+                    <p class="user-status">Owner</p>
+                    <p class="email js-email" style="display:none"><?php echo $_SESSION['email']?></p>
+                </div>
             </div>
-            <div class="main-div profilestatus">
-                <span class="main-div-span info nowrap  ">Rating</span>
-                <span class="main-div-span info nowrap js-rating-icon"><img src="/sajilo-rent/resources/ratings/rating-50.png" alt=""></span>
-                <span class="main-div-span info nowrap ">Tenants Living</span>
-                <span class="main-div-span info js-tenants nowrap ">5</span>
-                <span class="main-div-span info nowrap ">Rooms Rented</span>
-                <span class="main-div-span info nowrap js-rooms ">5</span>
+
+        </section>
+        <section class="section-recent">
+        <p class="text-student text-owner">Houses Rented</p>
+        <div class="current-houses js-current-houses">
+            <div class="not-rented js-not-rented">
+                <h1 class="js-not-rented-tag">House not rented yet</h1>
+            </div>  
+        </div>
+        </section>
+        <section class="section-review">
+            <p class="text-comment">Review</p>
+            <div class="rating-comment">
+                <div class="main-rating">
+                    <div class="rating-box">
+                        <div class="rating-number"></div>
+                        <div class="rating-text">Out of 5</div>
+                    </div>
+                    <div class="write-review">
+                        <div class="rating-image-counter">
+                            <img  class="rating-image js-rating-image" src = "../resources/ratings/rating-30.png" alt="star rating image">
+                            <p class="reviewer-count"></p>
+                        </div>
+                        <div class="share-review">
+                            <p class="text-review">Here's what people say about you</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-comment js-main-comment">
+                <!--
                 
-            </div>
-            </div>
-            <section class="main-section">
-            <h2>Comments</h2>
-            <hr>
-        <div class="main-section-div comments js-main-section-div">
-            <div class="comment">
-            <div class="main-section-div-div commentinfo"><span class="commenter">Abhiyan Regmi </span>  posted on <span class="commentdate">2074/03/15</span></div>
-            <div class="main-section-div-div commentdata">i don't like this place</div>
-            </div>
+                 <div class='comment-card'>
+    <div class="reviewer-info-wrapper">
+                        <div class="reviewer-info">
+                            <p class="reviewer-name">${element["username"]}</p>
+                            <p class="review-date">${element["date"]}</p>
+                        </div>
+                        <img class="reviewer-rating-image" src = "/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
+                    
+                    <div class="review-comment">
+                        ${element["comment"]}
+                    </div>
+                    </div> -->
+                    </div>
             </div>
             </section>
-        <div class="main-section-div request js-request-card hidden">
-        
         </div>
-        <div class="main-section-div tenants js-tenants-profile hidden">
-        <div class="tenants-card js-tenants-card">
-        <img src="/sajilo-rent/resources/add.png" alt="something-in-the-way">
-        <div class="tenants-credential"><span class="tenants-username"><?php echo $_SESSION['username']?></span> <span class="tenants-email"><?php echo $_SESSION['email']?></span></div>
-        <div class="interactive-btn">
-            <button class="kick-out">Kick Out</button>
-            <button class="view-profile">View Profile</button>
-        </div>
-        </div>
-        <div class="tenants-card js-tenants-card">
-        <img src="/sajilo-rent/resources/add.png" alt="something-in-the-way">
-        <div class="tenants-credential"><span class="tenants-username"><?php echo $_SESSION['username']?></span> <span class="tenants-email"><?php echo $_SESSION['email']?></span></div>
-        <div class="interactive-btn">
-            <button class="kick-out">Kick Out</button>
-            <button class="view-profile">View Profile</button>
-        </div>
-        </div>
-        <div class="tenants-card js-tenants-card">
-        <img src="/sajilo-rent/resources/add.png" alt="photo-no-uploaded">
-        <div class="tenants-credential"><span class="tenants-username"><?php echo $_SESSION['username']?></span> <span class="tenants-email"><?php echo $_SESSION['email']?></span></div>
-        <div class="interactive-btn">
-            <button class="kick-out">Kick Out</button>
-            <button class="view-profile">View Profile</button>
-        </div>
-        </div>
-        </div>
-        </main>
-        <div class="uploadphoto js-upload-photo">
-            <div class="photo js-photo">
-            </div>
-            <form action="/sajilo-rent/user-panel/back_end/addprofilepic.php" method="post" enctype="multipart/form-data">
-            <input type="submit" class="send" value="Save Profile Pic"></input>
-            <input type="file" class="js-image hidden" name="image">
-            </form>
-            <div class="cross-icon js-cross-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
-        </div>
-        <div class="logout js-log-out ">
-             <span class="logout-msg">Are you sure you want to log out ?</span>
-             <div class="logout-option">
-                <button class="sure js-sure">Log out</button>
-                <button class="notlogout js-notlogout">No</button>
-             </div>
-            <div class="cross2-icon js-cross2-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
-        </div>
-        <div class="change-password js-change-password">
-        <span class="change-password-msg">Change Password</span>
-        <input type="text" placeholder="old password" class="js-old-password">
-        <input type="text" placeholder="new password" class="js-new-password">
-        <div class="change-password-option">
-                <button class="confirm js-confirm">Confirm</button>
-                <button class="notlogout js-notlogout">Don't Change</button>
-             </div>
-             <div class="cross3-icon js-cross3-icon" ><img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt=""></div>
-        </div>
-        <dialog class="review js-review">
-            <h2>Review</h2>
-            <div id="stars" >
-                <span class="star js-star" data-value="1">★</span>
-                <span class="star js-star" data-value="2">★</span>
-                <span class="star js-star" data-value="3">★</span>
-                <span class="star js-star" data-value="4">★</span>
-                <span class="star js-star" data-value="5">★</span>
-            </div>
-            <section class="comment-section">
-                <textarea name="" id="" class="comment-section-area js-text-area" placeholder="Your comment here..."></textarea>
-            </section>
-            <button class="submit-review-btn js-submit-review-btn">Kick without response</button>
-        </dialog>
+    </div>
+<div class="form-div" id="js-form-div">
+<form  class="house-info" method="POST" action="/sajilo-rent/user-panel/back_end/updatehousedetails.php" enctype="multipart/form-data">
+<h2 class="form-div-h2">Answer These FAQs</h2>
+<div class="price wrapper-div">     
+<label for="price"> 
+Price:
+</label>
+<input class="js-price" type="number" value ="500" min="500" name="price" step="100" required>
+</div>
+<div class="no-of-rooms wrapper-div">
+<label for="no-of-rooms">
+No of Rooms:
+</label>
+<input class="js-rooms" type="number" value ="1"  max="10" min="1" name="no-of-rooms" required>
+</div>
+<div  class="no-of-roommates wrapper-div">
+<label for="no-of-roommates">
+No of Roommates:
+</label>
+<input class="js-no-of-roommates" type="number" value ="1"  max="4" min="1" name="no-of-roommates" required>
+</div>
+<div class="gates-open wrapper-div">
+<label for="gates-open">
+Gates Open:
+</label>
+<input class='js-gates-open' type="time" name="gates-open" required>
+</div>
+<div class="gates-close wrapper-div">
+<label for="gates-close">
+Gates Close:
+</label>
+<input class="js-gates-close" type="time" name="gates-close" required>
+</div>
+<div class="parking wrapper-div">
+<label for="parking">
+Parking:
+</label>
+available: <input class="js-parking-available" type="radio" name="parking" value="available" required>
+unavailable: <input class="js-parking-unavailable" type="radio" name="parking" value="unavailable" required> 
+</div>
+<div class="floor-level wrapper-div">
+<label for="floor-level">
+Floor Level:
+</label>
+<select class="js-floor-level" name="floor-level" id="floor-level" required>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+</div>
+<div class="house-facing-direction wrapper-div">
+<label for="house-facing-direction">
+House Direction:
+</label>
+<select class="js-house-facing-direction" name="house-facing-direction" id="house-facing-direction" required>
+  <option value="east">east</option>
+  <option value="west">west</option>
+  <option value="north">north</option>
+  <option value="south">south</option>
+</select>
+</div>
+<div class="wifi wrapper-div">
+<label for="wifi">
+Wifi (in NPR/month):
+</label>
+<input class="js-wifi" type="range" min="0" step="500" max="3000" value="0" name="wifi" id="wifi-price" required>
+<span id="price-value"></span>
+</div>
+<div class="electricity wrapper-div">
+<label for="electricity">
+Electricity:
+</label>
+Required:<input class='js-electricity-required' type="radio" name="electricity" value="required" required>
+Not Required: <input class='js-electricity-notrequired' type="radio" name="electricity" value="notrequired" required>
+</div>
+<div class="image wrapper-div">
+<label for="image">
+Upload Three Images of the room :
+</label>
+<input type="file" name="image" id="image1" accept="image/*"required>
+<input type="file" name="image-2" id="image2" accept="image/*" required>
+<input type="file" name="image-3" id="image3" accept="image/*" required>
+
+</div>
+<div class="image-wrapper wrapper-div">
+<div class="image-display image1" id="image-div1"></div>
+<div class="image-display image2" id="image-div2"></div>
+<div class="image-display image3" id="image-div3"></div>
+</div>
+<div class="hidden-latlng wrapper-div ">
+<input type="number" name="lat" id="js-lat" step="0.00000000000000001" required>
+<input type="number" name="lng" id="js-lng" step="0.00000000000000001" required>
+</div>
+<input type="submit" class="form-submit-btn"value="Update">
+</form>
+<div class="cross-icon" id="js-cross-icon"><img src="/sajilo-rent/resources/cross.png" alt="" height="50" width="50"></div>
+</div>
 </body>
 </html>
