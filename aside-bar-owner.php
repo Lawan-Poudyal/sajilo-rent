@@ -209,6 +209,7 @@ async function loadRequests(){
 }
 function loadRequestDOM(data){
 data.forEach(element => {
+    requestCard.innerHTML = '';
 if(element['error']) return;
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
         <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
@@ -252,7 +253,6 @@ async function acceptRequest(btn)
 {
     let response = await fetch(`/sajilo-rent/user-panel/back_end/acceptrequest.php?lat=${btn.dataset['lat']}&lng=${btn.dataset['lng']}&username=${btn.dataset['email']}`);
     let data  = await response.text();
-    requestCard.innerHTML = '';
     loadRequests();
 }
 </script>

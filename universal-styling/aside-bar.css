@@ -26,7 +26,7 @@
 .all-link{
 
     position:fixed;
-    top: 80px; 
+    top: 100px; 
     /* border:1px solid black;/   to understand how it works please turns the border back on */
 }
 .main-links, .bottom-links {
