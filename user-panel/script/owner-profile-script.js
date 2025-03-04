@@ -1,6 +1,5 @@
 const changeProfileBtn = document.querySelector('.js-change-profile-icon');
-const imageInput  = document.querySelector('.js-image-input');
-<<<<<<< HEAD
+const imageInput = document.querySelector('.js-image-input');
 const profileForm = document.querySelector('.js-profile-form');
 const fileDir = '/sajilo-rent/user-panel/back_end/';
 const profileImage = document.querySelector('.js-profile-image');
@@ -30,56 +29,45 @@ const mainComment = document.querySelector('.js-main-comment');
 const ratingImage = document.querySelector('.js-rating-image');
 let avgRating = 0;
 var imageLocation = '';
-document.addEventListener('DOMContentLoaded' ,async()=>{
-    try{
-let response = await Promise.all([fetch('/sajilo-rent/user-panel/back_end/setprofilepic.php'), fetch('/sajilo-rent/user-panel/back_end/showallhouses.php'), fetch(`/sajilo-rent/user-panel/back_end/loadcomment.php`)]);
-let data  = await Promise.all([response[0].json() , response[1].json() , response[2].json()]);
-changeProfile(fileDir+ data[0]['image']);//fine as hell.
-addHouseDetails(data[1]);
-loadReview(data[2]);
-    }
-    catch(err)
-    {
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        let response = await Promise.all([
+            fetch('/sajilo-rent/user-panel/back_end/setprofilepic.php'),
+            fetch('/sajilo-rent/user-panel/back_end/showallhouses.php'),
+            fetch(`/sajilo-rent/user-panel/back_end/loadcomment.php`)
+        ]);
+        let data = await Promise.all([response[0].json(), response[1].json(), response[2].json()]);
+        changeProfile(fileDir + data[0]['image']); //fine as hell.
+        addHouseDetails(data[1]);
+        loadReview(data[2]);
+    } catch (err) {
         console.log(err);
     }
 });
-=======
 
-
->>>>>>> c2e6caf7b409775b368bc4bfad40629706d81a87
-changeProfileBtn.addEventListener('click' , ()=>{
-imageInput.click();
+changeProfileBtn.addEventListener('click', () => {
+    imageInput.click();
 });
-imageInput.addEventListener('change', async ()=>{
+
+imageInput.addEventListener('change', async () => {
     const file = imageInput.files[0];
-    if (file) {
-        const formData = new FormData();
-        formData.append('image', file);
-        try {
-            const response = await fetch('/sajilo-rent/user-panel/owner-profile.php', {
-                method: 'POST',
-                body: formData
-            });
+    profileForm.submit();
+});
 
-            if (response.ok) {
-                // Reload the page to show the updated profile image
-                window.location.reload();
-            } else {
-                alert('Image upload failed.');
-            }
-        } catch (error) {
-            console.error('Error uploading image:', error);
-        }
-    }
-   
+function changeProfile(filePath) {
+    if (filePath === 'false') return;
+    profileImage.src = filePath;
+}
 
-<<<<<<< HEAD
-    houses.forEach(house => {    
-        if(house['error']) return;
+function addHouseDetails(houses) {
+    houses.forEach(house => {
+        if (house['error']) return;
         notRentedTag.classList.add('hide');
         console.log(house);
-        let location =    '/sajilo-rent/user-panel/back_end/'+house['image1'];
-        currentHouses.innerHTML += `<div class="house-card">
+        let location = '/sajilo-rent/user-panel/back_end/' + house['image1'];
+        currentHouses.innerHTML += `
+            <div class="house-card">
                 <img src='${location}' alt="Your house here" class="living-house-image js-house-image" >
                 <div class="house-information">
                     <div class="residence-details">
@@ -89,101 +77,94 @@ imageInput.addEventListener('change', async ()=>{
                         <button class="update-house js-update-house" data-lat='${house['latitude']}' data-lng='${house['longitude']}'>Update Info</button>
                     </div>
                 </div>
-            </div>`;     
+            </div>`;
     });
     updateButtonEvents();
 }
-function updateButtonEvents(){
+
+function updateButtonEvents() {
     const updateHouse = document.querySelectorAll('.js-update-house');
-    
-    updateHouse.forEach(button=>{
-        button.addEventListener('click' , ()=>{
+    updateHouse.forEach(button => {
+        button.addEventListener('click', () => {
             console.log(button);
             showHouseDetail(button.dataset);
-        })
-    })
-} 
-async function showHouseDetail(dataset){
+        });
+    });
+}
+
+async function showHouseDetail(dataset) {
     console.log(dataset.lat);
     console.log(dataset.lng);
     console.log(email);
-const response = await fetch(`/sajilo-rent/user-panel/back_end/showhousedetails.php?lat=${dataset.lat}&lng=${dataset.lng}&username=${email}`);
-const data= await response.json();
-showForm(data);
+    const response = await fetch(`/sajilo-rent/user-panel/back_end/showhousedetails.php?lat=${dataset.lat}&lng=${dataset.lng}&username=${email}`);
+    const data = await response.json();
+    showForm(data);
 }
-function showForm(data){
-formDiv.showModal();
-if(data['electricity'] === 'required'){
-    electricityRequired.checked = true;
+
+function showForm(data) {
+    formDiv.showModal();
+    if (data['electricity'] === 'required') {
+        electricityRequired.checked = true;
+    } else {
+        electricityNotrequired.checked = true;
+    }
+    floorLevel.value = data['floor_level'];
+    houseFacingDirection.value = data['house_facing_direction'];
+    noOfRoommates.value = data['no_of_roommates'];
+    rooms.value = data['no_of_rooms'];
+    if (data['parking'] === 'available') {
+        parkingAvailable.checked = true;
+    } else {
+        parkingUnavailable.checked = true;
+    }
+    price.value = data['price'];
+    wifi.value = data['wifi_price'];
+    gatesClose.value = data['gates_close'];
+    gatesOpen.value = data['gates_open'];
+    image1.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image1']})`;
+    image2.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image2']})`;
+    image3.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image3']})`;
+    image1.style.backgroundSize = 'cover';
+    image3.style.backgroundSize = 'cover';
+    image2.style.backgroundSize = 'cover';
+    latitude.value = data['latitude'];
+    longitude.value = data['longitude'];
 }
-else{
-    electricityNotrequired.checked = true;
-}
-floorLevel.value = data['floor_level'];
-houseFacingDirection.value = data['house_facing_direction'];
-noOfRoommates.value = data['no_of_roommates'];
-rooms.value = data['no_of_rooms'];
-if(data['parking'] === 'available')
-{
-    parkingAvailable.checked = true;
-}
-else
-{
-    parkingUnavailable.checked = true;
-}
-price.value = data['price'];
-wifi.value = data['wifi_price'];
-gatesClose.value = data['gates_close'];
-gatesOpen.value = data['gates_open'];
-image1.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image1']})`;
-image2.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image2']})`;
-image3.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image3']})`;
-image1.style.backgroundSize = 'cover';
-image3.style.backgroundSize = 'cover';
-image2.style.backgroundSize = 'cover';
-latitude.value = data['latitude'];
-longitude.value = data['longitude'];
-}
+
 crossIcon.addEventListener("click", function() {
     formDiv.close();
 });
-function loadReview(data)
-{
+
+function loadReview(data) {
     let count = 0;
-   if(data['err']) return;
-   data.forEach(element =>{
-    avgRating += element['rating'];
-    count++;
-    mainComment.innerHTML += `
-    <div class='comment-card'>
-    <div class="reviewer-info-wrapper">
-                        <div class="reviewer-info">
-                            <p class="reviewer-name">${element["username"]}</p>
-                            <p class="review-date">${element["date"]}</p>
-                        </div>
-                        <img class="reviewer-rating-image" src = "/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
-               
+    if (data['err']) return;
+    data.forEach(element => {
+        avgRating += element['rating'];
+        count++;
+        mainComment.innerHTML += `
+            <div class='comment-card'>
+                <div class="reviewer-info-wrapper">
+                    <div class="reviewer-info">
+                        <p class="reviewer-name">${element["username"]}</p>
+                        <p class="review-date">${element["date"]}</p>
                     </div>
-                    <div class="review-comment">
-                        ${element["comment"]}
-                    </div>
-                    </div>`
-   });
-   avgRating /= count;
-   ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustRating(avgRating))*10}.png`;
+                    <img class="reviewer-rating-image" src="/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image">
+                </div>
+                <div class="review-comment">
+                    ${element["comment"]}
+                </div>
+            </div>`;
+    });
+    avgRating /= count;
+    ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustRating(avgRating)) * 10}.png`;
 }
-function adjustRating(avgRating)
-{
+
+function adjustRating(avgRating) {
     let tempRating = avgRating;
     let floatingValue = avgRating - Math.floor(avgRating);
-    if(floatingValue >= 0.5)
-    {
+    if (floatingValue >= 0.5) {
         return (Math.floor(avgRating) + 1);
-    }
-    else{
+    } else {
         return (Math.floor(avgRating) + 0.5);
     }
 }
-=======
-});
->>>>>>> c2e6caf7b409775b368bc4bfad40629706d81a87

@@ -4,41 +4,51 @@ require_once 'db.php';
 
 session_start();
 
-("Content-Type: application/json"); // Always return JSON
+header("Content-Type: application/json"); // Added header function
 
-if (!isset($_SESSION["s_email"])) {
-    echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
-    exit;
-}
-
-$stmt = $conn->prepare("SELECT housedetails.username, housedetails.price, housedetails.image1, 
-       housedetails.image2, housedetails.image3, profilepicture.image
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get JSON input
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    
+    // Check if email exists and is not empty
+    if (!isset($data['email']) || empty($data['email'])) {
+        echo json_encode(['status' => 'error', 'message' => 'Email is required']);
+        exit;
+    }
+    
+    $email = $data['email'];
+    
+    $stmt = $conn->prepare("SELECT housedetails.username, housedetails.price, housedetails.image1, 
+        housedetails.image2, housedetails.image3, profilepicture.image,signin.firstName,signin.lastName
         FROM housedetails
         INNER JOIN booked ON booked.owner = housedetails.username
-        INNER JOIN profilepicture ON profilepicture.email = booked.email
+        LEFT JOIN profilepicture ON profilepicture.email = booked.email
+        INNER JOIN signin ON signin.email = booked.email
         WHERE booked.email = ?;
         ");
 
-$stmt->bind_param("s", $_SESSION["s_email"]);
+    $stmt->bind_param("s", $email);
 
-if (!$stmt->execute()) {
-    error_log("Query Execution Failed: " . $stmt->error);
-    echo json_encode(['status' => 'error', 'message' => 'Database error']);
-    exit;
-}
-
-$result = $stmt->get_result();
-$detailsOfOwner ;
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $detailsOfOwner = $row; 
+    if (!$stmt->execute()) {
+        error_log("Query Execution Failed: " . $stmt->error);
+        echo json_encode(['status' => 'error', 'message' => 'Database error']);
+        exit;
     }
-    echo json_encode($detailsOfOwner, JSON_PRETTY_PRINT);
-} else {
-    echo json_encode(['status' => 'error', 'message' => 'No house found']);
-}
 
-$stmt->close();
-$conn->close();
+    $result = $stmt->get_result();
+    $detailsOfOwner = []; // Initialize as empty array
+    
+    if ($result->num_rows > 0) {
+        $detailsOfOwner = $result->fetch_assoc(); // Get the first row directly
+        echo json_encode($detailsOfOwner, JSON_PRETTY_PRINT);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'No house found']);
+    }
+
+    $stmt->close();
+    $conn->close();
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+}
 ?>

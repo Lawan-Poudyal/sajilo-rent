@@ -63,7 +63,7 @@ function putReviewContent(jsonDataReview){
                             <p class="reviewer-name">${element["reviewer"]}</p>
                             <p class="review-date">${element["date"]}</p>
                         </div>
-                        <img class="reviewer-rating-image" src = "../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
+                        <img class="reviewer-rating-image" src = "/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
                     </div>
                     <div class="review-comment">
                         ${element["comment"]}

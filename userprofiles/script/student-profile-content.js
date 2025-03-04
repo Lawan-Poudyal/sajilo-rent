@@ -8,11 +8,13 @@ const reviewerCount = document.querySelector(".reviewer-count");
 const ratingImage = document.querySelector(".rating-image");
 const imgBlock = document.querySelector('.js-house-image');
 const profileimage = document.querySelector('.profile-image')
+const userName = document.querySelector('.user-name');
 
-
-const searchEmail = window.location.search;
-
-
+console.log(window.location)
+const url = new URL(window.location);
+console.log(url)
+const email =url.searchParams.get("email");
+console.log(email)
 const PATHS = {
     house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
@@ -22,8 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     (async function(){
         try {
-            const response = await Promise.all([fetch("/sajilo-rent/userprofiles/backend/load-profile-student.php"), fetch("/sajilo-rent/userprofiles/backend/load-reviews-student.php")]);
-            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].text(), response[1].text()]);
+            const requestProfile = new Request("/sajilo-rent/userprofiles/backend/load-profile-student.php",{
+                method: 'POST',
+                body: JSON.stringify({ email: email})
+            });
+            const requestReview = new Request("/sajilo-rent/userprofiles/backend/load-reviews-student.php",{
+                method: "POST",
+                body: JSON.stringify({email: email})
+            })
+            const response = await Promise.all([fetch(requestProfile), fetch(requestReview)]);
+            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
             console.log(jsonDataProfile,jsonDataReview);
             putHouseContent(jsonDataProfile);
             putProfileContents(jsonDataProfile);
@@ -36,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 function putProfileContents(jsonDataProfile){
     profileimage.src = PATHS.student + jsonDataProfile["image"];
+    userName.textContent = jsonDataProfile.firstName + " " +  jsonDataProfile.lastName;
 }
 
 function putHouseContent(jsonDataProfile) {
@@ -62,7 +73,7 @@ function putReviewContent(jsonDataReview) {
                             <p class="reviewer-name">${element["reviewer"]}</p>
                             <p class="review-date">${element["date"]}</p>
                         </div>
-                        <img class="reviewer-rating-image" src="../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image">
+                        <img class="reviewer-rating-image" src="/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image">
                     </div>
                     <div class="review-comment">
                         ${element["comment"]}
