@@ -3,6 +3,10 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
+{
+header("Location:/sajilo-rent/user-panel/user-home.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +41,6 @@ error_reporting(E_ALL);
                     <p class="user-status">Student</p>
                 </div>
             </div>
-            <button class="message-user">
-                Message
-            </button>
         </section>
         <section class="section-recent">
         <p class="text-student text-owner">Currently Residing in</p>

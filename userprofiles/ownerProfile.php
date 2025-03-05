@@ -53,7 +53,7 @@ ini_set('display_errors', 1);
                             </div>
                             <div class="share-review">
                                 <p class="text-review">Share your experience about the owner</p>
-                                <button class="button-write-review">Write a Review</button>
+                               
                             </div>
                         </div>
                     </div>

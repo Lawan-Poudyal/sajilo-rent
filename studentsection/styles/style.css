@@ -72,17 +72,6 @@ button, select{
     background-size: cover;
     background-position: center;
 }
-
-.top-div {
-    background-image: url('../../resources/room1.jpg');
-}
-.left-div {
-    background-image: url('../../resources/room2.jpg');
-}
-
-.right-div {
-    background-image: url('../../resources/room3.jpg');
-}
 .bottom-div {
     display: flex;
     justify-content: space-between;
@@ -110,6 +99,38 @@ button, select{
     display: none;
 }
 
+.button {
+    display: flex;
+    gap: 10px;
+}
+
+.bookButton, .directionButton {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.bookButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.bookButton:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.directionButton {
+    background-color: #4a5568;
+    color: white;
+}
+
+.directionButton:hover {
+    background-color: #333;
+    transform: scale(1.05);
+} 
 /* nav-bar */
 nav {
     font-family: 'Arial', sans-serif;

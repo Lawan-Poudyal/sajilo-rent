@@ -102,3 +102,47 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 09:11:36 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 09:13:39 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 09:14:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 09:14:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 09:15:21 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 10:04:19 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 10:05:59 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 10:07:00 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 10:09:30 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 10:09:45 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
+[05-Mar-2025 10:09:54 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:20
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20

@@ -13,7 +13,7 @@ if($conn->connect_error)
 }
 $query ="SELECT review.reviewer , review.reciever , review.rating  ,review.comment, review.date , signin.firstName , signin.lastName
 FROM review 
-INNER JOIN signin ON review.reviewer = signin.email
+INNER JOIN signin ON review.reciever = signin.email
 WHERE review.reciever = ?
 ";
 $stmt = $conn->prepare($query);

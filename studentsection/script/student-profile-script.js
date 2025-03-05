@@ -1,3 +1,4 @@
+
 const housePrice = document.querySelector(".house-price");
 const Owner = document.querySelector(".owner-name");
 const picture = document.querySelector(".living-house-image");
@@ -13,7 +14,7 @@ const changeProfile = document.querySelector('.change-profile-icon');
 const imageInput = document.querySelector('#imageInput'); 
 
 const PATHS = {
-    house: '/sajilo-rent/user-panel/back_end/', 
+    house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
     defaultProfile: '/sajilo-rent/resources/profile-related/default-profile.png'
 };
@@ -24,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await Promise.all([fetch("/sajilo-rent/studentsection/backend/load-profile.php"), fetch("/sajilo-rent/studentsection/backend/load-reviews.php")]);
 
-            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].text(), response[1].text()]);
-            putHouseContent(jsonDataProfile);
-            putReviewContent(jsonDataReview);
+            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
+            putHouseContent(jsonDataProfile[0]);
+            putReviewContent(jsonDataReview)
+                
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -35,17 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function putHouseContent(jsonDataProfile) {
     if(!jsonDataProfile["status"]){
-
+        profileimage.src = `/sajilo-rent/studentsection/backend/` +jsonDataProfile["image"];
+        if(!jsonDataProfile['owner']) {
+                houseCard.classList.add('hide');
+                notResiding.classList.remove('hide')
+                return;
+        }
         housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
-        Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  
+        Owner.innerText = `Owner : ${jsonDataProfile["owner"]}`;  
         imgBlock.src = PATHS.house + jsonDataProfile['image1'];
-        profileimage.src = jsonDataProfile["image"]  ? PATHS.student + jsonDataProfile["image"] : PATHS.defaultProfile;
 
     }   
-    else{
-        houseCard.classList.add('hide');
-        notResiding.classList.remove('hide')
-    }
+ 
 }   
 function putReviewContent(jsonDataReview){
     if(!jsonDataReview["status"]){
@@ -61,7 +64,7 @@ function putReviewContent(jsonDataReview){
                             <p class="reviewer-name">${element["reviewer"]}</p>
                             <p class="review-date">${element["date"]}</p>
                         </div>
-                        <img class="reviewer-rating-image" src = "../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
+                        <img class="reviewer-rating-image" src = "/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
                     </div>
                     <div class="review-comment">
                         ${element["comment"]}
@@ -135,4 +138,3 @@ async function setProfilePic(file) {
         console.error('Error uploading profile picture:', error);
     }
 }
-

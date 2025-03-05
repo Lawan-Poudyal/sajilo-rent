@@ -2,54 +2,71 @@ const housePrice = document.querySelector(".house-price");
 const Owner = document.querySelector(".owner-name");
 const picture = document.querySelector(".living-house-image");
 const houseCard = document.querySelector(".house-card");
-const notResiding = document.querySelector(".not-residing");
 const mainComment = document.querySelector(".main-comment");
 const ratingNumber = document.querySelector(".rating-number")
 const reviewerCount = document.querySelector(".reviewer-count");
 const ratingImage = document.querySelector(".rating-image");
 const imgBlock = document.querySelector('.js-house-image');
 const profileimage = document.querySelector('.profile-image')
+const userName = document.querySelector('.user-name');
 
+console.log(window.location)
+const url = new URL(window.location);
+console.log(url)
+const email =url.searchParams.get("email");
+console.log(email)
 const PATHS = {
     house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
     defaultProfile: '../resources/profile-related/default-profile.png'
 };
 document.addEventListener('DOMContentLoaded', () => {
-    notResiding.classList.add("hide");
 
     (async function(){
         try {
-            const response = await Promise.all([fetch("./backend/load-profile-student.php"), fetch("./backend/load-reviews-student.php")]);
-
+            const requestProfile = new Request("/sajilo-rent/userprofiles/backend/load-profile-student.php",{
+                method: 'POST',
+                body: JSON.stringify({ email: email})
+            });
+            const requestReview = new Request("/sajilo-rent/userprofiles/backend/load-reviews-student.php",{
+                method: "POST",
+                body: JSON.stringify({email: email})
+            })
+            const response = await Promise.all([fetch(requestProfile), fetch(requestReview)]);
             const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
             console.log(jsonDataProfile,jsonDataReview);
             putHouseContent(jsonDataProfile);
             putProfileContents(jsonDataProfile);
             putReviewContent(jsonDataReview);
-                
+            
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     })();
 });
 function putProfileContents(jsonDataProfile){
-    profileimage.src = PATHS.student + jsonDataProfile["image"];
+   
+    profileimage.src = (jsonDataProfile['image']) ?  `/sajilo-rent/studentsection/backend/${jsonDataProfile['image']}`: `/sajilo-rent/studentsection/backend/images/default-profile.png` ;
+    console.log(profileimage.src);
+    userName.textContent = jsonDataProfile.firstName + " " +  jsonDataProfile.lastName;
 }
-
+const currentResidence = document.querySelector('.js-current-residence');
 function putHouseContent(jsonDataProfile) {
     if(!jsonDataProfile["status"]){
-
+        if(!jsonDataProfile['owner'])
+        {
+            currentResidence.style.display = 'grid';
+            currentResidence.style.placeContent = 'center';
+            currentResidence.innerHTML = '<h1 style="color:gray">Not living anywhere</h1>'
+            return;
+        }
         housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
-        Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  // Fixed here
-        imgBlock.src = PATHS.house + jsonDataProfile['image1'];
+        Owner.innerText = `Owner : ${jsonDataProfile["owner"]}`;  // Fixed here
+        imgBlock.src = PATHS.house + jsonDataProfile['house_image'];
+        console.log(imgBlock.src);
         console.log(jsonDataProfile["image"]);
         
     }   
-    else{
-        houseCard.classList.add('hide');
-        notResiding.classList.remove('hide')
-    }
 }   
 function putReviewContent(jsonDataReview) {
     if(!jsonDataReview["status"]) {
@@ -65,7 +82,7 @@ function putReviewContent(jsonDataReview) {
                             <p class="reviewer-name">${element["reviewer"]}</p>
                             <p class="review-date">${element["date"]}</p>
                         </div>
-                        <img class="reviewer-rating-image" src="../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image">
+                        <img class="reviewer-rating-image" src="/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image">
                     </div>
                     <div class="review-comment">
                         ${element["comment"]}

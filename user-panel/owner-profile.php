@@ -3,6 +3,10 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+if (!isset($_SESSION["username"] ) || !isset($_SESSION['email']))
+{
+header("Location:/sajilo-rent/user-panel/user-home.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +91,7 @@ Price:
 No of Rooms:
 </label>
 <input class="js-rooms" type="number" value ="1"  max="10" min="1" name="no-of-rooms" required>
-</div>
+</div>  
 <div  class="no-of-roommates wrapper-div">
 <label for="no-of-roommates">
 No of Roommates:

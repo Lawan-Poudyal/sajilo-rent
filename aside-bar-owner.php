@@ -159,7 +159,6 @@ async function callChangePassword(changePasswordData){
         </div>
     </form>
 </dialog>
-
 <!-- script for logout -->
 
 <script>
@@ -200,7 +199,7 @@ const requestCard  = document.querySelector('.js-request-card');
 tenantsRequest.addEventListener('click' , (event)=>{
     event.preventDefault();
 requestCard.showModal();
-loadRequests();
+loadRequests(); 
 });
 async function loadRequests(){
     let response = await fetch(`/sajilo-rent/user-panel/back_end/loadrequest.php`);
@@ -214,14 +213,16 @@ if(element['error']) return;
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
         <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
         <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>
-        <div class="interactive-btn">
+        <div class="interactive-btn">   
             <button class="accept js-accept" data-email='${element['email']}' data-tenant = '${element['email']}' data-lat = ${element['lat']} data-lng=${element['lng']}>Accept</button>
             <button class="decline js-decline" data-tenant='${element['email']}'>Decline</button>
+            <button class="view-btn js-view-btn" data-tenant='${element['email']}' data-username = '${element['username']}'>View</button>
         </div>
         </div>`;
 });
 const acceptBtn = document.querySelectorAll('.js-accept');
 const removeBtn = document.querySelectorAll('.js-decline');
+const viewBtn = document.querySelectorAll('.js-view-btn');
 acceptBtn.forEach(btn =>{
 btn.addEventListener('click' , (event)=>{
 const btn = event.target.closest('button');
@@ -239,7 +240,16 @@ removeBtn.forEach(btn=>{
         removeRequest(btn);
     }
     });
-})
+});
+viewBtn.forEach(btn =>{
+btn.addEventListener('click' , (event)=>{
+const btn = event.target.closest('button');
+if(btn)
+{
+   viewProfile(btn); 
+}
+});
+});
 }
 async function removeRequest(btn)
 {
@@ -255,4 +265,696 @@ async function acceptRequest(btn)
     let data  = await response.text();
     loadRequests();
 }
+function viewProfile(btn)
+{   
+    window.location.href = `/sajilo-rent/userprofiles/studentProfile.php?email=${btn.dataset['tenant']}&username=${btn.dataset['username']}`;
+}
 </script>
+<!-- For view tenants - using <dialog> element -->
+<dialog class="tenant-dialog">
+    <div class="tenant-dialog-header">
+        <h2 class="tenant-dialog-title">Tenants Living</h2>
+    </div>
+    <div class="tenant-dialog-close">
+        <img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt="Close">
+    </div>
+    <div class="tenant-dialog-content">
+        <!-- Tenants will be loaded here -->
+    </div>
+</dialog>
+
+<!-- Tenant Removal Dialog -->
+<dialog class="review-dialog js-tenant-removal-review">
+    <div class="review-dialog-header">
+        <h2 class="review-dialog-title">Tenant Removal</h2>
+        <div class="review-dialog-close">
+            <img src="/sajilo-rent/resources/cross.png" height="20" width="20" alt="Close">
+        </div>
+    </div>
+    
+    <div class="review-dialog-content">
+        <div class="tenant-review-info">
+            <img id="review-tenant-pic" src="" alt="Tenant Picture" class="tenant-pic">
+            <div class="tenant-details">
+                <p id="review-tenant-email" class="tenant-email"></p>
+
+            </div>
+        </div>
+        
+        <div class="rating-section">
+            <p>Rate your experience with this tenant:</p>
+            <div id="stars" class="stars-container">
+                <span class="star js-star" data-value="1">★</span>
+                <span class="star js-star" data-value="2">★</span>
+                <span class="star js-star" data-value="3">★</span>
+                <span class="star js-star" data-value="4">★</span>
+                <span class="star js-star" data-value="5">★</span>
+            </div>
+        </div>
+        
+        <section class="comment-section">
+            <textarea name="tenant-review" id="tenant-review" class="comment-section-area js-text-area" placeholder="Reason for removal (optional)..."></textarea>
+        </section>
+        
+        <div class="review-actions">
+            <button class="cancel-btn js-cancel-review">Cancel</button>
+            <button class="submit-review-btn js-submit-review-btn">Remove Tenant</button>
+        </div>
+    </div>
+</dialog>
+
+<script>
+// Initialize variables
+let currentTenantElement = null;
+
+// Get DOM elements
+const reviewDialog = document.querySelector('.js-tenant-removal-review');
+const stars = document.querySelectorAll('.js-star');
+const submitBtn = document.querySelector('.js-submit-review-btn');
+const cancelBtn = document.querySelector('.js-cancel-review');
+const tenantDialog = document.querySelector('.tenant-dialog');
+const tenantDialogClose = document.querySelector('.tenant-dialog-close');
+
+// Load tenants and set up event listeners
+document.addEventListener('DOMContentLoaded', async function() {
+    // Select the tenants profile link from sidebar
+    const tenantsProfileLink = document.querySelector('.aside-bar a:nth-child(4)');
+    
+    // Only open dialog when Tenants Profile link is clicked
+    if(tenantsProfileLink) {
+        tenantsProfileLink.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default navigation
+            tenantDialog.showModal();
+        });
+    }
+    
+    // Close tenant dialog when the close button is clicked
+    if(tenantDialogClose) {
+        tenantDialogClose.addEventListener('click', () => {
+            tenantDialog.close();
+        });
+    }
+    
+    // Close review dialog when clicking on the X button
+    document.querySelector('.review-dialog-close').addEventListener('click', () => {
+        reviewDialog.close();
+    });
+    
+    // Setup star rating functionality
+    setupStarRating();
+    
+    // Cancel button functionality for review dialog
+    cancelBtn.addEventListener('click', () => {
+        reviewDialog.close();
+    });
+    
+    // Submit button functionality for tenant removal
+    submitBtn.addEventListener('click', handleTenantRemoval);
+    
+    // Load tenants data
+    await loadTenants();
+});
+
+// Load tenants from API
+async function loadTenants() {
+    try {
+        const response = await fetch("/sajilo-rent/user-panel/back_end/loadtenants.php");
+        const tenants = await response.json();
+        const tenantList = document.querySelector('.tenant-dialog-content');
+        
+        console.log(tenants);
+        
+        if (!tenants || tenants.length === 0) {
+            tenantList.innerHTML = '<p class="no-tenants">No tenants currently living in this property.</p>';
+            return;
+        }
+        
+        // Clear existing content
+        tenantList.innerHTML = '';
+        
+        tenants.forEach(tenant => {
+            const tenantCard = document.createElement('div');
+            tenantCard.classList.add('tenant-card');
+            
+            tenantCard.innerHTML = `
+                <div class="tenant-info">
+                    <img src="${"/sajilo-rent/user-panel/back_end/" + tenant.image}" alt="Tenant Picture" class="tenant-pic">
+                    <div class="tenant-details">
+                        <p class="tenant-email" hidden>${tenant.email}</p>
+                        <p class="tenant-username">${tenant.username}</p>
+                    </div>
+                </div>
+                <div class="tenant-actions">
+                    <button class="view-profile-btn">View Profile</button>
+                    <button class="message-btn">Message</button>
+                    <button class="remove-btn">Remove</button>
+                </div>
+            `;
+            
+            tenantList.appendChild(tenantCard);
+        });
+        
+        // Now that tenants are loaded, attach event listeners
+        setupTenantCardButtons();
+        
+    } catch (error) {
+        console.error('Error loading tenants:', error);
+        document.querySelector('.tenant-dialog-content').innerHTML = 
+            '<p class="no-tenants">Error loading tenants. Please try again.</p>';
+    }
+}
+
+// Set up buttons on tenant cards
+function setupTenantCardButtons() {
+    // View profile buttons
+    document.querySelectorAll('.view-profile-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const tenantCard = this.closest('.tenant-card');
+            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            const tenantUsername = tenantCard.querySelector('.tenant-username').textContent;
+            window.location = `/sajilo-rent/userprofiles/studentProfile.php?email=${tenantEmail}&username=${tenantUsername}`;});
+    });
+    
+    // Remove buttons
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the parent tenant card
+            const tenantCard = this.closest('.tenant-card');
+            currentTenantElement = tenantCard;
+            
+            // Store tenant data in the review dialog using dataset
+            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            const tenantPic = tenantCard.querySelector('.tenant-pic').src;
+            
+            // Set tenant info in the review dialog
+            const tenantPicElement = document.getElementById('review-tenant-pic');
+            tenantPicElement.src = tenantPic;
+            tenantPicElement.dataset.tenant = tenantEmail;
+            
+            document.getElementById('review-tenant-email').textContent = tenantEmail;
+            
+            // Reset the review form
+            resetReviewForm();
+            
+            // Show the review dialog
+            reviewDialog.showModal();
+        });
+    });
+    
+    // Message buttons (you can implement this functionality)
+    document.querySelectorAll('.message-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const tenantCard = this.closest('.tenant-card');
+            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            
+            // Implement messaging functionality here
+            console.log('Message tenant:', tenantEmail);
+            alert('Messaging functionality coming soon!');
+        });
+    });
+}
+
+// Handle tenant removal
+function handleTenantRemoval() {
+    const starsContainer = document.getElementById('stars');
+    const rating = starsContainer.dataset.rating || 0;
+    const comment = document.getElementById('tenant-review').value.trim();
+    const tenant = document.getElementById('review-tenant-pic').dataset.tenant;
+    
+
+    // Remove the tenant card from the DOM
+    if (currentTenantElement) {
+        currentTenantElement.remove();
+    }
+    
+    // Close the review dialog
+    reviewDialog.close();
+    
+    // Check if there are any tenants left
+    const tenantCards = document.querySelectorAll('.tenant-card');
+    if (tenantCards.length === 0) {
+        document.querySelector('.tenant-dialog-content').innerHTML = 
+            '<p class="no-tenants">No tenants currently living in this property.</p>';
+    }
+}
+
+// Setup star rating functionality
+function setupStarRating() {
+    // Star rating functionality
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const ratingValue = this.dataset.value;
+            
+            // Set dataset attribute on stars container to store selected rating
+            this.parentElement.dataset.rating = ratingValue;
+            
+            // Update star appearance
+            updateStars(ratingValue);
+            
+            submitBtn.textContent = 'Remove Tenant';
+        });
+        
+        // Add hover effect
+        star.addEventListener('mouseenter', function() {
+            const hoverValue = parseInt(this.dataset.value);
+            
+            stars.forEach(s => {
+                const starValue = parseInt(s.dataset.value);
+                
+                if (starValue <= hoverValue) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+    });
+    
+    // Reset star hover effects on mouse leave
+    document.getElementById('stars').addEventListener('mouseleave', function() {
+        const rating = parseInt(this.dataset.rating || 0);
+        
+        stars.forEach(star => {
+            const starValue = parseInt(star.dataset.value);
+            star.classList.remove('active');
+            
+            if (starValue <= rating) {
+                star.innerHTML = '⭐';
+            } else {
+                star.innerHTML = '★';
+            }
+        });
+    });
+}
+
+// Helper function to update stars based on rating
+function updateStars(value) {
+    stars.forEach(star => {
+        const starValue = parseInt(star.dataset.value);
+        
+        if (starValue <= value) {
+            star.innerHTML = '⭐';
+            star.dataset.filled = 'true';
+        } else {
+            star.innerHTML = '★';
+            star.dataset.filled = 'false';
+        }
+    });
+}
+
+// Helper function to reset the review form
+function resetReviewForm() {
+    // Reset stars container dataset
+    document.getElementById('stars').dataset.rating = '0';
+    
+    // Reset stars appearance
+    stars.forEach(star => {
+        star.innerHTML = '★';
+        star.dataset.filled = 'false';
+    });
+    
+    // Reset comment
+    document.getElementById('tenant-review').value = '';
+    
+    // Reset button text
+    submitBtn.textContent = 'Kick without response';
+}
+</script>
+
+<style>
+    /* Main Dialog Styling */
+.tenant-dialog{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+/* Dialog Header */
+.tenant-dialog-header {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.tenant-dialog-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Close Button */
+.tenant-dialog-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.tenant-dialog-close img {
+    width: 24px;
+    height: 24px;
+}
+
+.tenant-dialog-close:hover {
+    transform: scale(1.1);
+}
+
+/* Dialog Content */
+.tenant-dialog-content {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(80vh - 60px);
+}
+
+/* Tenant Card */
+.tenant-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid #f0f0f0;
+}
+
+.tenant-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.tenant-pic {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f0f0f0;
+}
+
+.tenant-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tenant-email {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Action Buttons */
+.tenant-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tenant-actions button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.view-profile-btn {
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #e9ecef;
+}
+.view-profile-btn:hover {
+    background-color: #e9ecef;
+}
+
+.message-btn {
+    background-color: #4a8cff;
+    color: white;
+}
+
+.message-btn:hover {
+    background-color: #3a7de6;
+}
+
+.remove-btn {
+    background-color: #f8f9fa;
+    color: #dc3545;
+    border: 1px solid #e9ecef;
+
+}
+
+.remove-btn:hover {
+    background-color: #fee2e5;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .tenant-dialog {
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .tenant-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .tenant-actions {
+        justify-content: center;
+    }
+    
+    .tenant-dialog-title {
+        font-size: 1.2rem;
+    }
+}
+
+</style>
+<style>
+    /* Tenant Removal Review Dialog */
+.review-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    width: 85%;
+    max-width: 500px;
+    padding: 0;
+    border: none;
+    z-index: 1100; /* Higher than tenant-dialog to ensure it overlaps */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Dialog Header */
+.review-dialog-header {
+    background-color: #dc3545;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px 8px 0 0;
+}
+
+.review-dialog-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* Close Button */
+.review-dialog-close {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.review-dialog-close img {
+    filter: brightness(0) invert(1);
+}
+
+.review-dialog-close:hover {
+    transform: scale(1.1);
+}
+
+/* Dialog Content */
+.review-dialog-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Tenant Review Info */
+.tenant-review-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Star Rating */
+.rating-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-section p {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.star:hover {
+    transform: scale(1.1);
+}
+
+.star.active {
+    color: #ffc107;
+}
+
+/* Comment Section */
+.comment-section {
+    width: 100%;
+}
+
+.comment-section-area {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.comment-section-area:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(58, 134, 255, 0.25);
+}
+
+/* Action Buttons */
+.review-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.cancel-btn:hover {
+    background-color: #e2e6ea;
+}
+
+.submit-review-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+}
+
+.submit-review-btn:hover {
+    background-color: #c82333;
+}
+
+/* Dialog Animation */
+@keyframes slideDown {
+    from { 
+        opacity: 0; 
+        transform: translate(-50%, -60%);
+    }
+    to { 
+        opacity: 1; 
+        transform: translate(-50%, -50%);
+    }
+}
+
+.review-dialog[open] {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .review-dialog {
+        width: 95%;
+    }
+    
+    .tenant-review-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stars-container {
+        gap: 5px;
+    }
+    
+    .star {
+        font-size: 1.8rem;
+    }
+    
+    .review-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-btn, .submit-review-btn {
+        width: 100%;
+    }
+}
+
+/* Enhancement for active stars */
+.star.filled {
+    color: #ffc107;
+}
+</style>

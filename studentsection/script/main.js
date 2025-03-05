@@ -10,11 +10,12 @@ const mapInstance = map.createMap();
 
 let markerMaker, routing, selecter;
 
-fetch('./data/latlng.json')
+fetch('/sajilo-rent/studentsection/backend/displayHouses.php')
     .then(response => response.json())
     .then(latlngData => {
         markerMaker = new MarkerMaker(mapInstance);
         routing = new RoutingControl(mapInstance, markerMaker, center);
+        console.log(latlngData);
         markerMaker.addMarkers(latlngData);
         selecter = new SelectRanges(mapInstance, markerMaker);
     })
@@ -32,14 +33,13 @@ mapInstance.on('popupopen', function(event) {
     });
 });
 
-
 mapInstance.on('popupopen', function(event) {
     const bookForRent = event.popup._contentNode.querySelector('.bookButton');
-    // const studentName = document.querySelector('.email').textContent;
-    const contactDiv = event.popup._content.match(/Contact:\s*([^<]*)/);
+    const studentName = document.querySelector('.email').textContent;
+    const contactDiv = event.popup._content.match(/Owner: <span class="bold">(.*?)<\/span>/);
     const ownerName = contactDiv[1];
     bookForRent.addEventListener('click', () => {
-        fetch('./backend/BookForRent.php', {
+        fetch('/sajilo-rent/studentsection/backend/BookForRent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ mapInstance.on('popupopen', function(event) {
         container.addEventListener('click', (e) => {
             // Check if the clicked element is a button
             if (!e.target.classList.contains('bookButton') && !e.target.classList.contains('directionButton')) {
-                fetch('./backend/displayDetails.php', {
+                fetch('/sajilo-rent/studentsection/backend/displayDetails.php', {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json"
@@ -106,4 +106,6 @@ document.querySelectorAll('.dropbtn').forEach(element =>{
         const dropdownContent = element.nextElementSibling;
         dropdownContent.classList.toggle("show")
 })});   
+
+//select tags
 
