@@ -76,7 +76,7 @@ mapInstance.on('popupopen', function(event) {
         container.addEventListener('click', (e) => {
             // Check if the clicked element is a button
             if (!e.target.classList.contains('bookButton') && !e.target.classList.contains('directionButton')) {
-                fetch('./backend/displayDetails.php', {
+                fetch('/sajilo-rent/studentsection/backend/displayDetails.php', {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json"

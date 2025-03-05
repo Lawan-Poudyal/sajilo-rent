@@ -213,14 +213,16 @@ if(element['error']) return;
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
         <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
         <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>
-        <div class="interactive-btn">
+        <div class="interactive-btn">   
             <button class="accept js-accept" data-email='${element['email']}' data-tenant = '${element['email']}' data-lat = ${element['lat']} data-lng=${element['lng']}>Accept</button>
             <button class="decline js-decline" data-tenant='${element['email']}'>Decline</button>
+            <button class="view-btn js-view-btn" data-tenant='${element['email']}' data-username = '${element['username']}'>View</button>
         </div>
         </div>`;
 });
 const acceptBtn = document.querySelectorAll('.js-accept');
 const removeBtn = document.querySelectorAll('.js-decline');
+const viewBtn = document.querySelectorAll('.js-view-btn');
 acceptBtn.forEach(btn =>{
 btn.addEventListener('click' , (event)=>{
 const btn = event.target.closest('button');
@@ -238,7 +240,16 @@ removeBtn.forEach(btn=>{
         removeRequest(btn);
     }
     });
-})
+});
+viewBtn.forEach(btn =>{
+btn.addEventListener('click' , (event)=>{
+const btn = event.target.closest('button');
+if(btn)
+{
+   viewProfile(btn); 
+}
+});
+});
 }
 async function removeRequest(btn)
 {
@@ -253,6 +264,10 @@ async function acceptRequest(btn)
     let response = await fetch(`/sajilo-rent/user-panel/back_end/acceptrequest.php?lat=${btn.dataset['lat']}&lng=${btn.dataset['lng']}&username=${btn.dataset['email']}`);
     let data  = await response.text();
     loadRequests();
+}
+function viewProfile(btn)
+{   
+    window.location.href = `/sajilo-rent/userprofiles/studentProfile.php?email=${btn.dataset['tenant']}&username=${btn.dataset['username']}`;
 }
 </script>
 <!-- For view tenants - using <dialog> element -->

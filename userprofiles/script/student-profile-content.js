@@ -38,23 +38,32 @@ document.addEventListener('DOMContentLoaded', () => {
             putHouseContent(jsonDataProfile);
             putProfileContents(jsonDataProfile);
             putReviewContent(jsonDataReview);
-                
+            
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     })();
 });
 function putProfileContents(jsonDataProfile){
-    profileimage.src = PATHS.student + jsonDataProfile["image"];
+   
+    profileimage.src = (jsonDataProfile['image']) ?  `/sajilo-rent/studentsection/backend/${jsonDataProfile['image']}`: `/sajilo-rent/studentsection/backend/images/default-profile.png` ;
+    console.log(profileimage.src);
     userName.textContent = jsonDataProfile.firstName + " " +  jsonDataProfile.lastName;
 }
-
+const currentResidence = document.querySelector('.js-current-residence');
 function putHouseContent(jsonDataProfile) {
     if(!jsonDataProfile["status"]){
-
+        if(!jsonDataProfile['owner'])
+        {
+            currentResidence.style.display = 'grid';
+            currentResidence.style.placeContent = 'center';
+            currentResidence.innerHTML = '<h1 style="color:gray">Not living anywhere</h1>'
+            return;
+        }
         housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
-        Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  // Fixed here
-        imgBlock.src = PATHS.house + jsonDataProfile['image1'];
+        Owner.innerText = `Owner : ${jsonDataProfile["owner"]}`;  // Fixed here
+        imgBlock.src = PATHS.house + jsonDataProfile['house_image'];
+        console.log(imgBlock.src);
         console.log(jsonDataProfile["image"]);
         
     }   

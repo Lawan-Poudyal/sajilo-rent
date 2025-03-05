@@ -4,12 +4,18 @@
     padding: 0;
 }
 
-
+body{
+    display: flex;
+    flex-flow:column nowrap;
+    min-height:100vh;
+}
 /* user-profile */
 .main-body{
     display: flex;
     padding: 1rem;
     gap: 1rem;
+    flex-grow: 1;
+
 }
 
 .aside-bar-student {

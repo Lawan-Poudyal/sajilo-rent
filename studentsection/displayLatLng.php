@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 <?php
 session_start();
 ?>
+=======
+<?php 
+  session_start();
+  ?>
+>>>>>>> 6ceb6809f99bce2d3109fdd8923101b8aaee0be9
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,10 +67,10 @@ session_start();
         </div>
       </nav>
     <section class="main-body">
-        <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php'?>
+        <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php'?>
         <div id="map">
         <button class="closeRouting" style="display: none;">Close Routing</button>
         </div>
     </section>
-    <div class="email" hidden><?php echo $_SESSION["s_email"]?></div>
+    <div class="email" hidden><?php  echo $_SESSION["s_email"]?></div>
 </html>

@@ -1,3 +1,5 @@
+
+
 .aside-bar {
     display: flex;
     flex-flow: column;
@@ -400,4 +402,3 @@ dialog::backdrop {
         color:gray;
         font-style:italic;
     }
-   

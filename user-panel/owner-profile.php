@@ -3,6 +3,10 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+if (!isset($_SESSION["username"] ) || !isset($_SESSION['email']))
+{
+header("Location:/sajilo-rent/user-panel/user-home.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +20,10 @@ error_reporting(E_ALL);
     <script src="/sajilo-rent/user-panel/script/owner-profile-script.js" defer></script>
     </head>
 <body>
-    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
+    <?php require_once '/xampp/htdocs/sajilo-rent/header.php'; ?>
     <div class="main-body">
     <?php
-        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-owner.php';
+        require_once '/xampp/htdocs/sajilo-rent/aside-bar-owner.php';
     ?>
     <div class="section-wrapper">
         <section class="section-profile">
@@ -50,7 +54,7 @@ error_reporting(E_ALL);
         </div>
         </section>
         <section class="section-review">
-            <p class="text-comment">Review</p>
+            <p class="text-comment js-text-comment">Review</p>
             <div class="rating-comment">
                 <div class="main-rating">
                     <div class="rating-box">
@@ -87,7 +91,7 @@ Price:
 No of Rooms:
 </label>
 <input class="js-rooms" type="number" value ="1"  max="10" min="1" name="no-of-rooms" required>
-</div>
+</div>  
 <div  class="no-of-roommates wrapper-div">
 <label for="no-of-roommates">
 No of Roommates:

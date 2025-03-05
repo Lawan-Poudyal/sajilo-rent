@@ -14,11 +14,11 @@ ini_set('display_errors', 1);
     <script src="/sajilo-rent/userprofiles/script/owner-profile-content.js" defer></script>
 </head>
 <body>
-    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'?>
+    <?php require_once '/xampp/htdocs/sajilo-rent/header.php'?>
 
     <div class="main-body">
     <?php
-        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
+        require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php';
     ?>
     <div class="section-wrapper">
             <section class="section-profile">
@@ -52,7 +52,12 @@ ini_set('display_errors', 1);
                                 <p class="reviewer-count"></p>
                             </div>
                             <div class="share-review">
+<<<<<<< HEAD
                                 <p class="text-review">Here's some review about the owner</p>
+=======
+                                <p class="text-review">Share your experience about the owner</p>
+                               
+>>>>>>> 6ceb6809f99bce2d3109fdd8923101b8aaee0be9
                             </div>
                         </div>
                     </div>

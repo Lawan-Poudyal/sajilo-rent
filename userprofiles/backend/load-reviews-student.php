@@ -6,7 +6,7 @@ require_once 'db.php';
 
 header("Content-Type: application/json"); // Always return JSON
 
-$stmt = $conn->prepare("SELECT reviewer, rating, comment, date FROM review WHERE receiver = ?");
+$stmt = $conn->prepare("SELECT reviewer, rating, comment, date FROM review WHERE reciever = ?");
 $stmt->bind_param("s", $_SESSION["s_email"]);
 
 if (!$stmt->execute()) {

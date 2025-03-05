@@ -19,14 +19,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $email = $data['email'];
     
-    $stmt = $conn->prepare("SELECT housedetails.username, housedetails.price, housedetails.image1, 
-        housedetails.image2, housedetails.image3, profilepicture.image,signin.firstName,signin.lastName
-        FROM housedetails
-        INNER JOIN booked ON booked.owner = housedetails.username
-        LEFT JOIN profilepicture ON profilepicture.email = booked.email
-        INNER JOIN signin ON signin.email = booked.email
-        WHERE booked.email = ?;
-        ");
+    $stmt = $conn->prepare(
+        
+        // "SELECT housedetails.username, housedetails.price, housedetails.image1, 
+        // housedetails.image2, housedetails.image3, profilepicture.image,signin.firstName,signin.lastName
+        // FROM housedetails
+        // INNER JOIN booked ON booked.owner = housedetails.username
+        // LEFT JOIN profilepicture ON profilepicture.email = booked.email
+        // INNER JOIN signin ON signin.email = booked.email
+        // WHERE booked.email = ?;"
+        
+        "SELECT 
+    booked.owner, 
+    profilepicture.image AS profile_image, 
+    housedetails.price, 
+    housedetails.image1 AS house_image, 
+    signin.lastName, 
+    signin.firstName
+FROM signin
+LEFT JOIN profilepicture ON signin.email = profilepicture.email
+LEFT JOIN booked ON signin.email = booked.email
+LEFT JOIN housedetails ON booked.owner = housedetails.username
+WHERE signin.email = ?;
+         " 
+    );
 
     $stmt->bind_param("s", $email);
 

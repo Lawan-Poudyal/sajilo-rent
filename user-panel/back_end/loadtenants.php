@@ -35,13 +35,13 @@
                 array_push($jsonarray, [
                     "email" => $row['email'], 
                     "username" => $row['firstName'] . ' ' . $row['lastName'], 
-                    "image" => $row['image']
+                    "image" => $row['image'] ? $row['image'] : 'images/default-profile.png'
                 ]);
             } else {
                 array_push($jsonarray, [
                     "email" => $row['owner'], 
                     "username" => $row['firstName'] . ' ' . $row['lastName'], 
-                    "image" => $row['image']
+                    "image" => $row['image'] ? $row['image'] : 'images/default-profile.png'
                 ]);
             }
         }

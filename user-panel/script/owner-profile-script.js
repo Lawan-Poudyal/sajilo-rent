@@ -38,7 +38,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             fetch(`/sajilo-rent/user-panel/back_end/loadcomment.php`)
         ]);
         let data = await Promise.all([response[0].json(), response[1].json(), response[2].json()]);
+<<<<<<< HEAD
         console.log(data);
+=======
+        // console.log(data);
+>>>>>>> 6ceb6809f99bce2d3109fdd8923101b8aaee0be9
         changeProfile(fileDir + data[0]['image']); //fine as hell.
         addHouseDetails(data[1]);
         loadReview(data[2]);
@@ -65,7 +69,7 @@ function addHouseDetails(houses) {
     houses.forEach(house => {
         if (house['error']) return;
         notRentedTag.classList.add('hide');
-        console.log(house);
+        // console.log(house);
         let location = '/sajilo-rent/user-panel/back_end/' + house['image1'];
         currentHouses.innerHTML += `
             <div class="house-card">
@@ -87,16 +91,16 @@ function updateButtonEvents() {
     const updateHouse = document.querySelectorAll('.js-update-house');
     updateHouse.forEach(button => {
         button.addEventListener('click', () => {
-            console.log(button);
+            // console.log(button);
             showHouseDetail(button.dataset);
         });
     });
 }
 
 async function showHouseDetail(dataset) {
-    console.log(dataset.lat);
-    console.log(dataset.lng);
-    console.log(email);
+    // console.log(dataset.lat);
+    // console.log(dataset.lng);
+    // console.log(email);
     const response = await fetch(`/sajilo-rent/user-panel/back_end/showhousedetails.php?lat=${dataset.lat}&lng=${dataset.lng}&username=${email}`);
     const data = await response.json();
     showForm(data);
@@ -157,14 +161,18 @@ function loadReview(data) {
             </div>`;
     });
     avgRating /= count;
+<<<<<<< HEAD
     console.log((avgRating));
+=======
+    // console.log((avgRating));
+>>>>>>> 6ceb6809f99bce2d3109fdd8923101b8aaee0be9
     ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustRating(avgRating)) * 10}.png`;
 }
 
 function adjustRating(avgRating) {
     let tempRating = avgRating;
     let floatingValue = avgRating - Math.floor(avgRating);
-    if (floatingValue >= 0.5) {
+    if (floatingValue > 0.5) {
         return (Math.floor(avgRating) + 1);
     } else {
         return (Math.floor(avgRating) + 0.5);
