@@ -52,8 +52,7 @@ ini_set('display_errors', 1);
                                 <p class="reviewer-count"></p>
                             </div>
                             <div class="share-review">
-                                <p class="text-review">Share your experience about the owner</p>
-                                <button class="button-write-review">Write a Review</button>
+                                <p class="text-review">Here's some review about the owner</p>
                             </div>
                         </div>
                     </div>
@@ -64,5 +63,15 @@ ini_set('display_errors', 1);
             </section>
         </div>
     </div>
+
+    <dialog class = "dialog-no-owner">
+    <div class="dialog-content">
+        <h3>No Owner Found</h3>
+        <p>You aren't currently residing in any house</p>
+        <div class="dialog-actions">
+            <button class="close-button">Close</button>
+        </div>
+    </div>
+</dialog>
 </body>
 </html>

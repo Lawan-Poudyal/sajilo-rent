@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             fetch(`/sajilo-rent/user-panel/back_end/loadcomment.php`)
         ]);
         let data = await Promise.all([response[0].json(), response[1].json(), response[2].json()]);
+        console.log(data);
         changeProfile(fileDir + data[0]['image']); //fine as hell.
         addHouseDetails(data[1]);
         loadReview(data[2]);
@@ -156,6 +157,7 @@ function loadReview(data) {
             </div>`;
     });
     avgRating /= count;
+    console.log((avgRating));
     ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustRating(avgRating)) * 10}.png`;
 }
 

@@ -15,7 +15,6 @@ fetch('/sajilo-rent/studentsection/backend/displayHouses.php')
     .then(latlngData => {
         markerMaker = new MarkerMaker(mapInstance);
         routing = new RoutingControl(mapInstance, markerMaker, center);
-        console.log(latlngData);
         markerMaker.addMarkers(latlngData);
         selecter = new SelectRanges(mapInstance, markerMaker);
     })
@@ -39,7 +38,7 @@ mapInstance.on('popupopen', function(event) {
     const contactDiv = event.popup._content.match(/Owner: <span class="bold">(.*?)<\/span>/);
     const ownerName = contactDiv[1];
     bookForRent.addEventListener('click', () => {
-        fetch('./backend/BookForRent.php', {
+        fetch('/sajilo-rent/studentsection/backend/BookForRent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -51,12 +50,17 @@ mapInstance.on('popupopen', function(event) {
                 owner: ownerName 
             })
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            console.log('Parsed JSON:', data); // Log the parsed JSON
+            if(data.status == "success"){
+                alert("Rent request sent");
+            }
+            else{
+                alert(data.message);
+            }
         })
         .catch(error => {
-            console.error('Error:', error); // Catch and log parsing or network errors
+            console.error('Error:', error);
         });
     });
 });

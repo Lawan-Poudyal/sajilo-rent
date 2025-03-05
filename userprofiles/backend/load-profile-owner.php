@@ -20,7 +20,7 @@ $result = $stmt->get_result();
 $ownerEmail = $result->fetch_assoc(); // Fetch single result
 $stmt->close();
 if(!$ownerEmail) {
-    echo json_encode(['status' => 'error', 'message' => 'No house found']);
+    echo json_encode(['status' => 'error', 'message' => 'You dont have any owner']);
     exit;
 }
 
