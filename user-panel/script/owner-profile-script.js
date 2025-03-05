@@ -28,6 +28,7 @@ const longitude = document.querySelector('#js-lng');
 const mainComment = document.querySelector('.js-main-comment');
 const ratingImage = document.querySelector('.js-rating-image');
 let avgRating = 0;
+const textComment = document.querySelector('.js-text-comment');
 var imageLocation = '';
 document.addEventListener('DOMContentLoaded' ,async()=>{
     try{
@@ -152,6 +153,7 @@ function loadReview(data)
                     </div>
                     </div>`
    });
+   textComment.innerText = count ? `(${count}) Review`:`Not Reviewed`;
    avgRating /= count;
    ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustRating(avgRating))*10}.png`;
 }

@@ -50,7 +50,7 @@ error_reporting(E_ALL);
         </div>
         </section>
         <section class="section-review">
-            <p class="text-comment">Review</p>
+            <p class="text-comment js-text-comment">Review</p>
             <div class="rating-comment">
                 <div class="main-rating">
                     <div class="rating-box">
