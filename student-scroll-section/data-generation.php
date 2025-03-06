@@ -43,7 +43,7 @@ if (!empty($rooms)) {
     $roomsHTML .=   ' <div class="room-container">
                 <div class="products-image-container">
                   <img
-                    src="' . htmlspecialchars($room['image1']) . '"
+                    src="/sajilo-rent/user-panel/back_end/' . htmlspecialchars($room['image1']) . '"
                     class="product-img"
                   />
                 </div>
