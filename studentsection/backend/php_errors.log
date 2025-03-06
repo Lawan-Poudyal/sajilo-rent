@@ -6,3 +6,4 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in D:\xampp\htdocs\sajilo-rent\studentsection\backend\load-profile.php on line 24
+[06-Mar-2025 06:58:03 Europe/Berlin] Database error: Unknown column 'username' in 'field list'
