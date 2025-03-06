@@ -1,32 +1,26 @@
-const locationButton = document.querySelectorAll('.js-location-button');
+import {  RoutingControl, MarkerMaker, SelectRanges } from './classes.js';
+import {mapInstance, center} from './main.js'
 
-locationButton.forEach((button)=>{
+const markerMaker = new MarkerMaker(mapInstance);
+const routingControl = new RoutingControl(mapInstance, markerMaker, center);
 
-    button.addEventListener("click", ()=>{
 
-         const lat = button.getAttribute('data-room-lat');
-         const lng = button.getAttribute('data-room-lng');
+document.addEventListener('DOMContentLoaded', () => {
+    const locationButtons = document.querySelectorAll('.js-location-button');
 
-        // Save the location in the backend
-        fetch('/sajilo-rent/studentsection/backend/saveLocation.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ lat: parseFloat(lat), lng: parseFloat(lng) })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                // Redirect to the map page
-                window.location.href = '/sajilo-rent/studentsection/displayLatLng.php';
+    locationButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent any unintended link navigation
+
+            // Get latitude and longitude from data attributes
+            const lat = parseFloat(button.getAttribute('data-room-lat'));
+            const lng = parseFloat(button.getAttribute('data-room-lng'));
+
+            if (!isNaN(lat) && !isNaN(lng)) {
+                routingControl.addRoutingControl(lat, lng);
             } else {
-                console.error('Error:', data.message);
+                console.error("Invalid latitude or longitude");
             }
-        })
-        .catch(error => console.error('Error:', error));
-
-            
+        });
     });
-
 });
