@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("../student-scroll-section/data-generation.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +23,12 @@ session_start();
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="../universal-styling/aside-bar.css">
+  <link rel="stylesheet" href="../student-scroll-section/styles/rooms.css">
+  <link rel="stylesheet" href="../student-scroll-section/styles/general.css">
+  <link rel="stylesheet" href="../student-scroll-section/test-data.css">
+
   <title>Document</title>
-  <script type="module" src="./script/main.js" defer></script>
+
 
 </head>
 
@@ -64,10 +69,29 @@ session_start();
   </nav>
   <section class="main-body">
     <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
-    <div id="map">
-      <button class="closeRouting" style="display: none;">Close Routing</button>
-    </div>
+
+    <div class="contents">
+      <div id="map">
+        <button class="closeRouting" style="display: none;">Close Routing</button>
+      </div>
+
+      <div class="details">
+
+        <div class="main">
+          <section class="room-container-grid">
+            <?php echo $roomsHTML; ?>
+          </section>
+        </div>
+
+
+      </div>
+
   </section>
   <div class="email" hidden><?php echo $_SESSION["s_email"] ?></div>
+
+  <script type="module" src="./script/main.js"></script>
+  <script type="module" src="../studentsection/script/location.js"></script>
+
+</body>
 
 </html>
