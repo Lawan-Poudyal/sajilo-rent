@@ -58,12 +58,11 @@ if (!empty($rooms)) {
                 </div>
                 <div class="product-price">Rs ' . htmlspecialchars($room['price']) . '</div>
 
-                <div class="product-spacer"></div>
-              
+              <div class="button-container">
                 
-                <button class="location-button button-primary js-location-button" data-room-lat="' . htmlspecialchars($room['latitude']) . '" data-room-lng="' . htmlspecialchars($room['longitude']) . '" ><a href="#">Location</a></button>
+                <button class="location-button button-primary js-location-button" data-room-lat="' . htmlspecialchars($room['latitude']) . '" data-room-lng="' . htmlspecialchars($room['longitude']) . '" >Location</button>
                 <button class="details-button button-primary " >Details</button>
-                 
+                 </div>
               </div>
              ';
   }
