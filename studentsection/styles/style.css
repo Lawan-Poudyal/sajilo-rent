@@ -36,7 +36,7 @@ nav{
     font-size: 16px;
     height: var(--navbar-height);
     background: var(--navbar-background-color);
-    
+
    
 }
 button, select{
@@ -164,8 +164,8 @@ nav {
     width: 50px; /* explicit width */
     
     position: absolute;
-    left: 0px;
-    bottom: 0;
+    left: 0.6rem   ;
+    bottom: 25%;
 }
 /* Dropdown button styling */
 .dropbtn {
@@ -288,4 +288,48 @@ background-color: #c53030;
     z-index: 0;
     overflow: hidden;
     position: relative;
+
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+.contents{
+    display: grid;
+    grid-template-columns: 70% 30% ;/* Two equal columns */
+    gap: 10px; /* Optional spacing */
+    width: 100%;
+    
+}
+
+
+
+.room-container-grid {
+    display: flex;
+    flex-direction: column; /* Keeps the rooms stacked */
+    gap: 15px; /* Space between rooms */
+    max-height: 400px; /* Set a fixed height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px;
+    border: 2px solid #ccc; /* Optional: Add a border */
+    border-radius: 8px; /* Optional: Rounded corners */
+    background-color: #f9f9f9; /* Optional: Light background */
+}
+
+/* Custom Scrollbar */
+.room-container-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.room-container-grid::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.room-container-grid::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b); /* Gradient effect */
+    border-radius: 5px;
+}
+
+.room-container-grid::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #ff5733, #ff914d);
 }
