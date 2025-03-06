@@ -2,7 +2,7 @@ const changeProfileBtn = document.querySelector('.js-change-profile-icon');
 const imageInput = document.querySelector('.js-image-input');
 const profileForm = document.querySelector('.js-profile-form');
 const fileDir = '/sajilo-rent/user-panel/back_end/';
-const profileImage = document.querySelector('.js-profile-image');
+const profileImage = document.querySelector('.profile-image');
 const currentHouses = document.querySelector('.js-current-houses');
 const notRentedTag = document.querySelector('.js-not-rented-tag');
 const crossIcon = document.getElementById("js-cross-icon");
@@ -29,7 +29,7 @@ const mainComment = document.querySelector('.js-main-comment');
 const ratingImage = document.querySelector('.js-rating-image');
 let avgRating = 0;
 var imageLocation = '';
-
+console.log(profileImage)
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         let response = await Promise.all([
@@ -58,7 +58,9 @@ imageInput.addEventListener('change', async () => {
 
 function changeProfile(filePath) {
     if (filePath === 'false') return;
-    profileImage.src = filePath;
+    console.log(filePath)
+    profileImage.style.backgroundImage = `url(${filePath})`;
+
 }
 
 function addHouseDetails(houses) {

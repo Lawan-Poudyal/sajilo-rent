@@ -70,10 +70,7 @@ const leave = ()=>{
         .then(response => response.text())
         .then(data => {
             if (data.status == 'success') {
-                console.log('Successfully left the house');
-                document.querySelector('.section-recent').textContent = "";
-                document.querySelector('.section-recent').textContent = "Owner Has Not Uploaded any houses";
-
+                alert('Successfully left the house');
             } 
         })
         .catch(error => console.error('Error:', error));

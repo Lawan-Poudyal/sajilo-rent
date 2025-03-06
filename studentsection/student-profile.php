@@ -31,8 +31,8 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <div class="user-information">
                 <div class="avatar-wrapper">
                     <div class="avatar">
-                        <img alt="Profile image" class="profile-image">
-                        <img src="../resources/profile-related/change-profile.svg" class="change-profile-icon" alt="">
+                        <div class="profile-image"></div>
+                        <img src="/sajilo-rent/resources/profile-related/change-profile.svg" class="change-profile-icon" alt="">
                         <input type="file" id="imageInput" accept="image/*">
                     </div>
                 </div>
@@ -49,7 +49,6 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                 <img alt="Current residence image" class="living-house-image js-house-image" >
                 <div class="house-information">
                     <div class="residence-details">
-                        <!-- <p class="house-price"></p> -->
                         <p class="owner-name"></p>
                     </div>
                     <div class="residence-status">

@@ -54,7 +54,7 @@ console.log(closeBtn);
 const putProfileContent = (json) => {
     userName.textContent = `${json.ownerName.firstName} ${json.ownerName.lastName}`;
     if (json.ownerProfile) {
-        profileImage.src = "/sajilo-rent/user-panel/back_end/" + json.ownerProfile.image;
+        profileImage.style.backgroundImage = `url("/sajilo-rent/user-panel/back_end/${json.ownerProfile.image}")`;
     }
 }
 

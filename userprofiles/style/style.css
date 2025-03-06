@@ -44,8 +44,12 @@ body{
     border-radius: 50%; 
 
 }
-.avatar img { 
-    width: 100%; height: auto; 
+.profile-image{
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .user-name{
     font-size: 32px;

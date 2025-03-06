@@ -30,7 +30,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
             <div class="user-information">
                 <div class="avatar-wrapper">
                     <div class="avatar">
-                        <img src="/sajilo-rent/resources/profile-related/default-profile.png" alt="Profile image" class="profile-image js-profile-image">
+                        <div class="profile-image"></div>
                         <img src="../resources/profile-related/change-profile.svg" class="change-profile-icon js-change-profile-icon" alt="">
                         <form action="/sajilo-rent/user-panel/back_end/addprofilepic.php" method="POST" enctype="multipart/form-data" class="js-profile-form">
                         <input type="file" name="image" id="imageInput" class="js-image-input" accept="image/*">

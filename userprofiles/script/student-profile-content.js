@@ -7,18 +7,14 @@ const ratingNumber = document.querySelector(".rating-number")
 const reviewerCount = document.querySelector(".reviewer-count");
 const ratingImage = document.querySelector(".rating-image");
 const imgBlock = document.querySelector('.js-house-image');
-const profileimage = document.querySelector('.profile-image')
+const profileImage = document.querySelector('.profile-image')
 const userName = document.querySelector('.user-name');
 
-console.log(window.location)
 const url = new URL(window.location);
-console.log(url)
 const email =url.searchParams.get("email");
-console.log(email)
 const PATHS = {
     house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
-    defaultProfile: '../resources/profile-related/default-profile.png'
 };
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -45,9 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 });
 function putProfileContents(jsonDataProfile){
-   
-    profileimage.src = (jsonDataProfile['image']) ?  `/sajilo-rent/studentsection/backend/${jsonDataProfile['image']}`: `/sajilo-rent/studentsection/backend/images/default-profile.png` ;
-    console.log(profileimage.src);
+    profileImage.style.backgroundImage = `url("/sajilo-rent/studentsection/backend/${jsonDataProfile.profile_image}")`;
     userName.textContent = jsonDataProfile.firstName + " " +  jsonDataProfile.lastName;
 }
 const currentResidence = document.querySelector('.js-current-residence');
@@ -64,7 +58,7 @@ function putHouseContent(jsonDataProfile) {
         Owner.innerText = `Owner : ${jsonDataProfile["owner"]}`;  // Fixed here
         imgBlock.src = PATHS.house + jsonDataProfile['house_image'];
         console.log(imgBlock.src);
-        console.log(jsonDataProfile["image"]);
+      
         
     }   
 }   

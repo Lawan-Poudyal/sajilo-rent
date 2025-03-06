@@ -7,10 +7,9 @@ const ratingNumber = document.querySelector(".rating-number")
 const reviewerCount = document.querySelector(".reviewer-count");
 const ratingImage = document.querySelector(".rating-image");
 const imgBlock = document.querySelector('.js-house-image');
-const profileimage = document.querySelector('.profile-image')
+const profileImage = document.querySelector('.profile-image')
 const changeProfile = document.querySelector('.change-profile-icon');
 const imageInput = document.querySelector('#imageInput'); 
-
 const PATHS = {
     house: '/sajilo-rent/user-panel/back_end/',
     student: '/sajilo-rent/studentsection/backend/',
@@ -34,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function putHouseContent(jsonDataProfile) {
+    console.log(jsonDataProfile)
     if(!jsonDataProfile["status"]){
-        profileimage.src = `/sajilo-rent/studentsection/backend/` +jsonDataProfile["image"];
+        profileImage.style.backgroundImage = `url('${PATHS.student}${jsonDataProfile["image"]}')`;
+            console.log("Background image set to:", PATHS.student + jsonDataProfile["image"]);
         if(!jsonDataProfile['owner']) {
                 houseCard.classList.add('hide');
                 notResiding.classList.remove('hide')
@@ -127,7 +128,7 @@ async function setProfilePic(file) {
         // Preview the image
         const reader = new FileReader();
         reader.onload = () => {
-            profileimage.src = reader.result;
+            profileImage.src = reader.result;
         };
         reader.readAsDataURL(file);
 

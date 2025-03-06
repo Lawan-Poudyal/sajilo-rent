@@ -23,7 +23,8 @@ ini_set('display_errors', 1);
     <div class="section-wrapper">
             <section class="section-profile">
                 <div class="user-information">
-                    <div class="avatar"><img src="/sajilo-rent/resources/profile-related/default-profile.png" alt="Profile image" class="profile-image"></div>
+                    <div class="avatar">
+                        <div class="profile-image"></div>
                     <div class="personal-info">
                         <p class="user-name"></p>
                         <p class="user-status">Owner</p>
