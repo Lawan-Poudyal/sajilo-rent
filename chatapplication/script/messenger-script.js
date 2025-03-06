@@ -45,8 +45,14 @@ addClickOpt();
 
 
 async function loadPeople(){
-   
-    let response = await fetch(`/sajilo-rent/user-panel/back_end/loadtenants.php?email=${email}`);
+    let response;
+    if(status === 'owner')
+    {
+    response = await fetch(`/sajilo-rent/user-panel/back_end/loadtenants.php?email=${email}`);
+    }
+    else{
+    response = await fetch(`/sajilo-rent/chatapplication/backend/loadowner.php`);
+    }
     chat_data = await response.json();
     console.log(chat_data);
 }
@@ -111,7 +117,6 @@ if(status === 'student' && seenornot === false)
     chatBox.innerHTML = '';
     seenornot =false;
 console.log(data[data.length-1]['seenornot']);
-console.log(status);
 console.log(data);
 data.forEach(chat =>{
  if(chat['sender'] === email){
