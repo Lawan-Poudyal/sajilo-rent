@@ -7,15 +7,28 @@ let timeoutfunc;
 let reciever;
 let status;
 let seenornot = true;
+
 // VARAIBLES//  
 const url = new URL(window.location.href);
 const email = url.searchParams.get('email');
+status = url.searchParams.get('status');
 async function sendMessage() {
     if (input.value.trim() === "") return;
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("message", "sent");
     messageDiv.textContent = input.value;
     chatBox.appendChild(messageDiv);
+    // const threeDot = document.createElement("img");
+    // threeDot.setAttribute('src' , 'https://img.icons8.com/?size=100&id=21622&format=png&color=FFFFFF');
+    // threeDot.classList.add('three-dot,js-three-dot');
+    // messageDiv.appendChild(threeDot);
+    // const toolTip = document.createElement("div");
+    // toolTip.innerHTML = `<ul class='ul-tool-tip js-ul-tool-tip '><li>Delete</li><li>Unsend</li> </ul>`;
+    // toolTip.classList.add('hidden');
+    // messageDiv.appendChild(toolTip);
+    // threeDot.addEventListener('click' , ()=>{
+    //     toolTip.classList.toggle('hidden');
+    // });
     chatBox.scrollTop = chatBox.scrollHeight;
     input.value = '';
 }
@@ -30,11 +43,6 @@ sendMessage();
 addClickOpt();
 //////////////////////////////////////
 
-async function getStatus(){
-    let response = await fetch(`/sajilo-rent/chatapplication/backend/getstatus.php?email=${email}`);
-    return await response.text();
-  
-}
 
 async function loadPeople(){
    
@@ -48,15 +56,34 @@ async function peopleName(){
     chat_data.forEach(chat => {
         
         nameHTML += `
-         <li class="tenants js-tenants" data-tenant ='${chat['email']}'>${chat['username']}</li>
+         <li class="tenants js-tenants" data-tenant= '${chat['email']}'>
+                <div class="contact-box">
+                    <div class="small-image js-small-image"></div>
+                    <div class="username">${chat['username']}</div>
+                </div> 
+            </li>
         `
     });
-   contacts.innerHTML = nameHTML;
+    contacts.innerHTML = nameHTML;
+    const chatters = document.querySelectorAll('.js-small-image');
+    chatters.forEach((chatter , index)=>{
+        let filepath = '';
+        if(status === 'owner')
+        {
+            filepath = '/sajilo-rent/studentsection/backend/';
+        }else{
+            filepath = '/sajilo-rent/user-panel/back_end/';
+        }
+        filepath = filepath + chat_data[index]['image'];
+        chatter.style.backgroundImage = `url('${filepath}')`;
+        chatter.style.backgroundImage = 'cover';
+    });
+ 
 
 }
 
 async function addClickOpt(){
-    status = await getStatus();
+   
     console.log(status);
     await peopleName();
     let tenants = document.querySelectorAll('.js-tenants');
@@ -71,6 +98,7 @@ async function addClickOpt(){
 
 
 async function loadChat(reciever){
+
     let response = await fetch(`/sajilo-rent/chatapplication/backend/loadchat.php?sender=${email}&reciever=${reciever}&status=${status}`);
 let data= await response.json();
 if(status === 'student' && seenornot === false)
@@ -87,28 +115,48 @@ console.log(status);
 console.log(data);
 data.forEach(chat =>{
  if(chat['sender'] === email){
-    loadChatMsg(true , chat['message']);
+    loadChatMsg(true , chat);
  }
  else{
-    loadChatMsg(false , chat['message']);
+    loadChatMsg(false , chat);
  }
  
 });
 
 }
 
-function loadChatMsg(sentOrRecieved , msg)
+ function loadChatMsg(sentOrRecieved , chat)
 {
+let msg = chat['message'];
 const messageDiv = document.createElement("div");  
 if(sentOrRecieved === true)
 {
     messageDiv.classList.add("message", "sent");
+    messageDiv.textContent = msg;
+    chatBox.appendChild(messageDiv);
+    const threeDot = document.createElement("img");
+    threeDot.setAttribute('src' , 'https://img.icons8.com/?size=100&id=21622&format=png&color=FFFFFF');
+    threeDot.classList.add('three-dot,js-three-dot');
+    messageDiv.appendChild(threeDot);
+    const toolTip = document.createElement("div");
+    toolTip.innerHTML = `<ul class='ul-tool-tip js-ul-tool-tip '><li >Change</li><li class='delete-msg js-delete-msg' data-id='${chat['id']}'>Unsend</li></ul>`;
+    toolTip.classList.add('hidden');
+    messageDiv.appendChild(toolTip);
+    threeDot.addEventListener('click' , ()=>{
+        toolTip.classList.toggle('hidden');
+    });
+    const deleteMsg = messageDiv.querySelector('.js-delete-msg');
+    deleteMsg.addEventListener('click' , async (e)=>{
+        const msgBoxDiv = e.target.closest('div').parentNode;
+        await removeMsg(msgBoxDiv , deleteMsg.dataset['id']);
+    });
 }
 else{
-    messageDiv.classList.add("message", "received");
+    messageDiv.classList.add("message","received");
+    messageDiv.textContent = msg;
+    chatBox.appendChild(messageDiv);
 }
-messageDiv.textContent = msg;
-chatBox.appendChild(messageDiv);
+
 chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -116,7 +164,13 @@ async function sendToDataBase(reciever , msg){
 let response = await fetch(`/sajilo-rent/chatapplication/backend/insertintochat.php?sender=${email}&reciever=${reciever}&message=${input.value.trim()}`);
 input.value = '';
 }
-
+async function removeMsg(msgBoxDiv ,  id)
+{
+    let response = await fetch(`/sajilo-rent/chatapplication/backend/removemsg.php?id=${id}`);
+    let data = await response.text();
+    console.log(data);
+    msgBoxDiv.remove();
+}
 setInterval(async () => {
     await loadChat(reciever);
   } , 1000);

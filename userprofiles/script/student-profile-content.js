@@ -45,9 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 });
 function putProfileContents(jsonDataProfile){
-   
-    profileimage.src = (jsonDataProfile['image']) ?  `/sajilo-rent/studentsection/backend/${jsonDataProfile['image']}`: `/sajilo-rent/studentsection/backend/images/default-profile.png` ;
-    console.log(profileimage.src);
+    profileimage.src = (jsonDataProfile['profile_image']) ?  `/sajilo-rent/studentsection/backend/${jsonDataProfile['profile_image']}`: `/sajilo-rent/studentsection/backend/images/default-profile.png` ;
     userName.textContent = jsonDataProfile.firstName + " " +  jsonDataProfile.lastName;
 }
 const currentResidence = document.querySelector('.js-current-residence');

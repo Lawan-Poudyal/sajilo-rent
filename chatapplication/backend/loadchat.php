@@ -11,7 +11,7 @@ if($conn->connect_error)
 {
     die(''. $conn->connect_error);
 }
-$query = "SELECT chat.sender , chat.reciever , chat.message , verified_users.status ,chat.seenornot FROM chat 
+$query = "SELECT chat.sender , chat.reciever ,chat.id, chat.message , verified_users.status ,chat.seenornot FROM chat 
 INNER JOIN verified_users ON verified_users.email = chat.sender 
 WHERE (chat.sender = ? AND chat.reciever = ?) 
    OR (chat.reciever = ? AND chat.sender = ?)";
@@ -25,7 +25,7 @@ if($result->num_rows > 0)
 {
     while($row = $result->fetch_assoc())
     {   
-        array_push($jsonarray , ["sender" => $row['sender'] , "reciever"=> $row['reciever'] , "message"=>$row['message'] , "seenornot"=>$row['seenornot']]);
+        array_push($jsonarray , ["sender" => $row['sender'] , "reciever"=> $row['reciever'] , "message"=>$row['message'] , "seenornot"=>$row['seenornot'] , 'id'=>$row['id']]);
         $studentorowner = $row['status'];
         $seenornot = $row['seenornot'];
     }
