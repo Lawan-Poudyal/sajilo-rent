@@ -52,7 +52,7 @@ a {
     white-space: nowrap; /* Prevents text from wrapping */
     overflow: hidden; /* Ensures the link doesn't break layout */
 }
-a:hover{
+aside a:hover{
     background-color: #cd727b;
     transition: all 0.3s ease;    
 }
