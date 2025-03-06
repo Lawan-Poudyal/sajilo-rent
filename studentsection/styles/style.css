@@ -20,6 +20,8 @@
     --navbar-total-space: calc(var(--navbar-height) );
 
 }
+/* nav-bar */
+
 .nav{
     padding:var(--navbar-padding);
     justify-content: center;
@@ -29,9 +31,7 @@
     display: flex;
     gap: 35px;
     align-items: center;
-    position: sticky;
-    top: 0;
-
+    position: relative;
 }
 nav {
     font-family: 'Arial', sans-serif;
@@ -39,28 +39,19 @@ nav {
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 .sajilo-rent-logo {
     background: url("/sajilo-rent/resources/logo.png") no-repeat center;
     background-size: contain; /* or 'cover' depending on your needs */
     height: 50px; /* explicit height */
     width: 50px; /* explicit width */
-    
     position: absolute;
     left: 0px;
     bottom: 0;
 }
-.sajilo-rent-logo {
-    background: url("/sajilo-rent/resources/logo.png") no-repeat center;
-    background-size: contain; /* or 'cover' depending on your needs */
-    height: 50px; /* explicit height */
-    width: 50px; /* explicit width */
-    
-    position: absolute;
-    left: 0.6rem;
-    bottom: 2%;
-}
-
 button, select{
     width: var(--button-width);
     height: var(--button-height);
@@ -160,7 +151,6 @@ button, select{
     background-color: #333;
     transform: scale(1.05);
 } 
-/* nav-bar */
 
 
 /* Dropdown button styling */

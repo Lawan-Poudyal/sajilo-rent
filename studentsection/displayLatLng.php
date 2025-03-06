@@ -25,8 +25,6 @@ session_start();
   <title>Document</title>
   <script type="module" src="./script/main.js" defer></script>
 
-<<<<<<< Updated upstream
-=======
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./styles/style.css"> 
@@ -34,7 +32,6 @@ session_start();
     <title>Document</title>
     <script type = "module" src="./script/main.js" defer></script>
     
->>>>>>> Stashed changes
 </head>
 
 <body>
@@ -79,5 +76,5 @@ session_start();
     </div>
   </section>
   <div class="email" hidden><?php echo $_SESSION["s_email"] ?></div>
-
+</body>
 </html>
