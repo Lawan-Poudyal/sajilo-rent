@@ -52,12 +52,7 @@ mapInstance.on('popupopen', function(event) {
         })
         .then(response => response.json())
         .then(data => {
-            if(data.status == "success"){
-                alert("Rent request sent");
-            }
-            else{
-                alert(data.message);
-            }
+            alert(data.message);
         })
         .catch(error => {
             console.error('Error:', error);

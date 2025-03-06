@@ -4,7 +4,7 @@ session_start();
 
 require_once 'db.php';
 
-$stmt = $conn->prepare("SELECT * FROM housedetails INNER JOIN booked ON housedetails.latitude = booked.lat and housedetails.longitude = booked.lng where email = ?");
+$stmt = $conn->prepare("SELECT * FROM housedetails INNER JOIN booked ON housedetails.latitude = booked.lat and housedetails.longitude = booked.lng where booked.email = ?");
 $stmt->bind_param('s',$_SESSION['s_email']);
 
 if(!$stmt->execute()){

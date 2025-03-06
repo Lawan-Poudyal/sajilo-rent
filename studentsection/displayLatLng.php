@@ -25,6 +25,16 @@ session_start();
   <title>Document</title>
   <script type="module" src="./script/main.js" defer></script>
 
+<<<<<<< Updated upstream
+=======
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./styles/style.css"> 
+    <link rel="stylesheet" href="../universal-styling/aside-bar.css">
+    <title>Document</title>
+    <script type = "module" src="./script/main.js" defer></script>
+    
+>>>>>>> Stashed changes
 </head>
 
 <body>
@@ -63,7 +73,7 @@ session_start();
     </div>
   </nav>
   <section class="main-body">
-    <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
     <div id="map">
       <button class="closeRouting" style="display: none;">Close Routing</button>
     </div>

@@ -270,6 +270,29 @@ function viewProfile(btn)
     window.location.href = `/sajilo-rent/userprofiles/studentProfile.php?email=${btn.dataset['tenant']}&username=${btn.dataset['username']}`;
 }
 </script>
+
+<!-- about button  -->
+
+
+<dialog class="about-dialog">
+<div class="dialog-content">
+            <button class="close-button" onclick="this.closest('dialog').close()">Close</button>
+            <h2>Welcome to Sajilo Rent</h2>
+            <p>Your one-stop solution for hassle-free renting!</p>
+            <p>Whether you're looking for a place to stay, equipment for an event, or tools for your next project, Sajilo Rent connects you with trusted providers in just a few clicks.</p>
+            <p>Enjoy a seamless renting experience with transparent pricing, verified listings, and reliable customer support. Renting has never been this easy – Sajilo Rent makes it simple!</p>
+        </div>
+</dialog>
+<script>
+    const aboutDialog = document.querySelector(".about-dialog");
+    const aboutLink = document.querySelector(".bottom-links a:nth-of-type(2)");
+    aboutLink.addEventListener('click',()=>{
+        aboutDialog.showModal();
+    })
+
+</script>
+
+
 <!-- For view tenants - using <dialog> element -->
 <dialog class="tenant-dialog">
     <div class="tenant-dialog-header">
@@ -339,7 +362,7 @@ const tenantDialogClose = document.querySelector('.tenant-dialog-close');
 document.addEventListener('DOMContentLoaded', async function() {
     // Select the tenants profile link from sidebar
     const tenantsProfileLink = document.querySelector('.aside-bar a:nth-child(4)');
-    
+    console.log(tenantsProfileLink);
     // Only open dialog when Tenants Profile link is clicked
     if(tenantsProfileLink) {
         tenantsProfileLink.addEventListener('click', function(e) {
