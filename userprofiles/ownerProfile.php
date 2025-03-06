@@ -23,16 +23,13 @@ ini_set('display_errors', 1);
     <div class="section-wrapper">
             <section class="section-profile">
                 <div class="user-information">
-                    <div class="avatar">
-                        <div class="profile-image"></div>
-                    <div class="personal-info">
-                        <p class="user-name"></p>
-                        <p class="user-status">Owner</p>
-                    </div>
+                <div class="avatar">
+                    <div class="profile-image"></div>
                 </div>
-                <button class="message-user">
-                    Message
-                </button>
+                <div class="personal-info">
+                    <p class="user-name"></p>
+                    <p class="user-status">Owner</p>
+                </div>
             </section>
             <section class="section-recent">
                 <p class="text-owner">Recent House Posts</p>

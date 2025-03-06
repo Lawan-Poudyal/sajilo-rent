@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 // Load tenants from API
 async function loadTenants() {
-    try {
+  
         const response = await fetch("/sajilo-rent/user-panel/back_end/loadtenants.php");
         const tenants = await response.json();
         const tenantList = document.querySelector('.tenant-dialog-content');
@@ -414,6 +414,11 @@ async function loadTenants() {
         
         // Clear existing content
         tenantList.innerHTML = '';
+        if(tenants.error){
+            document.querySelector('.tenant-dialog-content').innerHTML = 
+            '<p class="no-tenants">No tenants have resided in your house.</p>';
+            return;
+        }
         
         tenants.forEach(tenant => {
             const tenantCard = document.createElement('div');
@@ -440,11 +445,8 @@ async function loadTenants() {
         // Now that tenants are loaded, attach event listeners
         setupTenantCardButtons();
         
-    } catch (error) {
-        console.error('Error loading tenants:', error);
-        document.querySelector('.tenant-dialog-content').innerHTML = 
-            '<p class="no-tenants">Error loading tenants. Please try again.</p>';
-    }
+  
+    
 }
 
 // Set up buttons on tenant cards

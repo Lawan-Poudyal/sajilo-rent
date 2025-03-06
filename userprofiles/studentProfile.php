@@ -24,16 +24,14 @@ error_reporting(E_ALL);
     <div class="section-wrapper">
         <section class="section-profile">
             <div class="user-information">
-                <div class="avatar">
+            <div class="avatar">
                 <div class="profile-image"></div>
-                <div class="personal-info">
-                    <p class="user-name"></p>
-                    <p class="user-status">Student</p>
-                </div>
             </div>
-            <button class="message-user">
-                Message
-            </button>
+            <div class="personal-info">
+                <p class="user-name"></p>
+                <p class="user-status">Student</p>
+            </div>
+            </div>
         </section>
         <section class="section-recent">
         <p class="text-student text-owner">Currently Residing in</p>

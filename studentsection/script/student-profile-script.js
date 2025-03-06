@@ -127,7 +127,8 @@ async function setProfilePic(file) {
         // Preview the image
         const reader = new FileReader();
         reader.onload = () => {
-            profileImage.src = reader.result;
+            const imageUrl = reader.result;
+            profileImage.style.backgroundImage = `url(${imageUrl})`;
         };
         reader.readAsDataURL(file);
 

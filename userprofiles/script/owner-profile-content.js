@@ -16,7 +16,7 @@ console.log(closeBtn);
             throw new Error('Network response was not ok');
         }
         const jsonDataProfile = await responseProfile.json();
-        console.log(jsonDataProfile)
+        console.log(jsonDataProfile);
         if(jsonDataProfile.status == "error"){
             document.querySelector(".section-wrapper").textContent = ""; 
             noOwnerDialog.showModal();
@@ -52,6 +52,9 @@ console.log(closeBtn);
 })();
 
 const putProfileContent = (json) => {
+    console.log(json.ownerName.firstName);
+    console.log(json.ownerName.lastName);
+
     userName.textContent = `${json.ownerName.firstName} ${json.ownerName.lastName}`;
     if (json.ownerProfile) {
         profileImage.style.backgroundImage = `url("/sajilo-rent/user-panel/back_end/${json.ownerProfile.image}")`;
