@@ -4,9 +4,9 @@
 
 .room-container-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 1fr;
 }
-
+/* 
 @media (max-width: 2000px) {
   .room-container-grid {
     grid-template-columns: repeat(7, 1fr);
@@ -48,7 +48,7 @@
     grid-template-columns: 1fr;
   }
 }
-
+ */
 
 
 .room-container {
