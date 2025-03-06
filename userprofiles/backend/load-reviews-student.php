@@ -6,7 +6,7 @@ require_once 'db.php';
 
 header("Content-Type: application/json"); // Always return JSON
 
-$stmt = $conn->prepare("SELECT reviewer, rating, comment, date FROM review WHERE reciever = ?");
+$stmt = $conn->prepare("SELECT reviewer, rating, comment, date FROM review WHERE receiver = ?");
 $stmt->bind_param("s", $_SESSION["s_email"]);
 
 if (!$stmt->execute()) {
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
     }
     echo json_encode($reviewDetails, JSON_PRETTY_PRINT);
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'No reviews']);
+    echo json_encode(['status' => 'error', 'message' => 'No any reviews for the user']);
 }
 
 $stmt->close();

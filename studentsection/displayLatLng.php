@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<?php
-session_start();
-?>
-=======
 <?php 
   session_start();
   ?>
->>>>>>> 6ceb6809f99bce2d3109fdd8923101b8aaee0be9
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,13 +37,13 @@ session_start();
               <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon"/>
             </button>
             <div class="dropdown-content" id="priceDropdown">
-              <div class="price-option">$3,500</div>
-              <div class="price-option">$4,000</div>
-              <div class="price-option">$4,500</div>
-              <div class="price-option">$5,000</div>
-              <div class="price-option">$5,500</div>
-              <div class="price-option">$6,000</div>
-              <div class="price-option">$6,500</div>
+                <div class="price-option">Rs 3,500</div>
+                <div class="price-option">Rs 4,000</div>
+                <div class="price-option">Rs 4,500</div>
+                <div class="price-option">Rs 5,000</div>
+                <div class="price-option">Rs 5,500</div>
+                <div class="price-option">Rs 6,000</div>
+                <div class="price-option">Rs 6,500</div>
             </div>
           </div>
           <div class="dropdown">
@@ -67,7 +61,7 @@ session_start();
         </div>
       </nav>
     <section class="main-body">
-        <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php'?>
+        <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php'?>
         <div id="map">
         <button class="closeRouting" style="display: none;">Close Routing</button>
         </div>

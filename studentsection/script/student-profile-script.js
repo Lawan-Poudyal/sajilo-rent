@@ -1,5 +1,3 @@
-
-const housePrice = document.querySelector(".house-price");
 const Owner = document.querySelector(".owner-name");
 const picture = document.querySelector(".living-house-image");
 const houseCard = document.querySelector(".house-card");
@@ -43,7 +41,6 @@ function putHouseContent(jsonDataProfile) {
                 notResiding.classList.remove('hide')
                 return;
         }
-        housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
         Owner.innerText = `Owner : ${jsonDataProfile["owner"]}`;  
         imgBlock.src = PATHS.house + jsonDataProfile['image1'];
 

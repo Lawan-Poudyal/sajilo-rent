@@ -78,7 +78,7 @@ const putReviewContent = (jsonDataReview) => {
     if(jsonDataReview.status == "error"){
         const ratingComment = document.querySelector('.rating-comment');
         ratingComment.textContent = "";
-        ratingComment.textContent = "No reviews";
+        ratingComment.textContent = "No any reviews for the user";
         ratingComment.classList.add('empty-reviews');        
         return;
 

@@ -1,7 +1,7 @@
 
 <?php 
 $sender = $_REQUEST['sender'];
-$reciever = $_REQUEST['reciever'];
+$reciever = $_REQUEST['receiver'];
 $status = $_REQUEST['status'];
 $jsonarray = [];
 $studentorowner = '';
@@ -11,10 +11,10 @@ if($conn->connect_error)
 {
     die(''. $conn->connect_error);
 }
-$query = "SELECT chat.sender , chat.reciever , chat.message , verified_users.status ,chat.seenornot FROM chat 
+$query = "SELECT chat.sender , chat.receiver , chat.message , verified_users.status ,chat.seenornot FROM chat 
 INNER JOIN verified_users ON verified_users.email = chat.sender 
-WHERE (chat.sender = ? AND chat.reciever = ?) 
-   OR (chat.reciever = ? AND chat.sender = ?)";
+WHERE (chat.sender = ? AND chat.receiver = ?) 
+   OR (chat.receiver = ? AND chat.sender = ?)";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("ssss" , $sender , $reciever , $sender , $reciever);
 if(!$stmt->execute()){
@@ -25,7 +25,7 @@ if($result->num_rows > 0)
 {
     while($row = $result->fetch_assoc())
     {   
-        array_push($jsonarray , ["sender" => $row['sender'] , "reciever"=> $row['reciever'] , "message"=>$row['message'] , "seenornot"=>$row['seenornot']]);
+        array_push($jsonarray , ["sender" => $row['sender'] , "receiver"=> $row['reciever'] , "message"=>$row['message'] , "seenornot"=>$row['seenornot']]);
         $studentorowner = $row['status'];
         $seenornot = $row['seenornot'];
     }
@@ -49,8 +49,8 @@ else if ($seenornot === 'ownerseen' && $status === 'student') {
     $seenornot = 'seen';
 }
 $query =  "UPDATE chat SET seenornot = ?
-WHERE (sender = ? AND reciever = ?) 
-   OR (reciever = ? AND sender = ?);";
+WHERE (sender = ? AND receiver = ?) 
+   OR (receiver = ? AND sender = ?);";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("sssss" , $seenornot,$sender , $reciever , $sender , $reciever);
 if(!$stmt->execute()){

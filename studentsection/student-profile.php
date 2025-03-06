@@ -21,10 +21,10 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
     <script src="./script/leave.js" defer></script>
 </head>
 <body>
-    <?php require_once '/xampp/htdocs/sajilo-rent/header.php'; ?>
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
     <div class="main-body">
     <?php
-        require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php';
+        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
     ?>
     <div class="section-wrapper">
         <section class="section-profile">
@@ -49,7 +49,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                 <img alt="Current residence image" class="living-house-image js-house-image" >
                 <div class="house-information">
                     <div class="residence-details">
-                        <p class="house-price"></p>
+                        <!-- <p class="house-price"></p> -->
                         <p class="owner-name"></p>
                     </div>
                     <div class="residence-status">

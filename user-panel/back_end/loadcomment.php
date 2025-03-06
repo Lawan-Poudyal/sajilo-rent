@@ -11,15 +11,10 @@ if($conn->connect_error)
 {
     die("lol conn error");
 }
-$query ="SELECT review.reviewer , review.reciever , review.rating  ,review.comment, review.date , signin.firstName , signin.lastName
+$query ="SELECT review.reviewer , review.receiver , review.rating  ,review.comment, review.date , signin.firstName , signin.lastName
 FROM review 
-<<<<<<< HEAD
-INNER JOIN signin ON review.receiver = signin.email
+INNER JOIN signin ON review.reviewer = signin.email
 WHERE review.receiver = ?
-=======
-INNER JOIN signin ON review.reciever = signin.email
-WHERE review.reciever = ?
->>>>>>> 6ceb6809f99bce2d3109fdd8923101b8aaee0be9
 ";
 $stmt = $conn->prepare($query);
 

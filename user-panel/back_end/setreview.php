@@ -1,5 +1,5 @@
 <?php  
-$reciever = $_REQUEST['reciever'];
+$reciever = $_REQUEST['receiver'];
 $reviewer = $_REQUEST['reviewer'];
 $rating = $_REQUEST['rating'];
 $comment = $_REQUEST['comment'];
