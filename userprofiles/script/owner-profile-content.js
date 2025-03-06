@@ -13,8 +13,17 @@ const ratingImage = document.querySelector(".rating-image");
             throw new Error('Network response was not ok');
         }
         const jsonDataProfile = await responseProfile.json();
-
-        const responseReview = await fetch("/sajilo-rent/userprofiles/backend/load-reviews-owner.php", {
+        console.log(jsonDataProfile)
+        if(jsonDataProfile.status){
+            document.querySelector(".section-wrapper").textContent = ""; 
+            document.querySelector(".dialog-no-owner").showModal();
+            document.querySelector('.close-button').addEventListener('click',()=>{
+                document.querySelector(".dialog-no-owner").close();
+                window.location = "/sajilo-rent/studentsection/displayLatLng.php";
+            })
+        }   
+        else{   
+            const responseReview = await fetch("/sajilo-rent/userprofiles/backend/load-reviews-owner.php", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +40,7 @@ const ratingImage = document.querySelector(".rating-image");
         console.log(jsonDataReview);
         putProfileContent(jsonDataProfile);
         putHousePosts(jsonDataProfile);
-        putReviewContent(jsonDataReview);
+        putReviewContent(jsonDataReview);}
 
     } catch (error) {
         console.error('Fetch error: ', error);
@@ -46,6 +55,11 @@ const putProfileContent = (json) => {
 }
 
 const putHousePosts = (json) => {
+    if(json.ownerHouseDetails.length == 0){
+        document.querySelector('.section-recent').textContent = "";
+        document.querySelector('.section-recent').textContent = "Owner Has Not Uploaded any houses";
+        return;
+    }
     json.ownerHouseDetails.forEach(element => {
         const houseCard = document.createElement('div');
         houseCard.classList.add('house-card');
@@ -61,7 +75,14 @@ const putHousePosts = (json) => {
 
 const putReviewContent = (jsonDataReview) => {
     let totalRating = 0;
-       
+    if(jsonDataReview.status == "error"){
+        const ratingComment = document.querySelector('.rating-comment');
+        ratingComment.textContent = "";
+        ratingComment.textContent = "No any reviews for the user";
+        ratingComment.classList.add('empty-reviews');        
+        return;
+
+    }
     reviewerCount.innerText = `${jsonDataReview.length} Reviewers`;
     jsonDataReview.forEach(element => {
         const reviewWrapper = document.createElement('div');

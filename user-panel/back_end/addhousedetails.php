@@ -1,5 +1,9 @@
 <?php 
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', 'php_errors.log');
 $image1_path = "";
 $image2_path = "";
 $image3_path = "";
@@ -18,8 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $longitude = $_POST['lng'];
     $floor_level = $_POST['floor-level'];
     $electricity = $_POST['electricity'];
-    
-
     $image1_name = $_FILES['image']['name'];
     $image2_name = $_FILES['image-2']['name'];
     $image3_name = $_FILES['image-3']['name'];

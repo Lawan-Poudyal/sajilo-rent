@@ -157,9 +157,14 @@ image3.addEventListener('change', function(){
  cross.addEventListener('click' , ()=>{
  form.style.display = "none";
  });
- function removehouse( lat ,  lng)
+ async function removehouse( lat ,  lng)
  {
 //   stopper--;
+  let response = await fetch(`/sajilo-rent/user-panel/back_end/checktenants.php?lat=${lat}&lng=${lng}`);
+  let data = await response.text();
+  data = Number(data);
+  console.log(data);
+  if(!data){
   console.log("lat :" +lat+ " lng:" +lng);
   var xmlrequest = new XMLHttpRequest();
   xmlrequest.open("GET" , `/sajilo-rent/user-panel/back_end/removehouses.php?lat=${lat}&lng=${lng}&username=${username}`,true);
@@ -177,11 +182,16 @@ image3.addEventListener('change', function(){
         }
 
         stopper--;
+        alert('house removed');
     }
     else{
         console.log("we ran into this problem " + this.readyState + " and this " + this.status);
     }
   }
+}
+else{
+    alert(`Can't remove house, People live there`);
+}
   
  }
  ////////// for redirection purposes ////////////////////////
@@ -270,9 +280,11 @@ tempmarker.forEach((marker) => {
                     <span>${jsonobj["electricity"]}</span>
                     </div>
                     <div class='info-wrapper info-btn'>
-                    <button id="pointer-btn" onclick="removehouse(${lat} , ${lng})">Remove</button>
-                    <button id="pointer-btn">Update</button></div></div>`);
+                    <button id="pointer-btn"  onclick="removehouse(${lat} , ${lng})">Remove</button>
+                    <button id="pointer-btn" class=".js-update-house-btn">Update</button></div></div>`);
+                    
             }
+            
             else{
                 console.log(this.readyState + " " + this.status);
             }

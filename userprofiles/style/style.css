@@ -4,12 +4,18 @@
     padding: 0;
 }
 
-
+body{
+    display: flex;
+    flex-flow:column nowrap;
+    min-height:100vh;
+}
 /* user-profile */
 .main-body{
     display: flex;
     padding: 1rem;
     gap: 1rem;
+    flex-grow: 1;
+
 }
 
 .aside-bar-student {
@@ -412,4 +418,67 @@
     .reviewer-count {
         font-size: 18px;
     }
+}
+
+
+/* if no owner  */
+.dialog-content {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+/* Heading Styling */
+.dialog-content h3 {
+    color: #333333;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* Paragraph Styling */
+.dialog-content p {
+    color: #666666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+/* Dialog Actions Container */
+.dialog-actions {
+    display: flex;
+    justify-content: center;
+}
+
+/* Close Button Styling */
+.close-button {
+    background-color: #f0f0f0;
+    color: #333333;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.close-button:hover {
+    background-color: #e0e0e0;
+}
+
+.close-button:active {
+    background-color: #d0d0d0;
+}
+.empty-reviews {
+    color: #888888;
+    font-style: italic;
+    font-size: 28px;
 }

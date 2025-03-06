@@ -1,5 +1,3 @@
-
-const housePrice = document.querySelector(".house-price");
 const Owner = document.querySelector(".owner-name");
 const picture = document.querySelector(".living-house-image");
 const houseCard = document.querySelector(".house-card");
@@ -23,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     (async function(){
         try {
-            const response = await Promise.all([fetch("./backend/load-profile.php"), fetch("./backend/load-reviews.php")]);
+            const response = await Promise.all([fetch("/sajilo-rent/studentsection/backend/load-profile.php"), fetch("/sajilo-rent/studentsection/backend/load-reviews.php")]);
 
             const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
-            putHouseContent(jsonDataProfile);
+            putHouseContent(jsonDataProfile[0]);
             putReviewContent(jsonDataReview)
                 
         } catch (error) {
@@ -37,17 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function putHouseContent(jsonDataProfile) {
     if(!jsonDataProfile["status"]){
-
-        housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
-        Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  
+        profileimage.src = `/sajilo-rent/studentsection/backend/` +jsonDataProfile["image"];
+        if(!jsonDataProfile['owner']) {
+                houseCard.classList.add('hide');
+                notResiding.classList.remove('hide')
+                return;
+        }
+        Owner.innerText = `Owner : ${jsonDataProfile["owner"]}`;  
         imgBlock.src = PATHS.house + jsonDataProfile['image1'];
-        profileimage.src = jsonDataProfile["image"]  ? PATHS.student + jsonDataProfile["image"] : PATHS.defaultProfile;
 
     }   
-    else{
-        houseCard.classList.add('hide');
-        notResiding.classList.remove('hide')
-    }
+ 
 }   
 function putReviewContent(jsonDataReview){
     if(!jsonDataReview["status"]){
@@ -63,7 +61,7 @@ function putReviewContent(jsonDataReview){
                             <p class="reviewer-name">${element["reviewer"]}</p>
                             <p class="review-date">${element["date"]}</p>
                         </div>
-                        <img class="reviewer-rating-image" src = "../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
+                        <img class="reviewer-rating-image" src = "/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
                     </div>
                     <div class="review-comment">
                         ${element["comment"]}

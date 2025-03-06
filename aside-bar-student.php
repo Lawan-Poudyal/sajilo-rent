@@ -195,3 +195,23 @@ confirmLogoutButton.addEventListener('click', async (event) => {
     window.location.href = '/sajilo-rent/loginsignup_page/login.php';
 });
 </script>
+
+<!-- about section  -->
+
+<dialog class="about-dialog">
+<div class="dialog-content">
+            <button class="close-button" onclick="this.closest('dialog').close()">Close</button>
+            <h2>Welcome to Sajilo Rent</h2>
+            <p>Your one-stop solution for hassle-free renting!</p>
+            <p>Whether you're looking for a place to stay, equipment for an event, or tools for your next project, Sajilo Rent connects you with trusted providers in just a few clicks.</p>
+            <p>Enjoy a seamless renting experience with transparent pricing, verified listings, and reliable customer support. Renting has never been this easy – Sajilo Rent makes it simple!</p>
+        </div>
+</dialog>
+<script>
+    const aboutDialog = document.querySelector(".about-dialog");
+    const aboutLink = document.querySelector(".bottom-links a:nth-of-type(2)");
+    aboutLink.addEventListener('click',()=>{
+        aboutDialog.showModal();
+    })
+
+</script>

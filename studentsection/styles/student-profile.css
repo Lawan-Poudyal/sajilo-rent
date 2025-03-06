@@ -4,10 +4,16 @@
     padding: 0;
     
 }
+body{
+    display: flex;
+    flex-flow:column nowrap;
+    min-height:100vh;
+}
 .main-body{
     display: flex;
     padding: 1rem;
     gap: 1rem;
+    flex-grow:1;
 }
 
 /* user-profile */
@@ -17,6 +23,7 @@
 
 .section-wrapper {
     width: 70vw;
+    min-height:100%;
 }
 .section-profile {
     display: flex;
@@ -411,3 +418,4 @@
         font-size: 18px;
     }
 }
+

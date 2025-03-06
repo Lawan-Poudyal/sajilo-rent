@@ -3,6 +3,10 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+if (!isset($_SESSION["s_username"] ) || !isset($_SESSION['s_email']))
+{
+header("Location:/sajilo-rent/user-panel/user-home.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +49,7 @@ error_reporting(E_ALL);
                 <img alt="Current residence image" class="living-house-image js-house-image" >
                 <div class="house-information">
                     <div class="residence-details">
-                        <p class="house-price"></p>
+                        <!-- <p class="house-price"></p> -->
                         <p class="owner-name"></p>
                     </div>
                     <div class="residence-status">

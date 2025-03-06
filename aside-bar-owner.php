@@ -1,20 +1,22 @@
-<?php 
+ <?php 
 $email = $_SESSION['email'];
 ?>
 
 <aside class="aside-bar">
+    <div class="all-link">
             <div class="main-links">
-                <a href="/sajilo-rent/user-panel/owner-page.php"><img src="https://img.icons8.com/ios/50/home--v1.png" alt="home--v1"/><span class="link-text home">Home</span></a>
-                <a href="/sajilo-rent/user-panel/owner-profile.php"><img src="https://img.icons8.com/fluency-systems-regular/50/user--v1.png" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
-                <a href="/sajilo-rent/chatapplication/messenger.php?email=<?php echo $email?>"><img src="https://img.icons8.com/ios/50/messages-mac.png" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
-                <a href="#"><img src="https://img.icons8.com/ios/50/conference-call.png" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
+                <a href="/sajilo-rent/user-panel/owner-page.php"><img src="https://img.icons8.com/?size=100&id=2797&format=png&color=FFFFFF" alt="home--v1"/><span class="link-text home">Home</span></a>
+                <a href="/sajilo-rent/user-panel/owner-profile.php"><img src="https://img.icons8.com/?size=100&id=14736&format=png&color=FFFFFF" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
+                <a href="/sajilo-rent/chatapplication/messenger.php?email=<?php echo $email?>"><img src="https://img.icons8.com/?size=100&id=R7M0cowL2BCb&format=png&color=FFFFFF" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
+                <a href="#"><img src="https://img.icons8.com/?size=100&id=J715ns61u5eV&format=png&color=FFFFFF" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
 <!----create the tenants request section by yourselves ----->
-                <a href="" class="js-tenants-request"><img src="https://img.icons8.com/fluency-systems-regular/50/request-feedback.png" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
-                <a href="#"><img src="https://img.icons8.com/fluency-systems-regular/50/password-window.png" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
+                <a href="#" class="js-tenants-request"><img src="https://img.icons8.com/?size=100&id=123784&format=png&color=FFFFFF" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
+                <a href="#"><img src="https://img.icons8.com/?size=100&id=10480&format=png&color=FFFFFF" alt="password icon"/><span class="link-text change-password">Change Password</span></a>
             </div>
             <div class="bottom-links">
-                <a href="#"><img class="log-out-pic" src="https://img.icons8.com/fluency-systems-regular/50/exit--v1.png" alt="log out icon"/><span class="link-text log-out">Log-out</span></a>
-                <a href="#"><img class="about-pic" src="https://img.icons8.com/fluency-systems-regular/50/about.png" alt="about icon"/><span class="link-text about">About</span></a>
+                <a href="#"><img class="log-out-pic" src="https://img.icons8.com/?size=100&id=JdaYRcm8sarQ&format=png&color=FFFFFF" alt="log out icon"/><span class="link-text log-out">Log-out</span></a>
+                <a href="#"><img class="about-pic" src="https://img.icons8.com/?size=100&id=7694&format=png&color=FFFFFF" alt="about icon"/><span class="link-text about">About</span></a>
+            </div>
             </div>
 </aside>
 <!-------------------------- modal for changing password  --->
@@ -186,84 +188,158 @@ cancelLogoutButton.addEventListener('click', () => {
 });
 </script>
 <!------------------ dialog for seeing tenants profile dumbo  --->
-<dialog class="main-section-div request js-request-card xyz ">
+<dialog class="main-section-div request js-request-card xyz  ">
         
 </dialog>
 <!----------this is the script to load the tenants profile dumbo -->
 <script>
 const tenantsRequest = document.querySelector('.js-tenants-request');
 const requestCard  = document.querySelector('.js-request-card');
-tenantsRequest.addEventListener('click' , ()=>{
+
+tenantsRequest.addEventListener('click' , (event)=>{
+    event.preventDefault();
 requestCard.showModal();
+loadRequests(); 
 });
+async function loadRequests(){
+    let response = await fetch(`/sajilo-rent/user-panel/back_end/loadrequest.php`);
+    let data = await response.json();
+    loadRequestDOM(data);
+}
+function loadRequestDOM(data){
+data.forEach(element => {
+    requestCard.innerHTML = '';
+if(element['error']) return;
+requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
+        <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
+        <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>
+        <div class="interactive-btn">   
+            <button class="accept js-accept" data-email='${element['email']}' data-tenant = '${element['email']}' data-lat = ${element['lat']} data-lng=${element['lng']}>Accept</button>
+            <button class="decline js-decline" data-tenant='${element['email']}'>Decline</button>
+            <button class="view-btn js-view-btn" data-tenant='${element['email']}' data-username = '${element['username']}'>View</button>
+        </div>
+        </div>`;
+});
+const acceptBtn = document.querySelectorAll('.js-accept');
+const removeBtn = document.querySelectorAll('.js-decline');
+const viewBtn = document.querySelectorAll('.js-view-btn');
+acceptBtn.forEach(btn =>{
+btn.addEventListener('click' , (event)=>{
+const btn = event.target.closest('button');
+if(btn)
+{
+   acceptRequest(btn); 
+}
+});
+});
+removeBtn.forEach(btn=>{
+    btn.addEventListener('click', (event)=>{
+        const btn = event.target.closest('button');
+        if(btn)
+    {
+        removeRequest(btn);
+    }
+    });
+});
+viewBtn.forEach(btn =>{
+btn.addEventListener('click' , (event)=>{
+const btn = event.target.closest('button');
+if(btn)
+{
+   viewProfile(btn); 
+}
+});
+});
+}
+async function removeRequest(btn)
+{
+    let response = await fetch(`/sajilo-rent/user-panel/back_end/removerequest.php?username=${btn.dataset['tenant']}`);
+    let data = await response.text();
+    console.log(data);
+    requestCard.innerHTML = '';
+    loadRequests();
+}
+async function acceptRequest(btn)
+{
+    let response = await fetch(`/sajilo-rent/user-panel/back_end/acceptrequest.php?lat=${btn.dataset['lat']}&lng=${btn.dataset['lng']}&username=${btn.dataset['email']}`);
+    let data  = await response.text();
+    loadRequests();
+}
+function viewProfile(btn)
+{   
+    window.location.href = `/sajilo-rent/userprofiles/studentProfile.php?email=${btn.dataset['tenant']}&username=${btn.dataset['username']}`;
+}
 </script>
-
-
-
 <!-- For view tenants - using <dialog> element -->
-
-
 <dialog class="tenant-dialog">
     <div class="tenant-dialog-header">
         <h2 class="tenant-dialog-title">Tenants Living</h2>
     </div>
-    <div class="tenant-dialog-close ">
+    <div class="tenant-dialog-close">
         <img src="/sajilo-rent/resources/cross.png" height="50" width="50" alt="Close">
     </div>
     <div class="tenant-dialog-content">
-        <div class="tenant-card">
-            <div class="tenant-info">
-                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Tenant Picture" class="tenant-pic">
-                <div class="tenant-details">
-                    <p class="tenant-email">amelia.patel@example.com</p>
-                    <p class="tenant-since">Tenant since: October 22, 2023</p>
-                </div>
-            </div>
-            <div class="tenant-actions">
-                <button class="view-profile-btn">View Profile</button>
-                <button class="message-btn">Message</button>
-                <button class="remove-btn">Remove</button>
+        <!-- Tenants will be loaded here -->
+    </div>
+</dialog>
+
+<!-- Tenant Removal Dialog -->
+<dialog class="review-dialog js-tenant-removal-review">
+    <div class="review-dialog-header">
+        <h2 class="review-dialog-title">Tenant Removal</h2>
+        <div class="review-dialog-close">
+            <img src="/sajilo-rent/resources/cross.png" height="20" width="20" alt="Close">
+        </div>
+    </div>
+    
+    <div class="review-dialog-content">
+        <div class="tenant-review-info">
+            <img id="review-tenant-pic" src="" alt="Tenant Picture" class="tenant-pic">
+            <div class="tenant-details">
+                <p id="review-tenant-email" class="tenant-email"></p>
+
             </div>
         </div>
-        <div class="tenant-card">
-            <div class="tenant-info">
-                <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Tenant Picture" class="tenant-pic">
-                <div class="tenant-details">
-                    <p class="tenant-email">sarah.johnson@example.com</p>
-                    <p class="tenant-since">Tenant since: March 15, 2023</p>
-                </div>
+        
+        <div class="rating-section">
+            <p>Rate your experience with this tenant:</p>
+            <div id="stars" class="stars-container">
+                <span class="star js-star" data-value="1">★</span>
+                <span class="star js-star" data-value="2">★</span>
+                <span class="star js-star" data-value="3">★</span>
+                <span class="star js-star" data-value="4">★</span>
+                <span class="star js-star" data-value="5">★</span>
             </div>
-            <div class="tenant-actions">
-                <button class="view-profile-btn">View Profile</button>
-                <button class="message-btn">Message</button>
-                <button class="remove-btn">Remove</button>
-            </div>
+        </div>
+        
+        <section class="comment-section">
+            <textarea name="tenant-review" id="tenant-review" class="comment-section-area js-text-area" placeholder="Reason for removal (optional)..."></textarea>
+        </section>
+        
+        <div class="review-actions">
+            <button class="cancel-btn js-cancel-review">Cancel</button>
+            <button class="submit-review-btn js-submit-review-btn">Remove Tenant</button>
         </div>
     </div>
 </dialog>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize variables
+let currentTenantElement = null;
+
+// Get DOM elements
+const reviewDialog = document.querySelector('.js-tenant-removal-review');
+const stars = document.querySelectorAll('.js-star');
+const submitBtn = document.querySelector('.js-submit-review-btn');
+const cancelBtn = document.querySelector('.js-cancel-review');
+const tenantDialog = document.querySelector('.tenant-dialog');
+const tenantDialogClose = document.querySelector('.tenant-dialog-close');
+
+// Load tenants and set up event listeners
+document.addEventListener('DOMContentLoaded', async function() {
     // Select the tenants profile link from sidebar
     const tenantsProfileLink = document.querySelector('.aside-bar a:nth-child(4)');
-    const tenantDialog = document.querySelector('.tenant-dialog');
-    const tenantDialogClose = document.querySelector('.tenant-dialog-close');
-    const viewProfile = document.querySelectorAll('.view-profile-btn');
-
-
-    viewProfile.forEach((button) =>  {
-        button.addEventListener('click' , function(){
-            const tenantCard = this.closest('.tenant-card');
-            currentTenantElement = tenantCard;
-
-            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
-            const tenantSince = tenantCard.querySelector('.tenant-since').textContent;
-            const tenantPic = tenantCard.querySelector('.tenant-pic').src;
-
-            window.location = `/sajilo-rent/userprofiles/studentProfile.php/?email=${tenantEmail}`;            
-
-            })
-    })
+    
     // Only open dialog when Tenants Profile link is clicked
     if(tenantsProfileLink) {
         tenantsProfileLink.addEventListener('click', function(e) {
@@ -272,16 +348,237 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Close dialog when the close button is clicked
+    // Close tenant dialog when the close button is clicked
     if(tenantDialogClose) {
         tenantDialogClose.addEventListener('click', () => {
             tenantDialog.close();
         });
     }
     
+    // Close review dialog when clicking on the X button
+    document.querySelector('.review-dialog-close').addEventListener('click', () => {
+        reviewDialog.close();
+    });
+    
+    // Setup star rating functionality
+    setupStarRating();
+    
+    // Cancel button functionality for review dialog
+    cancelBtn.addEventListener('click', () => {
+        reviewDialog.close();
+    });
+    
+    // Submit button functionality for tenant removal
+    submitBtn.addEventListener('click', handleTenantRemoval);
+    
+    // Load tenants data
+    await loadTenants();
+});
+
+// Load tenants from API
+async function loadTenants() {
+    try {
+        const response = await fetch("/sajilo-rent/user-panel/back_end/loadtenants.php");
+        const tenants = await response.json();
+        const tenantList = document.querySelector('.tenant-dialog-content');
+        
+        console.log(tenants);
+        
+        if (!tenants || tenants.length === 0) {
+            tenantList.innerHTML = '<p class="no-tenants">No tenants currently living in this property.</p>';
+            return;
+        }
+        
+        // Clear existing content
+        tenantList.innerHTML = '';
+        
+        tenants.forEach(tenant => {
+            const tenantCard = document.createElement('div');
+            tenantCard.classList.add('tenant-card');
+            
+            tenantCard.innerHTML = `
+                <div class="tenant-info">
+                    <img src="${"/sajilo-rent/user-panel/back_end/" + tenant.image}" alt="Tenant Picture" class="tenant-pic">
+                    <div class="tenant-details">
+                        <p class="tenant-email" hidden>${tenant.email}</p>
+                        <p class="tenant-username">${tenant.username}</p>
+                    </div>
+                </div>
+                <div class="tenant-actions">
+                    <button class="view-profile-btn">View Profile</button>
+                    <button class="message-btn">Message</button>
+                    <button class="remove-btn">Remove</button>
+                </div>
+            `;
+            
+            tenantList.appendChild(tenantCard);
+        });
+        
+        // Now that tenants are loaded, attach event listeners
+        setupTenantCardButtons();
+        
+    } catch (error) {
+        console.error('Error loading tenants:', error);
+        document.querySelector('.tenant-dialog-content').innerHTML = 
+            '<p class="no-tenants">Error loading tenants. Please try again.</p>';
+    }
+}
+
+// Set up buttons on tenant cards
+function setupTenantCardButtons() {
+    // View profile buttons
+    document.querySelectorAll('.view-profile-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const tenantCard = this.closest('.tenant-card');
+            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            const tenantUsername = tenantCard.querySelector('.tenant-username').textContent;
+            window.location = `/sajilo-rent/userprofiles/studentProfile.php?email=${tenantEmail}&username=${tenantUsername}`;});
+    });
+    
+    // Remove buttons
+    document.querySelectorAll('.remove-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the parent tenant card
+            const tenantCard = this.closest('.tenant-card');
+            currentTenantElement = tenantCard;
+            
+            // Store tenant data in the review dialog using dataset
+            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            const tenantPic = tenantCard.querySelector('.tenant-pic').src;
+            
+            // Set tenant info in the review dialog
+            const tenantPicElement = document.getElementById('review-tenant-pic');
+            tenantPicElement.src = tenantPic;
+            tenantPicElement.dataset.tenant = tenantEmail;
+            
+            document.getElementById('review-tenant-email').textContent = tenantEmail;
+            
+            // Reset the review form
+            resetReviewForm();
+            
+            // Show the review dialog
+            reviewDialog.showModal();
+        });
+    });
+    
+    // Message buttons (you can implement this functionality)
+    document.querySelectorAll('.message-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const tenantCard = this.closest('.tenant-card');
+            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            
+            // Implement messaging functionality here
+            console.log('Message tenant:', tenantEmail);
+            alert('Messaging functionality coming soon!');
+        });
+    });
+}
+
+// Handle tenant removal
+function handleTenantRemoval() {
+    const starsContainer = document.getElementById('stars');
+    const rating = starsContainer.dataset.rating || 0;
+    const comment = document.getElementById('tenant-review').value.trim();
+    const tenant = document.getElementById('review-tenant-pic').dataset.tenant;
     
 
+    // Remove the tenant card from the DOM
+    if (currentTenantElement) {
+        currentTenantElement.remove();
+    }
+    
+    // Close the review dialog
+    reviewDialog.close();
+    
+    // Check if there are any tenants left
+    const tenantCards = document.querySelectorAll('.tenant-card');
+    if (tenantCards.length === 0) {
+        document.querySelector('.tenant-dialog-content').innerHTML = 
+            '<p class="no-tenants">No tenants currently living in this property.</p>';
+    }
+}
+
+// Setup star rating functionality
+function setupStarRating() {
+    // Star rating functionality
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const ratingValue = this.dataset.value;
+            
+            // Set dataset attribute on stars container to store selected rating
+            this.parentElement.dataset.rating = ratingValue;
+            
+            // Update star appearance
+            updateStars(ratingValue);
+            
+            submitBtn.textContent = 'Remove Tenant';
+        });
+        
+        // Add hover effect
+        star.addEventListener('mouseenter', function() {
+            const hoverValue = parseInt(this.dataset.value);
+            
+            stars.forEach(s => {
+                const starValue = parseInt(s.dataset.value);
+                
+                if (starValue <= hoverValue) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
     });
+    
+    // Reset star hover effects on mouse leave
+    document.getElementById('stars').addEventListener('mouseleave', function() {
+        const rating = parseInt(this.dataset.rating || 0);
+        
+        stars.forEach(star => {
+            const starValue = parseInt(star.dataset.value);
+            star.classList.remove('active');
+            
+            if (starValue <= rating) {
+                star.innerHTML = '⭐';
+            } else {
+                star.innerHTML = '★';
+            }
+        });
+    });
+}
+
+// Helper function to update stars based on rating
+function updateStars(value) {
+    stars.forEach(star => {
+        const starValue = parseInt(star.dataset.value);
+        
+        if (starValue <= value) {
+            star.innerHTML = '⭐';
+            star.dataset.filled = 'true';
+        } else {
+            star.innerHTML = '★';
+            star.dataset.filled = 'false';
+        }
+    });
+}
+
+// Helper function to reset the review form
+function resetReviewForm() {
+    // Reset stars container dataset
+    document.getElementById('stars').dataset.rating = '0';
+    
+    // Reset stars appearance
+    stars.forEach(star => {
+        star.innerHTML = '★';
+        star.dataset.filled = 'false';
+    });
+    
+    // Reset comment
+    document.getElementById('tenant-review').value = '';
+    
+    // Reset button text
+    submitBtn.textContent = 'Kick without response';
+}
 </script>
 
 <style>
@@ -379,12 +676,6 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #333;
 }
 
-.tenant-since {
-    margin: 0;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
 /* Action Buttons */
 .tenant-actions {
     display: flex;
@@ -454,215 +745,6 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 </style>
-
-<!-- for removal     -->
-
-
-<dialog class="review-dialog js-tenant-removal-review">
-    <div class="review-dialog-header">
-        <h2 class="review-dialog-title">Tenant Removal</h2>
-        <div class="review-dialog-close">
-            <img src="/sajilo-rent/resources/cross.png" height="20" width="20" alt="Close">
-        </div>
-    </div>
-    
-    <div class="review-dialog-content">
-        <div class="tenant-review-info">
-            <img id="review-tenant-pic" src="" alt="Tenant Picture" class="tenant-pic">
-            <div class="tenant-details">
-                <p id="review-tenant-email" class="tenant-email"></p>
-                <p id="review-tenant-since" class="tenant-since"></p>
-            </div>
-        </div>
-        
-        <div class="rating-section">
-            <p>Rate your experience with this tenant:</p>
-            <div id="stars" class="stars-container">
-                <span class="star js-star" data-value="1">★</span>
-                <span class="star js-star" data-value="2">★</span>
-                <span class="star js-star" data-value="3">★</span>
-                <span class="star js-star" data-value="4">★</span>
-                <span class="star js-star" data-value="5">★</span>
-            </div>
-        </div>
-        
-        <section class="comment-section">
-            <textarea name="tenant-review" id="tenant-review" class="comment-section-area js-text-area" placeholder="Reason for removal (optional)..."></textarea>
-        </section>
-        
-        <div class="review-actions">
-            <button class="cancel-btn js-cancel-review">Cancel</button>
-            <button class="submit-review-btn js-submit-review-btn">Remove Tenant</button>
-        </div>
-    </div>
-</dialog>
-
-<script>
-// Initialize variables
-let currentTenantElement = null;
-
-// Get DOM elements
-const reviewDialog = document.querySelector('.js-tenant-removal-review');
-const stars = document.querySelectorAll('.js-star');
-const submitBtn = document.querySelector('.js-submit-review-btn');
-const cancelBtn = document.querySelector('.js-cancel-review');
-
-// Add event listeners to all remove buttons
-document.querySelectorAll('.remove-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        // Get the parent tenant card
-        const tenantCard = this.closest('.tenant-card');
-        currentTenantElement = tenantCard;
-        
-        // Store tenant data in the review dialog using dataset
-        const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
-        const tenantSince = tenantCard.querySelector('.tenant-since').textContent;
-        const tenantPic = tenantCard.querySelector('.tenant-pic').src;
-        
-        // Set tenant info in the review dialog
-        const tenantPicElement = document.getElementById('review-tenant-pic');
-        tenantPicElement.src = tenantPic;
-        tenantPicElement.dataset.tenant = tenantEmail;
-        
-        document.getElementById('review-tenant-email').textContent = tenantEmail;
-        document.getElementById('review-tenant-since').textContent = tenantSince;
-        
-        // Reset the review form
-        resetReviewForm();
-        
-        // Show the review dialog
-        reviewDialog.showModal();
-    });
-});
-
-// Star rating functionality using dataset
-stars.forEach(star => {
-    star.addEventListener('click', function() {
-        const ratingValue = this.dataset.value;
-        
-        // Set dataset attribute on stars container to store selected rating
-        this.parentElement.dataset.rating = ratingValue;
-        
-        // Update star appearance
-        updateStars(ratingValue);
-        
-        submitBtn.textContent = 'Remove Tenant';
-    });
-});
-
-// Cancel button functionality
-cancelBtn.addEventListener('click', () => {
-    reviewDialog.close();
-});
-
-// Submit button functionality
-submitBtn.addEventListener('click', () => {
-    const starsContainer = document.getElementById('stars');
-    const rating = starsContainer.dataset.rating || 0;
-    const comment = document.getElementById('tenant-review').value.trim();
-    const tenant = document.getElementById('review-tenant-pic').dataset.tenant;
-    
-    // Create removal data object
-    const removalData = {
-        tenant: tenant,
-        rating: parseInt(rating),
-        comment: comment,
-        removedBy: 'SijanBhandari17',
-        removedDate: '2025-03-03',
-        removedTime: '18:44:12'
-    };
-    
-    // Log the removal data (in a real app, you'd send this to the server)
-    console.log('Tenant removal data:', removalData);
-    
-    // Remove the tenant card from the DOM
-    if (currentTenantElement) {
-        currentTenantElement.remove();
-    }
-    
-    // Close the review dialog
-    reviewDialog.close();
-    
-    // Check if there are any tenants left
-    const tenantCards = document.querySelectorAll('.tenant-card');
-    if (tenantCards.length === 0) {
-        document.querySelector('.tenant-dialog-content').innerHTML = 
-            '<p class="no-tenants">No tenants currently living in this property.</p>';
-    }
-});
-
-// Close dialog when clicking on the X button
-document.querySelector('.review-dialog-close').addEventListener('click', () => {
-    reviewDialog.close();
-});
-
-// Helper function to update stars based on rating
-function updateStars(value) {
-    stars.forEach(star => {
-        const starValue = parseInt(star.dataset.value);
-        
-        if (starValue <= value) {
-            star.innerHTML = '⭐';
-            star.dataset.filled = 'true';
-        } else {
-            star.innerHTML = '★';
-            star.dataset.filled = 'false';
-        }
-    });
-}
-
-// Helper function to reset the review form
-function resetReviewForm() {
-    // Reset stars container dataset
-    document.getElementById('stars').dataset.rating = '0';
-    
-    // Reset stars appearance
-    stars.forEach(star => {
-        star.innerHTML = '★';
-        star.dataset.filled = 'false';
-    });
-    
-    // Reset comment
-    document.getElementById('tenant-review').value = '';
-    
-    // Reset button text
-    submitBtn.textContent = 'Kick without response';
-}
-
-// Add hover effects to stars using dataset
-stars.forEach(star => {
-    star.addEventListener('mouseenter', function() {
-        const hoverValue = parseInt(this.dataset.value);
-        
-        stars.forEach(s => {
-            const starValue = parseInt(s.dataset.value);
-            
-            if (starValue <= hoverValue) {
-                s.classList.add('active');
-            } else {
-                s.classList.remove('active');
-            }
-        });
-    });
-});
-
-// Reset star hover effects on mouse leave
-document.getElementById('stars').addEventListener('mouseleave', function() {
-    const rating = parseInt(this.dataset.rating || 0);
-    
-    stars.forEach(star => {
-        const starValue = parseInt(star.dataset.value);
-        star.classList.remove('active');
-        
-        if (starValue <= rating) {
-            star.innerHTML = '⭐';
-        } else {
-            star.innerHTML = '★';
-        }
-    });
-});
-</script>
-
 <style>
     /* Tenant Removal Review Dialog */
 .review-dialog {

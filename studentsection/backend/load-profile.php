@@ -14,12 +14,12 @@ if (!isset($_SESSION["s_email"])) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT housedetails.username, housedetails.price, housedetails.image1, 
-       housedetails.image2, housedetails.image3, profilepicture.image
-        FROM housedetails
-        INNER JOIN booked ON booked.owner = housedetails.username
-        LEFT JOIN profilepicture ON profilepicture.email = booked.email
-        WHERE booked.email = ?;
+$stmt = $conn->prepare("SELECT booked.owner , profilepicture.image , housedetails.price , housedetails.image1
+              FROM signin 
+              LEFT JOIN profilepicture ON signin.email = profilepicture.email
+              LEFT JOIN booked ON signin.email = booked.email
+              LEFT JOIN housedetails ON booked.owner = signin.email  
+              WHERE signin.email = ?;
         ");
 
 $stmt->bind_param("s", $_SESSION["s_email"]);
@@ -31,11 +31,11 @@ if (!$stmt->execute()) {
 }
 
 $result = $stmt->get_result();
-$detailsOfOwner ;
+$detailsOfOwner = [] ;
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $detailsOfOwner = $row; 
+       array_push($detailsOfOwner , (["owner" => $row['owner'] , "image" => ($row['image']) ? $row['image'] : 'images/default-profile.png' , "price" => $row['price'] , "image1" => $row['image'] ]));
     }
     echo json_encode($detailsOfOwner, JSON_PRETTY_PRINT);
 } else {

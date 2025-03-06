@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
     }
     echo json_encode($reviewDetails, JSON_PRETTY_PRINT);
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'No house found']);
+    echo json_encode(['status' => 'error', 'message' => 'No any reviews for the user']);
 }
 
 $stmt->close();

@@ -15,11 +15,11 @@ error_reporting(E_ALL);
     <script src="/sajilo-rent/userprofiles/script/student-profile-content.js" defer></script>
 </head>
 <body>
-<?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'?>
+<?php require_once '/xampp/htdocs/sajilo-rent/header.php'?>
 
 <div class="main-body">
     <?php
-        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-owner.php';
+        require_once '/xampp/htdocs/sajilo-rent/aside-bar-owner.php';
     ?>
     <div class="section-wrapper">
         <section class="section-profile">
@@ -36,7 +36,7 @@ error_reporting(E_ALL);
         </section>
         <section class="section-recent">
         <p class="text-student text-owner">Currently Residing in</p>
-        <div class="current-residence">
+        <div class="current-residence js-current-residence">
             <div class="house-card">
                 <img alt="Current residence image" class="living-house-image js-house-image" >
                 <div class="house-information">
@@ -44,9 +44,7 @@ error_reporting(E_ALL);
                         <p class="house-price"></p>
                         <p class="owner-name"></p>
                     </div>
-                    <div class="residence-status">
-                        <button class="leave-house">Leave House</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -61,17 +59,16 @@ error_reporting(E_ALL);
                     </div>
                     <div class="write-review">
                         <div class="rating-image-counter">
-                            <img class="rating-image" src = "../resources/ratings/rating-30.png" alt="star rating image">
+                            <img class="rating-image" src = "/sajilo-rent/resources/ratings/rating-30.png" alt="star rating image">
                             <p class="reviewer-count"></p>
                         </div>
                         <div class="share-review">
-                            <p class="text-review">Heres some review About you</p>
-                            <button class="button-write-review">Write a Review</button>
+                            <p class="text-review">Hers's some reviews</p>
+                          
                         </div>
                     </div>
                 </div>  
                 <div class="main-comment">
-                    
                 </div>
             </div>
         </section>

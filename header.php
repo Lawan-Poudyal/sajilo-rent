@@ -15,6 +15,9 @@
             display: flex;
             align-items: center;
             height: 80px; 
+            position:sticky;
+            top:0;
+            z-index:50;
           }
         .sajilo-rent-logo {
             background: url("/sajilo-rent/resources/logo.png") no-repeat center;
@@ -25,7 +28,7 @@
     </style>
 </head>
 <body>
-    <nav>
+    <nav class="nav">
         <div class="sajilo-rent-logo"></div>
     </nav>
 </body>

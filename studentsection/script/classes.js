@@ -97,9 +97,7 @@ class MarkerMaker {
 
     addMarkers(latlngData) {
         latlngData.forEach(location => {
-            console.log(location);
-            console.log(location.image1);
-            console.log(PATHS.house + location.image2);
+
             const content = `
                 <div class="top-div" style = "background-image: url(${PATHS.house + location.image1})"></div>
                 <div class="bottom-div">
