@@ -1,5 +1,6 @@
 #include<iostream>
 #include<fstream>
+#include<iomanip>
 #include<string>
 #include <type_traits>
 #include "concentricClustering.h"
@@ -8,6 +9,8 @@
 
 using namespace std;
 using namespace cltr;
+
+
 //////////////// writing on csv files ////////////////////////////////////
 void writeFileCoordinates(string fileName , vector<pair<double,double>> coordinates) {
 fstream myFile;
@@ -20,6 +23,21 @@ if(myFile.is_open()){
 myFile.close();
 }
 }
+
+///////////
+void writeFileLatLng(string fileName, vector<pair<double, double>> lat_lng) {
+  fstream myFile;
+  myFile.open(fileName, ios::out);
+  if (myFile.is_open()) {
+      myFile << "x_axis,y_axis";
+      myFile << fixed << setprecision(12); // Apply fixed precision globally  
+      for (auto &it : lat_lng) {
+          myFile << "\n" << it.first << "," << it.second;
+      }
+      myFile.close();
+  }
+}
+
 
 void writeFileClusterCoords(string fileName , vector<vector<pair<double,double>>> coordinates) {
   fstream myFile;
@@ -61,6 +79,15 @@ vector<double>readFile(string fileName) {
   myFile.close();
   return lat_or_lng;
 }
+
+
+
+
+
+
+
+
+
 int main() {
 vector<double>lat_list=readFile("../adminPanel/lat.txt");
 
@@ -92,7 +119,15 @@ vector<pair<double, double>> points = coordinates;
 int epsilonRadius = 5;
 int minPoints=2;
 vector<vector<pair<double, double>>> clusters = getClusters(points,epsilonRadius , minPoints);
-printDensityClusters(clusters);
+//printDensityClusters(clusters);
 writeFileClusterCoords("clusteredData.csv",clusters);
+
+
+////////////////////// lat lng clustered data/ ///////////////////////////////
+vector<pair<double , double>> coords = coordinates_to_latlng(clusters);
+writeFileLatLng("clusteredData_latlng.csv" , coords);
+for(auto & it : coords) {
+  cout<<it.first<<"            " <<it.second;
+}
 return 0;
 }
