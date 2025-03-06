@@ -1,5 +1,6 @@
 <?php
-include("./data-generation.php")
+include("./data-generation.php");
+include("../header.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,52 +23,6 @@ include("./data-generation.php")
 
 <body>
 
-    <header>
-        <div class="header-left-section">
-            <div>
-                <a class="header-link" href="./scroll.html">
-                    <img src="../resources/logo.svg" class="sajilo-rent-logo" />
-                    <img src="../resources/logo.png" class="sajilo-rent-mobile-logo" />
-                </a>
-            </div>
-        </div>
-        <div class="header-middile-section">
-            <input type="text" placeholder="Search" class="search-bar" />
-
-            <div class="selectWrapper">
-                <select name="price" class="price">
-
-                    <option value="10000" selected>Price</option>
-                    <option value="3000">3000</option>
-                    <option value="3500">3500</option>
-                    <option value="4000">4000</option>
-                    <option value="4500">4500</option>
-                    <option value="5000">5000</option>
-                    <option value="5500">5500</option>
-                    <option value="6000">6000</option>
-                </select>
-
-                <select name="houseType" class="houseType">
-                    <option value="" selected>Type</option>
-                    <option value="1">Single Room</option>
-                    <option value="2">Double Room</option>
-                    <option value="3">Triple Room</option>
-                    <option value="4">Appartment</option>
-                </select>
-            </div>
-
-            <button class="search-button">
-                <img src="../resources/search-icon.png" class="search-icon" />
-            </button>
-        </div>
-        <div class="header-right-section">
-            <a class="order-link header-link" href=".././studentsection/index.html">
-                <!-- <span class="return-text">Returns</span> -->
-                <span class="order-text">Map</span>
-            </a>
-
-        </div>
-    </header>
 
 
     <main class="main">
