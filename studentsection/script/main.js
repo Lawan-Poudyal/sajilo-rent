@@ -6,7 +6,7 @@ const tileLayer = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
 const map = new Map(center, zoom, tileLayer, attribution);
-const mapInstance = map.createMap();
+ const mapInstance = map.createMap();
 
 let markerMaker, routing, selecter;
 
@@ -113,3 +113,4 @@ document.querySelectorAll('.dropbtn').forEach(element =>{
 
 //select tags
 
+export {mapInstance, center};
