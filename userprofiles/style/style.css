@@ -3,15 +3,22 @@
     margin: 0;
     padding: 0;
 }
-body
-{padding: 2rem;
-}
-body > * {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+
 
 /* user-profile */
+.main-body{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.aside-bar-student {
+    width: 30vw;
+}
+
+.section-wrapper {
+    width: 70vw;
+}
 
 .section-profile{
     display: flex;
@@ -52,7 +59,21 @@ body > * {
     align-items: center;
     gap: 1rem;
 }
+.message-user {
+    background-color: #28a745; /* Green background color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add some padding */
+    color: #fff; /* White text color */
+    font-size: 18px; /* Larger font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    width: 200px; /* Increase width */
+}
 
+.message-user:hover {
+    background-color: #218838; /* Darker green on hover */
+}
 /* user-recents */
 
 .section-recent{
@@ -72,7 +93,7 @@ body > * {
 .house-posted{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 2rem .5rem; 
     align-content: flex-start;
 }
@@ -171,11 +192,20 @@ body > * {
     border-radius: 1rem;
     padding: 1rem 2rem;
 }
-.button-write-review{
-    text-align: center;
-    font-size: 20px;
-    border-radius: 1rem;
-    padding: .2rem .5rem;
+
+.button-write-review {
+    background-color: #007bff; /* Vibrant blue background color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add some padding */
+    color: #fff; /* White text color */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.button-write-review:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 .rating-image-counter{
     display: flex;

@@ -1,44 +1,54 @@
 <?php 
-$oldpassword = $_REQUEST['oldPassword'];
-$newpassword = $_REQUEST['newPassword'];
-$email =$_REQUEST['email'];
-$oldpassword = trim($oldpassword);
-$newpassword = trim($newpassword);
-$conn = new mysqli('localhost' , 'root' , '' , 'user_database');
-if($conn->connect_error)
-{
-    die("lol conn error");
-}
-$query = "SELECT * FROM signin WHERE email = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("s" , $email);
-if(!$stmt->execute())
-{
-    die("lol exec error");
-}
-$result = $stmt->get_result();
-if($result->num_rows >0)
-{
-    while($row=$result->fetch_assoc()){
-        if(password_verify($oldpassword , $row['password'])){
-            $conn->close();
+session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $oldpassword = trim($_POST['oldPassword']);
+
+    $newpassword = trim($_POST['newPassword']);
+    
+    $email = isset($_SESSION["s_email"]) ? $_SESSION["s_email"] : $_SESSION["email"];
+
+    $conn = new mysqli('localhost', 'root', '', 'user_database');
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $query = "SELECT password FROM signin WHERE email = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $email);
+
+    if (!$stmt->execute()) {
+        die("Execution failed: " . $stmt->error);
+    }
+
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (password_verify($oldpassword, $row['password'])) {
             $stmt->close();
-            $conn = new mysqli('localhost' , 'root' , '' , 'user_database');
-            $query = "UPDATE signin SET password =? WHERE email=?";
+
+            $query = "UPDATE signin SET password = ? WHERE email = ?";
             $stmt = $conn->prepare($query);
-            $pass = password_hash($newpassword , PASSWORD_DEFAULT);
-            $stmt->bind_param('ss',$pass ,$email);
+            $newHashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
+            $stmt->bind_param('ss', $newHashedPassword, $email);
             $stmt->execute();
-            if(!$stmt->affected_rows > 0)
-            {
-                die("lol no row affected");
+
+            if ($stmt->affected_rows > 0) {
+                echo json_encode(["status" => "success", "message" => "Password changed Successfully"]);
+            } else {
+                echo  json_encode(["status" => "error", "message" => "Failed to change password"]);
             }
-           echo "success";
-        }
-        else{
-          
-           echo "error";
+        } else {
+            echo json_encode(["status" => "error", "message" => "Incorrect Currrent Password"]);
         }
     }
+     else {
+        echo "Email not found.";
+    }
+
+    $stmt->close();
+    $conn->close();
+} else {
+    echo "Invalid request method.";
 }
 ?>

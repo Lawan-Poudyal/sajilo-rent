@@ -4,19 +4,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "user_database";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+require_once 'db.php';
 
-// Check connection
-if ($conn->connect_error) {
-    error_log("Connection failed: " . $conn->connect_error); // Log connection error
-    die(json_encode(['status' => 'error', 'message' => 'Database connection failed']));
-}
 header("Content-Type: application/json"); // Always return JSON
 
 if (!isset($_SESSION["s_email"])) {
@@ -24,10 +14,13 @@ if (!isset($_SESSION["s_email"])) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT housedetails.username, housedetails.price,housedetails.image1,housedetails.image2,housedetails.image3 
-                        FROM housedetails 
-                        INNER JOIN booked ON booked.owner = housedetails.username 
-                        WHERE booked.email = ?");
+$stmt = $conn->prepare("SELECT housedetails.username, housedetails.price, housedetails.image1, 
+       housedetails.image2, housedetails.image3, profilepicture.image
+        FROM housedetails
+        INNER JOIN booked ON booked.owner = housedetails.username
+        LEFT JOIN profilepicture ON profilepicture.email = booked.email
+        WHERE booked.email = ?;
+        ");
 
 $stmt->bind_param("s", $_SESSION["s_email"]);
 

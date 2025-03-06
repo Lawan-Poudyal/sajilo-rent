@@ -1,166 +1,139 @@
-let menu = document.getElementById('js-menu'); 
-let menuClick = false;
-let dropDown = document.getElementById('js-drop-down');
-const photo = document.querySelector('.js-photo');
-const image = document.querySelector('.js-image');
-let imagePath = '/sajilo-rent/studentsection/backend/';
-let profilepic = document.querySelector('.js-profile-pic');
-const uploadPhoto = document.querySelector('.js-upload-photo');
-const closeBtn = document.querySelector('.js-cross-icon');
-const closeBtn2 = document.querySelector('.js-cross2-icon');
-const logoutBtn = document.querySelector('.js-logout');
-const logoutSection = document.querySelector('.js-log-out');
-const notLogoutBtn = document.querySelector('.js-notlogout');
-const sureLogoutBtn = document.querySelector('.js-sure');
-const email = document.querySelector('.js-email');
-const mainSection = document.querySelector('.main-section');
-const containerForInfo = document.querySelector('.container-for-info');
-const requestCard = document.querySelector('.js-request-card');
-const myProfile = document.querySelector('.js-my-profile');
-const oldPassword = document.querySelector('.js-old-password');
-const newPassword = document.querySelector('.js-new-password');
-const confirmBtn = document.querySelector('.js-confirm');
-const closeBtn3 = document.querySelector('.js-cross3-icon');
-const changePassword = document.querySelector('.js-change-password');
-const setPassword = document.querySelector('.js-password');
 
-menu.addEventListener('click', () => {
-    if (!menuClick) {
-        menu.classList.remove('reverserotate');
-        void menu.offsetWidth;
-        menu.classList.add('rotate');
-        dropDown.style.display = 'flex';
-        dropDown.classList.remove('reverseexpand');
-        void dropDown.offsetWidth;
-        dropDown.classList.add('expand');
-        menuClick = true;
-    } else {
-        menu.classList.remove('rotate');
-        void menu.offsetWidth;
-        menu.classList.add('reverserotate');
-        dropDown.classList.remove('expand');
-        void dropDown.offsetWidth;
-        dropDown.classList.add('reverseexpand');
-        setTimeout(() => { dropDown.style.display = "none"; }, 1000);
-        menuClick = false;
-    }
-});
+const housePrice = document.querySelector(".house-price");
+const Owner = document.querySelector(".owner-name");
+const picture = document.querySelector(".living-house-image");
+const houseCard = document.querySelector(".house-card");
+const notResiding = document.querySelector(".not-residing");
+const mainComment = document.querySelector(".main-comment");
+const ratingNumber = document.querySelector(".rating-number")
+const reviewerCount = document.querySelector(".reviewer-count");
+const ratingImage = document.querySelector(".rating-image");
+const imgBlock = document.querySelector('.js-house-image');
+const profileimage = document.querySelector('.profile-image')
+const changeProfile = document.querySelector('.change-profile-icon');
+const imageInput = document.querySelector('#imageInput'); 
 
-uploadPhoto.style.display = "none";
-profilepic.addEventListener('click', () => {
-    if (uploadPhoto.style.display === "none") {
-        uploadPhoto.style.display = "flex";
-        document.querySelector('main').style.filter = "blur(10px)";
-    }
-});
-closeBtn.addEventListener('click', () => {
-    uploadPhoto.style.display = "none";
-    document.querySelector('main').style.filter = "blur(0px)";
-});
+const PATHS = {
+    house: '/sajilo-rent/user-panel/back_end/',
+    student: '/sajilo-rent/studentsection/backend/',
+    defaultProfile: '/sajilo-rent/resources/profile-related/default-profile.png'
+};
+document.addEventListener('DOMContentLoaded', () => {
+    notResiding.classList.add("hide");
 
-logoutSection.style.display = "none";
-logoutBtn.addEventListener('click', () => {
-    if (logoutSection.style.display === "none") {
-        logoutSection.style.display = "flex";
-        document.querySelector('main').style.filter = "blur(10px)";
-    }
-});
-closeBtn2.addEventListener('click', () => {
-    logoutSection.style.display = "none";
-    document.querySelector('main').style.filter = "blur(0px)";
-});
-notLogoutBtn.addEventListener('click', () => {
-    logoutSection.style.display = "none";
-    document.querySelector('main').style.filter = "blur(0px)";
-});
-sureLogoutBtn.addEventListener('click', () => {
-    fetch('/sajilo-rent/studentsection/backend/logout.php', { method: 'POST' })
-        .then(response => {
-            if (response.ok) {
-                window.location = "/sajilo-rent/loginsignup_page/login.php";
-            } else {
-                console.log(`The message is ${response.status}`);
-            }
-        });
-});
+    (async function(){
+        try {
+            const response = await Promise.all([fetch("./backend/load-profile.php"), fetch("./backend/load-reviews.php")]);
 
-async function loadProfilePic() {
-    try {
-        const response = await fetch('/sajilo-rent/studentsection/backend/setprofilepic.php', { method: 'POST' });
-        if (response.ok) {
-            const jsonfile = await response.json();
-            imagePath += jsonfile["image"];
-            if (jsonfile["image"] !== "false") {
-                profilepic.style.backgroundImage = `url(${imagePath})`;
-                profilepic.style.backgroundSize = 'fill';
-                profilepic.style.backgroundPosition = 'center';
-            }
-        } else {
-            console.log(`The message is ${response.status}`);
+            const [jsonDataProfile, jsonDataReview] = await Promise.all([response[0].json(), response[1].json()]);
+            putHouseContent(jsonDataProfile);
+            putReviewContent(jsonDataReview)
+                
+        } catch (error) {
+            console.error("Error fetching data:", error);
         }
-    } catch (error) {
-        console.error('Error:', error);
+    })();
+});
+
+function putHouseContent(jsonDataProfile) {
+    if(!jsonDataProfile["status"]){
+
+        housePrice.innerText = `Price : ${jsonDataProfile["price"]}`;
+        Owner.innerText = `Owner : ${jsonDataProfile["username"]}`;  
+        imgBlock.src = PATHS.house + jsonDataProfile['image1'];
+        profileimage.src = jsonDataProfile["image"]  ? PATHS.student + jsonDataProfile["image"] : PATHS.defaultProfile;
+
+    }   
+    else{
+        houseCard.classList.add('hide');
+        notResiding.classList.remove('hide')
+    }
+}   
+function putReviewContent(jsonDataReview){
+    if(!jsonDataReview["status"]){
+        let totalRating = 0;
+       
+        reviewerCount.innerText = `${jsonDataReview.length} Reviewers`;
+        jsonDataReview.forEach(element => {
+            const reviewWrapper = document.createElement('div');
+            reviewWrapper.classList.add("reviews-wrapper");
+            reviewWrapper.innerHTML = `
+                    <div class="reviewer-info-wrapper">
+                        <div class="reviewer-info">
+                            <p class="reviewer-name">${element["reviewer"]}</p>
+                            <p class="review-date">${element["date"]}</p>
+                        </div>
+                        <img class="reviewer-rating-image" src = "../resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image" >
+                    </div>
+                    <div class="review-comment">
+                        ${element["comment"]}
+                    </div>
+                `
+            totalRating += `${element["rating"]}`
+            mainComment.appendChild(reviewWrapper);    
+        }
+    );
+    const Rating = adjustAverage(totalRating,jsonDataReview.length)
+    ratingNumber.innerText = Rating;  
+    ratingImage.innerHTML =`<img src="/sajilo-rent/resources/ratings/rating-${Rating * 10}.png" alt="">`;
+
     }
 }
-loadProfilePic();
+function adjustAverage(ratings, total) {
+    let count = ratings.length;
+    let average = total / count;
+
+    if (Number.isInteger(average) || Number.isInteger((total * 2) / count)) {
+        return total;  // Already valid
+    }
+
+    // Adjust total to the nearest integer or .5
+    let remainder = total % count;
+    if (remainder >= count / 2) {
+        total += (count - remainder);
+    } else {
+        total -= remainder;
+    }
+
+    return total;
+}
 
 
-myProfile.addEventListener('click', () => {
-    requestCard.classList.add('hidden');
-    containerForInfo.style.display = 'flex';
-    mainSection.style.display = 'flex';
+//change or add profile pictures
+
+changeProfile.addEventListener('click', (event) => {
+    imageInput.click();
 });
 
-photo.addEventListener('click', () => {
-    image.click();
-});
-image.addEventListener('change', (event) => {
-    const file = event.target.files[0]; // Get the selected file
+imageInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
     if (file) {
+        setProfilePic(file);
+    }
+});
+
+async function setProfilePic(file) {
+    try {
+        const formData = new FormData();
+        formData.append('image', file); // Changed from 'profile_image' to 'image' to match PHP
+
+        const response = await fetch('/sajilo-rent/studentsection/backend/addprofilepic.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Preview the image
         const reader = new FileReader();
         reader.onload = () => {
-            // Clear the div and add the image
-            photo.innerHTML = ''; // Clear previous content
-            photo.style.backgroundImage = `url(${reader.result})`;
+            profileimage.src = reader.result;
         };
-        reader.readAsDataURL(file); // Read the image as a data URL
-    } else {
-        photo.textContent = 'No image selected';
-    }
-});
+        reader.readAsDataURL(file);
 
-confirmBtn.addEventListener('click', async () => {
-    try {
-        const response = await fetch(`/sajilo-rent/user-panel/back_end/changepassword.php?oldPassword=${oldPassword.value}&newPassword=${newPassword.value}&email=${email.innerText}`);
-        if (response.ok) {
-            const result = await response.text();
-            if (result === 'error') {
-                oldPassword.placeholder = "password mismatch";
-                newPassword.placeholder = "password mismatch";
-                oldPassword.style.border = "1px solid red";
-                newPassword.style.border = "1px solid red";
-            } else if (result === 'success') {
-                oldPassword.placeholder = "password changed";
-                newPassword.placeholder = "password changed";
-                oldPassword.style.border = "none";
-                newPassword.style.border = "none";
-            }
-            oldPassword.value = '';
-            newPassword.value = '';
-        } else {
-            console.log(`The message is ${response.status}`);
-        }
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error uploading profile picture:', error);
     }
-});
-
-setPassword.addEventListener('click', () => {
-    changePassword.style.display = "flex";
-    document.querySelector('main').style.filter = "blur(10px)";
-});
-closeBtn3.addEventListener('click', () => {
-    changePassword.style.display = "none";
-    document.querySelector('main').style.filter = "blur(0px)";
-});
-
+}

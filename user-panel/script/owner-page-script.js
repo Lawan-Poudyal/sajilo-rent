@@ -1,6 +1,6 @@
-let menu = document.getElementById('js-menu'); 
+// let menu = document.getElementById('js-menu'); 
 let menuClick = false;
-let dropDown = document.getElementById('js-drop-down');
+// let dropDown = document.getElementById('js-drop-down');
 let slider = document.getElementById('wifi-price');
 let slidervalue = document.getElementById('price-value');
 let image1 = document.getElementById('image1');
@@ -23,8 +23,8 @@ let lng3 = document.getElementById('lng3');
 let lat4 = document.getElementById('lat4');
 let lng4 = document.getElementById('lng4');
 let username = document.getElementById('username').innerText;
-let profileBtn = document.querySelectorAll('.js-profile-btn');
-let chatBtn = document.querySelectorAll('.js-chat-btn');
+// let profileBtn = document.querySelectorAll('.js-profile-btn');
+// let chatBtn = document.querySelectorAll('.js-chat-btn');
 let rentval , electricityval , image1val , image2val , image3val , wifival;
 let latlngarr = [
     [parseFloat(lat1.innerText), parseFloat(lng1.innerText)],
@@ -44,41 +44,41 @@ stopper++;
 }
 }
 
-chatBtn.forEach((btn)=>{
-btn.addEventListener('click' , ()=>{
-window.location.href = `/sajilo-rent/chatapplication/messenger.php?email=${username}`
-});
-});
+// chatBtn.forEach((btn)=>{
+// btn.addEventListener('click' , ()=>{
+// window.location.href = `/sajilo-rent/chatapplication/messenger.php?email=${username}`
+// });
+// });
 
 
 
-menu.addEventListener('click' , function()
-{
-if(menuClick === false)
-{
-menu.classList.remove('reverserotate');
-void menu.offsetWidth;
-menu.classList.add('rotate');
-dropDown.style.display = 'flex';
-dropDown.classList.remove('reverseexpand');
-void dropDown.offsetWidth;
-dropDown.classList.add('expand');
-menuClick = true;
-}
-else if(menuClick === true)
-{
-    menu.classList.remove('rotate');
-    void menu.offsetWidth;
-    menu.classList.add('reverserotate');
-dropDown.classList.remove('expand');
-void dropDown.offsetWidth;
-dropDown.classList.add('reverseexpand');
-setTimeout(function()
-{dropDown.style.display="none";},1000);
-    menuClick = false;
+// menu.addEventListener('click' , function()
+// {
+// if(menuClick === false)
+// {
+// menu.classList.remove('reverserotate');
+// void menu.offsetWidth;
+// menu.classList.add('rotate');
+// dropDown.style.display = 'flex';
+// dropDown.classList.remove('reverseexpand');
+// void dropDown.offsetWidth;
+// dropDown.classList.add('expand');
+// menuClick = true;
+// }
+// else if(menuClick === true)
+// {
+//     menu.classList.remove('rotate');
+//     void menu.offsetWidth;
+//     menu.classList.add('reverserotate');
+// dropDown.classList.remove('expand');
+// void dropDown.offsetWidth;
+// dropDown.classList.add('reverseexpand');
+// setTimeout(function()
+// {dropDown.style.display="none";},1000);
+//     menuClick = false;
     
-}
-});
+// }
+// });
 slider.addEventListener('input' , function()
 {
 slidervalue.innerText = slider.value;
@@ -185,9 +185,9 @@ image3.addEventListener('change', function(){
   
  }
  ////////// for redirection purposes ////////////////////////
- profileBtn.forEach((btn)=>{btn.addEventListener('click' , ()=>{
-    window.location = "/sajilo-rent/user-panel/owner-profile.php";
-    });});
+//  profileBtn.forEach((btn)=>{btn.addEventListener('click' , ()=>{
+//     window.location = "/sajilo-rent/user-panel/owner-profile.php";
+//     });});
 
 //////////////////////////////////////////////// MAP //////////////////////////////
 var map = L.map('js-map').setView([27.6194, 85.5388], 50); 

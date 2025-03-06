@@ -1,0 +1,320 @@
+.aside-bar {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 60px; /* Initial collapsed width to show only icons */
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
+    transition: width 0.3s ease; /* Smooth transition for width change */
+    overflow: hidden; /* Prevents content from showing outside container */
+    padding: 1.5rem 0.8rem;
+    height: calc(100vh - 40px - 16px);
+    /* outline: 1px solid red; */
+}
+
+.aside-bar:hover {
+    width: 15vw; /* Expanded width on hover */
+}
+
+.main-links, .bottom-links {
+    display: flex;
+    flex-flow: column;
+    /* gap: 1.5rem; */
+    width: 100%;
+}
+
+/* Style for all links */
+a {
+    display: flex;
+    height: 6rem;
+    align-items: center;
+    gap: 1rem;
+    font: 1.2rem Arial, sans-serif;
+    text-decoration: none;
+    color: #000;
+    /* border: 0.2rem solid #e0e6ed; */
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Ensures the link doesn't break layout */
+}
+a:hover{
+    background-color: #e0e6ed;
+    transition: all 0.3s ease;    
+}
+a.active{
+    background-color: #e0e6ed;
+}
+
+/* Style for icons */
+a img {
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+/* Style for link text */
+.link-text {
+    opacity: 0; /* Hide text initially */
+    transition: opacity 0.3s ease; /* Smooth fade-in for text */
+}
+
+.aside-bar:hover .link-text {
+    opacity: 1; /* Show text on hover */
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;   
+}
+
+/* css for modal changepassword  */
+
+.button-wrapper {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.button-wrapper button {
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    min-width: 100px;
+}
+
+.cancel-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.cancel-button:hover {
+    background-color: #e0e0e0;
+}
+
+.confirm-button {
+    background-color: #007BFF;
+    color: white;
+}
+
+.confirm-button:hover {
+    background-color: #0056b3;
+}
+
+
+.dialog-change-password {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    min-width: 300px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+.cancel-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.form-change-password {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    position: relative;
+}
+
+.password-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-self: stretch;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="password"],
+input[type="text"] {
+    width: calc(100% - 40px); /* Adjust for the icon width + padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.old-password-input,
+.new-password-input {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.hide-eye-icon,
+.see-eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.cancel-icon:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.hide-eye-icon:hover,
+.see-eye-icon:hover {
+    opacity: 0.7;
+}
+
+/* modal for logout  */
+
+/* Common styles for dialogs */
+dialog {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cancel-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.cancel-icon:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+/* Specific styles for logout dialog */
+.dialog-logout {
+    width: 30vw;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.form-logout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    position: relative;
+}
+
+.form-logout h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
+}
+
+.logout-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.logout-content p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.logout-content .user-info {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.logout-content .timestamp {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.button-wrapper {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.button-wrapper button {
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.cancel-button:hover {
+    background-color: #e0e0e0;
+}
+
+.confirm-button {
+    background-color: #dc3545;
+    color: white;
+    width: max-content;
+}
+
+.confirm-button:hover {
+    background-color: #c82333;
+}
+.xyz
+{
+    width:600px;
+    position:absolute;
+    min-height:500px;
+    background-color: red;
+    border-radius:10px;
+    top:calc(50vh - 250px);
+    left:calc(50vw - 300px);
+}   
