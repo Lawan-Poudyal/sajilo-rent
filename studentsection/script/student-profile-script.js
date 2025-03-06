@@ -35,8 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function putHouseContent(jsonDataProfile) {
     console.log(jsonDataProfile)
     if(!jsonDataProfile["status"]){
-        profileImage.style.backgroundImage = `url('${PATHS.student}${jsonDataProfile["image"]}')`;
-            console.log("Background image set to:", PATHS.student + jsonDataProfile["image"]);
+        profileImage.style.backgroundImage = `url('${PATHS.student}${jsonDataProfile["profile_image"]}')`;
         if(!jsonDataProfile['owner']) {
                 houseCard.classList.add('hide');
                 notResiding.classList.remove('hide')

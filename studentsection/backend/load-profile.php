@@ -18,7 +18,7 @@ $stmt = $conn->prepare("SELECT booked.owner , profilepicture.image , housedetail
               FROM signin 
               LEFT JOIN profilepicture ON signin.email = profilepicture.email
               LEFT JOIN booked ON signin.email = booked.email
-              LEFT JOIN housedetails ON booked.owner = signin.email  
+              LEFT JOIN housedetails ON booked.owner = housedetails.username  
               WHERE signin.email = ?;
         ");
 
@@ -32,10 +32,10 @@ if (!$stmt->execute()) {
 
 $result = $stmt->get_result();
 $detailsOfOwner = [] ;
-
+ 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-       array_push($detailsOfOwner , (["owner" => $row['owner'] , "image" => ($row['image']) ? $row['image'] : 'images/default-profile.png' , "price" => $row['price'] , "image1" => $row['image'] ]));
+       array_push($detailsOfOwner , (["owner" => $row['owner'] , "profile_image" => ($row['image']) ? $row['image'] : 'images/default-profile.png' , "price" => $row['price'] , "image1" => $row['image1'] ]));
     }
     echo json_encode($detailsOfOwner, JSON_PRETTY_PRINT);
 } else {
