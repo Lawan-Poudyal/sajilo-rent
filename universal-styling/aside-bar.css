@@ -409,7 +409,6 @@ dialog::backdrop {
         background-color: #ffffff;
         color: #000000;
         position: relative;
-
     }
     .dialog-content {
         display: flex;
@@ -422,14 +421,18 @@ dialog::backdrop {
         margin-bottom: 15px;
         color: #000000;
     }
-    .close-button {
-        background-color: #ff0000;
-        color: #ffffff;
+    .close-about-button{
+        background-color: #dc3545;
+        color: #333333;
         border: none;
-        border-radius: 5px;
-        padding: 5px 10px;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 500;
         cursor: pointer;
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        transition: background-color 0.2s ease;
+
+    }
+    .close-about-button:hover{
+        background-color: #c82333;
     }

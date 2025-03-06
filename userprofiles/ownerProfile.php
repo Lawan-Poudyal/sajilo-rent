@@ -73,6 +73,6 @@ ini_set('display_errors', 1);
             <button class="close-button">Close</button>
         </div>
     </div>
-</dialog>
+    </dialog>
 </body>
 </html>

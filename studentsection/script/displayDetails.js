@@ -40,7 +40,7 @@ const displayTheDatas = (json) => {
 const rent = document.querySelector('.rent');
 
 rent.addEventListener('click',()=>{
-    fetch('/sajilo-rent/studentsection/backend/BookForRent.php',{
+    fetch('/sajilo-rent/studentsection/backend/bookForRent.php',{
         method: 'POST',
         headers: {
             "Content-Type" : "appplication/json",

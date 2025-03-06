@@ -31,9 +31,7 @@ session_start();
     <link rel="stylesheet" href="../universal-styling/aside-bar.css">
     <title>Document</title>
     <script type = "module" src="./script/main.js" defer></script>
-    
 </head>
-
 <body>
   <nav>
     <div class="nav">

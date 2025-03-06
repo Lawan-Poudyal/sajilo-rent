@@ -459,7 +459,7 @@ body{
 
 /* Close Button Styling */
 .close-button {
-    background-color: #f0f0f0;
+    background-color: #dc3545;
     color: #333333;
     border: none;
     border-radius: 4px;
@@ -471,7 +471,7 @@ body{
 }
 
 .close-button:hover {
-    background-color: #e0e0e0;
+    background-color: #c82333;
 }
 
 .close-button:active {

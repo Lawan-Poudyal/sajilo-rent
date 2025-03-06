@@ -85,7 +85,7 @@ if (!$alreadyBooked) {
             $stmt->close();
         }
     } else {
-        $response = [
+        $response = [ 
             'status' => 'error',
             'success' => false,
             'message' => 'Invalid input data'
