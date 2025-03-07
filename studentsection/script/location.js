@@ -23,4 +23,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+
+
+
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+    let detailsButton = document.querySelectorAll(".js-details-button");
+
+
+    detailsButton.forEach(button =>{
+        button.addEventListener("click", ()=> {
+            let lat = button.getAttribute("data-room-lat");
+            let lng = button.getAttribute("data-room-lng");
+    
+            fetch('./backend/saveLatLng.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'latitude=' + lat + '&longitude=' + lng
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                window.location.href = "./details.php"; 
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    })
+   
 });
