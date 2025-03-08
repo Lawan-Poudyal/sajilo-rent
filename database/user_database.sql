@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2025 at 04:34 PM
+-- Generation Time: Mar 08, 2025 at 03:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -20,6 +20,98 @@ SET time_zone = "+00:00";
 --
 -- Database: `user_database`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booked`
+--
+
+CREATE TABLE `booked` (
+  `email` varchar(255) NOT NULL,
+  `owner` varchar(255) DEFAULT NULL,
+  `lat` decimal(20,17) DEFAULT NULL,
+  `lng` decimal(20,17) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+CREATE TABLE `chat` (
+  `sender` varchar(255) DEFAULT NULL,
+  `reciever` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `seenornot` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`sender`, `reciever`, `message`, `seenornot`) VALUES
+('example2@gmail.com', 'loopfelloff@gmail.com', 'room is very untidy right now please clean it', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'yeah i know clean it yourselves', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'room is very untidy right now please clean it', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'yeah i know clean it yourselves', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'yeah i know clean it yourselves', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'room is very untidy right now please clean it', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'room is very untidy right now please clean it', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'yeah i know clean it yourselves', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'i hate eating food btw', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'testing', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', '', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'fuck', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'fuck', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'fuck', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'hi', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', '', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'hi', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'monkeytyping', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'yes heck you', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'why not brother', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'fuck you ass hole', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'yeah right as if you can', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', '', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'fgsdfgsd', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', '', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', '', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'hi wassup', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'hi how are you i hope you are doing good', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'yeah sure i am doing good', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'hey buddy i am sure you are doing good', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'yeah why  i am awesome', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'hi handsome', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'yeah right mate isn\'t it', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'true that', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'hey how are you', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'hey good to mmet you brother', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'nice it\'s so awesome to mmett you too', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'why you are soo cool', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'you aregood as hell', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', '', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'so any plans today', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'not muc wby', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'yeah sure why', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'yeah ti\'s awesome', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'yo how are you', 'seen'),
+('loopfelloff@gmail.com', 'testboy@gmail.com', 'fg', 'ownerseen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'yooo', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'good i am fine', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'chutiya', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'how are you how do you do', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'new messsgae', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', '', 'seen'),
+('loopfelloff@gmail.com', 'testboy@gmail.com', 'fasdfadf', 'ownerseen'),
+('loopfelloff@gmail.com', 'testboy@gmail.com', 'asdfasdf', 'ownerseen'),
+('loopfelloff@gmail.com', 'testboy@gmail.com', 'asdfasdf', 'ownerseen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'd', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'k cha vai', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'theek xa yr', 'seen'),
+('loopfelloff@gmail.com', 'example2@gmail.com', 'hey how do you do buddy', 'seen'),
+('example2@gmail.com', 'loopfelloff@gmail.com', 'i am good how are you mate', 'seen');
 
 -- --------------------------------------------------------
 
@@ -59,53 +151,22 @@ INSERT INTO `housedetails` (`username`, `no_of_rooms`, `no_of_roommates`, `gates
 -- --------------------------------------------------------
 
 --
--- Table structure for table `latlng`
+-- Table structure for table `owner_number`
 --
 
-CREATE TABLE `latlng` (
-  `LAT` decimal(10,8) NOT NULL,
-  `LNG` decimal(11,8) NOT NULL,
-  `PRICE` int(11) NOT NULL,
-  `CONTACT` varchar(255) NOT NULL,
-  `ROOMSAVAILABLE` int(11) NOT NULL,
-  `BOOKED` int(11) NOT NULL
+CREATE TABLE `owner_number` (
+  `email` varchar(100) NOT NULL,
+  `firstName` varchar(50) NOT NULL,
+  `lastName` varchar(50) NOT NULL,
+  `number` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `latlng`
+-- Dumping data for table `owner_number`
 --
 
-INSERT INTO `latlng` (`LAT`, `LNG`, `PRICE`, `CONTACT`, `ROOMSAVAILABLE`, `BOOKED`) VALUES
-(27.61549310, 85.53810207, 3900, 'contact9@example.com', 2, 1),
-(27.61604536, 85.53902724, 3950, 'contact10@example.com', 3, 0),
-(27.62073785, 85.53761673, 3550, 'contact2@example.com', 3, 0),
-(27.62091434, 85.54116091, 3800, 'contact7@example.com', 2, 0),
-(27.62122757, 85.53922422, 3600, 'contact3@example.com', 1, 1),
-(27.62184812, 85.53750703, 3500, 'contact1@example.com', 2, 0),
-(27.62203878, 85.53905967, 3650, 'contact4@example.com', 2, 0),
-(27.62262568, 85.53814412, 3700, 'contact5@example.com', 4, 1),
-(27.62317712, 85.53982978, 3750, 'contact6@example.com', 3, 0),
-(27.62388027, 85.54122813, 3850, 'contact8@example.com', 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notification`
---
-
-CREATE TABLE `notification` (
-  `email` varchar(50) NOT NULL,
-  `message` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `notification`
---
-
-INSERT INTO `notification` (`email`, `message`) VALUES
-('abhiyanregmi@gmail.com', 'Hello sir! You are verified by the admin. You will be directed to student page in 5 seconds.'),
-('swastikbhandari2006@gmail.com', 'Hello sir! You are verified by the admin. You will be directed to student page in 5 seconds.'),
-('papadon@gmail.com', 'Hello sir! You are verified by the admin. You will be directed to student page in 5 seconds.');
+INSERT INTO `owner_number` (`email`, `firstName`, `lastName`, `number`) VALUES
+('YeagerSandy@gmail.com', 'Sandesh', 'Yeager', '9768485758');
 
 -- --------------------------------------------------------
 
@@ -143,6 +204,40 @@ CREATE TABLE `rentrequest` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `reviewer` varchar(255) NOT NULL,
+  `reciever` varchar(255) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review_house`
+--
+
+CREATE TABLE `review_house` (
+  `reviewer` varchar(255) NOT NULL,
+  `lat` double NOT NULL,
+  `lng` double NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `review_house`
+--
+
+INSERT INTO `review_house` (`reviewer`, `lat`, `lng`, `rating`, `comment`) VALUES
+('uhisijan@gmail.com', 27.623947356845406, 85.53853690624237, 5, 'fas');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `signin`
 --
 
@@ -163,6 +258,7 @@ INSERT INTO `signin` (`email`, `firstName`, `lastName`, `password`) VALUES
 ('abhiyandondai@gmail.com', 'Abhiyan ', 'Dondai', '$2y$10$.afvIVtfrWndIOIgO5wVke4fFIWmQ2j40BaKzFmuhe4m56uIt8pXu'),
 ('abhiyanregmi12@gmail.com', 'Abhiyandon', 'Regmi', '$2y$10$rv3iKh13ZDabghMrEHLxh.Vn7km/Q4wCL4fR2D0L6VwCCswcmoQSu'),
 ('abhiyanthapa@gmail.com', 'abhiyan ', 'thapa', '$2y$10$L9WjpF6ildsVby2IKfEkMu1e7dAka3bXXDawsiyq2NfqmedKm/gTu'),
+('AckermanSwastik@gmail.com', 'Swastik', 'Ackerman', '$2y$10$5JIx.PRN324rcC8nS3Nq/.AWh5iddei0D46iD2BPq2SGvJbpA2K1C'),
 ('ashok@gmail.com', 'ashok', 'singh', '$2y$10$yeepAFYPoeXHiKiZQVN6c.NLWtq7MUplmLuRGPLz1WJxjR6SHh5OC'),
 ('computerengineering@gmail.com', 'Abhiyan123', 'Regmi', '$2y$10$Thua0c7hLkD88glGjzvqLugXszEAX.XLwRruUN20AjX6f2uJ/J89K'),
 ('dhaba@gmail.com', 'dhaba', 'chand', '$2y$10$eF2i/90PI3spYMA/RAcEoeLWmi3aEmgm/3dy6SxD.JJSBeAg/Ciey'),
@@ -199,7 +295,8 @@ INSERT INTO `signin` (`email`, `firstName`, `lastName`, `password`) VALUES
 ('testuser@gmail.com', 'Test', 'User', '$2y$10$Lnblp5Sl6pfc8CimhJp4zeXOSe9iz7JMZjEVqRcGpqn.zoAlb1qmq'),
 ('university@gmail.com', 'yeah boi', 'regmi', '$2y$10$aU7OpjrQ4cWRJaX1WFle0eSSw1SWq3bj0eqA1TPDmNNSNz67sH5ZG'),
 ('usha@gmail.com', 'usha', 'bista', '$2y$10$RNINyMBropQyAGfnd89iEuQAJhqyjeuWJyJO1g0B6ljel0LIfajku'),
-('vanja@gmail.com', 'vanja', 'babu', '$2y$10$MwbsAjxFplFJ2fhFFsy1X.q.3tQy5JGnYgJDObnfHfnVmjMldGLL6');
+('vanja@gmail.com', 'vanja', 'babu', '$2y$10$MwbsAjxFplFJ2fhFFsy1X.q.3tQy5JGnYgJDObnfHfnVmjMldGLL6'),
+('YeagerSandy@gmail.com', 'Sandesh', 'Yeager', '$2y$10$.uOb71ZzoCZEZluUNphuRe9U5pnRgV0B2Q3yN2WBAmYaZfAWLvdGy');
 
 -- --------------------------------------------------------
 
@@ -282,6 +379,12 @@ INSERT INTO `verified_users` (`email`, `verification_number`, `status`) VALUES
 --
 
 --
+-- Indexes for table `booked`
+--
+ALTER TABLE `booked`
+  ADD PRIMARY KEY (`email`);
+
+--
 -- Indexes for table `housedetails`
 --
 ALTER TABLE `housedetails`
@@ -289,10 +392,10 @@ ALTER TABLE `housedetails`
   ADD UNIQUE KEY `username` (`username`,`latitude`,`longitude`);
 
 --
--- Indexes for table `latlng`
+-- Indexes for table `owner_number`
 --
-ALTER TABLE `latlng`
-  ADD PRIMARY KEY (`LAT`,`LNG`);
+ALTER TABLE `owner_number`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `profilepicture`
@@ -305,6 +408,18 @@ ALTER TABLE `profilepicture`
 --
 ALTER TABLE `rentrequest`
   ADD PRIMARY KEY (`sender`,`receiver`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`reviewer`,`reciever`);
+
+--
+-- Indexes for table `review_house`
+--
+ALTER TABLE `review_house`
+  ADD PRIMARY KEY (`lat`,`lng`,`reviewer`);
 
 --
 -- Indexes for table `signin`

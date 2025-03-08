@@ -35,11 +35,10 @@
     $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
     $sql="INSERT INTO signin(email , firstName , lastName , password) VALUES ('$email', '$firstName' , '$lastName' , '$hashedPassword' )";
     mysqli_query($conn , $sql);
+    $sql = "INSERT INTO owner_number(email , firstName , lastName , number) VALUES ('$email', '$firstName' , '$lastName' , '$ph_number' )";
+    mysqli_query($conn , $sql);
     mysqli_close($conn);
-    
         header("Location:/sajilo-rent/loginsignup_page/login.php");
-    
-
     }
     ?>
     
