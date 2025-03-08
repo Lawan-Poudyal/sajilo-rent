@@ -23,6 +23,8 @@
         $lastName = test_input($_POST['lname']);
         $email = test_input($_POST['email']);
         $password=test_input($_POST['password']);
+        $ph_number = test_input($_POST['number']);
+        
     
         $database ="user_database";
         $conn = mysqli_connect("localhost","root" ,"", $database );
@@ -32,11 +34,11 @@
     }
     $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
     $sql="INSERT INTO signin(email , firstName , lastName , password) VALUES ('$email', '$firstName' , '$lastName' , '$hashedPassword' )";
-    if(mysqli_query($conn , $sql)) {
-        header("Location:/sajilo-rent/loginsignup_page/login.php");
-    exit();
-    }
+    mysqli_query($conn , $sql);
+    $sql = "INSERT INTO owner_number(email , firstName , lastName , number) VALUES ('$email', '$firstName' , '$lastName' , '$ph_number' )";
+    mysqli_query($conn , $sql);
     mysqli_close($conn);
+        header("Location:/sajilo-rent/loginsignup_page/login.php");
     }
     ?>
     
@@ -60,6 +62,7 @@
         <input type="text" id="fname" name="fname" placeholder="First Name">
         <input type="text" id="lname" name="lname" placeholder="LastName">
         <input type="email" id="email" name="email" placeholder="Email">
+        <input type="number" id="number" name="number" placeholder="phone">
         <input type="password" name="password" id="password" placeholder="password">
         <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
         <button class="sign-up-button" id="SignUpButton" type="submit">Sign Up</button>
