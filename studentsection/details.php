@@ -53,17 +53,22 @@ if (!empty($rooms)) {
     <div class="details">
         <h1>' . htmlspecialchars($rooms['username']) . '</h1>
         <p class="price">Rs ' . htmlspecialchars($rooms['price']) . '/month</p>
+
+            <div class="property-grid">
+
         <p><strong>Electricity bill:</strong> ' . htmlspecialchars($rooms['electricity']) . ' </p>
         <p><strong>Wifi:</strong> ' . htmlspecialchars($rooms['wifi_price']) . '/month </p>
-        <p><strong>No. of Roommates:</strong> ' . htmlspecialchars($rooms['no_of_roommates']) . '</p>
+        <p><strong>Allowed No. of Roommates:</strong> ' . htmlspecialchars($rooms['no_of_roommates']) . '</p>
         <p><strong>Parking:</strong> ' . htmlspecialchars($rooms['parking']) . '</p>
         <p><strong>Floor Level:</strong> ' . htmlspecialchars($rooms['floor_level']) . '</p>
         <p><strong>House Direction:</strong> ' . htmlspecialchars($rooms['house_facing_direction']) . '</p>
-        <p><strong>Gate Opeoning Time:</strong> ' . htmlspecialchars($rooms['gates_open']) . 'AM</p>
-        <p><strong>Gate Opeoning Time:</strong> ' . htmlspecialchars($rooms['gates_close']) . 'PM</p>
+        <p><strong>Gate Opening:</strong> ' . htmlspecialchars($rooms['gates_open']) . 'AM</p>
+        <p><strong>Gate Closing:</strong> ' . htmlspecialchars($rooms['gates_close']) . 'PM</p>
+    </div>
 
-        <p class="contact"><strong>Contact:</strong> +1234567890</p>
-        <button >Contact Owner</button>
+        <p class="contact">  <strong>Contact:</strong> +1234567890</p>
+            <button class="book-button js-book-button">Book Now</button>
+
 
         <div class="reviews">
             <h2>Reviews</h2>

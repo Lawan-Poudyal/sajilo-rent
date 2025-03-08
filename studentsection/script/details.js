@@ -16,3 +16,6 @@ function nextSlide() {
 function prevSlide() {
     showSlide(currentIndex - 1);
 }
+
+
+const bookButton = document.querySelectorAll(".js-book-button");
