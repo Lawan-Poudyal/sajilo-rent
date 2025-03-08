@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +14,15 @@ ini_set('display_errors', 1);
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
     <script src="/sajilo-rent/userprofiles/script/owner-profile-content.js" defer></script>
 </head>
+
 <body>
-    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'?>
+    <?php require_once '/xampp/htdocs/sajilo-rent/header.php' ?>
 
     <div class="main-body">
-    <?php
-        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
-    ?>
-    <div class="section-wrapper">
+        <?php
+        require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php';
+        ?>
+        <div class="section-wrapper">
             <section class="section-profile">
                 <div class="user-information">
                     <div class="avatar"><img src="/sajilo-rent/resources/profile-related/default-profile.png" alt="Profile image" class="profile-image"></div>
@@ -35,7 +37,7 @@ ini_set('display_errors', 1);
             </section>
             <section class="section-recent">
                 <p class="text-owner">Recent House Posts</p>
-                <div class="house-posted">                
+                <div class="house-posted">
                 </div>
             </section>
             <section class="section-review">
@@ -48,12 +50,12 @@ ini_set('display_errors', 1);
                         </div>
                         <div class="write-review">
                             <div class="rating-image-counter">
-                                <img class="rating-image" src = "" alt="star rating image">
+                                <img class="rating-image" src="" alt="star rating image">
                                 <p class="reviewer-count"></p>
                             </div>
                             <div class="share-review">
                                 <p class="text-review">Share your experience about the owner</p>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -65,14 +67,15 @@ ini_set('display_errors', 1);
         </div>
     </div>
 
-    <dialog class = "dialog-no-owner">
-    <div class="dialog-content">
-        <h3>No Owner Found</h3>
-        <p>You aren't currently residing in any house</p>
-        <div class="dialog-actions">
-            <button class="close-button">Close</button>
+    <dialog class="dialog-no-owner">
+        <div class="dialog-content">
+            <h3>No Owner Found</h3>
+            <p>You aren't currently residing in any house</p>
+            <div class="dialog-actions">
+                <button class="close-button">Close</button>
+            </div>
         </div>
-    </div>
-</dialog>
+    </dialog>
 </body>
+
 </html>
