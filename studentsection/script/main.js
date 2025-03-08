@@ -76,21 +76,18 @@ mapInstance.on('popupopen', function(event) {
         container.addEventListener('click', (e) => {
             // Check if the clicked element is a button
             if (!e.target.classList.contains('bookButton') && !e.target.classList.contains('directionButton')) {
-                fetch('/sajilo-rent/studentsection/backend/displayDetails.php', {
+                fetch('/sajilo-rent/studentsection/backend/saveLatLng.php', {
                     method: "POST",
                     headers: {
-                        "Content-type": "application/json"
+                        "Content-type": 'application/x-www-form-urlencoded'
                     },
-                    body: JSON.stringify(coordinates)
+                    body: 'latitude=' + lat + '&longitude=' + lng
                 })
-                .then(response => response.json())
+                .then(response => response.text())
                 .then((data) => {
-                    if (data.status === 'success') {
-                        // Redirect to the details page
-                        window.location.href = '/sajilo-rent/studentsection/details.php';
-                    } else {
-                        console.error('Error:', data.message);
-                    }
+                    
+                console.log(data);
+                window.location.href = "./details.php"; 
                 })
                 .catch(error => console.error('Error:', error));
 
