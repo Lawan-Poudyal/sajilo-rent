@@ -39,6 +39,11 @@ if (!empty($rooms)) {
 
 
     $roomsHTML  .= '  <div class="container">
+                    <button class="back-button" onclick="goBack()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
     <div class="image-container">
         <div class="slider" id="slider">
             <img src="/sajilo-rent/user-panel/back_end/' . htmlspecialchars($rooms['image1']) . '" alt="Room Image 1">
@@ -93,13 +98,20 @@ if (!empty($rooms)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/details.css">
-    <title>Room Rental Details</title>
+    <link rel="stylesheet" href="../universal-styling/aside-bar.css">
+
+    <link rel="icon" type="image/x-icon" href="../resources/logo.svg">
+    <title><?php echo  $_SESSION['s_username']; ?></title>
 
 </head>
 
 <body>
+    <section class="main-body">
+        <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
 
-    <?php echo $roomsHTML; ?>
+        <?php echo $roomsHTML; ?>
+
+    </section>
 </body>
 <script src="./script/details.js"> </script>
 

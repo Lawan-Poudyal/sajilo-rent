@@ -17,5 +17,9 @@ function prevSlide() {
     showSlide(currentIndex - 1);
 }
 
+function goBack() {
+    window.history.back();
+}
+
 
 const bookButton = document.querySelectorAll(".js-book-button");

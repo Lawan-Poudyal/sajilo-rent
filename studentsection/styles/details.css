@@ -1,4 +1,13 @@
 /* Global Styles */
+
+:root{
+  
+    /* navbar */
+    --navbar-background-color: ;
+    --navbar-padding:0.5rem;
+    --navbar-height: 2.5rem;
+    --navbar-total-space: calc(var(--navbar-height) );
+}
 * {
     margin: 0;
     padding: 0;
@@ -38,6 +47,7 @@
   
   /* Image Slider */
   .image-container {
+    margin: 20px;
     width: 40%;
     height: 100%;
     overflow: hidden;
@@ -227,3 +237,43 @@
   .book-button:hover {
     background-color: #45a049;
   }
+
+  /* Back button styles */
+.back-button {
+  position: absolute;
+  top: 9px;
+  left: 11px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.back-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* aside-bar */
+.main-body {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  /* Use the total navbar space in the calculation */
+  height: calc(100vh - var(--navbar-total-space));
+  overflow: hidden; /* Prevent scrolling within main-body */
+}
