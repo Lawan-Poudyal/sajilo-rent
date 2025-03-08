@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../student-scroll-section/data-generation.php")
+include("../student-scroll-section/test-data-generation.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +24,6 @@ include("../student-scroll-section/data-generation.php")
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="../universal-styling/aside-bar.css">
   <link rel="stylesheet" href="../student-scroll-section/styles/rooms.css">
-  <link rel="stylesheet" href="../student-scroll-section/styles/general.css">
-  <link rel="stylesheet" href="../student-scroll-section/test-data.css">
 
   <title>Document</title>
 
