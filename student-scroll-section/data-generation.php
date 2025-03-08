@@ -61,7 +61,7 @@ if (!empty($rooms)) {
               <div class="button-container">
                 
                 <button class="location-button button-primary js-location-button" data-room-lat="' . htmlspecialchars($room['latitude']) . '" data-room-lng="' . htmlspecialchars($room['longitude']) . '" >Location</button>
-                <button class="details-button button-primary " >Details</button>
+                <button class=" details-button js-details-button button-primary " data-room-lat="' . htmlspecialchars($room['latitude']) . '" data-room-lng="' . htmlspecialchars($room['longitude']) . '">Details</button>
                  </div>
               </div>
              ';
