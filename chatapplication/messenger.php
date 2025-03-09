@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 </head>
 <body>
-<?php require_once '/xampp/htdocs/sajilo-rent/header.php'?>
+<?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'?>
 <main class="main">
 <div class="sidebar">
         <h2>Chats</h2>
