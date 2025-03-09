@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.text())
             .then(data => {
                 console.log(data);
-                window.location.href = "./details.php"; 
+                window.location.href = "/sajilo-rent/studentsection/details.php"; 
             })
             .catch(error => console.error('Error:', error));
         });

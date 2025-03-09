@@ -211,7 +211,7 @@ data.forEach(element => {
     requestCard.innerHTML = '';
 if(element['error']) return;
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
-        <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
+        <img src="/sajilo-rent/studentsection/backend/${element["img"]}" alt="something-in-the-way">
         <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>
         <div class="interactive-btn">   
             <button class="accept js-accept" data-email='${element['email']}' data-tenant = '${element['email']}' data-lat = ${element['lat']} data-lng=${element['lng']}>Accept</button>
