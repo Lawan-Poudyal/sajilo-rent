@@ -1,6 +1,4 @@
-<?php 
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,16 +11,32 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 </head>
 <body>
+<?php require_once '/xampp/htdocs/sajilo-rent/header.php'?>
+<main class="main">
 <div class="sidebar">
-        <h2>Contacts</h2>
+        <h2>Chats</h2>
         <ul class="contacts js-contacts">
-            <li>User 1</li>
-            <li>User 2</li>
-            <li>User 3</li>
+            <li>
+                <div class="contact-box">
+                    <div class="small-image"></div>
+                    <div class="username">Username</div>
+                </div> 
+            </li>
+            <li>
+                <div class="contact-box">
+                    <div class="small-image"></div>
+                    <div class="username">Username</div>
+                </div> 
+            </li>
         </ul>
     </div>
     <div class="chat-container">
-        <div class="chat-header js-chat-headaer">User 1</div>
+        <div class="chat-header js-chat-header">
+        <div class="contact-box-header">
+                    <div class="small-image-header"></div>
+                    <div class="username-header">Chat</div>
+                </div> 
+        </div>
         <div class="chat-box" id="chatBox">
 <!---------------------- messages will be displayed here ----------------------->
         </div>
@@ -31,6 +45,7 @@
             <button class='js-send-btn'>Send</button>
         </div>
     </div>
+    </main>
     <script src="/sajilo-rent/chatapplication/script/messenger-script.js"></script>
 </body>
 </html>

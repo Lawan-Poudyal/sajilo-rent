@@ -3,39 +3,76 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    scrollbar-width: thin;
+}
+.hidden{
+    display:none;
 }
 
 body {
     display: flex;
     height: 100vh;
     background-color: #f0f0f0;
+    flex-flow: column nowrap;
 }
 
+.main{
+    flex-grow:1;
+    display:flex;
+    flex-flow:row nowrap;
+}
 .sidebar {
     width: 25%;
-    background: #2c3e50;
+    background: rgb(44, 48, 50);
     color: white;
     padding: 15px;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .sidebar h2 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
+    font-size:2rem;
+    font-weight:bolder;
 }
 
 .contacts {
     list-style: none;
+ 
+   
 }
 
 .contacts li {
     padding: 10px;
     cursor: pointer;
-    border-bottom: 1px solid #34495e;
 }
-
+.contact-box ,.contact-box-header{
+    width:100%;
+    height:100px;
+    /* border:1px solid red; */
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: flex-start;
+    gap:1.5rem;
+    align-items: center;
+}
+.small-image ,.small-image-header{
+    height:100%;
+    width:100px;
+    border-radius:50%;
+    /* background-color: red; */
+    background-image:url("/sajilo-rent/user-panel/back_end/images/default-profile.png");
+    background-size:cover;
+}
+.small-image-header{
+    background-image: url('https://img.icons8.com/?size=100&id=2Mz1m12mJQzD&format=png&color=FFFFFF');
+}
+.username ,.username-header{
+    font-size:1.5rem;
+    font-weight:600;
+}
 .contacts li:hover {
-    background: #34495e;
+    background:  rgb(61, 67, 70);
 }
 
 .chat-container {
@@ -46,18 +83,21 @@ body {
 }
 
 .chat-header {
-    background: #3498db;
+    background:  rgb(44, 48, 50);
     padding: 15px;
     color: white;
     text-align: center;
+    border-bottom: 1px solid  rgb(36, 39, 41);
 }
 
 .chat-box {
-    flex: 1;
+    flex-grow:1;
     padding: 15px;
+    max-height:calc(100vh - 80px);
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    background-color:  rgb(44, 48, 50);
 }
 
 .message{
@@ -71,6 +111,33 @@ body {
     background: #3498db;
     color: white;
     align-self: flex-end;
+    display:flex;
+    align-items: center;
+    flex-flow:row nowrap;
+    position:relative;
+}
+.sent img{
+    position:absolute;
+    left:-20px;
+    height:20px;
+    width:20px;
+}
+.ul-tool-tip{
+    z-index:100;
+    position:absolute;
+    top:0px;
+    left:-100px;
+    background-color: gray;
+    color:white;
+    padding:0.5rem;
+    display:flex;
+    flex-flow:column nowrap;
+    gap:10px;
+}
+.ul-tool-tip li{
+    
+    cursor:pointer;
+    
 }
 
 .received {
@@ -82,7 +149,7 @@ body {
 .chat-input {
     display: flex;
     padding: 10px;
-    background: #ecf0f1;
+    background:  rgb(44, 48, 50);;
 }
 
 .chat-input input {
@@ -90,6 +157,8 @@ body {
     padding: 10px;
     border: none;
     border-radius: 5px;
+    background-color: rgb(61, 67, 70);
+    color:white;
 }
 
 .chat-input button {
