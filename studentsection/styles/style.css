@@ -21,7 +21,9 @@
 
 }
 /* nav-bar */
-
+body{
+    overflow: hidden;
+}
 .nav{
     padding:var(--navbar-padding);
     justify-content: center;
@@ -223,6 +225,10 @@ button, select{
     color: #ffffff;
 }
 
+.price-option.hover-active,.room-option.hover-active{
+    background-color: #4a5568;
+    color: #ffffff;
+}
 /* Close routing button */
 .closeRouting {
     position: absolute;
@@ -262,10 +268,10 @@ background-color: #c53030;
 .main-body {
     display: flex;
     gap: 0.5rem;
-    padding: 1rem;
     /* Use the total navbar space in the calculation */
-    height: calc(100vh - var(--navbar-total-space));
+    height: 90vh;
     overflow: hidden; /* Prevent scrolling within main-body */
+
 }
 
 /* Ensure map takes remaining space */
@@ -274,7 +280,6 @@ background-color: #c53030;
     z-index: 0;
     overflow: hidden;
     position: relative;
-
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -296,4 +301,41 @@ background-color: #c53030;
     box-shadow: 3px 3px 11px 2px rgba(0, 0, 0, 0.3);
 
     border-radius: 5px;
+}
+
+.reset-filters-btn {
+    display: none; /* Initially hidden */
+    background-color: #e74c3c;
+    padding: 0.3rem 0.6rem;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    align-items: center;
+    gap: 6px;
+    margin-left: 10px;
+    width: max-content;
+}
+
+.reset-filters-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.reset-filters-btn i {
+    font-size: 16px;
+}
+
+/* Animation for when the button appears */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reset-filters-btn.visible {
+    display: flex !important; /* Use !important to override inline style */
+    animation: fadeIn 0.3s forwards;
 }

@@ -161,53 +161,57 @@ class SelectRanges {
     constructor(mapInstance, markerMaker) {
         this.mapInstance = mapInstance;
         this.markerMaker = markerMaker;
-        this.removedMarker = [];
+        this.removedMarkers = [];
+        this.activeFilter = null; // Track which filter is active
     }
-
-    priceTags() {
-        const priceValue = parseInt(price.value);
-
-        this.markerMaker.markerList.forEach(marker => {
-            let popupContent = marker.getPopup().getContent();
-            let priceText = popupContent.match(/Price:\s*NRP\s*(\d+)/);
-
-            if (priceText && priceText[1]) {
-                if (parseInt(priceText[1]) > priceValue) {
-                    this.removedMarker.push(marker);
-                    this.mapInstance.removeLayer(marker);
-                }
-            }
-        });
-    }
-
-    houseTypes() {
-        this.priceTags();
-        const houseValue = parseInt(houseType.value);
-
-        if (isNaN(houseValue)) {
-            this.addMarkers();
-            return;
-        }
-
-        this.markerMaker.markerList.forEach(marker => {
-            let popupContent = marker.getPopup().getContent();
-            let houseText = popupContent.match(/Rooms:\s*(\d+)/);
-
-            if (houseText && houseText[1]) {
-                if (parseInt(houseText[1]) !== houseValue) {
-                    this.removedMarker.push(marker);
-                    this.mapInstance.removeLayer(marker);
-                }
-            }
-        });
-    }
-
-    addMarkers() {
-        this.removedMarker.forEach(marker => {
+    
+    resetFilters() {
+        // Re-add all previously filtered markers
+        this.removedMarkers.forEach(marker => {
             marker.addTo(this.mapInstance);
         });
-        this.removedMarker = [];
+        this.removedMarkers = [];
+        this.activeFilter = null;
+    }
+    
+    priceTags(priceValue) {
+        // Reset previous filters first
+        this.resetFilters();
+        
+        this.activeFilter = 'price';
+        
+        // Filter markers based on price
+        this.markerMaker.markerList.forEach(marker => {
+            let popupContent = marker.getPopup().getContent();
+            let priceText = popupContent.match(/NRP\s+(\d+(?:,\d+)*)/);
+            if (priceText && priceText[1]) {
+                let price = parseInt(priceText[1].replace(/,/g, ''));
+                if (price > priceValue) {
+                    this.removedMarkers.push(marker);
+                    this.mapInstance.removeLayer(marker);
+                }
+            }
+        });
+    }
+
+    houseTypes(roomValue) {
+        // Reset previous filters first
+        this.resetFilters();
+        
+        this.activeFilter = 'room';
+        
+        // Filter markers based on room count
+        this.markerMaker.markerList.forEach(marker => {
+            let popupContent = marker.getPopup().getContent();
+            let houseText = popupContent.match(/Rooms:\s*<span class="bold">(\d+)<\/span>/);
+            
+            if (houseText && houseText[1]) {
+                if (parseInt(houseText[1]) !== parseInt(roomValue)) {
+                    this.removedMarkers.push(marker);
+                    this.mapInstance.removeLayer(marker);
+                }
+            }
+        });
     }
 }
-
 export { Map, RoutingControl, MarkerMaker, SelectRanges };

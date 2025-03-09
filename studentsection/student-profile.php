@@ -14,11 +14,11 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../universal-styling/aside-bar.css">
-    <link rel="stylesheet" href="./styles/student-profile.css">
-    <link rel="stylesheet" href="./styles/leavehouse-style.css">
-    <script src="./script/student-profile-script.js" defer></script>
-    <script src="./script/leave.js" defer></script>
+    <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
+    <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/student-profile.css">
+    <link rel="stylesheet" href="/asjilo-rent/studentsection/styles/leavehouse-style.css">
+    <script src="/sajilo-rent/studentsection/script/student-profile-script.js" defer></script>
+    <script src="/sajilo-rent/studentsection/script/leave.js" defer></script>
 </head>
 <body>
     <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
@@ -71,7 +71,7 @@ header("Location:/sajilo-rent/user-panel/user-home.php");
                     </div>
                     <div class="write-review">
                         <div class="rating-image-counter">
-                            <img class="rating-image" src = "../resources/ratings/rating-30.png" alt="star rating image">
+                            <img class="rating-image" src = "/sajilo-rent/resources/ratings/rating-30.png" alt="star rating image">
                             <p class="reviewer-count"></p>
                         </div>
                         <div class="share-review">

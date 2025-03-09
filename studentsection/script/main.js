@@ -100,14 +100,84 @@ mapInstance.on('popupopen', function(event) {
 
 // navbar
 
-document.querySelectorAll('.dropbtn').forEach(element =>{
-   
-    element.addEventListener('click',()=>{
+document.querySelectorAll('.dropbtn').forEach(element => {
+    element.addEventListener('click', (event) => {
+        event.stopPropagation();
         element.classList.toggle('active');
         const dropdownContent = element.nextElementSibling;
-        dropdownContent.classList.toggle("show")
-})});   
+        dropdownContent.classList.toggle("show");
+    });
+});
+
+// Disable dropdown when clicked anywhere else
+window.addEventListener('click', (event) => {
+    if (!event.target.matches('.dropbtn')) {
+        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        });
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+            }
+        });
+        // selecter.resetValue();
+    }
+});
+
 
 //select tags
+//select tags
+const resetFiltersBtn = document.querySelector('.reset-filters-btn'); // Add this button to your HTML
+const priceOption = document.querySelectorAll('.price-option');
+console.log(priceOption);
+priceOption.forEach((element) => {
+    element.addEventListener('click', (event) => {
+        // Remove active class from all price options
+        document.querySelectorAll('.price-option.hover-active').forEach(el => {
+            el.classList.remove('hover-active');
+        });
+        
+        // Apply new filter
+        const priceValue = parseInt(element.getAttribute("data-value"));
+        element.classList.add('hover-active');
+        selecter.priceTags(priceValue);
+        resetFiltersBtn.classList.add('visible');
+    });
+});
 
-export {mapInstance, center};
+const roomOption = document.querySelectorAll(".room-option");
+roomOption.forEach((element) => {
+    element.addEventListener('click', () => {
+        // Remove active class from all room options
+        document.querySelectorAll('.room-option.hover-active').forEach(el => {
+            el.classList.remove('hover-active');
+        });
+        
+        // Apply new filter
+        const roomValue = parseInt(element.getAttribute("data-value"));
+        element.classList.add('hover-active');
+        selecter.houseTypes(roomValue);
+        resetFiltersBtn.classList.add('visible');
+
+    });
+});
+
+// Add a reset button if you need to clear all filters
+
+if(resetFiltersBtn){
+    resetFiltersBtn.addEventListener('click', () => {
+    // Clear active classes
+    document.querySelectorAll('.hover-active').forEach(el => {
+        el.classList.remove('hover-active');
+    });
+    
+    // Reset the filters
+    selecter.resetFilters();
+    
+    // Hide reset button
+    resetFiltersBtn.classList.remove('visible');
+
+});
+}export {mapInstance, center};
