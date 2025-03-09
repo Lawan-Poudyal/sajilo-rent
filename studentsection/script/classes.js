@@ -155,63 +155,74 @@ class MarkerMaker {
             console.warn(`Marker not found at coordinates: ${lat}, ${lng}`);
         }
     }
-
 }
+
 class SelectRanges {
     constructor(mapInstance, markerMaker) {
         this.mapInstance = mapInstance;
         this.markerMaker = markerMaker;
         this.removedMarkers = [];
-        this.activeFilter = null; // Track which filter is active
+        this.priceValue = Infinity; 
+        this.roomValue = null;      
     }
-    
+
+    setPrice(value) {
+        this.priceValue = value;
+        this.applyFilters();
+    }
+
+    setRooms(value) {
+        this.roomValue = value;
+        this.applyFilters();
+    }
+
     resetFilters() {
-        // Re-add all previously filtered markers
+
         this.removedMarkers.forEach(marker => {
             marker.addTo(this.mapInstance);
         });
+        
+
         this.removedMarkers = [];
-        this.activeFilter = null;
-    }
-    
-    priceTags(priceValue) {
-        // Reset previous filters first
-        this.resetFilters();
         
-        this.activeFilter = 'price';
+
+        this.priceValue = Infinity;
+        this.roomValue = null;
         
-        // Filter markers based on price
-        this.markerMaker.markerList.forEach(marker => {
-            let popupContent = marker.getPopup().getContent();
-            let priceText = popupContent.match(/NRP\s+(\d+(?:,\d+)*)/);
-            if (priceText && priceText[1]) {
-                let price = parseInt(priceText[1].replace(/,/g, ''));
-                if (price > priceValue) {
-                    this.removedMarkers.push(marker);
-                    this.mapInstance.removeLayer(marker);
-                }
-            }
-        });
     }
 
-    houseTypes(roomValue) {
-        // Reset previous filters first
-        this.resetFilters();
-        
-        this.activeFilter = 'room';
-        
-        // Filter markers based on room count
-        this.markerMaker.markerList.forEach(marker => {
-            let popupContent = marker.getPopup().getContent();
-            let houseText = popupContent.match(/Rooms:\s*<span class="bold">(\d+)<\/span>/);
-            
-            if (houseText && houseText[1]) {
-                if (parseInt(houseText[1]) !== parseInt(roomValue)) {
-                    this.removedMarkers.push(marker);
-                    this.mapInstance.removeLayer(marker);
-                }
-            }
+    applyFilters() {
+        this.removedMarkers.forEach(marker => {
+            marker.addTo(this.mapInstance);
         });
+        this.removedMarkers = []; // Clear our tracking array
+        
+        const visibleMarkers = this.markerMaker.markerList.filter(marker => {
+            const popupContent = marker.getPopup().getContent();
+            
+            // Extract price information
+            const priceText = popupContent.match(/NRP\s+(\d+(?:,\d+)*)/);
+            const price = priceText && priceText[1] ? parseInt(priceText[1].replace(/,/g, '')) : Infinity;
+            
+            // Extract room information
+            const houseText = popupContent.match(/Rooms:\s*<span class="bold">(\d+)<\/span>/);
+            const rooms = houseText && houseText[1] ? parseInt(houseText[1]) : 0;
+            
+            // Apply both filters
+            const priceMatches = price <= this.priceValue;
+            const roomMatches = this.roomValue === null || rooms === this.roomValue;
+            
+            return priceMatches && roomMatches;
+        });
+        
+        // Remove markers that don't match both filters
+        this.markerMaker.markerList.forEach(marker => {
+            if(!visibleMarkers.includes(marker)) {
+                this.mapInstance.removeLayer(marker);
+                this.removedMarkers.push(marker);
+            }
+        });   
     }
 }
+
 export { Map, RoutingControl, MarkerMaker, SelectRanges };

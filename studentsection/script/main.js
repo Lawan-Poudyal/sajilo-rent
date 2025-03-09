@@ -128,56 +128,44 @@ window.addEventListener('click', (event) => {
 
 
 //select tags
-//select tags
+
 const resetFiltersBtn = document.querySelector('.reset-filters-btn'); // Add this button to your HTML
 const priceOption = document.querySelectorAll('.price-option');
-console.log(priceOption);
+const roomOption = document.querySelectorAll('.room-option');
+
 priceOption.forEach((element) => {
-    element.addEventListener('click', (event) => {
-        // Remove active class from all price options
-        document.querySelectorAll('.price-option.hover-active').forEach(el => {
-            el.classList.remove('hover-active');
-        });
+    element.addEventListener('click', () => {
+        document.querySelectorAll('.price-option.hover-active').forEach(el => el.classList.remove('hover-active'));
         
-        // Apply new filter
         const priceValue = parseInt(element.getAttribute("data-value"));
         element.classList.add('hover-active');
-        selecter.priceTags(priceValue);
+        
+        selecter.setPrice(priceValue);
+        selecter.applyFilters();  // APPLY FILTERS AFTER SETTING VALUE
         resetFiltersBtn.classList.add('visible');
     });
 });
 
-const roomOption = document.querySelectorAll(".room-option");
 roomOption.forEach((element) => {
     element.addEventListener('click', () => {
-        // Remove active class from all room options
-        document.querySelectorAll('.room-option.hover-active').forEach(el => {
-            el.classList.remove('hover-active');
-        });
-        
-        // Apply new filter
+        document.querySelectorAll('.room-option.hover-active').forEach(el => el.classList.remove('hover-active'));
+
         const roomValue = parseInt(element.getAttribute("data-value"));
         element.classList.add('hover-active');
-        selecter.houseTypes(roomValue);
+
+        selecter.setRooms(roomValue);
+        selecter.applyFilters();  // APPLY FILTERS AFTER SETTING VALUE
         resetFiltersBtn.classList.add('visible');
-
     });
 });
-
-// Add a reset button if you need to clear all filters
-
-if(resetFiltersBtn){
+if (resetFiltersBtn) {
     resetFiltersBtn.addEventListener('click', () => {
-    // Clear active classes
-    document.querySelectorAll('.hover-active').forEach(el => {
-        el.classList.remove('hover-active');
+        document.querySelectorAll('.hover-active').forEach(el => el.classList.remove('hover-active'));
+        
+        selecter.resetFilters();
+        resetFiltersBtn.classList.remove('visible');
     });
-    
-    // Reset the filters
-    selecter.resetFilters();
-    
-    // Hide reset button
-    resetFiltersBtn.classList.remove('visible');
+}
 
-});
-}export {mapInstance, center};
+
+export {mapInstance, center};
