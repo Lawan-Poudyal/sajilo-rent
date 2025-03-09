@@ -29,7 +29,6 @@ const mainComment = document.querySelector('.js-main-comment');
 const ratingImage = document.querySelector('.js-rating-image');
 let avgRating = 0;
 var imageLocation = '';
-console.log(profileImage)
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         let response = await Promise.all([
