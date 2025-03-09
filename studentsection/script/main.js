@@ -38,7 +38,7 @@ mapInstance.on('popupopen', function(event) {
     const contactDiv = event.popup._content.match(/Owner: <span class="bold">(.*?)<\/span>/);
     const ownerName = contactDiv[1];
     bookForRent.addEventListener('click', () => {
-        fetch('/sajilo-rent/studentsection/backend/BookForRent.php', {
+        fetch('/sajilo-rent/studentsection/backend/bookForRent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,8 +52,8 @@ mapInstance.on('popupopen', function(event) {
         })
         .then(response => response.json())
         .then(data => {
-            if(data.status == "success"){
-                alert("Rent request sent");
+            if(data.message.match("Exception")){
+                alert("Rent request already sent");
             }
             else{
                 alert(data.message);

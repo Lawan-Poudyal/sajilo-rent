@@ -270,6 +270,29 @@ function viewProfile(btn)
     window.location.href = `/sajilo-rent/userprofiles/studentProfile.php?email=${btn.dataset['tenant']}&username=${btn.dataset['username']}`;
 }
 </script>
+
+<!-- about button  -->
+
+
+<dialog class="about-dialog">
+<div class="dialog-content">
+            <button class="close-button" onclick="this.closest('dialog').close()">Close</button>
+            <h2>Welcome to Sajilo Rent</h2>
+            <p>Your one-stop solution for hassle-free renting!</p>
+            <p>Whether you're looking for a place to stay, equipment for an event, or tools for your next project, Sajilo Rent connects you with trusted providers in just a few clicks.</p>
+            <p>Enjoy a seamless renting experience with transparent pricing, verified listings, and reliable customer support. Renting has never been this easy – Sajilo Rent makes it simple!</p>
+        </div>
+</dialog>
+<script>
+    const aboutDialog = document.querySelector(".about-dialog");
+    const aboutLink = document.querySelector(".bottom-links a:nth-of-type(2)");
+    aboutLink.addEventListener('click',()=>{
+        aboutDialog.showModal();
+    })
+
+</script>
+
+
 <!-- For view tenants - using <dialog> element -->
 <dialog class="tenant-dialog">
     <div class="tenant-dialog-header">
@@ -339,7 +362,7 @@ const tenantDialogClose = document.querySelector('.tenant-dialog-close');
 document.addEventListener('DOMContentLoaded', async function() {
     // Select the tenants profile link from sidebar
     const tenantsProfileLink = document.querySelector('.aside-bar a:nth-child(4)');
-    
+    console.log(tenantsProfileLink);
     // Only open dialog when Tenants Profile link is clicked
     if(tenantsProfileLink) {
         tenantsProfileLink.addEventListener('click', function(e) {
@@ -377,7 +400,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 // Load tenants from API
 async function loadTenants() {
-    try {
+  
         const response = await fetch("/sajilo-rent/user-panel/back_end/loadtenants.php");
         const tenants = await response.json();
         const tenantList = document.querySelector('.tenant-dialog-content');
@@ -391,6 +414,11 @@ async function loadTenants() {
         
         // Clear existing content
         tenantList.innerHTML = '';
+        if(tenants.error){
+            document.querySelector('.tenant-dialog-content').innerHTML = 
+            '<p class="no-tenants">No tenants have resided in your house.</p>';
+            return;
+        }
         
         tenants.forEach(tenant => {
             const tenantCard = document.createElement('div');
@@ -417,11 +445,8 @@ async function loadTenants() {
         // Now that tenants are loaded, attach event listeners
         setupTenantCardButtons();
         
-    } catch (error) {
-        console.error('Error loading tenants:', error);
-        document.querySelector('.tenant-dialog-content').innerHTML = 
-            '<p class="no-tenants">Error loading tenants. Please try again.</p>';
-    }
+  
+    
 }
 
 // Set up buttons on tenant cards

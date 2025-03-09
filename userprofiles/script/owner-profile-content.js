@@ -6,6 +6,9 @@ const housePosted = document.querySelector(".house-posted");
 const profileImage = document.querySelector(".profile-image");
 const mainComment = document.querySelector(".main-comment");
 const ratingImage = document.querySelector(".rating-image");
+const noOwnerDialog = document.querySelector('.dialog-no-owner');
+const closeBtn = document.querySelector('.close-button');
+console.log(closeBtn);
 (async () => {
     try {
         const responseProfile = await fetch("/sajilo-rent/userprofiles/backend/load-profile-owner.php");
@@ -13,14 +16,15 @@ const ratingImage = document.querySelector(".rating-image");
             throw new Error('Network response was not ok');
         }
         const jsonDataProfile = await responseProfile.json();
-        console.log(jsonDataProfile)
-        if(jsonDataProfile.status){
+        console.log(jsonDataProfile);
+        if(jsonDataProfile.status == "error"){
             document.querySelector(".section-wrapper").textContent = ""; 
-            document.querySelector(".dialog-no-owner").showModal();
-            document.querySelector('.close-button').addEventListener('click',()=>{
-                document.querySelector(".dialog-no-owner").close();
+            noOwnerDialog.showModal();
+            if(closeBtn){
+            closeBtn.addEventListener('click',()=>{
+                noOwnerDialog.close();
                 window.location = "/sajilo-rent/studentsection/displayLatLng.php";
-            })
+            })}
         }   
         else{   
             const responseReview = await fetch("/sajilo-rent/userprofiles/backend/load-reviews-owner.php", {
@@ -48,9 +52,12 @@ const ratingImage = document.querySelector(".rating-image");
 })();
 
 const putProfileContent = (json) => {
+    console.log(json.ownerName.firstName);
+    console.log(json.ownerName.lastName);
+
     userName.textContent = `${json.ownerName.firstName} ${json.ownerName.lastName}`;
     if (json.ownerProfile) {
-        profileImage.src = "/sajilo-rent/user-panel/back_end/" + json.ownerProfile.image;
+        profileImage.style.backgroundImage = `url("/sajilo-rent/user-panel/back_end/${json.ownerProfile.image}")`;
     }
 }
 
@@ -114,3 +121,4 @@ function adjustAverage(totalRating, count) {
     // Round to nearest 0.5
     return Math.round(average * 2) / 2;
 }
+

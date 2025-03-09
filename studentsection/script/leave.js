@@ -39,7 +39,7 @@ function processForm(form) {
     });
 }
 function callBooked() {
-        fetch('./backend/booked.php')
+        fetch('/sajilo-rent/studentsection/backend/booked.php')
         .then(response => {
             if (!response.ok) {
                 throw new Erroror('Invalid');
@@ -47,6 +47,7 @@ function callBooked() {
             return response.json();
         })
         .then(json => {
+            console.log(json);
                 if(json.status != 'error'){
                     Json = json;
                     leaveHouse.classList.add('show');
@@ -56,7 +57,7 @@ function callBooked() {
 }
 const leave = ()=>{
     leaveHouse.classList.remove('show');
-        fetch("./backend/leave.php", {
+        fetch("/sajilo-rent/studentsection/backend/leave.php", {
             method: 'POST',
             headers: {
                 "Content-type": "application/json"
@@ -69,14 +70,14 @@ const leave = ()=>{
         .then(response => response.text())
         .then(data => {
             if (data.status == 'success') {
-                console.log('Successfully left the house');
+                alert('Successfully left the house');
             } 
         })
         .catch(error => console.error('Error:', error));
 };
 async function addReview(formData) {
-    const url1 = 'backend/addReviewHouse.php';
-    const url2 = 'backend/addReview.php';
+    const url1 = '/sajilo-rent/studentsection/backend/addReviewHouse.php';
+    const url2 = '/sajilo-rent/studentsection/backend/addReview.php';
 
     formData.append("houserating", ratingHouse);
     formData.append("ownerrating", ratingOwner);

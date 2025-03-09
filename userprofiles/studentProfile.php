@@ -15,24 +15,23 @@ error_reporting(E_ALL);
     <script src="/sajilo-rent/userprofiles/script/student-profile-content.js" defer></script>
 </head>
 <body>
-<?php require_once '/xampp/htdocs/sajilo-rent/header.php'?>
+<?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'?>
 
 <div class="main-body">
     <?php
-        require_once '/xampp/htdocs/sajilo-rent/aside-bar-owner.php';
+        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-owner.php';
     ?>
     <div class="section-wrapper">
         <section class="section-profile">
             <div class="user-information">
-                <div class="avatar"><img src="/sajilo-rent/resources/profile-related/default-profile.png" alt="Profile image" class="profile-image"></div>
-                <div class="personal-info">
-                    <p class="user-name"></p>
-                    <p class="user-status">Student</p>
-                </div>
+            <div class="avatar">
+                <div class="profile-image"></div>
             </div>
-            <button class="message-user">
-                Message
-            </button>
+            <div class="personal-info">
+                <p class="user-name"></p>
+                <p class="user-status">Student</p>
+            </div>
+            </div>
         </section>
         <section class="section-recent">
         <p class="text-student text-owner">Currently Residing in</p>

@@ -20,7 +20,6 @@ body{
 .aside-bar-student {
     width: 30vw;
 }
-
 .section-wrapper {
     width: 70vw;
     min-height:100%;
@@ -45,6 +44,14 @@ body{
 .avatar-wrapper{
     position: relative;
 }
+.profile-image { 
+    width: 100%;
+    height: 100%; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .change-profile-icon {
     position: absolute;
     width: 30px;
@@ -61,10 +68,6 @@ body{
     gap: 1rem;
 }
 
-.profile-image { 
-    width: 100%;
-    height: auto; 
-}
 .user-name{
     font-size: 32px;
     font-weight: 700;

@@ -40,7 +40,7 @@ const displayTheDatas = (json) => {
 const rent = document.querySelector('.rent');
 
 rent.addEventListener('click',()=>{
-    fetch('./backend/BookForRent.php',{
+    fetch('/sajilo-rent/studentsection/backend/bookForRent.php',{
         method: 'POST',
         headers: {
             "Content-Type" : "appplication/json",
@@ -52,12 +52,12 @@ rent.addEventListener('click',()=>{
             owner: jsondata.username
         })
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        console.log('Parsed JSON: ', data);
+        alert(data.message);
     })
     .catch(error => {
-        console.error('Error: ', error);
+        alert('Error: ', error);
     })
 })
 

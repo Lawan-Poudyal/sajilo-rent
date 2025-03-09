@@ -29,6 +29,16 @@ include("../student-scroll-section/data-generation.php")
   <title><?php echo  $_SESSION['s_username']; ?></title>
 
 
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="../universal-styling/aside-bar.css">
+  <link rel="stylesheet" href="../student-scroll-section/styles/rooms.css">
+
+  <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+  <title><?php echo  $_SESSION['s_username']; ?></title>
+
+
 </head>
 
 <body>
