@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rating = $_POST['ownerrating'];
     // Ensure $latLngData keys are set
     if (!empty($ownerInfo['owner'])) {
-        $stmt = $conn->prepare("INSERT INTO review (reviewer, receiver, rating, comment) VALUES (?, ?,?, ?)");
+        $stmt = $conn->prepare("INSERT INTO review (reviewer, reciever, rating, comment) VALUES (?, ?,?, ?)");
         // Use correct data types (assuming lat/lng are doubles)
         $stmt->bind_param("ssis", $_SESSION['s_email'],$ownerInfo['owner'] ,$rating ,$reviewer);
         

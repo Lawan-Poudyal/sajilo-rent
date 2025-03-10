@@ -1,7 +1,7 @@
 <?php
 session_start();
 $name = isset($_GET['status']) ? $_GET['status'] : 'Guest';
-$path = '/opt/lampp/htdocs/sajilo-rent/aside-bar-' . $name . '.php';
+$path = '/xampp/htdocs/sajilo-rent/aside-bar-' . $name . '.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ $path = '/opt/lampp/htdocs/sajilo-rent/aside-bar-' . $name . '.php';
 </head>
 
 <body>
-    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php' ?>
+    <?php require_once '/xampp/htdocs/sajilo-rent/header.php' ?>
     <main class="main">
         <?php require_once $path ?>
         <div class="sidebar">
