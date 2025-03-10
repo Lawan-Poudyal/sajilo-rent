@@ -47,32 +47,34 @@ include("../student-scroll-section/data-generation.php")
       <div class="sajilo-rent-logo-div">
         <div class="sajilo-rent-logo"></div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          Price
-          <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon" />
-        </button>
-        <div class="dropdown-content" id="priceDropdown">
-            <div data-value="3500" class="price-option">Rs 3,500</div>
-            <div data-value="4000" class="price-option">Rs 4,000</div>
-            <div data-value="4500" class="price-option">Rs 4,500</div>
-            <div data-value="5000" class="price-option">Rs 5,000</div>
-            <div data-value="5500" class="price-option">Rs 5,500</div>
-            <div data-value="6000" class="price-option">Rs 6,000</div>
-            <div data-value="6500" class="price-option">Rs 6,500</div>
+      <div class="dropdown-wrapper">
+        <div class="dropdown">
+          <button class="dropbtn">
+            Price
+            <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon" />
+          </button>
+          <div class="dropdown-content" id="priceDropdown">
+              <div data-value="3500" class="price-option">Rs 3,500</div>
+              <div data-value="4000" class="price-option">Rs 4,000</div>
+              <div data-value="4500" class="price-option">Rs 4,500</div>
+              <div data-value="5000" class="price-option">Rs 5,000</div>
+              <div data-value="5500" class="price-option">Rs 5,500</div>
+              <div data-value="6000" class="price-option">Rs 6,000</div>
+              <div data-value="6500" class="price-option">Rs 6,500</div>
+          </div>
         </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            Rooms
+            <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon" />
+          </button>
+          <div class="dropdown-content" id="roomsDropdown">
+              <div data-value="1" class="room-option">1 Room</div>
+              <div data-value="2" class="room-option">2 Rooms</div>
+              <div data-value="3" class="room-option">3 Rooms</div>
+              <div data-value="4" class="room-option">4 Rooms</div>
+          </div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">
-          Rooms
-          <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon" />
-        </button>
-        <div class="dropdown-content" id="roomsDropdown">
-            <div data-value="1" class="room-option">1 Room</div>
-            <div data-value="2" class="room-option">2 Rooms</div>
-            <div data-value="3" class="room-option">3 Rooms</div>
-            <div data-value="4" class="room-option">4 Rooms</div>
-        </div>
       </div>
       <button class="reset-filters-btn" style="display: none;">
         <i class='bx bx-reset'></i> Reset Filters
