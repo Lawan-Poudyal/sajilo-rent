@@ -178,6 +178,7 @@ async function removeMsg(msgBoxDiv ,  id)
     console.log(data);
     msgBoxDiv.remove();
 }
-setInterval(async () => {
-    await loadChat(reciever);
-  } , 1000);
+async function jaskfl(){
+const repsonse = await loadChat(reciever);
+}// setInterval(async () => {
+//   } , 1000);
