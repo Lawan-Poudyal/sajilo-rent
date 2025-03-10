@@ -3,6 +3,9 @@
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 5px;
+  height: calc(90vh - 20px); /* This will make it nearly as tall as the map (90vh) with a small gap */
+  max-height: none; /* Remove the fixed max-height */
+  overflow-y: auto; /* Keep the scrolling ability */
 }
 .room-container {
   padding: 40px 25px 25px 25px;
