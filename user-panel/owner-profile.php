@@ -44,7 +44,8 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION['email'])) {
                         <p class="email js-email" style="display:none"><?php echo $_SESSION['email'] ?></p>
                     </div>
                 </div>
-                </section>
+
+                            </section>
                             <section class="section-recent">
                                 <p class="text-student text-owner">Houses Rented</p>
                                 <div class="current-houses js-current-houses">
@@ -176,4 +177,5 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION['email'])) {
                         <div class="cross-icon" id="js-cross-icon"><img src="/sajilo-rent/resources/cross.png" alt="" height="50" width="50"></div>
                     </dialog>
                 </body>
+
 </html>
