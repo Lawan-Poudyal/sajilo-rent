@@ -213,16 +213,6 @@
 
           
             </aside>
-            <aside id="aside2" class="main-aside aside2">
-                <h2 class="main-aside-h2">Sajilo Rent</h2>
-                <h3 class="main-aside-h3">Why Sajilo Rent<h3></h3>
-                    <p class="main-aside-p info2">
-
-
-                        Welcome to Sajilo Rent – your one-stop solution for hassle-free renting! Whether you're looking for a place to stay, equipment for an event, or tools for your next project, Sajilo Rent connects you with trusted providers in just a few clicks. Enjoy a seamless renting experience with transparent pricing, verified listings, and reliable customer support. Renting has never been this easy – Sajilo Rent makes it simple!
-
-                    </p>
-            </aside>
             <div class="main-div student-verification hidden" id="student-verification">
 
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="student-verification-form">
