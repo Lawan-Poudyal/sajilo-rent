@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include("../header.php");
 include("../student-scroll-section/db.php");
 
@@ -156,7 +157,7 @@ if (!empty($rooms)) {
 
 <body>
     <section class="main-body">
-        <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
+        <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
 
         <?php echo $roomsHTML; ?>
 
