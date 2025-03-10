@@ -65,7 +65,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION['email'])) {
                             </div>
                             <div class="rating-text">Out of 5</div>
                         </div>
-                        <div class="write-review">
+                        <div class="write-review">  
                             <div class="share-review">
                                 <p class="text-review">Here's what people say about you</p>
                             </div>
