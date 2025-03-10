@@ -634,6 +634,11 @@ ADD PRIMARY KEY (`email`);
 ALTER TABLE `chat`
 ADD PRIMARY KEY (`id`);
 --
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+ADD PRIMARY KEY (`id`);
+--
 -- Indexes for table `housedetails`
 --
 ALTER TABLE `housedetails`

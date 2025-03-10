@@ -14,6 +14,7 @@
             border-radius: 8px;
             display: flex;
             align-items: center;
+            justify-content: center;
             height: 80px; 
             position:sticky;
             top:0;

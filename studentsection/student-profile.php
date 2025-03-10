@@ -16,7 +16,7 @@ if (!isset($_SESSION["s_username"]) || !isset($_SESSION['s_email'])) {
     <title>Document</title>
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
     <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/student-profile.css">
-    <link rel="stylesheet" href="/asjilo-rent/studentsection/styles/leavehouse-style.css">
+    <link rel="stylesheet" href="/sajilo-rent/studentsection/styles/leavehouse-style.css">
     <script src="/sajilo-rent/studentsection/script/student-profile-script.js" defer></script>
     <script src="/sajilo-rent/studentsection/script/leave.js" defer></script>
 </head>

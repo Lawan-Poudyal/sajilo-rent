@@ -1,3 +1,8 @@
+<?php
+session_start();
+$name = isset($_GET['status']) ? $_GET['status'] : 'Guest';
+$path = '/opt/lampp/htdocs/sajilo-rent/aside-bar-' . $name . '.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,26 +14,17 @@
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
 </head>
 
 <body>
-    <?php require_once '/xampp/htdocs/sajilo-rent/header.php' ?>
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php' ?>
     <main class="main">
+        <?php require_once $path ?>
         <div class="sidebar">
             <h2>Chats</h2>
             <ul class="contacts js-contacts">
-                <li>
-                    <div class="contact-box">
-                        <div class="small-image"></div>
-                        <div class="username">Username</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="contact-box">
-                        <div class="small-image"></div>
-                        <div class="username">Username</div>
-                    </div>
-                </li>
+
             </ul>
         </div>
         <div class="chat-container">

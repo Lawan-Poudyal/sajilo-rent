@@ -427,7 +427,7 @@ async function loadTenants() {
             
             tenantCard.innerHTML = `
                 <div class="tenant-info">
-                    <img src="${"/sajilo-rent/user-panel/back_end/" + tenant.image}" alt="Tenant Picture" class="tenant-pic">
+                    <img src="${"/sajilo-rent/studentsection/backend/" + tenant.image}" alt="Tenant Picture" class="tenant-pic">
                     <div class="tenant-details">
                         <p class="tenant-email" hidden>${tenant.email}</p>
                         <p class="tenant-username">${tenant.username}</p>

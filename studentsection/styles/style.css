@@ -155,6 +155,12 @@
         transform: scale(1.05);
     } 
 
+.dropdown-wrapper{
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    z-index: 1000;
+}
 
     /* Dropdown button styling */
     .dropbtn {
@@ -251,19 +257,8 @@
     background-color: #c53030;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-    .nav {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
+/* Responsive adjustments */
 
-    .dropdown-content {
-        width: 100%;
-        position: relative;
-    }
-    }
 
     /* aside-bar */
     .main-body {
@@ -337,10 +332,7 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    .reset-filters-btn.visible {
-        display: flex !important; /* Use !important to override inline style */
-        animation: fadeIn 0.3s forwards;
-    }
+   
 
     .details {
         height: 100%; /* Ensure it takes full height of its container */
@@ -353,3 +345,88 @@
         display: flex;
         flex-direction: column;
       }
+.reset-filters-btn.visible {
+    display: flex !important; /* Use !important to override inline style */
+    animation: fadeIn 0.3s forwards;
+}
+@media screen and (max-width: 768px) {
+    :root {
+      --navbar-padding: 10px 15px;
+      --navbar-height: auto;
+    }
+    
+    .nav {
+      flex-direction: column;
+      gap: 15px;
+      padding: 15px;
+      height: auto;
+    }
+    
+    .sajilo-rent-logo-div {
+      align-self: center;
+      margin-bottom: 10px;
+    }
+    
+    .sajilo-rent-logo {
+      position: relative;
+      left: auto;
+      bottom: auto;
+    }
+    
+    .dropdown {
+      width: 100%;
+    }
+    
+    .dropbtn {
+      width: 100%;
+      min-width: unset;
+      font-size: 1rem;
+      padding: 10px 15px;
+    }
+    
+    .dropdown-content {
+      width: 100%;
+      left: 0;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    nav {
+      padding: 15px 10px;
+      border-radius: 0;
+    }
+    
+    .dropbtn {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+    }
+    
+    .dropdown-content > div {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+    
+    .reset-filters-btn {
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* For very small screens */
+  @media screen and (max-width: 320px) {
+    .nav {
+      gap: 10px;
+      padding: 10px;
+    }
+    
+    .sajilo-rent-logo {
+      height: 40px;
+      width: 40px;
+    }
+    
+    .sajilo-rent-logo-div {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  

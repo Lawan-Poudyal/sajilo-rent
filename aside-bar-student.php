@@ -15,8 +15,14 @@ $s_email = $_SESSION['s_email'];
     </div>
 </aside>
 
+<!-- for small devices  -->
 
-<!-- js to style for persistant active -->
+<div class="hamburger-menu">
+    <img src="https://img.icons8.com/ios/50/ffffff/menu--v1.png" alt="Menu" class="menu-icon">
+    <img src="https://img.icons8.com/ios/50/ffffff/delete-sign--v1.png" alt="Close" class="close-icon" style="display: none;">
+</div>
+<div class="sidebar-overlay"></div>
+
 
 <!-- modal for changepassword -->
 
@@ -215,4 +221,70 @@ $s_email = $_SESSION['s_email'];
     document.querySelector('.close-about-button').addEventListener('click', () => {
         aboutDialog.close();
     })
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const menuIcon = document.querySelector('.hamburger-menu .menu-icon');
+    const closeIcon = document.querySelector('.hamburger-menu .close-icon');
+    const sidebar = document.querySelector('.aside-bar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
+    // Toggle sidebar when hamburger is clicked
+    hamburger.addEventListener('click', function() {
+        if (sidebar.classList.contains('open')) {
+            // Close sidebar
+            menuIcon.style.display = "block";
+            closeIcon.style.display = "none";
+        } else {
+            // Open sidebar
+            menuIcon.style.display = "none";
+            closeIcon.style.display = "block";
+        }
+        
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+        document.body.classList.toggle('sidebar-open');
+    });
+    
+    // Close sidebar when clicking outside
+    overlay.addEventListener('click', function() {
+        menuIcon.style.display = "block";
+        closeIcon.style.display = "none";
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
+    });
+    
+    // Close sidebar on window resize if screen becomes larger
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            menuIcon.style.display = "block";
+            closeIcon.style.display = "none";
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+        }
+    });
+    
+    // Handle links in sidebar for mobile
+    const sidebarLinks = document.querySelectorAll('.aside-bar a');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                // Don't close if it's a modal trigger
+                if (!this.classList.contains('change-password') && 
+                    !this.classList.contains('log-out') && 
+                    !this.classList.contains('about')) {
+                    menuIcon.style.display = "block";
+                    closeIcon.style.display = "none";
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                }
+            }
+        });
+    });
+});
 </script>

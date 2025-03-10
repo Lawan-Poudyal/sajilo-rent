@@ -54,7 +54,6 @@ async function loadPeople(){
     response = await fetch(`/sajilo-rent/chatapplication/backend/loadowner.php`);
     }
     chat_data = await response.json();
-    console.log("Chatdata: ")
     console.log(chat_data);
 }
 async function peopleName(){
@@ -84,7 +83,7 @@ async function peopleName(){
         filepath = filepath + chat_data[index]['image'];
         chatter.style.backgroundImage = `url('${filepath}')`;
         chatter.style.backgroundImage = 'cover';
-    }); 
+    });
  
 
 }
@@ -105,7 +104,7 @@ async function addClickOpt(){
 
 
 async function loadChat(reciever){
-    console.log(reciever);
+
     let response = await fetch(`/sajilo-rent/chatapplication/backend/loadchat.php?sender=${email}&reciever=${reciever}&status=${status}`);
 let data= await response.json();
 if(status === 'student' && seenornot === false)
@@ -145,7 +144,7 @@ if(sentOrRecieved === true)
     threeDot.classList.add('three-dot,js-three-dot');
     messageDiv.appendChild(threeDot);
     const toolTip = document.createElement("div");
-    toolTip.innerHTML = `<ul class='ul-tool-tip js-ul-tool-tip '><li >Change</li><li class='delete-msg js-delete-msg' data-id='${chat['id']}'>Unsend</li></ul>`;
+    toolTip.innerHTML = `<ul class='ul-tool-tip js-ul-tool-tip hidden'><li >Change</li><li class='delete-msg js-delete-msg' data-id='${chat['id']}'>Unsend</li></ul>`;
     toolTip.classList.add('hidden');
     messageDiv.appendChild(toolTip);
     threeDot.addEventListener('click' , ()=>{
@@ -168,6 +167,8 @@ chatBox.scrollTop = chatBox.scrollHeight;
 
 async function sendToDataBase(reciever , msg){
 let response = await fetch(`/sajilo-rent/chatapplication/backend/insertintochat.php?sender=${email}&reciever=${reciever}&message=${input.value.trim()}`);
+let text = await response.text();
+console.log(text);
 input.value = '';
 }
 async function removeMsg(msgBoxDiv ,  id)
@@ -177,6 +178,6 @@ async function removeMsg(msgBoxDiv ,  id)
     console.log(data);
     msgBoxDiv.remove();
 }
-// setInterval(async () => {
-//     await loadChat(reciever);
-//   } , 1000);
+setInterval(async () => {
+    await loadChat(reciever);
+  } , 1000);

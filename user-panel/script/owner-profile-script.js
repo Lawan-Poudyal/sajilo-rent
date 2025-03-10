@@ -29,6 +29,7 @@ const mainComment = document.querySelector('.js-main-comment');
 const ratingImage = document.querySelector('.js-rating-image');
 let avgRating = 0;
 var imageLocation = '';
+console.log(profileImage)
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         let response = await Promise.all([
@@ -165,9 +166,17 @@ function loadReview(data) {
 function adjustRating(avgRating) {
     let tempRating = avgRating;
     let floatingValue = avgRating - Math.floor(avgRating);
+    if(tempRating !== 0)
+    {
+
     if (floatingValue > 0.5) {
         return (Math.floor(avgRating) + 1);
     } else {
         return (Math.floor(avgRating) + 0.5);
     }
 }
+else {
+    return 0;
+}
+}
+
