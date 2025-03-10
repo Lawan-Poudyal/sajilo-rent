@@ -6,104 +6,105 @@ session_abort();
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sajilo Rent</title>
     <link rel="stylesheet" href="front.css">
 </head>
-
 <body>
     <!--      php         -->
     <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    session_start();
-    $error = ""; // Initialize error message
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+ session_start();
+ $error = ""; // Initialize error message
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             $email = htmlspecialchars(trim($_POST['email']));
             $password = trim($_POST['password']);
 
             // Database connection
-            // Database connection
-            $conn = mysqli_connect("localhost", "root", "", "user_database");
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+      // Database connection
+      $conn = mysqli_connect("localhost", "root", "", "user_database");
+      if (!$conn) {
+          die("Connection failed: " . mysqli_connect_error());
+      }
 
-            // First query - check signin table
-            $stmt = $conn->prepare("SELECT * FROM signin WHERE email = ?");
-            if ($stmt === false) {
-                die("Prepare failed: " . $conn->error);
-            }
+      // First query - check signin table
+      $stmt = $conn->prepare("SELECT * FROM signin WHERE email = ?");
+      if ($stmt === false) {
+          die("Prepare failed: " . $conn->error);
+      }
 
-            $stmt->bind_param("s", $email);
+      $stmt->bind_param("s", $email);
 
-            if (!$stmt->execute()) {
-                die("Execute failed: " . $stmt->error);
-            }
+      if (!$stmt->execute()) {
+          die("Execute failed: " . $stmt->error);
+      }
 
-            $result = $stmt->get_result();
+      $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $hashedPassword = $row['password'];
+      if ($result->num_rows > 0) {
+          $row = $result->fetch_assoc();
+          $hashedPassword = $row['password'];
 
-                // Verify the password
-                if (password_verify($password, $hashedPassword)) {
-                    $username = $row['firstName'] . " " . $row['lastName'];
-                    // Set session variables
-                    $_SESSION['username'] = $username;
-                    $_SESSION['email'] = $email;
+          // Verify the password
+          if (password_verify($password, $hashedPassword)) {
+              $username = $row['firstName'] . " " . $row['lastName'];
+              // Set session variables
+            
 
-                    // Second query - check verified_users table
-                    $stmt2 = $conn->prepare("SELECT * FROM verified_users WHERE email = ?");
-                    if ($stmt2 === false) {
-                        die("Prepare failed: " . $conn->error);
-                    }
+              // Second query - check verified_users table
+              $stmt2 = $conn->prepare("SELECT * FROM verified_users WHERE email = ?");
+              if ($stmt2 === false) {
+                  die("Prepare failed: " . $conn->error);
+              }
 
-                    $stmt2->bind_param("s", $email);
+              $stmt2->bind_param("s", $email);
 
-                    if (!$stmt2->execute()) {
-                        die("Execute failed: " . $stmt2->error);
-                    }
+              if (!$stmt2->execute()) {
+                  die("Execute failed: " . $stmt2->error);
+              }
 
-                    $result2 = $stmt2->get_result();
+              $result2 = $stmt2->get_result();
 
-                    if ($result2->num_rows > 0) {
-                        $row2 = $result2->fetch_assoc();
-                        $status = $row2['status'];
+              if ($result2->num_rows > 0) {
+                  $row2 = $result2->fetch_assoc();
+                  $status = $row2['status'];
+                  
+                  if ($status == 'student') {
+                      header("Location: /sajilo-rent/studentsection/displayLatLng.php");
+                      $_SESSION['s_username'] = $username;
+                        $_SESSION['s_email'] = $email;
+                  } else {
+                      header("Location: /sajilo-rent/user-panel/owner-page.php");
+                      $_SESSION['username'] = $username;
+                      $_SESSION['email'] = $email;
+                  }
+              } else {
+                  header("Location: /sajilo-rent/user-panel/user-home.php");
+              }
+              exit();
+          } else {
+              $error = "* Password is incorrect.";
+          }
+      } else {
+          $error = "* Email not found.";
+      }
 
-                        if ($status == 'student') {
-                            header("Location: /sajilo-rent/studentsection/displayLatLng.php");
-                        } else {
-                            header("Location: /sajilo-rent/user-panel/owner-page.php");
-                        }
-                    } else {
-                        header("Location: /sajilo-rent/user-panel/user-home.php");
-                    }
-                    exit();
-                } else {
-                    $error = "* Password is incorrect.";
-                }
-            } else {
-                $error = "* Email not found.";
-            }
-
-            // Close all statements and connection
-            $stmt->close();
-            if (isset($stmt2)) {
-                $stmt2->close();
-            }
-            $conn->close();
-        } else {
-            $error = "* Fill in both email and password.";
-        }
-    }
-    ?>
+      // Close all statements and connection
+      $stmt->close();
+      if (isset($stmt2)) {
+          $stmt2->close();
+      }
+      $conn->close();
+  } else {
+      $error = "* Fill in both email and password.";
+  }
+}
+?>
     <main>
         <figure>
             <img src="../resources/logo.svg" alt="sajilo rent">
@@ -130,5 +131,4 @@ session_abort();
         </section>
     </main>
 </body>
-
 </html>

@@ -53,13 +53,13 @@ include("../student-scroll-section/data-generation.php")
           <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon" />
         </button>
         <div class="dropdown-content" id="priceDropdown">
-          <div class="price-option">Rs 3,500</div>
-          <div class="price-option">Rs 4,000</div>
-          <div class="price-option">Rs 4,500</div>
-          <div class="price-option">Rs 5,000</div>
-          <div class="price-option">Rs 5,500</div>
-          <div class="price-option">Rs 6,000</div>
-          <div class="price-option">Rs 6,500</div>
+            <div data-value="3500" class="price-option">Rs 3,500</div>
+            <div data-value="4000" class="price-option">Rs 4,000</div>
+            <div data-value="4500" class="price-option">Rs 4,500</div>
+            <div data-value="5000" class="price-option">Rs 5,000</div>
+            <div data-value="5500" class="price-option">Rs 5,500</div>
+            <div data-value="6000" class="price-option">Rs 6,000</div>
+            <div data-value="6500" class="price-option">Rs 6,500</div>
         </div>
       </div>
       <div class="dropdown">
@@ -68,33 +68,30 @@ include("../student-scroll-section/data-generation.php")
           <img src="https://img.icons8.com/ios-glyphs/30/expand-arrow--v1.png" alt="expand-arrow--v1" class="dropdown-icon" />
         </button>
         <div class="dropdown-content" id="roomsDropdown">
-          <div class="room-option">1 Room</div>
-          <div class="room-option">2 Rooms</div>
-          <div class="room-option">3 Rooms</div>
-          <div class="room-option">4 Rooms</div>
+            <div data-value="1" class="room-option">1 Room</div>
+            <div data-value="2" class="room-option">2 Rooms</div>
+            <div data-value="3" class="room-option">3 Rooms</div>
+            <div data-value="4" class="room-option">4 Rooms</div>
         </div>
       </div>
+      <button class="reset-filters-btn" style="display: none;">
+        <i class='bx bx-reset'></i> Reset Filters
+      </button>
     </div>
   </nav>
   <section class="main-body">
-    <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
-
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
     <div class="contents">
       <div id="map">
         <button class="closeRouting" style="display: none;">Close Routing</button>
       </div>
-
       <div class="details">
-
         <div class="main">
           <section class="room-container-grid">
             <?php echo $roomsHTML; ?>
           </section>
         </div>
-
-
       </div>
-
   </section>
   <div class="email" hidden><?php echo $_SESSION["s_email"] ?></div>
 

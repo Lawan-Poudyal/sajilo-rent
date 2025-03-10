@@ -72,7 +72,7 @@ if (!empty($rooms)) {
     </div>
 
         <p class="contact">  <strong>Contact:</strong> +1234567890</p>
-            <button class="book-button js-book-button">Book Now</button>
+            <button class="book-button js-book-button" data-room-lat="' . htmlspecialchars($rooms['latitude']) . '" data-room-lng="' . htmlspecialchars($rooms['longitude']) . '"  data-room-owner="' . htmlspecialchars($rooms['username']) . '"data-student-name="' . $_SESSION["s_email"] . '">Book Now</button>
 
 
         <div class="reviews">
@@ -107,7 +107,7 @@ if (!empty($rooms)) {
 
 <body>
     <section class="main-body">
-        <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
+        <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php' ?>
 
         <?php echo $roomsHTML; ?>
 

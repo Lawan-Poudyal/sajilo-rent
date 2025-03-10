@@ -178,7 +178,7 @@ CREATE TABLE `review` (
     `receiver` varchar(255) NOT NULL,
     `rating` int(11) NOT NULL,
     `comment` text NOT NULL,
-    `date` datetime NOT NULL DEFAULT current_timestamp()
+    `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 --
 -- Dumping data for table `review`
@@ -267,7 +267,7 @@ CREATE TABLE `review_house` (
     `lng` double NOT NULL,
     `rating` int(11) NOT NULL,
     `comment` varchar(256) NOT NULL,
-    `date` datetime NOT NULL DEFAULT current_timestamp()
+    `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 --
 -- Dumping data for table `review_house`

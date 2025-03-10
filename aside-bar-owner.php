@@ -1,4 +1,4 @@
- <?php 
+<?php 
 $email = $_SESSION['email'];
 ?>
 
@@ -7,7 +7,7 @@ $email = $_SESSION['email'];
             <div class="main-links">
                 <a href="/sajilo-rent/user-panel/owner-page.php"><img src="https://img.icons8.com/?size=100&id=2797&format=png&color=FFFFFF" alt="home--v1"/><span class="link-text home">Home</span></a>
                 <a href="/sajilo-rent/user-panel/owner-profile.php"><img src="https://img.icons8.com/?size=100&id=14736&format=png&color=FFFFFF" alt="user icon"/><span class="link-text user-profile">Profile</span></a>
-                <a href="/sajilo-rent/chatapplication/messenger.php?email=<?php echo $email?>"><img src="https://img.icons8.com/?size=100&id=R7M0cowL2BCb&format=png&color=FFFFFF" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
+                <a href="/sajilo-rent/chatapplication/messenger.php?email=<?php echo $email?>&status=owner"><img src="https://img.icons8.com/?size=100&id=R7M0cowL2BCb&format=png&color=FFFFFF" alt="messages-icon"/><span class="link-text messages">Messages</span></a>
                 <a href="#"><img src="https://img.icons8.com/?size=100&id=J715ns61u5eV&format=png&color=FFFFFF" alt="tenants profile icon"/><span class="link-text tenants-proile">Tenants Profile</span></a>
 <!----create the tenants request section by yourselves ----->
                 <a href="#" class="js-tenants-request"><img src="https://img.icons8.com/?size=100&id=123784&format=png&color=FFFFFF" alt="rent request icon"/><span class="link-text rent-request">Rent Request</span></a>
@@ -211,7 +211,7 @@ data.forEach(element => {
     requestCard.innerHTML = '';
 if(element['error']) return;
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
-        <img src="/sajilo-rent/user-panel/back_end/${element["img"]}" alt="something-in-the-way">
+        <img src="/sajilo-rent/studentsection/backend/${element["img"]}" alt="something-in-the-way">
         <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>
         <div class="interactive-btn">   
             <button class="accept js-accept" data-email='${element['email']}' data-tenant = '${element['email']}' data-lat = ${element['lat']} data-lng=${element['lng']}>Accept</button>
@@ -357,7 +357,8 @@ const submitBtn = document.querySelector('.js-submit-review-btn');
 const cancelBtn = document.querySelector('.js-cancel-review');
 const tenantDialog = document.querySelector('.tenant-dialog');
 const tenantDialogClose = document.querySelector('.tenant-dialog-close');
-
+let ratingVal = 0;
+let tenant_email = '';
 // Load tenants and set up event listeners
 document.addEventListener('DOMContentLoaded', async function() {
     // Select the tenants profile link from sidebar
@@ -469,6 +470,7 @@ function setupTenantCardButtons() {
             
             // Store tenant data in the review dialog using dataset
             const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
+            tenant_email = tenantEmail;
             const tenantPic = tenantCard.querySelector('.tenant-pic').src;
             
             // Set tenant info in the review dialog
@@ -491,7 +493,7 @@ function setupTenantCardButtons() {
         button.addEventListener('click', function() {
             const tenantCard = this.closest('.tenant-card');
             const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
-            
+            //skylerwhite
             // Implement messaging functionality here
             console.log('Message tenant:', tenantEmail);
             alert('Messaging functionality coming soon!');
@@ -500,16 +502,29 @@ function setupTenantCardButtons() {
 }
 
 // Handle tenant removal
-function handleTenantRemoval() {
+async function handleTenantRemoval() {
     const starsContainer = document.getElementById('stars');
     const rating = starsContainer.dataset.rating || 0;
     const comment = document.getElementById('tenant-review').value.trim();
     const tenant = document.getElementById('review-tenant-pic').dataset.tenant;
-    
-
+  
     // Remove the tenant card from the DOM
     if (currentTenantElement) {
+        let response = await fetch('/sajilo-rent/user-panel/back_end/setreview.php',{
+            method: 'POST',             // HTTP method
+            headers: {
+                'Content-Type': 'application/json'  // Specify the content type
+            },
+            body: JSON.stringify({
+                reciever: tenant_email,
+                rating: ratingVal,
+                comment: comment
+            })  // Data sent to the server (must be a string for JSON)
+         });
+        let data =await response.text();
+        console.log(data);    
         currentTenantElement.remove();
+
     }
     
     // Close the review dialog
@@ -574,6 +589,7 @@ function setupStarRating() {
 
 // Helper function to update stars based on rating
 function updateStars(value) {
+    //walterwhite
     stars.forEach(star => {
         const starValue = parseInt(star.dataset.value);
         
@@ -585,6 +601,9 @@ function updateStars(value) {
             star.dataset.filled = 'false';
         }
     });
+    ratingVal = value;
+    console.log(ratingVal);
+    console.log(tenant_email);
 }
 
 // Helper function to reset the review form

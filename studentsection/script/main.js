@@ -100,14 +100,72 @@ mapInstance.on('popupopen', function(event) {
 
 // navbar
 
-document.querySelectorAll('.dropbtn').forEach(element =>{
-   
-    element.addEventListener('click',()=>{
+document.querySelectorAll('.dropbtn').forEach(element => {
+    element.addEventListener('click', (event) => {
+        event.stopPropagation();
         element.classList.toggle('active');
         const dropdownContent = element.nextElementSibling;
-        dropdownContent.classList.toggle("show")
-})});   
+        dropdownContent.classList.toggle("show");
+    });
+});
+
+// Disable dropdown when clicked anywhere else
+window.addEventListener('click', (event) => {
+    if (!event.target.matches('.dropbtn')) {
+        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        });
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+            }
+        });
+        // selecter.resetValue();
+    }
+});
+
 
 //select tags
+
+const resetFiltersBtn = document.querySelector('.reset-filters-btn'); // Add this button to your HTML
+const priceOption = document.querySelectorAll('.price-option');
+const roomOption = document.querySelectorAll('.room-option');
+
+priceOption.forEach((element) => {
+    element.addEventListener('click', () => {
+        document.querySelectorAll('.price-option.hover-active').forEach(el => el.classList.remove('hover-active'));
+        
+        const priceValue = parseInt(element.getAttribute("data-value"));
+        element.classList.add('hover-active');
+        
+        selecter.setPrice(priceValue);
+        selecter.applyFilters();  // APPLY FILTERS AFTER SETTING VALUE
+        resetFiltersBtn.classList.add('visible');
+    });
+});
+
+roomOption.forEach((element) => {
+    element.addEventListener('click', () => {
+        document.querySelectorAll('.room-option.hover-active').forEach(el => el.classList.remove('hover-active'));
+
+        const roomValue = parseInt(element.getAttribute("data-value"));
+        element.classList.add('hover-active');
+
+        selecter.setRooms(roomValue);
+        selecter.applyFilters();  // APPLY FILTERS AFTER SETTING VALUE
+        resetFiltersBtn.classList.add('visible');
+    });
+});
+if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', () => {
+        document.querySelectorAll('.hover-active').forEach(el => el.classList.remove('hover-active'));
+        
+        selecter.resetFilters();
+        resetFiltersBtn.classList.remove('visible');
+    });
+}
+
 
 export {mapInstance, center};
