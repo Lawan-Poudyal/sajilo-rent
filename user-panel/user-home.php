@@ -1,5 +1,6 @@
     <?php 
     session_start();
+    include("../header.php");
     ?>
     <?php
     if($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -184,7 +185,7 @@
 ?>
         <div class="notification">
         </div>
-        <header class="header">
+        <!-- <header class="header">
             <nav class="header-nav">
                 <div class="header-nav-element">
                 <button id="logo-btn" onclick="showaside2()">
@@ -206,7 +207,7 @@
                 </div>
             
             </nav>
-        </header>
+        </header> -->
         <main class="main">
             <section class="main-section" id="map">
             <form action="" class="main-section-form search hidden">
@@ -216,35 +217,12 @@
             </section>
             <aside id="aside1"class="main-aside aside1">
                 <div class="main-aside-credentials">
-                <figure>
-                    <img src="/sajilo-rent/resources/logo.svg" alt="Sajilo-Rent-logo" title="Sajilo-Rent-logo" height="50" width="50">
-                </figure>
-                
+                    <h1>Verify as :</h1>
                 <div class="main-aside-div credentials" id="studentverifybtn">Student</div>
                 <div class="main-aside-div credentials" id="ownerverifybtn">Owner</div>
             </div>
-            <h2 class="main-aside-h2">Find your perfect room</h2>
-                <div class="main-aside-div slider">
-                <div class="caption">Price</div>
-                <div class="slidebar slide1">
-                    <div class="ball"></div>  
-                </div>
-            
-                </div>
-                <div class="main-aside-div slider">
-                <div class="caption">Distance</div>
-                <div class="slidebar slide2">
-                    <div class="ball"></div>  
-                </div>
-                
-            </div>
-                <div class="main-aside-div slider">
-                <div class="caption">Rating</div>
-                <div class="slidebar slide3">
-                    <div class="ball"></div>  
-                </div>
-            
-                </div>
+
+          
             </aside>
             <aside id="aside2" class="main-aside aside2">
                 <h2 class="main-aside-h2">Sajilo Rent</h2>
