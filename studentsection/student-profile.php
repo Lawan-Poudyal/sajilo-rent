@@ -22,10 +22,10 @@ if (!isset($_SESSION["s_username"]) || !isset($_SESSION['s_email'])) {
 </head>
 
 <body>
-    <?php require_once '/xampp/htdocs/sajilo-rent/header.php'; ?>
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
     <div class="main-body">
         <?php
-        require_once '/xampp/htdocs/sajilo-rent/aside-bar-student.php';
+        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-student.php';
         ?>
         <div class="section-wrapper">
             <section class="section-profile">
@@ -72,7 +72,7 @@ if (!isset($_SESSION["s_username"]) || !isset($_SESSION['s_email'])) {
                         </div>
                         <div class="write-review">
                             <div class="rating-image-counter">
-                                <img class="rating-image" src="/sajilo-rent/resources/ratings/rating-30.png" alt="star rating image">
+                                <img class="rating-image" alt="star rating image">
                                 <p class="reviewer-count"></p>
                             </div>
                             <div class="share-review">

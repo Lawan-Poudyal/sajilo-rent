@@ -50,7 +50,7 @@ function putHouseContent(jsonDataProfile) {
 function putReviewContent(jsonDataReview){
     if(!jsonDataReview["status"]){
         let totalRating = 0;
-       
+       console.log(jsonDataReview)
         reviewerCount.innerText = `${jsonDataReview.length} Reviewers`;
         jsonDataReview.forEach(element => {
             const reviewWrapper = document.createElement('div');
@@ -67,36 +67,25 @@ function putReviewContent(jsonDataReview){
                         ${element["comment"]}
                     </div>
                 `
-            totalRating += `${element["rating"]}`
+            totalRating += Number(`${element["rating"]}`);
+            console.log(`${element["rating"]}`)
             mainComment.appendChild(reviewWrapper);    
         }
     );
     const Rating = adjustAverage(totalRating,jsonDataReview.length)
     ratingNumber.innerText = Rating;  
-    ratingImage.innerHTML =`<img src="/sajilo-rent/resources/ratings/rating-${Rating * 10}.png" alt="">`;
+    ratingImage.src = `/sajilo-rent/resources/ratings/rating-${Rating * 10}.png`;
 
     }
 }
-function adjustAverage(ratings, total) {
-    let count = ratings.length;
-    let average = total / count;
-
-    if (Number.isInteger(average) || Number.isInteger((total * 2) / count)) {
-        return total;  // Already valid
-    }
-
-    // Adjust total to the nearest integer or .5
-    let remainder = total % count;
-    if (remainder >= count / 2) {
-        total += (count - remainder);
-    } else {
-        total -= remainder;
-    }
-
-    return total;
+function adjustAverage(totalRating, count) {
+    console.log(typeof totalRating)
+    if (count === 0) return 0;
+    let average = totalRating / count;
+    console.log("average:" , average);
+    // Round to nearest 0.5
+    return Math.round(average * 2) / 2;
 }
-
-
 //change or add profile pictures
 
 changeProfile.addEventListener('click', (event) => {

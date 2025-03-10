@@ -437,7 +437,6 @@ async function loadTenants() {
                 </div>
                 <div class="tenant-actions">
                     <button class="view-profile-btn">View Profile</button>
-                    <button class="message-btn">Message</button>
                     <button class="remove-btn">Remove</button>
                 </div>
             `;
@@ -491,16 +490,7 @@ function setupTenantCardButtons() {
     });
     
     // Message buttons (you can implement this functionality)
-    document.querySelectorAll('.message-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const tenantCard = this.closest('.tenant-card');
-            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
-            //skylerwhite
-            // Implement messaging functionality here
-            console.log('Message tenant:', tenantEmail);
-            alert('Messaging functionality coming soon!');
-        });
-    });
+
 }
 
 // Handle tenant removal
@@ -746,15 +736,6 @@ function resetReviewForm() {
 }
 .view-profile-btn:hover {
     background-color: #e9ecef;
-}
-
-.message-btn {
-    background-color: #4a8cff;
-    color: white;
-}
-
-.message-btn:hover {
-    background-color: #3a7de6;
 }
 
 .remove-btn {

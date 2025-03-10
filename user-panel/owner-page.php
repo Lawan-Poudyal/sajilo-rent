@@ -78,9 +78,9 @@ $stmt->close();
                 </div>
             </nav>
         </header> -->
-    <?php require_once '/xampp/htdocs/sajilo-rent/header.php' ?>
+    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php' ?>
     <div class="main-body">
-        <?php require_once '/xampp/htdocs/sajilo-rent/aside-bar-owner.php' ?>
+        <?php require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-owner.php' ?>
         <main class="main">
             <div class="main-div" id="js-map"></div>
             <div class="form-div" id="js-form-div">

@@ -10,7 +10,7 @@ $filterPrice = isset($_GET['price']) ? $_GET['price'] : null;
 $filterRooms = isset($_GET['rooms']) ? $_GET['rooms'] : null;
 
 // Read the CSV file to get the order of coordinates
-$csvFile = '/xampp/htdocs/sajilo-rent/algorithms_dataAnalysis/clusteredData_latlng.csv';
+$csvFile = '/opt/lampp/htdocs/sajilo-rent/algorithms_dataAnalysis/clusteredData_latlng.csv';
 $csvData = [];
 if (!file_exists($csvFile)) {
   die("File not found: " . $csvFile);
