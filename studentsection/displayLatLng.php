@@ -98,6 +98,7 @@ include("../student-scroll-section/data-generation.php")
   <script type="module" src="./script/main.js"></script>
   <script type="module" src="../studentsection/script/location.js"></script>
 
+
 </body>
 
 </html>

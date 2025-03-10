@@ -10,8 +10,54 @@ if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
 
 
     $tolerance = 0.000001;
-    $stmt = $conn->prepare("SELECT * FROM housedetails   WHERE ABS(latitude - ?) < ? AND ABS(longitude - ?) < ?");
-    $stmt->bind_param("dddd", $latitude, $tolerance, $longitude, $tolerance);
+    $stmt = $conn->prepare("
+        SELECT 
+            h.username,
+            h.no_of_rooms,
+            h.no_of_roommates,
+            h.gates_open,
+            h.gates_close,
+            h.wifi_price,
+            h.image1,
+            h.image2,
+            h.image3,
+            h.latitude,
+            h.longitude,
+            h.price,
+            h.parking,
+            h.electricity,
+            h.floor_level,
+            h.house_facing_direction,
+            s.firstName, 
+            s.lastName, 
+            s.number,
+            COALESCE(ROUND(AVG(r.rating) * 2) / 2, 0) AS avg_rating
+        FROM housedetails h
+        LEFT JOIN signin s ON TRIM(LOWER(h.username)) = TRIM(LOWER(s.email))
+        LEFT JOIN review_house r ON ABS(h.latitude - r.lat) < ? AND ABS(h.longitude - r.lng) < ?
+        WHERE ABS(h.latitude - ?) < ? AND ABS(h.longitude - ?) < ?
+        GROUP BY 
+            h.username,
+            h.no_of_rooms,
+            h.no_of_roommates,
+            h.gates_open,
+            h.gates_close,
+            h.wifi_price,
+            h.image1,
+            h.image2,
+            h.image3,
+            h.latitude,
+            h.longitude,
+            h.price,
+            h.parking,
+            h.electricity,
+            h.floor_level,
+            h.house_facing_direction,
+            s.firstName, 
+            s.lastName, 
+            s.number
+    ");
+    $stmt->bind_param("dddddd", $tolerance, $tolerance, $latitude, $tolerance, $longitude, $tolerance);
     $stmt->execute();
 
     $result = $stmt->get_result();
@@ -35,6 +81,7 @@ $conn->close();
 
 $roomsHTML = '';
 if (!empty($rooms)) {
+    $ratingImage = '../resources/ratings/rating-' . (round($rooms['avg_rating'] * 2) / 2 * 10) . '.png';
 
 
 
@@ -56,8 +103,8 @@ if (!empty($rooms)) {
         </div>
     </div>
     <div class="details">
-        <h1>' . htmlspecialchars($rooms['username']) . '</h1>
-        <p class="price">Rs ' . htmlspecialchars($rooms['price']) . '/month</p>
+    <h1>' . htmlspecialchars($rooms['firstName']) . ' ' . htmlspecialchars($rooms['lastName']) . '<span class="owner-email">' . htmlspecialchars($rooms['username']) . '</span> </h1>
+    <p class="price">Rs ' . htmlspecialchars($rooms['price']) . '/month</p>
 
             <div class="property-grid">
 
@@ -71,14 +118,16 @@ if (!empty($rooms)) {
         <p><strong>Gate Closing:</strong> ' . htmlspecialchars($rooms['gates_close']) . 'PM</p>
     </div>
 
-        <p class="contact">  <strong>Contact:</strong> +1234567890</p>
+        <p class="contact">  <strong>Contact:</strong> ' . htmlspecialchars($rooms['number']) . '</p>
             <button class="book-button js-book-button" data-room-lat="' . htmlspecialchars($rooms['latitude']) . '" data-room-lng="' . htmlspecialchars($rooms['longitude']) . '"  data-room-owner="' . htmlspecialchars($rooms['username']) . '"data-student-name="' . $_SESSION["s_email"] . '">Book Now</button>
 
 
         <div class="reviews">
-            <h2>Reviews</h2>
-            <p><strong>Jane Smith:</strong> Great room, well maintained! ⭐⭐⭐⭐⭐</p>
-            <p><strong>Mike Johnson:</strong> Affordable and close to university. ⭐⭐⭐⭐</p>
+            <h2>Ratings</h2>
+            <img src="' . $ratingImage . '" class="product-rating-star" />
+            <span class="product-rating-count">' . number_format($rooms['avg_rating'], 1) . '</span>
+
+            
 
         </div>
     </div>
@@ -116,3 +165,7 @@ if (!empty($rooms)) {
 <script src="./script/details.js"> </script>
 
 </html>
+
+<!-- 
+<p><strong>Jane Smith:</strong> Great room, well maintained! ⭐⭐⭐⭐⭐</p>
+            <p><strong>Mike Johnson:</strong> Affordable and close to university. ⭐⭐⭐⭐</p> -->

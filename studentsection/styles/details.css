@@ -277,3 +277,31 @@
   height: calc(100vh - var(--navbar-total-space));
   overflow: hidden; /* Prevent scrolling within main-body */
 }
+
+
+.owner-email {
+  margin-left: 10px;
+  color: #666;
+  font-weight: normal;
+  font-size: 0.7em;
+}
+
+/* For smaller screens, you might want this adjustment */
+@media (max-width: 576px) {
+  .owner-email {
+    display: block;
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+
+
+.product-rating-star {
+  width: 100px;
+  margin-right: 6px;
+}
+
+.product-rating-count {
+  margin-top: 3px;
+}
