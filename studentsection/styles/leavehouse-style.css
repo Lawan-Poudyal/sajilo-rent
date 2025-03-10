@@ -1,0 +1,134 @@
+.review-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    width: 85%;
+    max-width: 500px;
+    padding: 0;
+    border: none;
+    z-index: 1100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.review-container .text {
+    background-color: #dc3545;
+    color: white;
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+}
+
+.review-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.owner-section, .house-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.heading-ratings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.owner-heading, .house-heading {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.star:hover, .star.active {
+    transform: scale(1.1);
+    color: #ffc107;
+}
+
+.writeText {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    font-family: inherit;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.writeText:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(58, 134, 255, 0.25);
+}
+
+.submit-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #c82333;
+}
+
+/* Dialog Animation */
+@keyframes slideDown {
+    from { 
+        opacity: 0; 
+        transform: translate(-50%, -60%);
+    }
+    to { 
+        opacity: 1; 
+        transform: translate(-50%, -50%);
+    }
+}
+
+.review-container[open] {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .review-container {
+        width: 95%;
+    }
+    
+    .stars-container {
+        gap: 5px;
+    }
+    
+    .star {
+        font-size: 1.8rem;
+    }
+}

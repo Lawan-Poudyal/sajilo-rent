@@ -1,202 +1,179 @@
-let menu = document.getElementById('js-menu'); 
-let menuClick = false;
-let dropDown = document.getElementById('js-drop-down');
-const photo = document.querySelector('.js-photo');
-const image = document.querySelector('.js-image');
-let imagePath = '/sajilo-rent/user-panel/back_end/';
-let profilepic = document.querySelector('.js-profile-pic');
-const uploadPhoto = document.querySelector('.js-upload-photo');
-const closeBtn = document.querySelector('.js-cross-icon');
-const closeBtn2 = document.querySelector('.js-cross2-icon');
-const logoutBtn = document.querySelector('.js-logout');
-const logoutSection = document.querySelector('.js-log-out');
-const notLogoutBtn = document.querySelector('.js-notlogout');
-const sureLogoutBtn = document.querySelector('.js-sure');
-const email = document.querySelector('.js-email');
-const rentRequestBtn = document.querySelector('.js-rent-request');
-const mainItem = document.querySelectorAll('.main-item');
-const requestCard = document.querySelector('.js-request-card');
-const myProfile = document.querySelector('.js-my-profile');
-menu.addEventListener('click' , function()
-{
-if(menuClick === false)
-{
-menu.classList.remove('reverserotate');
-void menu.offsetWidth;
-menu.classList.add('rotate');
-dropDown.style.display = 'flex';
-dropDown.classList.remove('reverseexpand');
-void dropDown.offsetWidth;
-dropDown.classList.add('expand');
-menuClick = true;
-}
-else if(menuClick === true)
-{
-    menu.classList.remove('rotate');
-    void menu.offsetWidth;
-    menu.classList.add('reverserotate');
-dropDown.classList.remove('expand');
-void dropDown.offsetWidth;
-dropDown.classList.add('reverseexpand');
-setTimeout(function()
-{dropDown.style.display="none";},1000);
-    menuClick = false;
-    
-}
-});
-uploadPhoto.style.display = "none";
-profilepic.addEventListener('click' , ()=>{
-    if(uploadPhoto.style.display === "none")
-    {
-        uploadPhoto.style.display = "flex"; 
-        document.querySelector('main').style.filter = "blur(10px)";
+const changeProfileBtn = document.querySelector('.js-change-profile-icon');
+const imageInput = document.querySelector('.js-image-input');
+const profileForm = document.querySelector('.js-profile-form');
+const fileDir = '/sajilo-rent/user-panel/back_end/';
+const profileImage = document.querySelector('.js-profile-image');
+const currentHouses = document.querySelector('.js-current-houses');
+const notRentedTag = document.querySelector('.js-not-rented-tag');
+const crossIcon = document.getElementById("js-cross-icon");
+const formDiv = document.querySelector("#js-form-div");
+const email = document.querySelector(".js-email").innerText;
+const price = document.querySelector('.js-price');
+const rooms = document.querySelector('.js-rooms');
+const noOfRoommates = document.querySelector('.js-no-of-roommates');
+const gatesOpen = document.querySelector('.js-gates-open');
+const gatesClose = document.querySelector('.js-gates-close');
+const parkingAvailable = document.querySelector('.js-parking-available'); //.checked = true;
+const parkingUnavailable = document.querySelector('.js-parking-unavailable');
+const floorLevel = document.querySelector('.js-floor-level');
+const houseFacingDirection = document.querySelector('.js-house-facing-direction');
+const wifi = document.querySelector('.js-wifi');
+const electricityRequired = document.querySelector('.js-electricity-required');
+const electricityNotrequired = document.querySelector('.js-electricity-notrequired');
+const image1 = document.querySelector('.image1');
+const image2 = document.querySelector('.image2');
+const image3 = document.querySelector('.image3');
+const latitude = document.querySelector('#js-lat');
+const longitude = document.querySelector('#js-lng');
+const mainComment = document.querySelector('.js-main-comment');
+const ratingImage = document.querySelector('.js-rating-image');
+let avgRating = 0;
+var imageLocation = '';
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        let response = await Promise.all([
+            fetch('/sajilo-rent/user-panel/back_end/setprofilepic.php'),
+            fetch('/sajilo-rent/user-panel/back_end/showallhouses.php'),
+            fetch('/sajilo-rent/user-panel/back_end/loadcomment.php')
+        ]);
+        let data = await Promise.all([response[0].json(), response[1].json(), response[2].json()]);
+        // console.log(data);
+        changeProfile(fileDir + data[0]['image']); //fine as hell.
+        addHouseDetails(data[1]);
+        loadReview(data[2]);
+    } catch (err) {
+        console.log(err);
     }
 });
-closeBtn.addEventListener('click' , ()=>{
- uploadPhoto.style.display = "none";
- document.querySelector('main').style.filter = "blur(0px)";
-}
-);
-logoutSection.style.display = "none";
-logoutBtn.addEventListener('click' , ()=>{
-if(logoutSection.style.display = "none")
-{
-    logoutSection.style.display = "flex";
-    document.querySelector('main').style.filter = "blur(10px)";
 
-}
+changeProfileBtn.addEventListener('click', () => {
+    imageInput.click();
 });
-closeBtn2.addEventListener('click' , ()=>{
-    logoutSection.style.display = "none";
-    document.querySelector('main').style.filter = "blur(0px)";
-});
-notLogoutBtn.addEventListener('click' , ()=>{
-    logoutSection.style.display = "none";
-    document.querySelector('main').style.filter = "blur(0px)";
-});
-sureLogoutBtn.addEventListener('click' , ()=>{
-const xmlrequest = new XMLHttpRequest();
-xmlrequest.open('POST','/sajilo-rent/user-panel/back_end/logout.php');
-xmlrequest.send();
-xmlrequest.onload = function(){
-if(this.readyState === 4 && this.status === 200)
-{
-    window.location = "/sajilo-rent/loginsignup_page/login.php";
-}
-else{
-    console.log("the messagte is " + this.readyState + " and " +this.status );
-}
-}
-});
-///////////////////////////// loading photo //////////////////////////////////
-const xmlrequest = new XMLHttpRequest();
-let jsonfile;
-xmlrequest.open('POST','/sajilo-rent/user-panel/back_end/setprofilepic.php');
-xmlrequest.send();
-xmlrequest.onload = function(){
-if(this.readyState === 4 && this.status === 200)
-{
 
- jsonfile = JSON.parse(this.responseText);
- imagePath = imagePath + jsonfile["image"];
- if(jsonfile["image"] !== "false")
- {
- profilepic.style.backgroundImage = `url(${imagePath})`;
- } 
-}
-else{
-    console.log("the messagte is " + this.readyState + " and " +this.status );
-}
-}
-////////////////////////////////////////////////////////////////////////
-rentRequestBtn.addEventListener('click' , ()=>{
-requestCard.classList.toggle('hidden');
-mainItem.forEach((item)=>{
-    item.classList.toggle('hidden');
+imageInput.addEventListener('change', async () => {
+    const file = imageInput.files[0];
+    profileForm.submit();
 });
-});
-myProfile.addEventListener('click' , ()=>{
-    requestCard.classList.toggle('hidden');
-    mainItem.forEach((item)=>{
-        item.classList.toggle('hidden');
+
+function changeProfile(filePath) {
+    if (filePath === 'false') return;
+    profileImage.src = filePath;
+}
+
+function addHouseDetails(houses) {
+    houses.forEach(house => {
+        if (house['error']) return;
+        notRentedTag.classList.add('hide');
+        // console.log(house);
+        let location = '/sajilo-rent/user-panel/back_end/' + house['image1'];
+        currentHouses.innerHTML += `
+            <div class="house-card">
+                <img src='${location}' alt="Your house here" class="living-house-image js-house-image" >
+                <div class="house-information">
+                    <div class="residence-details">
+                        <p class="house-price">$${house['price']}</p>
+                    </div>
+                    <div class="house-status">
+                        <button class="update-house js-update-house" data-lat='${house['latitude']}' data-lng='${house['longitude']}'>Update Info</button>
+                    </div>
+                </div>
+            </div>`;
     });
-});
-//////////////////////////////////////////////////////////////////////////
-showRequest();
-function showRequest()
-{
-    const httprequest  = new XMLHttpRequest();
-httprequest.open('GET',`/sajilo-rent/user-panel/back_end/loadrequest.php?email=${email.innerText}`);
-httprequest.send();
-httprequest.onload = function(){
-    if(this.readyState === 4 && this.status === 200)
-    {
-        console.log(this.responseText);
-        jsonObj = JSON.parse(this.responseText);
-        let htmlforrequest = '';
-        jsonObj.forEach((obj)=>{
-            htmlforrequest += `<div class="request-card">
-               <div class="profile-info">
-                   <img src="https://via.placeholder.com/50" alt="Profile Picture" class="profile-pic">
-                   <div>
-                       <h3 class="username">${obj['email']}</h3>
-                   </div>
-               </div>
-               <div class="actions">
-                   <button class="accept-btn js-accept-btn" data-sender = "${obj['email']}" data-lat = "${obj['lat']}" data-lng = "${obj['lng']}">Accept</button>
-                   <button class="decline-btn">Decline</button>
-               </div>
-           </div>`
-        
-       });
-       document.querySelector('.js-request-card').innerHTML = htmlforrequest;   
-       document.querySelectorAll('.js-accept-btn').forEach((btn)=>{
-           btn.addEventListener('click' , ()=>{
-              acceptRequest(btn.dataset.sender , btn.dataset.lat , btn.dataset.lng);
-           });
-       });  
-    }
-    else {
-        console.log("the messagte is " + this.readyState + " and " +this.status );
-    }
+    updateButtonEvents();
 }
-   
-}
-///////////////////////////////////////////////////////////////////////////////////
-function acceptRequest(sender , lat , lng)
-{
-const httprequest  = new XMLHttpRequest();
-httprequest.open('GET',`/sajilo-rent/user-panel/back_end/acceptrequest.php?email=${sender}&lat=${lat}&lng=${lng}&username=${email.innerText}`);
-httprequest.send();
-httprequest.onload = function(){
-    if(this.readyState === 4 && this.status === 200)
-    {   
-        showRequest();
-    }
-    else {
-        console.log("the messagte is " + this.readyState + " and " +this.status );
-    }
-}
-}
-////////////////// this is for profile picture setting //////////////////////////
-photo.addEventListener('click' , ()=>{
-image.click();
-});
-image.addEventListener('change', (event) => {
-    const file = event.target.files[0]; // Get the selected file
-    if (file) {
-        const reader = new FileReader();
 
-        reader.onload = () => {
-            // Clear the div and add the image
-            photo.innerHTML = ''; // Clear previous content
-            photo.style.backgroundImage =`url(${reader.result})`;
-        };
+function updateButtonEvents() {
+    const updateHouse = document.querySelectorAll('.js-update-house');
+    updateHouse.forEach(button => {
+        button.addEventListener('click', () => {
+            // console.log(button);
+            showHouseDetail(button.dataset);
+        });
+    });
+}
 
-        reader.readAsDataURL(file); // Read the image as a data URL
+async function showHouseDetail(dataset) {
+    // console.log(dataset.lat);
+    // console.log(dataset.lng);
+    // console.log(email);
+    const response = await fetch('/sajilo-rent/user-panel/back_end/showhousedetails.php?lat=${dataset.lat}&lng=${dataset.lng}&username=${email}');
+    const data = await response.json();
+    showForm(data);
+}
+
+function showForm(data) {
+    formDiv.showModal();
+    if (data['electricity'] === 'required') {
+        electricityRequired.checked = true;
     } else {
-        photo.textContent = 'No image selected';
+        electricityNotrequired.checked = true;
     }
+    floorLevel.value = data['floor_level'];
+    houseFacingDirection.value = data['house_facing_direction'];
+    noOfRoommates.value = data['no_of_roommates'];
+    rooms.value = data['no_of_rooms'];
+    if (data['parking'] === 'available') {
+        parkingAvailable.checked = true;
+    } else {
+        parkingUnavailable.checked = true;
+    }
+    price.value = data['price'];
+    wifi.value = data['wifi_price'];
+    gatesClose.value = data['gates_close'];
+    gatesOpen.value = data['gates_open'];
+    image1.style.backgroundImage = url(`/sajilo-rent/user-panel/back_end/${data['image1']}`);
+    image2.style.backgroundImage = url(`/sajilo-rent/user-panel/back_end/${data['image2']}`);
+    image3.style.backgroundImage = url(`/sajilo-rent/user-panel/back_end/${data['image3']}`);
+    image1.style.backgroundSize = 'cover';
+    image3.style.backgroundSize = 'cover';
+    image2.style.backgroundSize = 'cover';
+    latitude.value = data['latitude'];
+    longitude.value = data['longitude'];
+}
+
+crossIcon.addEventListener("click", function() {
+    formDiv.close();
 });
 
-//////////////////////////////////////////////////////////////////////////////
+function loadReview(data) {
+    let count = 0;
+    if (data[0]['error']) return;
+    data.forEach(element => {
+        avgRating += element['rating'];
+        count++;
+        mainComment.innerHTML += `
+            <div class='comment-card'>
+                <div class="reviewer-info-wrapper">
+                    <div class="reviewer-info">
+                        <p class="reviewer-name">${element["username"]}</p>
+                        <p class="review-date">${element["date"]}</p>
+                    </div>
+                    <img class="reviewer-rating-image" src="/sajilo-rent/resources/ratings/rating-${element["rating"] * 10}.png" alt="reviewer star rating image">
+                </div>
+                <div class="review-comment">
+                    ${element["comment"]}
+                </div>
+            </div>`;
+    });
+    avgRating /= count;
+    // console.log((avgRating));
+    ratingImage.src = `/sajilo-rent/resources/ratings/rating-${(adjustRating(avgRating)) * 10}.png`;
+}
+
+function adjustRating(avgRating) {
+    let tempRating = avgRating;
+    let floatingValue = avgRating - Math.floor(avgRating);
+    if(tempRating !== 0)
+    {
+
+    if (floatingValue > 0.5) {
+        return (Math.floor(avgRating) + 1);
+    } else {
+        return (Math.floor(avgRating) + 0.5);
+    }
+}
+else {
+    return 0;
+}
+}

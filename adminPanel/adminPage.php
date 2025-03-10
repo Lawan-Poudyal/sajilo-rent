@@ -16,8 +16,8 @@
     
     $user_email_status = array(); // Initialize the associative array
     $user_email_code= array();
-$sql2 = "SELECT * FROM `user_verification`"; // Correct SQL query
-$result2 = $conn->query($sql2);
+    $sql2 = "SELECT * FROM `user_verification`"; // Correct SQL query
+    $result2 = $conn->query($sql2);
 
 if ($result2 === false) {
     // Log or display error

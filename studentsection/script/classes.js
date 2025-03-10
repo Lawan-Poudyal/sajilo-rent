@@ -1,5 +1,10 @@
 let price = document.querySelector('.price');
 let houseType = document.querySelector('.housetype');
+const PATHS = {
+    house: '/sajilo-rent/user-panel/back_end/',
+    student: '/sajilo-rent/studentsection/backend/',
+    defaultProfile: '/sajilo-rent/resources/profile-related/default-profile.png'
+};
 
 class Map {
     constructor(center, zoom, tileLayer, attribution) {
@@ -84,7 +89,7 @@ class MarkerMaker {
     constructor(mapInstance) {
         this.mapInstance = mapInstance;
         this.myIcon = L.icon({
-            iconUrl: '../resources/marker.svg',
+            iconUrl: '/sajilo-rent/resources/marker.svg',
             iconSize: [30, 30]
         });
         this.markerList = [];
@@ -92,21 +97,18 @@ class MarkerMaker {
 
     addMarkers(latlngData) {
         latlngData.forEach(location => {
-            if(location.BOOKED == 0){
-                return;
-            }
+
             const content = `
-                <div class="top-div" style = "background-image: ${location.image1}"></div>
+                <div class="top-div" style = "background-image: url(${PATHS.house + location.image1})"></div>
                 <div class="bottom-div">
-                    <div class="left-div style = "background-image: ${location.image2}"></div>
-                    <div class="right-div style = "background-image: ${location.image3}"></div>
+                    <div class="left-div "style = "background-image: url(${PATHS.house + location.image2})"></div>
+                    <div class="right-div "style = "background-image: url(${PATHS.house + location.image3})"></div>
                 </div>
                 <div class="infocontainer">
                     <div class="quickinfo">
-                        <div class="housetype">Rooms: ${location.no_of_rooms}</div>
-                        <div class="price">Price: NRP ${location.price}</div>
-                        <div class="contact">Contact: ${location.username}</div>
-                        <
+                        <div class="housetype">Rooms: <span class="bold">${location.no_of_rooms}</span></div>
+                        <div class="price">Price: <span class="bold">NRP ${location.price}</span></div>
+                        <div class="contact">Owner: <span class="bold">${location.username}</span></div>
                     </div>
                     <div class="button">
                     <button class = "bookButton">
@@ -153,58 +155,73 @@ class MarkerMaker {
             console.warn(`Marker not found at coordinates: ${lat}, ${lng}`);
         }
     }
-
 }
+
 class SelectRanges {
     constructor(mapInstance, markerMaker) {
         this.mapInstance = mapInstance;
         this.markerMaker = markerMaker;
-        this.removedMarker = [];
+        this.removedMarkers = [];
+        this.priceValue = Infinity; 
+        this.roomValue = null;      
     }
 
-    priceTags() {
-        const priceValue = parseInt(price.value);
-
-        this.markerMaker.markerList.forEach(marker => {
-            let popupContent = marker.getPopup().getContent();
-            let priceText = popupContent.match(/Price:\s*NRP\s*(\d+)/);
-
-            if (priceText && priceText[1]) {
-                if (parseInt(priceText[1]) > priceValue) {
-                    this.removedMarker.push(marker);
-                    this.mapInstance.removeLayer(marker);
-                }
-            }
-        });
+    setPrice(value) {
+        this.priceValue = value;
+        this.applyFilters();
     }
 
-    houseTypes() {
-        this.priceTags();
-        const houseValue = parseInt(houseType.value);
-
-        if (isNaN(houseValue)) {
-            this.addMarkers();
-            return;
-        }
-
-        this.markerMaker.markerList.forEach(marker => {
-            let popupContent = marker.getPopup().getContent();
-            let houseText = popupContent.match(/Rooms:\s*(\d+)/);
-
-            if (houseText && houseText[1]) {
-                if (parseInt(houseText[1]) !== houseValue) {
-                    this.removedMarker.push(marker);
-                    this.mapInstance.removeLayer(marker);
-                }
-            }
-        });
+    setRooms(value) {
+        this.roomValue = value;
+        this.applyFilters();
     }
 
-    addMarkers() {
-        this.removedMarker.forEach(marker => {
+    resetFilters() {
+
+        this.removedMarkers.forEach(marker => {
             marker.addTo(this.mapInstance);
         });
-        this.removedMarker = [];
+        
+
+        this.removedMarkers = [];
+        
+
+        this.priceValue = Infinity;
+        this.roomValue = null;
+        
+    }
+
+    applyFilters() {
+        this.removedMarkers.forEach(marker => {
+            marker.addTo(this.mapInstance);
+        });
+        this.removedMarkers = []; // Clear our tracking array
+        
+        const visibleMarkers = this.markerMaker.markerList.filter(marker => {
+            const popupContent = marker.getPopup().getContent();
+            
+            // Extract price information
+            const priceText = popupContent.match(/NRP\s+(\d+(?:,\d+)*)/);
+            const price = priceText && priceText[1] ? parseInt(priceText[1].replace(/,/g, '')) : Infinity;
+            
+            // Extract room information
+            const houseText = popupContent.match(/Rooms:\s*<span class="bold">(\d+)<\/span>/);
+            const rooms = houseText && houseText[1] ? parseInt(houseText[1]) : 0;
+            
+            // Apply both filters
+            const priceMatches = price <= this.priceValue;
+            const roomMatches = this.roomValue === null || rooms === this.roomValue;
+            
+            return priceMatches && roomMatches;
+        });
+        
+        // Remove markers that don't match both filters
+        this.markerMaker.markerList.forEach(marker => {
+            if(!visibleMarkers.includes(marker)) {
+                this.mapInstance.removeLayer(marker);
+                this.removedMarkers.push(marker);
+            }
+        });   
     }
 }
 

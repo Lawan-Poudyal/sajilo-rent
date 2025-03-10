@@ -1,5 +1,9 @@
 <?php 
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1); // Enable error reporting
+ini_set('log_errors', 1);     // Log errors instead of displaying them
+ini_set('error_log', 'php_errors.log');
 $image1_path = "";
 $to_update = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

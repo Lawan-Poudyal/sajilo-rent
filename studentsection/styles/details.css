@@ -1,163 +1,279 @@
-*{
+/* Global Styles */
+
+:root{
+  
+    /* navbar */
+    --navbar-background-color: ;
+    --navbar-padding:0.5rem;
+    --navbar-height: 2.5rem;
+    --navbar-total-space: calc(var(--navbar-height) );
+}
+* {
     margin: 0;
-    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-}
-body{
-    padding: 0.5rem 1.5rem;
-}
-nav{
-    background-color: gray;
-    padding: 0 0.5rem;
-    border-radius: 1rem;
-}
-.displayimage {
-    min-width: 100%;
-    min-height: 40vh; /* Added viewport height */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: #f7f7f7;
+    color: #333;
+    padding: 10px;
+    line-height: 1.4;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Main Container */
+  .container {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     display: flex;
-    gap: 1rem;
-    border-radius: 1rem;
-    padding: 1rem 0 0 0 ;
-}
-
-.mainimage {
-    background-image: url(../resources/room1.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 70%;
-    height: 400px; /* Added height */
-    border-radius: 1rem;
-}
-
-.sideimage {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-radius: 1rem;
-}
-
-.topimage {
-    background-image: url(../resources/room2.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 190px; /* Added height */
-    border-radius: 1rem;
-    flex: 1;
-}
-
-.bottomimage {
-    background-image: url(../resources/room3.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 190px; /* Added height */
-    border-radius: 1rem;
-    flex: 1;
-}
-.wrapper{
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-}
-.flexit{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-    gap: 1rem;
-}   
-aside{
-    border: 1px solid gray;
-    padding: 0.5rem 1rem;
-    order: 1;
-    flex: 0.75;    
-} 
-.contact{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-flow: column wrap;
-    gap: 1rem;
-}
-.flexit>div{
-    flex: 1 ;
-}
-.contactline{
-    color: black;
-    font-size: 32px; 
-}
-.rent,.message{
-    background-color: #4A4A4A;
-    width: 75%;
-    height: 2rem;
-    border-radius: 0.5rem;
-}
-.owner{
-    color: gray;
-    font-size: 32px; 
-    margin-bottom: 1rem;
-}
-.info{
-    padding: 0.5rem 1rem;
-    display: flex;
-    border: 1px solid gray;
-    gap: 2rem;
-    margin-bottom: 1rem;
-}
-.priceTag,.roomTag{
-    color: gray;
-    font-size: 18px;
-}
-.monthlyRent,.availableRoom{
-    color: black;
-    font-size: 24px;
-}
-.features{
-    margin-bottom: 1rem;
-}
-.features>p{
-    color: gray;
-    font-size: 28px;
-}
-.features>ul{
-    font-size: 20px;
-}
-.review{
-    display: flex;
-    font-size: 24px;
-    color: black;
-    gap: 20px;
-    padding: 0.5rem 1rem;
-    align-items: center;
-}
-.writeReview{
-    background-color: #E5E4E2;
-    padding: 0.5rem 0.5rem;
-    flex: 1;
-    text-align: center;
-}
-.giveReview{
-    background-color: #4A4A4A;
-    width: 75%;
-    height: 2rem;
-    border-radius: 0.5rem;
-}
-nav{
-    display: flex;
-    justify-content: space-between;
-}
-.leftSide{
-    display: flex;
-    gap: 2rem;
-}
-.signup,.menu,.profile{
-    background-color: #4A4A4A;
+    max-width: 1200px;
+    width: 95%;
+    margin: 5px auto;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+    height: calc(100vh - 120px); /* Subtract header height and margins */
+  }
+  
+  /* Image Slider */
+  .image-container {
+    margin: 20px;
+    width: 40%;
     height: 100%;
-    height: 2rem;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    padding-bottom: 2rem;
-    text-align: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+  }
+  
+  .slider {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slider img {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+  
+  .buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 10px;
+  }
+  
+  .buttons button {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  
+  .buttons button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Room Details Section */
+  .details {
+    padding: 15px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    overflow-y: auto;
+  }
+  
+  .details h1 {
+    font-size: 22px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 5px;
+  }
+  
+  .details p {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .price {
+    font-size: 24px !important;
+    color: #B12704;
+    font-weight: bold;
+    margin: 5px 0 10px 0 !important;
+  }
+  
+  .contact {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+  }
+  
+  /* Property details grid */
+  .property-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+  }
+  
+  .property-grid p {
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+  }
+  .property-grid p:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+  }
+  /* Reviews Section */
+  .reviews {
+    margin-top: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .reviews h2 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 8px;
+  }
+  .reviews p {
+    background-color: #f8f9fa;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .reviews p:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .reviews p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Responsive Design for very small screens */
+  @media (max-width: 900px) {
+    .container {
+      flex-direction: column;
+      height: auto;
+      max-height: 100vh;
+    }
+    
+    .image-container {
+      width: 100%;
+      height: 40vh;
+    }
+    
+    .details {
+      width: 100%;
+      max-height: 60vh;
+    }
+    
+    .property-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .details {
+      padding: 10px;
+    }
+    
+    .details h1 {
+      font-size: 20px;
+    }
+    
+    .price {
+      font-size: 22px !important;
+    }
+  }
+  
+  /* Custom button styles (if you want to add a booking button) */
+  .book-button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+  }
+  
+  .book-button:hover {
+    background-color: #45a049;
+  }
 
+  /* Back button styles */
+.back-button {
+  position: absolute;
+  top: 9px;
+  left: 11px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.back-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* aside-bar */
+.main-body {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  /* Use the total navbar space in the calculation */
+  height: calc(100vh - var(--navbar-total-space));
+  overflow: hidden; /* Prevent scrolling within main-body */
 }

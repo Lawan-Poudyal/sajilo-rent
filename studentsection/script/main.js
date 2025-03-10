@@ -6,11 +6,11 @@ const tileLayer = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const attribution = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
 const map = new Map(center, zoom, tileLayer, attribution);
-const mapInstance = map.createMap();
+ const mapInstance = map.createMap();
 
 let markerMaker, routing, selecter;
 
-fetch('./data/latlng.json')
+fetch('/sajilo-rent/studentsection/backend/displayHouses.php')
     .then(response => response.json())
     .then(latlngData => {
         markerMaker = new MarkerMaker(mapInstance);
@@ -23,6 +23,7 @@ fetch('./data/latlng.json')
     });
 
 mapInstance.on('popupopen', function(event) {
+    console.log(event)
     const directionButton = event.popup._contentNode.querySelector('.directionButton');
     directionButton.addEventListener('click', () => {
         const lat = event.popup._source._latlng.lat;
@@ -31,42 +32,13 @@ mapInstance.on('popupopen', function(event) {
     });
 });
 
-let price = document.querySelector('.price');
-let houseType = document.querySelector('.housetype');
-
-price.addEventListener('change', () => {
-    selecter.addMarkers();
-    selecter.priceTags();
-});
-
-houseType.addEventListener('change', () => {
-    selecter.addMarkers();
-    selecter.houseTypes();
-});
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    const userButton = document.querySelector('.userButton');
-    const displayUserName = document.querySelector('.displayUserName');
-
-    userButton.addEventListener('click', () => {
-        console.log('hi');
-        displayUserName.classList.toggle('show');
-    });
-
-    window.addEventListener('click', (e) => {
-        if (!e.target.closest('.userInformation')) {
-            displayUserName.classList.remove('show');
-        }
-    });
-});
-
 mapInstance.on('popupopen', function(event) {
     const bookForRent = event.popup._contentNode.querySelector('.bookButton');
     const studentName = document.querySelector('.email').textContent;
-    const contactDiv = event.popup._content.match(/Contact:\s*([^<]*)/);
+    const contactDiv = event.popup._content.match(/Owner: <span class="bold">(.*?)<\/span>/);
     const ownerName = contactDiv[1];
     bookForRent.addEventListener('click', () => {
-        fetch('./backend/BookForRent.php', {
+        fetch('/sajilo-rent/studentsection/backend/bookForRent.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,10 +52,15 @@ mapInstance.on('popupopen', function(event) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Parsed JSON:', data); // Log the parsed JSON
+            if(data.message.match("Exception")){
+                alert("Rent request already sent");
+            }
+            else{
+                alert(data.message);
+            }
         })
         .catch(error => {
-            console.error('Error:', error); // Catch and log parsing or network errors
+            console.error('Error:', error);
         });
     });
 });
@@ -99,21 +76,18 @@ mapInstance.on('popupopen', function(event) {
         container.addEventListener('click', (e) => {
             // Check if the clicked element is a button
             if (!e.target.classList.contains('bookButton') && !e.target.classList.contains('directionButton')) {
-                fetch('./backend/displayDetails.php', {
+                fetch('/sajilo-rent/studentsection/backend/saveLatLng.php', {
                     method: "POST",
                     headers: {
-                        "Content-type": "application/json"
+                        "Content-type": 'application/x-www-form-urlencoded'
                     },
-                    body: JSON.stringify(coordinates)
+                    body: 'latitude=' + lat + '&longitude=' + lng
                 })
-                .then(response => response.json())
+                .then(response => response.text())
                 .then((data) => {
-                    if (data.status === 'success') {
-                        // Redirect to the details page
-                        window.location.href = '/sajilo-rent/studentsection/details.php';
-                    } else {
-                        console.error('Error:', data.message);
-                    }
+                    
+                console.log(data);
+                window.location.href = "./details.php"; 
                 })
                 .catch(error => console.error('Error:', error));
 
@@ -123,3 +97,75 @@ mapInstance.on('popupopen', function(event) {
     }
 
 });
+
+// navbar
+
+document.querySelectorAll('.dropbtn').forEach(element => {
+    element.addEventListener('click', (event) => {
+        event.stopPropagation();
+        element.classList.toggle('active');
+        const dropdownContent = element.nextElementSibling;
+        dropdownContent.classList.toggle("show");
+    });
+});
+
+// Disable dropdown when clicked anywhere else
+window.addEventListener('click', (event) => {
+    if (!event.target.matches('.dropbtn')) {
+        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        });
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+            }
+        });
+        // selecter.resetValue();
+    }
+});
+
+
+//select tags
+
+const resetFiltersBtn = document.querySelector('.reset-filters-btn'); // Add this button to your HTML
+const priceOption = document.querySelectorAll('.price-option');
+const roomOption = document.querySelectorAll('.room-option');
+
+priceOption.forEach((element) => {
+    element.addEventListener('click', () => {
+        document.querySelectorAll('.price-option.hover-active').forEach(el => el.classList.remove('hover-active'));
+        
+        const priceValue = parseInt(element.getAttribute("data-value"));
+        element.classList.add('hover-active');
+        
+        selecter.setPrice(priceValue);
+        selecter.applyFilters();  // APPLY FILTERS AFTER SETTING VALUE
+        resetFiltersBtn.classList.add('visible');
+    });
+});
+
+roomOption.forEach((element) => {
+    element.addEventListener('click', () => {
+        document.querySelectorAll('.room-option.hover-active').forEach(el => el.classList.remove('hover-active'));
+
+        const roomValue = parseInt(element.getAttribute("data-value"));
+        element.classList.add('hover-active');
+
+        selecter.setRooms(roomValue);
+        selecter.applyFilters();  // APPLY FILTERS AFTER SETTING VALUE
+        resetFiltersBtn.classList.add('visible');
+    });
+});
+if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', () => {
+        document.querySelectorAll('.hover-active').forEach(el => el.classList.remove('hover-active'));
+        
+        selecter.resetFilters();
+        resetFiltersBtn.classList.remove('visible');
+    });
+}
+
+
+export {mapInstance, center};
