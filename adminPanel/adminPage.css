@@ -117,7 +117,7 @@ header figure {
     height: auto;
     border-radius: 10%;
     box-shadow: 0px 0.2rem 0.2rem 0rem var(--CLR-DARK-GREEN);
-    background-image: url("../resources/icons8-scatter-plot-64.png");
+    background-image: url("/sajilo-rent/resources/icons8-scatter-plot-64.png");
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;

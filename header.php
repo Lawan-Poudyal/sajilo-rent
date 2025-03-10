@@ -27,7 +27,10 @@
             width: 50px;
         }
         .title{
-            font-size: 20px;
+            font-size: clamp(1.5rem,3rem,5rem);
+            margin-left: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
         }
     </style>
 </head>

@@ -49,7 +49,7 @@ SELECT
     s.lastName, 
     COALESCE(ROUND(AVG(r.rating) * 2) / 2, 0) AS avg_rating
 FROM housedetails h
-LEFT JOIN signin s ON TRIM(LOWER(h.username)) = TRIM(LOWER(s.email))
+INNER JOIN signin s ON TRIM(LOWER(h.username)) = TRIM(LOWER(s.email))
 LEFT JOIN review_house r ON ABS(h.latitude - r.lat) < ? AND ABS(h.longitude - r.lng) < ?
 GROUP BY 
     h.username,

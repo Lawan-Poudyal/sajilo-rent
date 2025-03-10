@@ -118,7 +118,7 @@ if ($result2->num_rows > 0) {
             <div class="log-out-btn"><span>logout</span></div>
         </div>
         <figure>
-            <img class = "admin-btn" src="../resources/profile.png" width="50px" height="50px" alt="profile">
+            <img class = "admin-btn" src="/sajilo-rent/resources/profile.png" width="50px" height="50px" alt="profile">
         </figure>
         <div class="menu-btn"></div>
     </header>
@@ -128,7 +128,7 @@ if ($result2->num_rows > 0) {
             <div class="data_box-header">
             <div class="label">Unverified Users</div>
             <figure>
-                <img src="../resources/logo.svg" alt="sajilo rent">
+                <img src="/sajilo-rent/resources/logo.svg" alt="sajilo rent">
             </figure>
             </div>
             <?php
@@ -141,7 +141,7 @@ if ($result2->num_rows > 0) {
             ?>
         </div>
         <figure>
-            <img src="../resources/profile.png" width="50px" height="50px" alt="profile">
+            <img src="/sajilo-rent/resources/profile.png" width="50px" height="50px" alt="profile">
         </figure>
     </section>
     <section>
