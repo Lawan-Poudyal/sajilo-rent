@@ -1,4 +1,5 @@
 <?php 
+
 $email = $_SESSION['email'];
 ?>
 
@@ -189,7 +190,7 @@ cancelLogoutButton.addEventListener('click', () => {
 </script>
 <!------------------ dialog for seeing tenants profile dumbo  --->
 <dialog class="main-section-div request js-request-card xyz  ">
-        
+   <h1 style="color:gray">No request yet</h1>
 </dialog>
 <!----------this is the script to load the tenants profile dumbo -->
 <script>
@@ -208,8 +209,9 @@ async function loadRequests(){
 }
 function loadRequestDOM(data){
 data.forEach(element => {
-    requestCard.innerHTML = '';
+    
 if(element['error']) return;
+requestCard.innerHTML = '';
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
         <img src="/sajilo-rent/studentsection/backend/${element["img"]}" alt="something-in-the-way">
         <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>

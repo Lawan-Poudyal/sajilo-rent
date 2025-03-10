@@ -60,7 +60,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION['email'])) {
                     <div class="main-rating">
                         <div class="rating-box">
                             <div class="rating-image-counter">
-                                <img class="rating-image js-rating-image" src="../resources/ratings/rating-30.png" alt="star rating image">
+                                <img class="rating-image js-rating-image" src="../resources/ratings/rating-0.png" alt="star rating image">
                                 <p class="reviewer-count"></p>
                             </div>
                             <div class="rating-text">Out of 5</div>
