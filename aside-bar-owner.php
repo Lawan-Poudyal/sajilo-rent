@@ -210,8 +210,8 @@ async function loadRequests(){
 function loadRequestDOM(data){
 data.forEach(element => {
     
-if(element['error']) return;
 requestCard.innerHTML = '';
+if(element['error']) return;
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
         <img src="/sajilo-rent/studentsection/backend/${element["img"]}" alt="something-in-the-way">
         <div class="tenants-credential"><span class="tenants-username">${element["username"]}</span> <span class="tenants-email">${element["email"]}</span></div>

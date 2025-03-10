@@ -188,7 +188,7 @@ INSERT INTO `profilepicture` (`email`, `image`) VALUES
 
 CREATE TABLE `rentrequest` (
   `sender` varchar(255) NOT NULL,
-  `receiver` varchar(255) NOT NULL,
+  `reciever` varchar(255) NOT NULL,
   `lat` double NOT NULL,
   `lng` double NOT NULL,
   `seen` varchar(10) NOT NULL
@@ -198,7 +198,7 @@ CREATE TABLE `rentrequest` (
 -- Dumping data for table `rentrequest`
 --
 
-INSERT INTO `rentrequest` (`sender`, `receiver`, `lat`, `lng`, `seen`) VALUES
+INSERT INTO `rentrequest` (`sender`, `reciever`, `lat`, `lng`, `seen`) VALUES
 ('example2@gmail.com', 'rajesh.kumar@example.com', 27.673, 85.326, 'no'),
 ('uhisijan@gmail.com', 'SijanBhandari17', 27.62188935678423, 85.53754452104563, 'no'),
 ('uhisijan@gmail.com', 'SijanBhandari17', 27.62394739871245, 85.5385369421569, 'no');
@@ -211,7 +211,7 @@ INSERT INTO `rentrequest` (`sender`, `receiver`, `lat`, `lng`, `seen`) VALUES
 
 CREATE TABLE `review` (
   `reviewer` varchar(255) NOT NULL,
-  `receiver` varchar(255) NOT NULL,
+  `reciever` varchar(255) NOT NULL,
   `rating` int(11) NOT NULL,
   `comment` text NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp()
@@ -221,7 +221,7 @@ CREATE TABLE `review` (
 -- Dumping data for table `review`
 --
 
-INSERT INTO `review` (`reviewer`, `receiver`, `rating`, `comment`, `date`) VALUES
+INSERT INTO `review` (`reviewer`, `reciever`, `rating`, `comment`, `date`) VALUES
 ('abhim@123', 'test@gmail.com', 3, 'gay', '2025-02-06'),
 ('abhim@123', 'uhisijan@gmail.com', 3, 'safsaf', '2025-02-13'),
 ('adsf', 'test@gmail.com', 3, 'fa]', '2025-02-06'),
@@ -434,13 +434,13 @@ ALTER TABLE `profilepicture`
 -- Indexes for table `rentrequest`
 --
 ALTER TABLE `rentrequest`
-  ADD PRIMARY KEY (`sender`,`receiver`,`lat`,`lng`);
+  ADD PRIMARY KEY (`sender`,`reciever`,`lat`,`lng`);
 
 --
 -- Indexes for table `review`
 --
 ALTER TABLE `review`
-  ADD PRIMARY KEY (`reviewer`,`receiver`);
+  ADD PRIMARY KEY (`reviewer`,`reciever`);
 
 --
 -- Indexes for table `review_house`

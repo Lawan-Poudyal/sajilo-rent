@@ -12,7 +12,7 @@ include("db.php");
 $tolerance = 0.000001;
 
 // Read the CSV file to get the order of coordinates
-$csvFile = '/opt/lampp/htdocs/sajilo-rent/algorithms_dataAnalysis/clusteredData_latlng.csv';
+$csvFile = '/xampp/htdocs/sajilo-rent/algorithms_dataAnalysis/clusteredData_latlng.csv';
 $csvData = [];
 if (!file_exists($csvFile)) {
     die("File not found: " . $csvFile);
