@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2025 at 08:05 AM
+-- Generation Time: Mar 10, 2025 at 07:23 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -37,8 +37,8 @@ INSERT INTO `booked` (`email`, `owner`, `lat`, `lng`)
 VALUES (
         'uhisijan@gmail.com',
         'sachin@gmail.com',
-        27.62394735684540600,
-        85.53853690624237000
+        27.62394735684500000,
+        85.53853690624200000
     );
 -- --------------------------------------------------------
 --
@@ -48,13 +48,103 @@ CREATE TABLE `chat` (
     `sender` varchar(255) DEFAULT NULL,
     `reciever` varchar(255) DEFAULT NULL,
     `message` text DEFAULT NULL,
-    `seenornot` varchar(50) NOT NULL
+    `seenornot` varchar(50) NOT NULL,
+    `id` int(11) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 --
 -- Dumping data for table `chat`
 --
-INSERT INTO `chat` (`sender`, `reciever`, `message`, `seenornot`)
-VALUES ('null', 'undefined', 'sadfksjdafl', 'unseen');
+INSERT INTO `chat` (
+        `sender`,
+        `reciever`,
+        `message`,
+        `seenornot`,
+        `id`
+    )
+VALUES (
+        'loopfelloff@gmail.com',
+        'sarthakregmi@gmail.com',
+        'what\'s up dumbo sarthak',
+        'unseen',
+        1
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'example2@gmail.com',
+        'asdfasdfa',
+        'ownerseen',
+        9
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'undefined',
+        'fasdfasdf',
+        'ownerseen',
+        11
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'undefined',
+        'ddddd',
+        'ownerseen',
+        12
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'sarthakregmi@gmail.com',
+        'fasdfasdfasdf',
+        'unseen',
+        16
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'example2@gmail.com',
+        'hey how are you long time no see!',
+        'ownerseen',
+        17
+    ),
+    (
+        'example2@gmail.com',
+        'loopfelloff@gmail.com',
+        'I am good wby?',
+        'ownerseen',
+        18
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'example2@gmail.com',
+        'hello how are yoiu',
+        'ownerseen',
+        19
+    ),
+    (
+        'example2@gmail.com',
+        'loopfelloff@gmail.com',
+        'hello how are you friend',
+        'ownerseen',
+        20
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'example2@gmail.com',
+        'i am fine thank you sir',
+        'ownerseen',
+        21
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'example2@gmail.com',
+        'hello how are you',
+        'ownerseen',
+        22
+    ),
+    (
+        'loopfelloff@gmail.com',
+        'example2@gmail.com',
+        'fajksldfjalsdjflajdlfajsdflkadjfasldf',
+        'ownerseen',
+        24
+    );
 -- --------------------------------------------------------
 --
 -- Table structure for table `housedetails`
@@ -99,6 +189,132 @@ INSERT INTO `housedetails` (
         `house_facing_direction`
     )
 VALUES (
+        'anish@gmail.com',
+        2,
+        2,
+        '06:00:00',
+        '22:00:00',
+        500,
+        'images/room1.jpg',
+        'images/room1.jpg',
+        'images/room3.jpg',
+        27.624012356845405,
+        85.53862690624237,
+        3800,
+        'available',
+        'included',
+        '2',
+        'south'
+    ),
+    (
+        'bibek123@yahoo.com',
+        3,
+        1,
+        '06:00:00',
+        '22:30:00',
+        0,
+        'images/room3.jpg',
+        'images/room3.jpg',
+        'images/room1.jpg',
+        27.624147356845405,
+        85.53843690624237,
+        5500,
+        'available',
+        'required',
+        '1',
+        'north'
+    ),
+    (
+        'kamal@outlook.com',
+        3,
+        2,
+        '05:30:00',
+        '23:00:00',
+        350,
+        'images/room1.jpg',
+        'images/room1.jpg',
+        'images/room1.jpg',
+        27.623897356845404,
+        85.53883690624237,
+        5900,
+        'available',
+        'required',
+        '3',
+        'west'
+    ),
+    (
+        'nabin@gmail.com',
+        1,
+        0,
+        '05:45:00',
+        '23:15:00',
+        0,
+        'images/room1.jpg',
+        'images/room3.jpg',
+        'images/room1.jpg',
+        27.623697356845405,
+        85.53903690624237,
+        3950,
+        'available',
+        'required',
+        '2',
+        'north-west'
+    ),
+    (
+        'priya@outlook.com',
+        1,
+        2,
+        '05:30:00',
+        '23:00:00',
+        300,
+        'images/room3.jpg',
+        'images/room1.jpg',
+        'images/room3.jpg',
+        27.623847356845406,
+        85.53873690624236,
+        4200,
+        'not available',
+        'included',
+        '3',
+        'west'
+    ),
+    (
+        'ramesh@hotmail.com',
+        2,
+        0,
+        '05:00:00',
+        '23:30:00',
+        250,
+        'images/room1.jpg',
+        'images/room3.jpg',
+        'images/room1.jpg',
+        27.623747356845406,
+        85.53893690624237,
+        3500,
+        'available',
+        'included',
+        '4',
+        'south-east'
+    ),
+    (
+        'rita@yahoo.com',
+        2,
+        3,
+        '06:00:00',
+        '22:30:00',
+        200,
+        'images/room3.jpg',
+        'images/room3.jpg',
+        'images/room3.jpg',
+        27.624147356845405,
+        85.53813690624237,
+        4500,
+        'not available',
+        'included',
+        '1',
+        'south-west'
+    ),
+    (
         'sachin@gmail.com',
         1,
         1,
@@ -115,6 +331,24 @@ VALUES (
         'required',
         '1',
         'east'
+    ),
+    (
+        'sunita@gmail.com',
+        1,
+        3,
+        '06:30:00',
+        '22:00:00',
+        400,
+        'images/room3.jpg',
+        'images/room1.jpg',
+        'images/room1.jpg',
+        27.624047356845406,
+        85.53833690624236,
+        4800,
+        'not available',
+        'included',
+        '2',
+        'north-east'
     );
 -- --------------------------------------------------------
 --
@@ -178,7 +412,7 @@ CREATE TABLE `review` (
     `receiver` varchar(255) NOT NULL,
     `rating` int(11) NOT NULL,
     `comment` text NOT NULL,
-    `date` date NOT NULL DEFAULT current_timestamp()
+    `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 --
 -- Dumping data for table `review`
@@ -267,7 +501,7 @@ CREATE TABLE `review_house` (
     `lng` double NOT NULL,
     `rating` int(11) NOT NULL,
     `comment` varchar(256) NOT NULL,
-    `date` date NOT NULL DEFAULT current_timestamp()
+    `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 --
 -- Dumping data for table `review_house`
@@ -296,7 +530,7 @@ CREATE TABLE `signin` (
     `email` varchar(50) NOT NULL,
     `firstName` varchar(20) NOT NULL,
     `lastName` varchar(20) NOT NULL,
-    `number` int(10) NOT NULL,
+    `number` varchar(10) NOT NULL,
     `password` varchar(100) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 --
@@ -313,35 +547,42 @@ VALUES (
         'abhim@123',
         'abhim',
         'bhusal',
-        0,
+        '0',
         '$2y$10$hoQ.1bjIMh6EpvsvBPgiiOBeNJc5RVZB88PQRSXQg1KpJvAxEUpLO'
     ),
     (
         'sachin@gmail.com',
         'Sachin',
         'name',
-        0,
+        '0',
         '$2y$10$rowJ8imB.okiwy0aSIqaXebNgpSVl.IqFEf9EyItU4m72cqOGKic2'
+    ),
+    (
+        'shishir@gmail.com',
+        'Sijan',
+        'hfasufhf',
+        '9765415893',
+        '$2y$10$9Wxwk5d1L.JuY7hpgfwpaeYMTaPGp60DaT2gk3pVYvvvTjkn7/ZlG'
     ),
     (
         'SijanBhandari17',
         'kane',
         'Williamson',
-        0,
+        '0',
         '841bf1f4d35fd3dcd6132d0ebcc6639e1743ab7e866d1d420775229f5ba18431'
     ),
     (
         'test@gmail.com',
         'test',
         'se',
-        0,
+        '0',
         '$2y$10$IOfUCY4ry0YBxrsFZTxXuepTsbScIBX/hqBuanQGC1dwqQ7INtWPm'
     ),
     (
         'uhisijan@gmail.com',
         'Sijan',
         'Bhandari',
-        0,
+        '0',
         '$2y$10$uCZ60kitAAyCXER8XptWReUlWAMTPmhqS9yOvr/FUCBdZJygQF2lO'
     );
 -- --------------------------------------------------------
@@ -359,6 +600,7 @@ CREATE TABLE `user_verification` (
 INSERT INTO `user_verification` (`email`, `verification_number`, `status`)
 VALUES ('abhim@123', 12, 'owner'),
     ('sachin@gmail.com', 1234, 'owner'),
+    ('shishir@gmail.com', 123, 'student'),
     ('test@gmail.com', 1, 'student');
 -- --------------------------------------------------------
 --
@@ -375,6 +617,7 @@ CREATE TABLE `verified_users` (
 INSERT INTO `verified_users` (`email`, `verification_number`, `status`)
 VALUES ('abhim@123', 12, 'owner'),
     ('sachin@gmail.com', 1234, 'owner'),
+    ('shishir@gmail.com', 123, 'student'),
     ('test@gmail.com', 1, 'student'),
     ('uhisijan@gmail.com', 1, 'student');
 --
@@ -385,6 +628,11 @@ VALUES ('abhim@123', 12, 'owner'),
 --
 ALTER TABLE `booked`
 ADD PRIMARY KEY (`email`);
+--
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `housedetails`
 --
@@ -426,6 +674,15 @@ ADD PRIMARY KEY (`email`);
 --
 ALTER TABLE `verified_users`
 ADD PRIMARY KEY (`email`);
+--
+-- AUTO_INCREMENT for dumped tables
+--
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 26;
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;

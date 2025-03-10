@@ -10,7 +10,21 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "final connection",
+            "name": "sijan",
+            "database": "user_database",
+            "username": "root",
+            "password": ""
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "final",
             "database": "user_database",
             "username": "root",
             "password": ""
