@@ -167,6 +167,8 @@ chatBox.scrollTop = chatBox.scrollHeight;
 
 async function sendToDataBase(reciever , msg){
 let response = await fetch(`/sajilo-rent/chatapplication/backend/insertintochat.php?sender=${email}&reciever=${reciever}&message=${input.value.trim()}`);
+let text = await response.text();
+console.log(text);
 input.value = '';
 }
 async function removeMsg(msgBoxDiv ,  id)
@@ -176,7 +178,6 @@ async function removeMsg(msgBoxDiv ,  id)
     console.log(data);
     msgBoxDiv.remove();
 }
-async function jaskfl(){
-const repsonse = await loadChat(reciever);
-}// setInterval(async () => {
-//   } , 1000);
+setInterval(async () => {
+    await loadChat(reciever);
+  } , 1000);
