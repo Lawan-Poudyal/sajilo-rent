@@ -165,9 +165,18 @@ function loadReview(data) {
 function adjustRating(avgRating) {
     let tempRating = avgRating;
     let floatingValue = avgRating - Math.floor(avgRating);
+    if(tempRating !== 0)
+    {
+
     if (floatingValue > 0.5) {
         return (Math.floor(avgRating) + 1);
     } else {
         return (Math.floor(avgRating) + 0.5);
     }
 }
+else {
+    return 0;
+}
+}
+
+

@@ -167,6 +167,8 @@ chatBox.scrollTop = chatBox.scrollHeight;
 
 async function sendToDataBase(reciever , msg){
 let response = await fetch(`/sajilo-rent/chatapplication/backend/insertintochat.php?sender=${email}&reciever=${reciever}&message=${input.value.trim()}`);
+let text = await response.text();
+console.log(text);
 input.value = '';
 }
 async function removeMsg(msgBoxDiv ,  id)

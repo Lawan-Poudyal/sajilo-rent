@@ -44,33 +44,7 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION['email'])) {
                         <p class="email js-email" style="display:none"><?php echo $_SESSION['email'] ?></p>
                     </div>
                 </div>
-
-                <body>
-                    <?php require_once '/opt/lampp/htdocs/sajilo-rent/header.php'; ?>
-                    <div class="main-body">
-                        <?php
-                        require_once '/opt/lampp/htdocs/sajilo-rent/aside-bar-owner.php';
-                        ?>
-                        <div class="section-wrapper">
-                            <section class="section-profile">
-                                <div class="user-information">
-                                    <div class="avatar-wrapper">
-                                        <div class="avatar">
-                                            <img src="/sajilo-rent/resources/profile-related/default-profile.png" alt="Profile image" class="profile-image js-profile-image">
-                                            <img src="../resources/profile-related/change-profile.svg" class="change-profile-icon js-change-profile-icon" alt="">
-                                            <form action="/sajilo-rent/user-panel/back_end/addprofilepic.php" method="POST" enctype="multipart/form-data" class="js-profile-form">
-                                                <input type="file" name="image" id="imageInput" class="js-image-input" accept="image/*">
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="personal-info">
-                                        <p class="user-name"><?php echo $_SESSION["username"] ?></p>
-                                        <p class="user-status">Owner</p>
-                                        <p class="email js-email" style="display:none"><?php echo $_SESSION['email'] ?></p>
-                                    </div>
-                                </div>
-
-                            </section>
+                </section>
                             <section class="section-recent">
                                 <p class="text-student text-owner">Houses Rented</p>
                                 <div class="current-houses js-current-houses">
@@ -202,5 +176,4 @@ if (!isset($_SESSION["username"]) || !isset($_SESSION['email'])) {
                         <div class="cross-icon" id="js-cross-icon"><img src="/sajilo-rent/resources/cross.png" alt="" height="50" width="50"></div>
                     </dialog>
                 </body>
-
 </html>
