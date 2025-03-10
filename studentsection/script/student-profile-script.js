@@ -48,6 +48,7 @@ function putHouseContent(jsonDataProfile) {
  
 }   
 function putReviewContent(jsonDataReview){
+
     if(!jsonDataReview["status"]){
         let totalRating = 0;
        console.log(jsonDataReview)
@@ -76,6 +77,11 @@ function putReviewContent(jsonDataReview){
     ratingNumber.innerText = Rating;  
     ratingImage.src = `/sajilo-rent/resources/ratings/rating-${Rating * 10}.png`;
 
+    }else{
+        document.querySelector('.rating-comment').innerText = "";
+        document.querySelector('.rating-comment').innerText = "No reviews"
+        document.querySelector('.rating-comment').style.color = '#999999';
+        document.querySelector('.rating-comment').style.fontSize = '32px';
     }
 }
 function adjustAverage(totalRating, count) {

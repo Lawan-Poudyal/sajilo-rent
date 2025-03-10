@@ -26,8 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (reviewForm) {
         processForm(reviewForm);
     }
-    
-    callBooked();
 });
 
 function processForm(form) {
@@ -38,35 +36,10 @@ function processForm(form) {
 
     });
 }
-function callBooked() {
-        fetch('/sajilo-rent/studentsection/backend/booked.php')
-        .then(response => {
-            if (!response.ok) {
-                throw new Erroror('Invalid');
-            }
-            return response.json();
-        })
-        .then(json => {
-            console.log(json);
-                if(json.status != 'error'){
-                    Json = json;
-                    leaveHouse.classList.add('show');
-                }    
-        })
-        .catch(console.warn);
-}
+
 const leave = ()=>{
     leaveHouse.classList.remove('show');
-        fetch("/sajilo-rent/studentsection/backend/leave.php", {
-            method: 'POST',
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                latitude: Json.latitude,
-                longitude: Json.longitude
-            })
-        })
+        fetch("/sajilo-rent/studentsection/backend/leave.php")
         .then(response => response.json())
         .then(data => {
             console.log(data);  

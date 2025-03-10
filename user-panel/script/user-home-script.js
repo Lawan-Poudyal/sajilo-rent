@@ -1,4 +1,3 @@
-
 const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -234,5 +233,3 @@ if (navigator.geolocation) {
 } else {
     console.error("Geolocation is not supported by this browser.");
 }
-
-

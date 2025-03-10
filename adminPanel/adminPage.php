@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="http://localhost/sajilo-rent/adminPanel/adminPage.css">
+    <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+    <title>Admin</title>
+        <link rel="stylesheet" href="http://localhost/sajilo-rent/adminPanel/adminPage.css">
 </head>
 <body class ="container">
     <?php

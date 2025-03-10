@@ -4,11 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Unset all session variables
-$_SESSION = array();
-
-// Destroy the session
-session_destroy();
+unset($_SESSION['s_username']);
+unset($_SESSION['s_email']);
 
 // Redirect to login page
 exit;
