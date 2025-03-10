@@ -67,8 +67,9 @@ const leave = ()=>{
                 longitude: Json.longitude
             })
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
+            console.log(data);  
             if (data.status == 'success') {
                 alert('Successfully left the house');
             } 

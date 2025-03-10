@@ -140,7 +140,7 @@ crossIcon.addEventListener("click", function() {
 
 function loadReview(data) {
     let count = 0;
-    if (data['err']) return;
+    if (data[0]['error']) return;
     data.forEach(element => {
         avgRating += element['rating'];
         count++;
@@ -170,9 +170,9 @@ function adjustRating(avgRating) {
     {
 
     if (floatingValue > 0.5) {
-        return (Math.floor(avgRating) + 1);
-    } else {
         return (Math.floor(avgRating) + 0.5);
+    } else {
+        return (Math.floor(avgRating));
     }
 }
 else {
