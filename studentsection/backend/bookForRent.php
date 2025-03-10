@@ -44,7 +44,7 @@ if (!$alreadyBooked) {
         $lng = $data['lng'];
         $seen = 'no'; 
         
-        $stmt = $conn->prepare("INSERT INTO rentrequest (sender, receiver, lat, lng, seen) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO rentrequest (sender, reciever, lat, lng, seen) VALUES (?, ?, ?, ?, ?)");
         if ($stmt === false) {
             die(json_encode(['status' => 'error', 'message' => 'Failed to prepare insert SQL statement']));
         }

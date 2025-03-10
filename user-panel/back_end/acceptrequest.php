@@ -9,7 +9,7 @@ if($conn->connect_error)
 {
     echo "lol conn error";
 }
-$query = "DELETE FROM rentrequest WHERE sender = ? and receiver = ? ";
+$query = "DELETE FROM rentrequest WHERE sender = ? and reciever = ? ";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("ss" , $email , $reciever);
 if(!$stmt->execute())

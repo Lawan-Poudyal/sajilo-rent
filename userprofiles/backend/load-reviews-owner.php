@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $json_data = file_get_contents('php://input');
     $data = json_decode($json_data, true);
     $owner_email = $data['username'];
-    $stmt = $conn->prepare("SELECT reviewer, rating, comment, date FROM review WHERE receiver = ?");
+    $stmt = $conn->prepare("SELECT reviewer, rating, comment, date FROM review WHERE reciever = ?");
     $stmt->bind_param("s", $owner_email);
 
     if (!$stmt->execute()) {

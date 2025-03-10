@@ -1,4 +1,5 @@
 <?php 
+
 $email = $_SESSION['email'];
 ?>
 
@@ -189,7 +190,7 @@ cancelLogoutButton.addEventListener('click', () => {
 </script>
 <!------------------ dialog for seeing tenants profile dumbo  --->
 <dialog class="main-section-div request js-request-card xyz  ">
-        
+   <h1 style="color:gray">No request yet</h1>
 </dialog>
 <!----------this is the script to load the tenants profile dumbo -->
 <script>
@@ -208,7 +209,8 @@ async function loadRequests(){
 }
 function loadRequestDOM(data){
 data.forEach(element => {
-    requestCard.innerHTML = '';
+    
+requestCard.innerHTML = '';
 if(element['error']) return;
 requestCard.innerHTML += ` <div class="tenants-card js-tenants-card">
         <img src="/sajilo-rent/studentsection/backend/${element["img"]}" alt="something-in-the-way">
@@ -435,7 +437,6 @@ async function loadTenants() {
                 </div>
                 <div class="tenant-actions">
                     <button class="view-profile-btn">View Profile</button>
-                    <button class="message-btn">Message</button>
                     <button class="remove-btn">Remove</button>
                 </div>
             `;
@@ -489,16 +490,7 @@ function setupTenantCardButtons() {
     });
     
     // Message buttons (you can implement this functionality)
-    document.querySelectorAll('.message-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const tenantCard = this.closest('.tenant-card');
-            const tenantEmail = tenantCard.querySelector('.tenant-email').textContent;
-            //skylerwhite
-            // Implement messaging functionality here
-            console.log('Message tenant:', tenantEmail);
-            alert('Messaging functionality coming soon!');
-        });
-    });
+
 }
 
 // Handle tenant removal
@@ -744,15 +736,6 @@ function resetReviewForm() {
 }
 .view-profile-btn:hover {
     background-color: #e9ecef;
-}
-
-.message-btn {
-    background-color: #4a8cff;
-    color: white;
-}
-
-.message-btn:hover {
-    background-color: #3a7de6;
 }
 
 .remove-btn {

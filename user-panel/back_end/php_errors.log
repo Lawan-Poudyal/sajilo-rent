@@ -146,42 +146,42 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 20
-[06-Mar-2025 10:50:47 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 10:50:47 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
   thrown in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 19
-[06-Mar-2025 10:51:20 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 10:51:20 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
   thrown in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 19
-[06-Mar-2025 12:44:50 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 12:44:50 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
   thrown in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 19
-[06-Mar-2025 12:44:56 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 12:44:56 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
   thrown in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 19
-[06-Mar-2025 13:24:46 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 13:24:46 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
   thrown in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 19
-[06-Mar-2025 13:24:54 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 13:24:54 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
   thrown in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 19
-[06-Mar-2025 13:30:23 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 13:30:23 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
   thrown in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 19
-[06-Mar-2025 13:30:30 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.receiver' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
+[06-Mar-2025 13:30:30 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'review.reciever' in 'field list' in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:19
 Stack trace:
 #0 C:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php(19): mysqli->prepare('SELECT review.r...')
 #1 {main}
@@ -208,3 +208,23 @@ Stack trace:
 [06-Mar-2025 14:04:23 Europe/Berlin] PHP Warning:  move_uploaded_file(): Unable to move &quot;C:\xampp\tmp\php7725.tmp&quot; to &quot;/sajilo-rent/user-panel/back_end/images/room1.jpg&quot; in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\addhousedetails.php on line 34
 [06-Mar-2025 14:06:43 Europe/Berlin] PHP Warning:  move_uploaded_file(/sajilo-rent/user-panel/back_end/images/r1.jpg): Failed to open stream: No such file or directory in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\addhousedetails.php on line 34
 [06-Mar-2025 14:06:43 Europe/Berlin] PHP Warning:  move_uploaded_file(): Unable to move &quot;C:\xampp\tmp\php96EE.tmp&quot; to &quot;/sajilo-rent/user-panel/back_end/images/r1.jpg&quot; in C:\xampp\htdocs\sajilo-rent\user-panel\back_end\addhousedetails.php on line 34
+[10-Mar-2025 13:38:09 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 21
+[10-Mar-2025 13:38:15 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 21
+[10-Mar-2025 13:38:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 21
+[10-Mar-2025 13:38:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 21
+[10-Mar-2025 13:38:19 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\xampp\htdocs\sajilo-rent\user-panel\back_end\loadcomment.php on line 21
