@@ -54,7 +54,6 @@ async function loadPeople(){
     response = await fetch(`/sajilo-rent/chatapplication/backend/loadowner.php`);
     }
     chat_data = await response.json();
-    console.log("Chatdata: ")
     console.log(chat_data);
 }
 async function peopleName(){
@@ -84,7 +83,7 @@ async function peopleName(){
         filepath = filepath + chat_data[index]['image'];
         chatter.style.backgroundImage = `url('${filepath}')`;
         chatter.style.backgroundImage = 'cover';
-    }); 
+    });
  
 
 }
@@ -105,7 +104,7 @@ async function addClickOpt(){
 
 
 async function loadChat(reciever){
-    console.log(reciever);
+
     let response = await fetch(`/sajilo-rent/chatapplication/backend/loadchat.php?sender=${email}&reciever=${reciever}&status=${status}`);
 let data= await response.json();
 if(status === 'student' && seenornot === false)
@@ -177,6 +176,6 @@ async function removeMsg(msgBoxDiv ,  id)
     console.log(data);
     msgBoxDiv.remove();
 }
-// setInterval(async () => {
-//     await loadChat(reciever);
-//   } , 1000);
+setInterval(async () => {
+    await loadChat(reciever);
+  } , 1000);

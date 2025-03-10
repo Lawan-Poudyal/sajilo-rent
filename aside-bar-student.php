@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $s_email = $_SESSION['s_email'];
 ?>
 <aside class="aside-bar">
