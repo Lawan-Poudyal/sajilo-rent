@@ -2,7 +2,7 @@ const changeProfileBtn = document.querySelector('.js-change-profile-icon');
 const imageInput = document.querySelector('.js-image-input');
 const profileForm = document.querySelector('.js-profile-form');
 const fileDir = '/sajilo-rent/user-panel/back_end/';
-const profileImage = document.querySelector('.profile-image');
+const profileImage = document.querySelector('.js-profile-image');
 const currentHouses = document.querySelector('.js-current-houses');
 const notRentedTag = document.querySelector('.js-not-rented-tag');
 const crossIcon = document.getElementById("js-cross-icon");
@@ -29,12 +29,13 @@ const mainComment = document.querySelector('.js-main-comment');
 const ratingImage = document.querySelector('.js-rating-image');
 let avgRating = 0;
 var imageLocation = '';
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         let response = await Promise.all([
             fetch('/sajilo-rent/user-panel/back_end/setprofilepic.php'),
             fetch('/sajilo-rent/user-panel/back_end/showallhouses.php'),
-            fetch(`/sajilo-rent/user-panel/back_end/loadcomment.php`)
+            fetch('/sajilo-rent/user-panel/back_end/loadcomment.php')
         ]);
         let data = await Promise.all([response[0].json(), response[1].json(), response[2].json()]);
         // console.log(data);
@@ -57,9 +58,7 @@ imageInput.addEventListener('change', async () => {
 
 function changeProfile(filePath) {
     if (filePath === 'false') return;
-    console.log(filePath)
-    profileImage.style.backgroundImage = `url(${filePath})`;
-
+    profileImage.src = filePath;
 }
 
 function addHouseDetails(houses) {
@@ -98,7 +97,7 @@ async function showHouseDetail(dataset) {
     // console.log(dataset.lat);
     // console.log(dataset.lng);
     // console.log(email);
-    const response = await fetch(`/sajilo-rent/user-panel/back_end/showhousedetails.php?lat=${dataset.lat}&lng=${dataset.lng}&username=${email}`);
+    const response = await fetch('/sajilo-rent/user-panel/back_end/showhousedetails.php?lat=${dataset.lat}&lng=${dataset.lng}&username=${email}');
     const data = await response.json();
     showForm(data);
 }
@@ -123,9 +122,9 @@ function showForm(data) {
     wifi.value = data['wifi_price'];
     gatesClose.value = data['gates_close'];
     gatesOpen.value = data['gates_open'];
-    image1.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image1']})`;
-    image2.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image2']})`;
-    image3.style.backgroundImage = `url(/sajilo-rent/user-panel/back_end/${data['image3']})`;
+    image1.style.backgroundImage = url(`/sajilo-rent/user-panel/back_end/${data['image1']}`);
+    image2.style.backgroundImage = url(`/sajilo-rent/user-panel/back_end/${data['image2']}`);
+    image3.style.backgroundImage = url(`/sajilo-rent/user-panel/back_end/${data['image3']}`);
     image1.style.backgroundSize = 'cover';
     image3.style.backgroundSize = 'cover';
     image2.style.backgroundSize = 'cover';
@@ -139,7 +138,7 @@ crossIcon.addEventListener("click", function() {
 
 function loadReview(data) {
     let count = 0;
-    if (data['err']) return;
+    if (data[0]['error']) return;
     data.forEach(element => {
         avgRating += element['rating'];
         count++;
@@ -165,9 +164,16 @@ function loadReview(data) {
 function adjustRating(avgRating) {
     let tempRating = avgRating;
     let floatingValue = avgRating - Math.floor(avgRating);
+    if(tempRating !== 0)
+    {
+
     if (floatingValue > 0.5) {
         return (Math.floor(avgRating) + 1);
     } else {
         return (Math.floor(avgRating) + 0.5);
     }
+}
+else {
+    return 0;
+}
 }
