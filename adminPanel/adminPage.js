@@ -1,8 +1,11 @@
 const body = document.body ;
 const section = body.querySelector('section');
 const dataBox = section.querySelector('.data_box')
+const checkBox = section.querySelector('.check-box');
+const buttonClass = checkBox ? checkBox.className : '';
 const dataBlock = body.getElementsByClassName('data_block');
-const buttonClass =section.querySelector('.check-box').className;
+const  menu_btn = body.querySelector('.menu-btn');
+// const buttonClass =section.querySelector('.check-box').className;
 function addGlobalEventListener(type , selector , callback , parent) {
 parent.addEventListener(type , function(e) {
    if(e.target.className==='check-box'){
@@ -25,3 +28,26 @@ function verifyUser(pNode) {
         }
     };
 }
+//////////////// menu-btn redirection //////////
+menu_btn.addEventListener('click',()=>{
+    location.href = 'scaterplot.html';
+})
+
+
+//////////////////// admin-figure-btn //////////
+
+const admin_btn = document.querySelector('.admin-btn');
+const admin_bar = document.querySelector('.logout-bar');
+document.addEventListener('click' , (e)=>{
+    if(e.target.className===admin_btn.className){
+        admin_bar.style="display:unset";
+    }
+    else {
+        admin_bar.style="display:none";
+    }
+});
+const logout_btn = document.querySelector('.log-out-btn');
+logout_btn.addEventListener('click',()=>{
+    console.log()
+    location.href='../adminPanel'
+})

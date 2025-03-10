@@ -114,16 +114,23 @@ if ($result2->num_rows > 0) {
  ?>
 
     <header>
+        <div class="logout-bar">
+            <div class="log-out-btn"><span>logout</span></div>
+        </div>
         <figure>
-            <img src="../resources/profile.png" width="50px" height="50px" alt="profile">
+            <img class = "admin-btn" src="../resources/profile.png" width="50px" height="50px" alt="profile">
         </figure>
+        <div class="menu-btn"></div>
     </header>
 
     <section class="container">
         <div class="data_box">
+            <div class="data_box-header">
+            <div class="label">Unverified Users</div>
             <figure>
                 <img src="../resources/logo.svg" alt="sajilo rent">
             </figure>
+            </div>
             <?php
             foreach ($user_email_status as $key => $value) {
                 echo "<div class='data_block'>
@@ -133,7 +140,13 @@ if ($result2->num_rows > 0) {
             }
             ?>
         </div>
+        <figure>
+            <img src="../resources/profile.png" width="50px" height="50px" alt="profile">
+        </figure>
     </section>
+    <section>
+        
+        </section>
     <script src="..\\adminPanel\\adminPage.js"></script>
 </body>
 </html>

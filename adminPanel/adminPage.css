@@ -18,17 +18,19 @@ html {
     scroll-behavior: smooth;
     color-scheme: light dark;
 }
-input , button {
-    border:none;
+input, button {
+    border: none;
     display: inline-block;
     height: 100%;
-    padding-inline:0.8rem;
-    background-color:var(--CLR-MID1-GREEN);
-    color:white;
+    padding-inline: 0.8rem;
+    /* Updated button background color */
+    background-color: var(--CLR-MID1-GREEN);
+    color: white;
     border-radius: 10%;
 }
 button:hover {
-background-color: rgba(0, 128, 0, 0.8);
+    /* Slightly darker shade on hover */
+    background-color: rgba(40, 167, 69, 0.8);
 }
 /* || end reset */
 
@@ -42,84 +44,158 @@ background-color: rgba(0, 128, 0, 0.8);
 /* || end utility classes */
 
 /* || variables */
+/* Updated color palette */
 :root {
-    --BORDER-ROTATION:0deg;
-    --CLR-DARK-GREEN:#094908;
-    --CLR-MEDIUM-GREEN:#00643a;
-    --CLR-MID2-GREEN:rgba(0, 128, 0, 0.30);
-    --CLR-LIGHT-GREEN:rgba(0, 128, 0, 0.21);
-    --CLR-MID1-GREEN:green;
-    --CLR-BLUE:#00baff;
-    --CLR-LIGHT-BLUE:#d2f5ff;
-    --CLR-LIGHT-BLUEGRAY:#587b98;
-    --CLR-LIGHTPURPLE:#8B8DBA;
-    --CLR-DARK-PURPLE:purple;
-    --CLR-LIGHTNEUTRAL:#F8F8FF;
-    --CLR-WARMNEUTRAL:#F1F1E6;
-    --CLR-FADELIGHTNEUTRAL:#f8f8ff7a;
-    --CLR-DARK-BLUE:rgb(2, 16, 55);
-    /* width */
-    --INNER-BOX-WIDTH:clamp(16rem , 60vw,50rem);
-    --INNER-IMAGE-SIZE:clamp(5rem , 20% , 7rem);
-    --INNER-BOX-HEIGHT:78vh;
-    --OUTER-BOX-HEIGHT:79.1vh;
-    --OUTER-BOX-WIDTH:clamp(17rem , 61vw , 51rem);
-    --OUTER-IMAGE-WIDTH:min(50% ,18rem);
+    --BORDER-ROTATION: 0deg;
+    
+    /* Greens */
+    --CLR-DARK-GREEN: #0b3d0b;         /* Dark Forest Green */
+    --CLR-MEDIUM-GREEN: #0f7a0f;       /* Rich, medium green */
+    --CLR-MID2-GREEN: rgba(16, 163, 16, 0.30); /* Soft transparent green */
+    --CLR-LIGHT-GREEN: rgba(161, 220, 161, 0.21); /* Pale green */
+    --CLR-MID1-GREEN: #28a745;         /* Vibrant Bootstrap-like green */
+    
+    /* Blues and Purples */
+    --CLR-BLUE: #007bff;              /* Vivid blue */
+    --CLR-LIGHT-BLUE: #b3d7ff;         /* Light blue */
+    --CLR-LIGHT-BLUEGRAY: #7a9dbe;     /* Blue-gray */
+    --CLR-LIGHTPURPLE: #b39ddb;        /* Soft lavender */
+    --CLR-DARK-PURPLE: #6f42c1;        /* Deep purple */
+    
+    /* Neutrals */
+    --CLR-LIGHTNEUTRAL: #f8f9fa;       /* Clean, light neutral */
+    --CLR-WARMNEUTRAL: #e9ecef;        /* Warm, soft gray */
+    --CLR-FADELIGHTNEUTRAL: #f8f9fa;    /* Removed transparency for a solid background */
+    
+    /* Dark Blue */
+    --CLR-DARK-BLUE: #343a40;          /* Dark slate blue/gray */
+    
+    /* width values */
+    --INNER-BOX-WIDTH: clamp(16rem, 60vw, 50rem);
+    --INNER-IMAGE-SIZE: clamp(5rem, 20%, 7rem);
+    --INNER-BOX-HEIGHT: 78vh;
+    --OUTER-BOX-HEIGHT: 79.1vh;
+    --OUTER-BOX-WIDTH: clamp(17rem, 61vw, 51rem);
+    --OUTER-IMAGE-WIDTH: min(50%, 18rem);
+    
     /* gaps */
-    --ROW-GAP:2%;
+    --ROW-GAP: 2%;
+    --ADMIN-FIG-WIDHT: 4rem;
 }
 /* || end variables */
 
 body {
-    display:flex;
+    /* Updated background to a solid light neutral */
+    background-color: var(--CLR-FADELIGHTNEUTRAL);
+    display: flex;
     flex-direction: column;
-    height:100vh;
+    min-width: 100vw;
+    min-height: 100vh;
 }
 header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    /* Updated header background */
     background-color: var(--CLR-WARMNEUTRAL);
-    padding:0.5rem;
+    padding: 0.5rem;
     /* height: 6rem; */
 }
 header figure {
-    width:4rem;
+    cursor: pointer;
+    position: relative;
+    width: var(--ADMIN-FIG-WIDHT);
     height: auto;
     /* padding:0.5rem; */
     /* margin:2rem; */
-    box-shadow: 0px 0.2rem 0.2rem 0rem black;
-    border-radius:25%;
+    box-shadow: 0px 0.2rem 0.2rem 0rem var(--CLR-DARK-GREEN);
+    border-radius: 25%;
 }
-.data_box figure{
+.menu-btn {
+    cursor: pointer;
+    width: 3rem;
+    height: auto;
+    border-radius: 10%;
+    box-shadow: 0px 0.2rem 0.2rem 0rem var(--CLR-DARK-GREEN);
+    background-image: url("../resources/icons8-scatter-plot-64.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* You may also want these properties: */
+    display: inline-block; /* or block, depending on your needs */
+}
+.data_box figure {
     background-color: inherit;
-    width:6rem;
+    width: 6rem;
     height: auto;
     margin-bottom: 1rem;
     align-self: flex-end;
 }
 section {
-    flex-grow:1;
+    flex-grow: 1;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    /* Add this to prevent section from growing too large */
+    min-height: 0;
 }
-.data_box{
-    margin:5rem;
+
+.data_box {
     display: flex;
     flex-direction: column;
-    color:black;
-    background-color: #F8F8FF;
-    padding:2rem;
+    color: var(--CLR-DARK-BLUE);  /* Updated text color for contrast */
+    background-color: var(--CLR-LIGHTNEUTRAL); /* Updated background to match new palette */
+    padding: 2rem;
     border-radius: 3%;
-    min-height: 30rem;
+    /* Change min-height to fixed height or max-height */
+    height: 35rem;  /* or max-height: 20rem */
+    overflow: scroll;
 }
-.data_box div {
+.data_box::-webkit-scrollbar {
+    display: none;
+}
+
+.data_box .data_block {
     display: flex;
     justify-content: space-between;
-    padding:1rem;
+    padding: 1rem;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.756);
-    width:40vw;
+    width: 30vw;
 }
 span {
-    padding-right: 1rem;
+    padding-right: 0.8rem;
     padding-left: 0.2rem;
+    font-weight: 600;
+}
+.data_box-header {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0;
     font-weight: 700;
+    font-size: large;
+    color: var(--CLR-DARK-GREEN);
+}
+.data_box-header .label {
+    padding: 3rem;
+}
+
+.logout-bar {
+    display: none;
+    position: fixed;
+    top: 4.1rem;
+    left: 0.5rem;
+    background-color: white;
+    width: 15rem;
+}
+.logout-bar div {
+    cursor: pointer;
+    padding-block: 0.3rem;
+}
+.log-out-btn {
+    color: var(--CLR-DARK-BLUE);
+    z-index: 2;
+}
+section figure {
+    width: 30rem;
+    height: auto;
 }
