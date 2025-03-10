@@ -79,9 +79,16 @@
 
                     $stms->close();
                     $conn->close();
+                    if($ownerorstudent == "owner"){                    
                     $_SESSION['username'] = $username;
-                    $_SESSION['email'] = $email;
-                } else {
+                    $_SESSION['email'] = $email;}
+                    else{
+                        $_SESSION['s_username'] = $username;
+
+                        $_SESSION['s_email'] = $email;}
+    
+                }
+                else {
                     echo "Error inserting data: " . $stmt->error;
                     $stms->close();
                     $conn->close();
@@ -114,7 +121,6 @@
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (isset($_GET['q'])) {
                 $verifyEmail = $_GET['q'];
-                if ($_SESSION['email'] == $verifyEmail) {
                     $conn = mysqli_connect("localhost", "root", "", "user_database");
                     unset($_GET['q']);
                     if (!$conn) {
@@ -167,7 +173,7 @@
                     $stmt2->close();
                     $stmt3->close();
                     $conn->close();
-                }
+                
             }
         }
         ?>
