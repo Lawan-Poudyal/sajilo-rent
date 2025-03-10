@@ -14,6 +14,7 @@
             border-radius: 8px;
             display: flex;
             align-items: center;
+            justify-content: center;
             height: 80px; 
             position:sticky;
             top:0;
@@ -25,11 +26,15 @@
             height: 50px;
             width: 50px;
         }
+        .title{
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
     <nav class="nav">
         <div class="sajilo-rent-logo"></div>
+        <span class="title">Sajilo Rent</span>
     </nav>
 </body>
 </html>

@@ -1,20 +1,19 @@
 {
-  "files.associations": {
-    "vector": "cpp"
-  },
-  "sqltools.connections": [
-    {
-      "mysqlOptions": {
-        "authProtocol": "default",
-        "enableSsl": "Disabled"
-      },
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 3306,
-      "driver": "MySQL",
-      "name": "sijannnnnnnnn",
-      "database": "user_database",
-      "username": "root"
-    }
-  ]
+    "liveServer.settings.port": 5501,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "final",
+            "database": "user_database",
+            "username": "root",
+            "password": ""
+        }
+    ]
 }

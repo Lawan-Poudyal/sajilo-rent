@@ -1,401 +1,537 @@
 *{
-    margin:0;
-    padding:0;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: thin;
 }
-body{
-    background-color:var(--body-bgcolor);
-    font-size:var(--body-small-font-size);
-    font-family:monospace;
-    display:flex;
-    flex-flow:column nowrap;
-    min-height:100vh;
-    border:1px solid black;
-  
-}
-img{
-    display:block;
-    border:none;
-}
-/* utility class*/
-.nowrap{
-    white-space: nowrap;
+.main-body{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
 }
 .hidden{
     display:none;
 }
-.rotate{
-    animation:rotate 1s 0s ease-in-out 1 forwards;
-}
-.reverserotate{
-    animation:rotate 1s 0s ease-in-out 1 forwards reverse;
-}
-.expand{
-    transform-origin:top;
-    animation:expand 1s 0s ease-in-out 1 forwards;
-}
-.reverseexpand{
-    transform-origin:top;
-    animation:expand 1s 0s ease-in-out 1 forwards reverse; 
-}
-@keyframes rotate{
-    0%{
-        transform:rotate(0deg);
-    }
-    100%{
-        transform:rotate(360deg);
-    }
-}
-@keyframes expand{
-    0%{
-        transform:scaleY(0);
-    }
-    75%{
-        transform:scaleY(1.2);
-    }
-    100%{
-        transform:scaleY(1);
-    }
-}
-/* end of utility class*/
-.header{
-    position:sticky;
-    z-index:10;
-    top:0;
-}
-.footer{
-    position:sticky;
-    z-index:10;
-    bottom:0;
-}
-/*nav design */
-.header-nav{
-    background-color: var(--contrast-bgcolor);
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--standard-padding) 10px;
-    gap:var(--min-gap); 
-    box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
-}
-.header-nav-element{
-    display:flex;
-    flex-flow:row nowrap;
-    justify-content: space-between;
-    align-items: center;
-}
-#logo-btn{
-border:none; 
-}
-.header-nav-element-side-menu{
-    display:flex;
-    flex-flow:row nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap:var(--standard-gap);
+/* user-profile */
+.aside-bar-student {
+    width: 30vw;
 }
 
-.menu{
-    position:relative;
+.section-wrapper {
+    width: 100%;
 }
-.dropdown-menu{
-    position:absolute;
-    top:calc(var(--standard-padding) + var(--standard-padding) + var(--nav-element-height));
-    left:calc(-1 * (var(--drop-down-width) - var(--nav-element-width)));
-    width:var(--drop-down-width);
-    text-align: center;
-    font-weight: 800;
-    display:flex;
-    flex-flow:column nowrap;
-    padding: var(--standard-padding) 5px;
-    border-radius:10px;
-    background-color: var(--contrast-bgcolor);
-    gap:var(--standard-gap);
-    display:none;
+.section-wrapper section{
+border:none;
+/* box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px; */
+box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
-.option
-{
-    border-bottom: 1px solid var(--body-bgcolor);
-    border-radius:20px;
-    padding:var(--small-padding);
-    transition:1s linear;
-    cursor:pointer;
+.section-profile {
+    display: flex;
+    height: 25vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
 }
-.option:last-child{
-    border-bottom:none;
-}
-.option:hover {
-    background-color: black;
-    color:white;
 
+.avatar {
+    width: 200px; 
+    height: 200px; 
+    overflow: hidden; 
+    border-radius: 50%;
 }
-.header-nav-element-menu figure{
-    height:var(--nav-element-height);
-    width:var(--nav-element-width);
-    border-radius:50%;
-    background-color: var(--body-bgcolor);
-    box-shadow: 0px 5px 5px 0px var(--light-bgcolor);
+.avatar-wrapper{
+    position: relative;
+}
+.change-profile-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    bottom: 10px;  /* Changed from bottom: 1 */
+    right: 10px;   /* Changed from right: 65 */
     cursor: pointer;
 }
-/* moving to main section of the whole damn thing */
-.main{
- flex-grow:1;
- display:flex;
- flex-flow:column nowrap;
- align-items: center;
- padding:var(--standard-padding);
-}
-.main-div{
-    width:clamp(350px , 100% , 600px);
-    height:auto;
-    background-color: var(--contrast-bgcolor);
-    margin-bottom:var(--standard-gap);
-}
-.profilepic{
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    border:2px solid black;
-    background-image: url('/sajilo-rent/resources/add.png');
-    background-size: cover;
-    background-position:-45px center;
-    cursor:pointer;
-}
-.name{
-    font-weight:bolder;
-    font-size: 1.5rem;
-    margin-bottom:var(--standard-gap);
-}
-.profilestatus{
-    display:grid;
-    grid-template-columns: repeat(1 , 1fr 1fr);
-    grid-auto-rows: var(--small-element-height);
-    gap:var(--standard-gap);
-    padding:var(--standard-padding);
-}
-.info{
-    display:flex;
-}
-.info:nth-child(2n){
-    justify-content: flex-end ;
-}
-.main-section{
-    width:clamp(350px , 100% , 600px);
-    height:400px;
-    gap:var(--standard-gap);
-    background-color: var(--contrast-bgcolor);
-    margin-bottom:var(--standard-gap);
-    padding:var(--standard-padding);    
-}
-.comments{
-    display:flex;
-    flex-flow: column nowrap;
-    gap:var(--standard-gap);
-}
-.commentsection{
-    display:flex;
-    flex-flow:column nowrap;
-    gap:var(--standard-gap);
-}
-.comment{
-    height:var(--nav-element-height);
-    width:100%;
-    resize: none;
-   }
-.addcomment{
- height:var(--nav-element-height);
- width:100px;
-}
-.commentinfo{
-    color:gray;
-    margin-bottom:var(--standard-gap);
-}
-.commenter , .commentdate{
-font-weight: 800;
-color:black;
-}
-.comment{
-    border:1px solid black;
-    height:fit-content;
-}
-/*----------for floating ----------------------------*/
-.uploadphoto{
-    position:fixed; 
-    top:calc(50vh - 200px);
-    border:1px solid black;
-    width:clamp(350px , 100% , 600px);
-    height:400px;
-    background-color: var(--contrast-bgcolor);
-    display:flex;
-    flex-flow:column nowrap;
+.user-information{
+    position: relative;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    padding:var(--standard-padding);
-    gap:var(--standard-gap);
-   
+    gap: 1rem;
 }
-.cross-icon{
-    position:absolute;
-    top:0;
-    right:0;
-    height: var(--nav-element-height);
-    width: var(--nav-element-width);
-    cursor:pointer;
-}
-.photo{
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    border:2px solid black;
-    background-image: url('/sajilo-rent/resources/add.png');
+
+.profile-image { 
+    width: 100%;
+    height: 100%; 
     background-size: cover;
-    background-position:-40px center;
-    cursor:pointer;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-.send{
-    background-color: lime;
-    cursor:pointer;
-    padding:var(--standard-padding);
-    border-radius:10px;
-    border:none;
-    font-style: monospace;
-    font-weight:bolder;
+
+.user-name{
+    font-size: 32px;
+    font-weight: 700;
 }
-.logout{
-    position:fixed; 
-    top:calc(50vh - 100px);
-    border:1px solid black;
-    width:clamp(350px , 100% , 600px);
-    height:200px;
-    background-color: var(--contrast-bgcolor);
-    display:flex;
-    flex-flow:column nowrap;
-    align-items: center;
-    justify-content: center;
-    padding:var(--standard-padding);
-    gap:var(--standard-gap);
+.user-status{
+    font-size: 22px;
+    font-weight: 100;
+}
+.message-user{
+    font-size: 28px;
+    border-radius: 1rem;
+    padding: .2rem .5rem;
+}
+#imageInput {
     display: none;
 }
-.logout span{
-    width:100%;
-    font-family: monospace;
-    font-style: italic;
-    white-space: nowrap;
-    font-size:1.15rem;
+/* user-recents */
+
+.section-recent{
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    display:flex;
+    flex-flow: column nowrap;
+    padding: 0.5rem 1rem;   
 }
-.logout-option{
-    width:100%;
+.text-owner{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.house-posted{
     display: flex;
-    flex-direction: row;
-    gap: var(--standard-gap);
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem .5rem; 
+    align-content: flex-start;
 }
-.logout-option button{
-    height: var(--nav-element-height);
-    width:100px;
-    border-radius:10px;
-    border:none;
-    background-color: lime;
-    color:white;
-    font-weight:bolder;
+.current-houses{
+    width:100%;
+    display:flex;
+    flex-flow:row nowrap;
+    overflow-x:scroll;
+    gap:1.5rem;
 }
-.cross2-icon{
-    position:absolute;
-    top:0;
-    right:0;
-    height: var(--nav-element-height);
-    width: var(--nav-element-width);
-    cursor:pointer;
+.house-card{
+    width: 250px;
+    flex-shrink:0;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    height: 250px;
+    margin-bottom: 2rem;
+
 }
-.request {
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: #fff;
+.house-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+}
+.house-information{   
+    display: flex;
+    justify-content: space-between;
+    padding:2px 16px;
+}
+.house-card>img{
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+.house-information>p{
+    font-size: 20px;
+}
+.book-for-rent{
+    font-size: 20px;
+    border-radius: 1rem;
+    padding: .2rem .5rem;
+}
+
+/* user-ratings */
+
+
+.text-comment{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.section-review{
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+.main-rating{
+    display: flex;
+    gap: 2rem;    
+}
+
+.rating-box {
+    background-color: #f8f8f8;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.main-section-div h2 {
+    padding: 12px 20px;
+    width: fit-content;
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    font-family: Arial, sans-serif;
+    flex: 0.3;
 }
 
-.request-card {
+.rating-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    line-height: 1.2;
+}
+
+.rating-text {
+    color: #666;
+    font-size: 14px;
+    margin-top: 2px;
+}
+.write-review{
     display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 0.7;
+    border-radius: 1rem;
+}
+.share-review{
+    flex: 1;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    background-color: #f8f8f8;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+}
+.button-write-review{
+    text-align: center;
+    font-size: 20px;
+    border-radius: 1rem;
+    padding: .2rem .5rem;
+}
+.rating-image-counter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 .3rem;
+    gap: 1rem;
+}
+.reviewer-count{
+    font-size: 22px;
+}
+.rating-comment{
+    display: flex;
+    flex-direction: column;
+}
+.rating-image{
+    height: 1rem;
+    object-fit: cover;
+}
+.main-comment{
+    width:100%;
+    display:flex;
+    flex-flow:row nowrap;
+    gap:1.5rem;
+    overflow-x : scroll;
+    padding:1.5rem;
+}
+.comment-card{
+flex-shrink : 0;
+margin-top:10px;
+width:350px;    
+display:flex;
+flex-flow:column nowrap;
+background-color: whitesmoke;
+box-shadow:0px 5px 18px gray;
+border-radius:5px;
+gap:1.5rem;
+padding:0.5rem;
+}
+.reviewer-info-wrapper{
+    display:flex;
     flex-flow:column nowrap;
+    gap:1.5rem;
+}
+.reviewer-info{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+}
+.reviewer-info p:first-child{
+    font-weight:bolder;
+    font-size:1.25rem;
+}
+.reviewer-rating-image{
+    height:25px;
+    width:125px;
+ 
+}
+
+.form-update{
+    background-color: #dc3545;
+    color:white;
+    transition: 0.25s;
+    font: 1.5rem;
+    font-weight: 600;
+    border:none;
+}
+.form-update:hover{
+    background-color: darkred;
+    transform: translateY(-5px);
+
+}
+/* student part */
+.update-house{
+    display:grid;
+    place-content:center;
+    cursor:pointer;
+    font-size: 20px;
+    border-radius:10px;
+    background-color: #dc3545;
+    color:white;
+    border:none;
+    height:25px;
+    width:fit-content;
+    padding: 1.25rem 1rem;
+}
+.house-card .hide, .not-rented .hide { 
+    display: none; 
+}
+.not-residing>h1{
+    font-weight: 500;
+}
+/* media queries */
+/* Large screens (laptops/desktops, 1200px and below) */
+@media screen and (max-width: 1200px) {
+
+    
+    body > * {
+        max-width: 100%;
+    }
+
+    .house-card {
+        width: 45%;
+    }
+
+    .main-rating {
+        gap: 1rem;
+    }
+}
+
+
+/* Medium screens (tablets/smaller laptops, 992px and below) */
+@media screen and (max-width: 992px) {
+    .section-profile {
+        height: auto;
+        padding: 1rem;
+    }
+
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
+
+    .user-name {
+        font-size: 28px;
+    }
+
+    .user-status {
+        font-size: 20px;
+    }
+
+    .message-user {
+        font-size: 24px;
+    }
+
+    .main-rating {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+}
+
+/* Small screens (tablets, 768px and below) */
+@media screen and (max-width: 768px) {
+    .house-card {
+        width: 90%;
+    }
+
+    .text-owner, .text-comment {
+        font-size: 26px;
+    }
+
+    .house-information > p {
+        font-size: 18px;
+    }
+
+    .book-for-rent {
+        font-size: 18px;
+    }
+
+    .reviews-wrapper {
+        width: 100%;
+    }
+
+    .reviewer-name {
+        font-size: 24px;
+    }
+}
+
+/* Extra small screens (phones, 576px and below) */
+@media screen and (max-width: 576px) {
+    .section-profile {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .user-information {
+        flex-direction: column;
+    }
+
+    .avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .user-name {
+        font-size: 24px;
+    }
+
+    .user-status {
+        font-size: 18px;
+    }
+
+
+    .rating-box {
+        width: 100%;
+    }
+
+    .rating-number {
+        font-size: 24px;
+    }
+
+    .share-review {
+        font-size: 20px;
+        padding: 0.5rem 1rem;
+    }
+
+    .reviewer-count {
+        font-size: 18px;
+    }
+}
+/*this one is for form*/
+.form-div{
+    z-index: 10;
+    height:65vh;
+    padding:var(--standard-padding);
+    place-content: center;
+    width: clamp(350px , 100% , 600px);
+    overflow-y:hidden;      
+}
+    /*changed nothing*/
+.form-div form {
+    height:65vh;
+    overflow-y : scroll;    
+    font: inherit;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(50px, auto));
+    gap: 1.5rem;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: var(--contrast-bgcolor);
+    padding: var(--standard-padding);
+}
+
+.form-div h2 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    color: #333333;
+    margin-bottom: 1rem;
+}
+
+.wrapper-div {
+    display: flex;
+    flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    width:100%;
-    border: 1px solid #eaeaea;
-    border-radius: 6px;
-    margin-bottom: 15px;
-    background-color: #fafafa;
-    transition: box-shadow 0.3s;
 }
 
-.request-card:hover {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #555555;
 }
 
-.profile-info {
-    display: flex;
-    align-items: center;
+input, select {
+    padding: 0.6rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 100%;
 }
 
-.profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-    border: 2px solid #ddd;
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.username {
-    font-size: 16px;
+input[type="radio"], input[type="file"] {
+    margin: 0 10px 0 5px;
+}
+
+.form-submit-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin: 0;
-}
-
-.mutual-friends {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-}
-
-.actions {
-    display: flex;
-    gap: 10px;
-}
-
-.accept-btn, .decline-btn {
-    padding: 8px 12px;
+    color: white;
+    background-color: #007bff;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
 }
 
-.accept-btn {
-    background-color: #4caf50;
-    color: white;
+.form-submit-btn:hover {
+    background-color: #0056b3;
 }
 
-.accept-btn:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
+.image-display {
+    height: 150px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #eaeaea;
+    border: 2px dashed #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaaaaa;
+    font-size: 1rem;
+}
+.cross-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 20; /* Ensure it's above other elements */
+    transition: transform 0.3s ease;
 }
 
-.decline-btn {
-    background-color: #f44336;
-    color: white;
+.cross-icon:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
 }
-
-.decline-btn:hover {
-    background-color: #e53935;
-    transform: scale(1.05);
+.hidden-latlng{
+    display:none;
 }

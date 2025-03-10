@@ -1,6 +1,6 @@
-let menu = document.getElementById('js-menu'); 
+// let menu = document.getElementById('js-menu'); 
 let menuClick = false;
-let dropDown = document.getElementById('js-drop-down');
+// let dropDown = document.getElementById('js-drop-down');
 let slider = document.getElementById('wifi-price');
 let slidervalue = document.getElementById('price-value');
 let image1 = document.getElementById('image1');
@@ -23,7 +23,8 @@ let lng3 = document.getElementById('lng3');
 let lat4 = document.getElementById('lat4');
 let lng4 = document.getElementById('lng4');
 let username = document.getElementById('username').innerText;
-let profileBtn = document.querySelectorAll('.js-profile-btn');
+// let profileBtn = document.querySelectorAll('.js-profile-btn');
+// let chatBtn = document.querySelectorAll('.js-chat-btn');
 let rentval , electricityval , image1val , image2val , image3val , wifival;
 let latlngarr = [
     [parseFloat(lat1.innerText), parseFloat(lng1.innerText)],
@@ -32,7 +33,6 @@ let latlngarr = [
     [parseFloat(lat4.innerText), parseFloat(lng4.innerText)]
   ];
 let holderlatlngarr = [[0,0],[0,0],[0,0],[0,0]];
-console.log(latlngarr);
 let stopper =0;
 for(let i=0; i<4; i++)
 {
@@ -43,34 +43,42 @@ holderlatlngarr[stopper][1] = latlngarr[i][1];
 stopper++;
 }
 }
-console.log(holderlatlngarr);
-menu.addEventListener('click' , function()
-{
-if(menuClick === false)
-{
-menu.classList.remove('reverserotate');
-void menu.offsetWidth;
-menu.classList.add('rotate');
-dropDown.style.display = 'flex';
-dropDown.classList.remove('reverseexpand');
-void dropDown.offsetWidth;
-dropDown.classList.add('expand');
-menuClick = true;
-}
-else if(menuClick === true)
-{
-    menu.classList.remove('rotate');
-    void menu.offsetWidth;
-    menu.classList.add('reverserotate');
-dropDown.classList.remove('expand');
-void dropDown.offsetWidth;
-dropDown.classList.add('reverseexpand');
-setTimeout(function()
-{dropDown.style.display="none";},1000);
-    menuClick = false;
+
+// chatBtn.forEach((btn)=>{
+// btn.addEventListener('click' , ()=>{
+// window.location.href = `/sajilo-rent/chatapplication/messenger.php?email=${username}`
+// });
+// });
+
+
+
+// menu.addEventListener('click' , function()
+// {
+// if(menuClick === false)
+// {
+// menu.classList.remove('reverserotate');
+// void menu.offsetWidth;
+// menu.classList.add('rotate');
+// dropDown.style.display = 'flex';
+// dropDown.classList.remove('reverseexpand');
+// void dropDown.offsetWidth;
+// dropDown.classList.add('expand');
+// menuClick = true;
+// }
+// else if(menuClick === true)
+// {
+//     menu.classList.remove('rotate');
+//     void menu.offsetWidth;
+//     menu.classList.add('reverserotate');
+// dropDown.classList.remove('expand');
+// void dropDown.offsetWidth;
+// dropDown.classList.add('reverseexpand');
+// setTimeout(function()
+// {dropDown.style.display="none";},1000);
+//     menuClick = false;
     
-}
-});
+// }
+// });
 slider.addEventListener('input' , function()
 {
 slidervalue.innerText = slider.value;
@@ -149,9 +157,14 @@ image3.addEventListener('change', function(){
  cross.addEventListener('click' , ()=>{
  form.style.display = "none";
  });
- function removehouse( lat ,  lng)
+ async function removehouse( lat ,  lng)
  {
 //   stopper--;
+  let response = await fetch(`/sajilo-rent/user-panel/back_end/checktenants.php?lat=${lat}&lng=${lng}`);
+  let data = await response.text();
+  data = Number(data);
+  console.log(data);
+  if(!data){
   console.log("lat :" +lat+ " lng:" +lng);
   var xmlrequest = new XMLHttpRequest();
   xmlrequest.open("GET" , `/sajilo-rent/user-panel/back_end/removehouses.php?lat=${lat}&lng=${lng}&username=${username}`,true);
@@ -169,17 +182,22 @@ image3.addEventListener('change', function(){
         }
 
         stopper--;
+        alert('house removed');
     }
     else{
         console.log("we ran into this problem " + this.readyState + " and this " + this.status);
     }
   }
+}
+else{
+    alert(`Can't remove house, People live there`);
+}
   
  }
  ////////// for redirection purposes ////////////////////////
- profileBtn.forEach((btn)=>{btn.addEventListener('click' , ()=>{
-    window.location = "/sajilo-rent/user-panel/owner-profile.php";
-    });});
+//  profileBtn.forEach((btn)=>{btn.addEventListener('click' , ()=>{
+//     window.location = "/sajilo-rent/user-panel/owner-profile.php";
+//     });});
 
 //////////////////////////////////////////////// MAP //////////////////////////////
 var map = L.map('js-map').setView([27.6194, 85.5388], 50); 
@@ -262,9 +280,11 @@ tempmarker.forEach((marker) => {
                     <span>${jsonobj["electricity"]}</span>
                     </div>
                     <div class='info-wrapper info-btn'>
-                    <button id="pointer-btn" onclick="removehouse(${lat} , ${lng})">Remove</button>
-                    <button id="pointer-btn">Update</button></div></div>`);
+                    <button id="pointer-btn"  onclick="removehouse(${lat} , ${lng})">Remove</button>
+                    <button id="pointer-btn" class=".js-update-house-btn">Update</button></div></div>`);
+                    
             }
+            
             else{
                 console.log(this.readyState + " " + this.status);
             }

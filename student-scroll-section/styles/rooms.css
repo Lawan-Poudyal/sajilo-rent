@@ -3,6 +3,9 @@
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 5px;
+  height: calc(90vh - 20px); /* This will make it nearly as tall as the map (90vh) with a small gap */
+  max-height: none; /* Remove the fixed max-height */
+  overflow-y: auto; /* Keep the scrolling ability */
 }
 .room-container {
   padding: 40px 25px 25px 25px;
@@ -27,7 +30,10 @@
 }
 
 .product-title {
-  height: 40px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: bold;
   margin-bottom: 5px;
 }
 
@@ -81,4 +87,21 @@ gap: 10px;
   border-radius: 50px;
   margin-bottom: 10px;
 
+}
+
+
+.owner-email {
+  margin-left: 10px;
+  color: #666;
+  font-weight: normal;
+  font-size: 0.7em;
+}
+
+/* For smaller screens, you might want this adjustment */
+@media (max-width: 576px) {
+  .owner-email {
+    display: block;
+    margin-left: 0;
+    width: 100%;
+  }
 }

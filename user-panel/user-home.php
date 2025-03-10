@@ -1,4 +1,4 @@
-    <?php
+<?php 
     session_start();
     include("../header.php");
     ?>
@@ -109,68 +109,69 @@
     </head>
 
     <body>
-        <?php
-        $verifyEmail = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            if (isset($_GET['q'])) {
-                $verifyEmail = $_GET['q'];
-                if ($_SESSION['email'] == $verifyEmail) {
-                    $conn = mysqli_connect("localhost", "root", "", "user_database");
-                    unset($_GET['q']);
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
-
-                    // Prepare and execute the SELECT statement
-                    $stmt = $conn->prepare("SELECT * FROM user_verification WHERE email = ?");
-                    if ($stmt === false) {
-                        die("Prepare failed: " . $conn->error);
-                    }
-
-                    $stmt->bind_param("s", $verifyEmail);
-                    if (!$stmt->execute()) {
-                        die("Execute failed: " . $stmt->error);
-                    }
-
-                    $result = $stmt->get_result();
-                    $verification_number = null; // Initialize variables
-                    $status = null;
-
-                    if ($result->num_rows > 0) { // Corrected from num_row to num_rows
-                        $rows = $result->fetch_assoc();
-                        $verification_number = $rows['verification_number'];
-                        $status = $rows['status'];
-                    }
-
-
-                    // Prepare and execute the INSERT statement
-                    $stmt3 = $conn->prepare("INSERT INTO verified_users(email, verification_number, status) VALUES (?, ?, ?)");
-                    if ($stmt3 === false) {
-                        die("Prepare failed: " . $conn->error);
-                    }
-
-                    // Correctly bind parameters with types
-                    $stmt3->bind_param("sis", $verifyEmail, $verification_number, $status); // Assuming verification_number and status are integers
-                    $stmt3->execute();
-
-                    setcookie('msgs', 'you are verified by the admin ! , you will be redirected to login page in 10s ', time() + 5000, "/");
-
-                    // Prepare and execute the DELETE statement
-                    $stmt2 = $conn->prepare("DELETE FROM user_verification WHERE email = ?");
-                    if ($stmt2 === false) {
-                        die("Prepare failed: " . $conn->error);
-                    }
-                    $stmt2->bind_param("s", $verifyEmail);
-                    $stmt2->execute();
-                    // Close statements and connection
-                    $stmt->close();
-                    $stmt2->close();
-                    $stmt3->close();
-                    $conn->close();
-                }
-            }
+    <?php
+    $verifyEmail=' ';
+       if($_SERVER['REQUEST_METHOD']==='GET') {
+        if(isset($_GET['q'])){
+        $verifyEmail=$_GET['q'];
+         if($_SESSION['email']==$verifyEmail) {
+            header("Location: " . $_SERVER['PHP_SELF'] . "&verified=true");
+        $conn = mysqli_connect("localhost", "root", "", "user_database");
+        unset($_GET['q']);
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
         }
-        ?>
+        
+        // Prepare and execute the SELECT statement
+        $stmt = $conn->prepare("SELECT * FROM user_verification WHERE email = ?");
+        if ($stmt === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+        
+        $stmt->bind_param("s", $verifyEmail);
+        if (!$stmt->execute()) {
+            die("Execute failed: " . $stmt->error);
+        }
+        
+        $result = $stmt->get_result();
+        $verification_number = null; // Initialize variables
+        $status = null;
+        
+        if ($result->num_rows > 0) { // Corrected from num_row to num_rows
+            $rows = $result->fetch_assoc();
+            $verification_number = $rows['verification_number'];
+            $status = $rows['status'];
+        }
+        
+        
+        // Prepare and execute the INSERT statement
+        $stmt3 = $conn->prepare("INSERT INTO verified_users(email, verification_number, status) VALUES (?, ?, ?)");
+        if ($stmt3 === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+        
+        // Correctly bind parameters with types
+        $stmt3->bind_param("sis", $verifyEmail, $verification_number, $status); // Assuming verification_number and status are integers
+        $stmt3->execute();
+        
+        setcookie('msgs','you are verified by the admin ! , you will be redirected to login page in 10s ' ,time()+5000 ,"/");
+        
+        // Prepare and execute the DELETE statement
+        $stmt2 = $conn->prepare("DELETE FROM user_verification WHERE email = ?");
+        if ($stmt2 === false) {
+            die("Prepare failed: " . $conn->error);
+        }
+        $stmt2->bind_param("s",$verifyEmail);
+        $stmt2->execute();
+        // Close statements and connection
+        $stmt->close();
+        $stmt2->close();
+        $stmt3->close();
+        $conn->close();
+    }
+        }
+       }
+?>
         <div class="notification">
         </div>
         <!-- <header class="header">

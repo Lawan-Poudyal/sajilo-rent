@@ -9,9 +9,8 @@ body{
     font-family:monospace;
     display:flex;
     flex-flow:column nowrap;
-    min-height:250vh;
+    min-height:100vh;
     border:1px solid black;
-  
 }
 img{
     display:block;
@@ -65,6 +64,10 @@ img{
     z-index:10;
     bottom:0;
 }
+.main-body{
+    display:flex;
+    flex-grow: 1;
+}
 /*nav design */
 .header-nav{
     background-color: var(--contrast-bgcolor);
@@ -95,8 +98,14 @@ border:none;
     height: var( --nav-element-height);
     width:var(--nav-element-width);
     border-right : 1px solid black; 
-    display:none;   
+    cursor:pointer;
+    display:none; 
+    transition:all 1s;  
 }
+.side-optio:hover{
+    background-color: black;
+}
+
 .side-option img{
     height: var( --nav-element-height);
     width:var(--nav-element-width); 
@@ -168,12 +177,13 @@ border:none;
 }
 /*---------------------- for the first input section */
 .form-div{
-    height:auto;
+    height:65vh;
     padding:var(--standard-padding);
     position:absolute;
-    top:0;  
+    top:10vh;  
     width: clamp(350px , 100% , 600px);
-   
+    overflow-y : scroll;
+    background-color: var(--contrast-bgcolor);
     display:none;
 }
     /*changed nothing*/
