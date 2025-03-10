@@ -145,7 +145,7 @@ if(sentOrRecieved === true)
     threeDot.classList.add('three-dot,js-three-dot');
     messageDiv.appendChild(threeDot);
     const toolTip = document.createElement("div");
-    toolTip.innerHTML = `<ul class='ul-tool-tip js-ul-tool-tip '><li >Change</li><li class='delete-msg js-delete-msg' data-id='${chat['id']}'>Unsend</li></ul>`;
+    toolTip.innerHTML = `<ul class='ul-tool-tip js-ul-tool-tip hidden'><li >Change</li><li class='delete-msg js-delete-msg' data-id='${chat['id']}'>Unsend</li></ul>`;
     toolTip.classList.add('hidden');
     messageDiv.appendChild(toolTip);
     threeDot.addEventListener('click' , ()=>{
