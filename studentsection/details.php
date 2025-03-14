@@ -149,7 +149,6 @@ if (!empty($rooms)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/details.css">
     <link rel="stylesheet" href="../universal-styling/aside-bar.css">
-
     <link rel="icon" type="image/x-icon" href="../resources/logo.svg">
     <title><?php echo  $_SESSION['s_username']; ?></title>
 

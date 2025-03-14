@@ -11,7 +11,8 @@ error_reporting(E_ALL);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+    <title><?php echo $_SESSION["s_username"]?></title>
     <link rel="stylesheet" href="/sajilo-rent/userprofiles/style/style.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
     <script src="/sajilo-rent/userprofiles/script/student-profile-content.js" defer></script>
@@ -61,7 +62,7 @@ error_reporting(E_ALL);
                         </div>
                         <div class="write-review">
                             <div class="rating-image-counter">
-                                <img class="rating-image" src="/sajilo-rent/resources/ratings/rating-30.png" alt="star rating image">
+                                <img class="rating-image" alt="star rating image">
                                 <p class="reviewer-count"></p>
                             </div>
                             <div class="share-review">

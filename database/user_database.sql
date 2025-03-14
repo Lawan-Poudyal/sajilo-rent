@@ -282,6 +282,40 @@ INSERT INTO `review_house` (`reviewer`, `lat`, `lng`, `rating`, `comment`, `date
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `reviewer` varchar(255) NOT NULL,
+  `reciever` varchar(255) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review_house`
+--
+
+CREATE TABLE `review_house` (
+  `reviewer` varchar(255) NOT NULL,
+  `lat` double NOT NULL,
+  `lng` double NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `review_house`
+--
+
+INSERT INTO `review_house` (`reviewer`, `lat`, `lng`, `rating`, `comment`) VALUES
+('uhisijan@gmail.com', 27.623947356845406, 85.53853690624237, 5, 'fas');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `signin`
 --
 
@@ -425,6 +459,12 @@ ALTER TABLE `housedetails`
   ADD UNIQUE KEY `username` (`username`,`latitude`,`longitude`);
 
 --
+-- Indexes for table `owner_number`
+--
+ALTER TABLE `owner_number`
+  ADD PRIMARY KEY (`email`);
+
+--
 -- Indexes for table `profilepicture`
 --
 ALTER TABLE `profilepicture`
@@ -435,6 +475,18 @@ ALTER TABLE `profilepicture`
 --
 ALTER TABLE `rentrequest`
   ADD PRIMARY KEY (`sender`,`reciever`,`lat`,`lng`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`reviewer`,`reciever`);
+
+--
+-- Indexes for table `review_house`
+--
+ALTER TABLE `review_house`
+  ADD PRIMARY KEY (`lat`,`lng`,`reviewer`);
 
 --
 -- Indexes for table `review`

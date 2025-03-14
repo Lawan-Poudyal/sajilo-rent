@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+  <title>Sajilo Rent</title>
+
   <link rel="stylesheet" href="front.css">
 </head>
 
@@ -60,13 +62,13 @@
       </figure>
       <section>
         <h1>Sign Up</h1>
-        <form id="signUpForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return checkPassword(event);">
-          <input type="text" id="fname" name="fname" placeholder="First Name">
-          <input type="text" id="lname" name="lname" placeholder="LastName">
-          <input type="email" id="email" name="email" placeholder="Email">
-          <input type="tel" id="number" name="number" placeholder="Phone number" minlength="10">
-          <input type="password" name="password" id="password" placeholder="Password">
-          <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
+        <form id="signUpForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  autocomplete="off" method="post" onsubmit="return checkPassword(event);">
+          <input type="text" id="fname" name="fname" placeholder="First Name" required >
+          <input type="text" id="lname" name="lname" placeholder="LastName" required>
+          <input type="email" id="email" name="email" placeholder="Email" required>
+          <input type="tel" id="number" name="number" placeholder="Phone number" minlength="10" maxlength="10" required>
+          <input type="password" name="password" id="password" placeholder="Password" required>
+          <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
           <button class="sign-up-button" id="SignUpButton" type="submit">Sign Up</button>
           <div>
             Already have an account?

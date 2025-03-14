@@ -1,14 +1,11 @@
-<?php
-session_start();
-session_abort();
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
     <title>Sajilo Rent</title>
     <link rel="stylesheet" href="front.css">
 </head>
@@ -75,13 +72,13 @@ session_abort();
                   $status = $row2['status'];
                   
                   if ($status == 'student') {
-                      header("Location: /sajilo-rent/studentsection/displayLatLng.php");
                       $_SESSION['s_username'] = $username;
-                        $_SESSION['s_email'] = $email;
+                      $_SESSION['s_email'] = $email;
+                      header("Location: /sajilo-rent/studentsection/displayLatLng.php");
                   } else {
-                      header("Location: /sajilo-rent/user-panel/owner-page.php");
                       $_SESSION['username'] = $username;
                       $_SESSION['email'] = $email;
+                      header("Location: /sajilo-rent/user-panel/owner-page.php");
                   }
               } else {
                   header("Location: /sajilo-rent/user-panel/user-home.php");
@@ -117,7 +114,7 @@ session_abort();
             </figure>
             <section>
                 <h1>Log In</h1>
-                <form id="signUpForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form id="signUpForm" autocomplete="off" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="email" id="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" id="password" placeholder="Password" required>
                     <button class="sign-up-button" id="SignUpButton" type="submit">Log In</button>

@@ -74,7 +74,7 @@ function addHouseDetails(houses) {
                 <img src='${location}' alt="Your house here" class="living-house-image js-house-image" >
                 <div class="house-information">
                     <div class="residence-details">
-                        <p class="house-price">$${house['price']}</p>
+                        <p class="house-price">Rs.${house['price']}</p>
                     </div>
                     <div class="house-status">
                         <button class="update-house js-update-house" data-lat='${house['latitude']}' data-lng='${house['longitude']}'>Update Info</button>

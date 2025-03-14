@@ -3,14 +3,14 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+    <title><?php echo $_SESSION["s_username"]?></title>
     <link rel="stylesheet" href="/sajilo-rent/userprofiles/style/style.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/aside-bar.css">
     <script src="/sajilo-rent/userprofiles/script/owner-profile-content.js" defer></script>

@@ -89,6 +89,12 @@ function putReviewContent(jsonDataReview) {
         const Rating = adjustAverage(totalRating, jsonDataReview.length);
         ratingNumber.innerText = Rating;  
         ratingImage.innerHTML = `<img src="/sajilo-rent/resources/ratings/rating-${Rating * 10}.png" alt="">`;
+    }else{
+        const ratingComment = document.querySelector('.rating-comment');
+        ratingComment.textContent = "";
+        ratingComment.textContent = "No any reviews for the user";
+        ratingComment.classList.add('empty-reviews');        
+        return;
     }
 }
 
