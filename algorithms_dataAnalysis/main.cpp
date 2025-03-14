@@ -95,11 +95,11 @@ vector<double>lng_list=readFile("../adminPanel/lng.txt");
 
 ////////// concentric clustering ///////////////////////////////////////////////
 vector<pair<double , double >> coordinates = latlng_to_coordinates(lat_list , lng_list);
-//print_coordinates(coordinates);
+print_coordinates(coordinates);
 writeFileCoordinates("coordinates.csv",coordinates);
 cout<<endl;
 vector<vector<clusterpts>> point_list = concentricCluster(lat_list , lng_list , 20, 2 );
-//print_concentric_cluster(point_list);
+print_concentric_cluster(point_list);
 
 //////////////// printing distances from ku ///////////////////////////////////
 vector<double>distances = haversine_distances(lat_list,lng_list);
@@ -111,15 +111,15 @@ writeFileDistance("havDistance.csv",distances);
 vector<pair<double , double >> v=coordinates;
 kdTreeNode * root = build_kd_tree(v);
 vector<kdTreeNode * > neigh = searchQuery(root , pair<int,int>(12,8) ,10);
-//print_neigh_in_range(neigh);
+print_neigh_in_range(neigh);
 delete root;
 
 ///////////////////////////// density clustering //////////////////////////////////////////
 vector<pair<double, double>> points = coordinates;
-int epsilonRadius = 5;
-int minPoints=2;
+float epsilonRadius = 0.1;
+int minPoints=6;
 vector<vector<pair<double, double>>> clusters = getClusters(points,epsilonRadius , minPoints);
-//printDensityClusters(clusters);
+printDensityClusters(clusters);
 writeFileClusterCoords("clusteredData.csv",clusters);
 
 

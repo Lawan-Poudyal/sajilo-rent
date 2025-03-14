@@ -1,29 +1,29 @@
 CXX := g++
+CXXFLAGS := -m64 -Wall -std=c++11
 
-OBJS := densityClustering.o concentricClustering.o rangeQueryInKDTree.o  main.o# object file created after compilation 
+OBJS := densityClustering.o concentricClustering.o rangeQueryInKDTree.o main.o
+SRCS := densityClustering.cpp concentricClustering.cpp rangeQueryInKDTree.cpp main.cpp
+DEPS := densityClustering.h concentricClustering.h rangeQueryInKDTree.h
+PREPROCESSED := densityClustering.i concentricClustering.i rangeQueryInKDTree.i main.i
+ASSEMBLY := densityClustering.s concentricClustering.s rangeQueryInKDTree.s main.s
 
-SRCS := densityClustering.cpp concentricClustering.cpp rangeQueryInKDTree.cpp main.cpp# source file written by programmer in high level language
+all: final
 
-DEPS := densityClustering.h concentricClustering.h rangeQueryInKDTree.h # dependencies , contains declerations of functions and classes
+# Preprocess
+%.i: %.cpp $(DEPS)
+	$(CXX) $(CXXFLAGS) -E $< -o $@
 
-PREPROCESSED := densityClustering.i concentricClustering.i rangeQueryInKDTree.i main.i# preprocessed files
+# Compile to assembly
+%.s: %.i 
+	$(CXX) $(CXXFLAGS) -S $< -o $@
 
-ASSEMBLY := densityClustering.s concentricClustering.s rangeQueryInKDTree.s main.s# assembly files
+# Compile to object files
+%.o: %.cpp $(DEPS)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-all : final # default target
+# Link
+final: $(OBJS)
+	$(CXX) $(CXXFLAGS) $^ -o $@ -lm -lstdc++
 
-%.i : %.cpp $(DEPS)
-	$(CXX) -E $< -o $@
-
-%.s : %.i 
-	$(CXX) -S $< -o $@
-
-%.o : %.S
-	$(CXX) -c $< -o $@
-
-final : $(OBJS)
-	$(CXX) $^ -o $@
-
-clear :  
-	del $(OBJS) final.exe  
-#or you can use  del *.o final.exe
+clean:
+	rm -f $(OBJS) $(PREPROCESSED) $(ASSEMBLY) final
