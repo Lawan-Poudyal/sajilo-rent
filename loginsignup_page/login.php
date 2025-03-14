@@ -114,7 +114,7 @@
             </figure>
             <section>
                 <h1>Log In</h1>
-                <form id="signUpForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form id="signUpForm" autocomplete="off" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="email" id="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" id="password" placeholder="Password" required>
                     <button class="sign-up-button" id="SignUpButton" type="submit">Log In</button>

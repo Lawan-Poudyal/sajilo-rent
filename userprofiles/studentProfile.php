@@ -62,7 +62,7 @@ error_reporting(E_ALL);
                         </div>
                         <div class="write-review">
                             <div class="rating-image-counter">
-                                <img class="rating-image" src="/sajilo-rent/resources/ratings/rating-30.png" alt="star rating image">
+                                <img class="rating-image" alt="star rating image">
                                 <p class="reviewer-count"></p>
                             </div>
                             <div class="share-review">

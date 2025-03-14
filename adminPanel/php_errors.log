@@ -1,0 +1,1 @@
+[11-Mar-2025 05:47:50 Europe/Berlin] PHP Warning:  fopen(lat.txt): Failed to open stream: Permission denied in /opt/lampp/htdocs/sajilo-rent/adminPanel/print_lat_lng.php on line 33

@@ -9,7 +9,8 @@ $path = '/opt/lampp/htdocs/sajilo-rent/aside-bar-' . $name . '.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger</title>
+    <link rel="icon" type="image/x-icon" href="/sajilo-rent/resources/logo.svg">
+    <title>Sajilo Rent</title>
     <link rel="stylesheet" href="/sajilo-rent/chatapplication/style/messenger-style.css">
     <link rel="stylesheet" href="/sajilo-rent/universal-styling/style.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">

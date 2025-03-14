@@ -62,8 +62,8 @@
       </figure>
       <section>
         <h1>Sign Up</h1>
-        <form id="signUpForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return checkPassword(event);">
-          <input type="text" id="fname" name="fname" placeholder="First Name" required>
+        <form id="signUpForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  autocomplete="off" method="post" onsubmit="return checkPassword(event);">
+          <input type="text" id="fname" name="fname" placeholder="First Name" required >
           <input type="text" id="lname" name="lname" placeholder="LastName" required>
           <input type="email" id="email" name="email" placeholder="Email" required>
           <input type="tel" id="number" name="number" placeholder="Phone number" minlength="10" maxlength="10" required>

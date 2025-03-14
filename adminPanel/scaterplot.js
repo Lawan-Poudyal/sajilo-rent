@@ -1,7 +1,7 @@
 const margin = 20;
 
-const upperX_limit = 30;
-const upperY_limit = 30;
+const upperX_limit = 1;
+const upperY_limit = 1;
 const total_graph_width =600;
 const total_graph_height =600;
 const firstQuard_x = total_graph_width/2;
