@@ -44,17 +44,21 @@ universal-styling/       # Shared styles
 
 ## Setup
 
-1. Clone the project into your web root so the app is available at:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Lawan-Poudyal/sajilo-rent.git
+   ```
+2. Move/copy the project into your web root so it is available at:
    `/opt/lampp/htdocs/sajilo-rent` (or update hardcoded absolute include paths in the project).
-2. Start Apache and MySQL.
-3. Create a MySQL database named `user_database`.
-4. Import the SQL dump:
+3. Start Apache and MySQL.
+4. Create a MySQL database named `user_database`.
+5. Import the SQL dump:
    - File: `database/user_database.sql`
    - Example:
      ```bash
      mysql -u root -p user_database < database/user_database.sql
      ```
-5. Verify DB credentials in code (many files use):
+6. Verify DB credentials in code (many files use):
    - host: `localhost`
    - user: `root`
    - password: blank by default in local XAMPP setups
