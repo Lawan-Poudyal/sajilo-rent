@@ -61,7 +61,7 @@ universal-styling/       # Shared styles
 6. Verify DB credentials in code (many files use):
    - host: `localhost`
    - user: `root`
-   - password: blank by default in local XAMPP setups
+   - password: set this to your local MySQL password (avoid blank passwords)
    - database: `user_database`
    - ⚠️ For production, use a dedicated database user with a strong password and update connection settings accordingly.
 
