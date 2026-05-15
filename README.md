@@ -49,7 +49,12 @@ universal-styling/       # Shared styles
    git clone https://github.com/Lawan-Poudyal/sajilo-rent.git
    ```
 2. Move/copy the project into your web root so it is available at:
-   `/opt/lampp/htdocs/sajilo-rent` (or update hardcoded absolute include paths in the project).
+   `/opt/lampp/htdocs/sajilo-rent`.
+   - If you use a different web root, update hardcoded include paths in files such as:
+     - `user-panel/owner-page.php`
+     - `studentsection/displayLatLng.php`
+     - `chatapplication/messenger.php`
+     - and other files referencing `/opt/lampp/htdocs/sajilo-rent/...`
 3. Start Apache and MySQL.
 4. Create a MySQL database named `user_database`.
 5. Import the SQL dump:
@@ -61,7 +66,7 @@ universal-styling/       # Shared styles
 6. Verify DB credentials in code (many files use):
    - host: `localhost`
    - user: `root`
-   - password: set this to your local MySQL password (avoid blank passwords)
+   - password: your MySQL password (**must not be blank, even for local development**)
    - database: `user_database`
    - update these values in the PHP connection code (e.g., `studentsection/backend/db.php`, `student-scroll-section/db.php`, and other files using `new mysqli(...)` / `mysqli_connect(...)`).
    - ⚠️ For production, use a dedicated database user with a strong password and update connection settings accordingly.
