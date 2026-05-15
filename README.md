@@ -63,6 +63,7 @@ universal-styling/       # Shared styles
    - user: `root`
    - password: set this to your local MySQL password (avoid blank passwords)
    - database: `user_database`
+   - update these values in the PHP connection code (e.g., `studentsection/backend/db.php`, `student-scroll-section/db.php`, and other files using `new mysqli(...)` / `mysqli_connect(...)`).
    - ⚠️ For production, use a dedicated database user with a strong password and update connection settings accordingly.
 
 ## Running the App
