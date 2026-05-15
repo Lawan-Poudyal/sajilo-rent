@@ -57,8 +57,9 @@ universal-styling/       # Shared styles
 5. Verify DB credentials in code (many files use):
    - host: `localhost`
    - user: `root`
-   - password: ``
+   - password: blank by default in local XAMPP setups
    - database: `user_database`
+   - ⚠️ For production, use a dedicated database user with a strong password and update connection settings accordingly.
 
 ## Running the App
 
@@ -79,4 +80,3 @@ Optional pages:
   ```bash
   find . -name '*.php' -print0 | xargs -0 -n1 php -l
   ```
-
