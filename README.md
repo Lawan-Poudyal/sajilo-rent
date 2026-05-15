@@ -50,6 +50,7 @@ universal-styling/       # Shared styles
    ```
 2. Move/copy the project into your web root so it is available at:
    `/opt/lampp/htdocs/sajilo-rent`.
+   - Windows XAMPP equivalent: `C:\xampp\htdocs\sajilo-rent`
    - If you use a different web root, update hardcoded include paths in files such as:
      - `user-panel/owner-page.php`
      - `studentsection/displayLatLng.php`
@@ -66,7 +67,7 @@ universal-styling/       # Shared styles
 6. Verify DB credentials in code (many files use):
    - host: `localhost`
    - user: `root`
-   - password: your MySQL password (**must not be blank, even for local development**)
+   - password: your local MySQL password (non-blank is strongly recommended for better security)
    - database: `user_database`
    - update these values in the PHP connection code (e.g., `studentsection/backend/db.php`, `student-scroll-section/db.php`, and other files using `new mysqli(...)` / `mysqli_connect(...)`).
    - ⚠️ For production, use a dedicated database user with a strong password and update connection settings accordingly.
